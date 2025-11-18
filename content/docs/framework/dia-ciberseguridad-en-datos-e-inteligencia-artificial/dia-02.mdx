@@ -1,0 +1,147 @@
+---
+title: DIA-02 - Inventario de Puntos de Recolección de Datos
+description: Control de identificación y gestión de todos los puntos donde se recopilan datos
+---
+
+## 🎯 Objetivo del Control
+
+Identificar, documentar y controlar todos los puntos de entrada donde la organización recopila datos personales o sensibles, asegurando transparencia, consentimiento apropiado y cumplimiento regulatorio.
+
+## 📋 Descripción
+
+Este control establece el registro exhaustivo de:
+- Formularios web y aplicaciones móviles
+- APIs y webhooks que reciben datos
+- Integraciones con terceros
+- Dispositivos IoT y sensores
+- Canales de atención (chat, email, teléfono)
+- Cookies y tecnologías de rastreo
+
+## 🛡️ Controles Requeridos
+
+### Tipos de Puntos de Recolección
+
+#### Canales Digitales
+- **Aplicaciones Web:**
+  - Formularios de registro y login
+  - Formularios de contacto
+  - Checkout y procesos de compra
+  - Suscripciones a newsletter
+  - Encuestas y feedback
+- **Aplicaciones Móviles:**
+  - Onboarding de usuarios
+  - Permisos de la app (ubicación, cámara, contactos)
+  - Analytics y telemetría
+- **APIs:**
+  - Endpoints públicos
+  - Webhooks de terceros
+  - Integraciones B2B
+
+#### Canales Offline
+- Formularios físicos escaneados
+- Puntos de venta (POS)
+- Eventos y ferias
+- Contratos físicos firmados
+
+#### Tecnologías de Rastreo
+- **Cookies:**
+  - Cookies estrictamente necesarias
+  - Cookies analíticas
+  - Cookies de marketing
+  - Cookies de terceros
+- **Tracking Technologies:**
+  - Pixels de seguimiento
+  - Fingerprinting
+  - Session replay
+  - Web beacons
+
+### Atributos del Inventario
+
+Para cada punto de recolección:
+- **Identificación:**
+  - ID único
+  - Nombre y descripción
+  - URL o ubicación
+  - Sistema propietario
+  - Responsable técnico
+- **Datos Recopilados:**
+  - Campos del formulario
+  - Datos obligatorios vs opcionales
+  - Categorías de datos personales
+  - Presencia de datos sensibles
+- **Base Legal:**
+  - Tipo de consentimiento (explícito, implícito, legítimo interés)
+  - Texto de aviso de privacidad
+  - Mecanismo de opt-in/opt-out
+  - Granularidad del consentimiento
+- **Flujo de Datos:**
+  - Sistema de destino inmediato
+  - Terceros que reciben los datos
+  - Transferencias internacionales
+  - Integraciones downstream
+
+### Gestión de Consentimiento
+
+- **Cookie Banner Management:**
+  - Implementación de Consent Management Platform (CMP)
+  - Configuración por categorías de cookies
+  - Respeto a preferencias del usuario
+  - Registro de consentimientos
+- **Privacy Notices:**
+  - Aviso de privacidad visible y accesible
+  - Lenguaje claro y comprensible
+  - Información sobre derechos ARCO (Acceso, Rectificación, Cancelación, Oposición)
+  - Información sobre transferencias internacionales
+
+### Validación y Seguridad
+
+- Validación de inputs (prevención de inyección)
+- Sanitización de datos
+- CAPTCHA o protección anti-bot
+- Rate limiting en APIs
+- Cifrado en tránsito (HTTPS/TLS)
+- Logs de acceso y auditabilidad
+
+## 📊 Métricas e Indicadores
+
+- Número total de puntos de recolección identificados
+- Porcentaje con mecanismo de consentimiento implementado (objetivo: 100%)
+- Puntos de recolección sin aviso de privacidad (objetivo: 0)
+- Formularios con validación y sanitización (objetivo: 100%)
+- Tasa de consentimiento de usuarios
+- Tiempo de respuesta promedio a solicitudes ARCO
+- APIs con autenticación y rate limiting (objetivo: 100%)
+
+## 🔗 Herramientas Recomendadas
+
+- **Consent Management:** OneTrust, Cookiebot, Usercentrics, Osano
+- **Privacy Notice Management:** TrustArc, iubenda, Termly
+- **Form Analytics:** Hotjar, FullStory, Mixpanel
+- **API Management:** Apigee, Kong, AWS API Gateway, Azure APIM
+- **Tag Management:** Google Tag Manager, Adobe Launch, Tealium
+- **Data Subject Request Management:** BigID, OneTrust, Securiti.ai
+
+## 📚 Referencias
+
+- [Política de Protección de Datos Personales](/docs/kudo/politicas/politica-proteccion-datos-personales)
+- [Política de Clasificación de Información](/docs/kudo/politicas/clasificacion-informacion)
+- [DIA-01: Inventario de Datos](/docs/kudo/dia-ciberseguridad-en-datos-e-inteligencia-artificial/dia-01)
+- GDPR Art. 13, 14 - Information to be provided
+- GDPR Art. 7 - Conditions for consent
+- ISO 27701:2019 - 6.7.1.3, 6.7.1.4
+- NIST Privacy Framework - CT.DP-P3
+
+## ✅ Checklist de Implementación
+
+- [ ] Auditoría de todos los formularios y puntos de recolección web/móvil
+- [ ] Inventario de APIs que reciben datos personales
+- [ ] Mapeo de cookies y tecnologías de rastreo
+- [ ] Implementación de Consent Management Platform
+- [ ] Redacción/actualización de avisos de privacidad
+- [ ] Configuración de opt-in para cookies no necesarias
+- [ ] Validación y sanitización en todos los formularios
+- [ ] Implementación de mecanismo de solicitudes ARCO
+- [ ] Registro centralizado de consentimientos
+- [ ] Testing de flujos de consentimiento
+- [ ] Capacitación a equipos de desarrollo y marketing
+- [ ] Auditoría legal de cumplimiento GDPR/LGPD

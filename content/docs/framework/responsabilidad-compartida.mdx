@@ -1,0 +1,94 @@
+---
+title: Responsabilidad Compartida
+description: Principios escenciales para la toma de decisiones
+icon: Shield
+---
+
+## 🔍 Cumplimiento
+
+#### Responsabilidad Compartida
+
+Es inevitable hablar de cumplimiento sin considerar los tres principales modelos de servicios en la nube.
+
+#### Modelos de Servicio en la Nube
+
+<Mermaid
+  chart="
+graph TD;
+subgraph Modelos de Servicio en la Nube
+subgraph SaaS
+D1[Control de Acceso de Usuarios];
+D2[Uso de Datos];
+end
+subgraph PaaS
+C1[Desarrollo de Aplicaciones];
+C2[Gestión de Usuarios];
+end
+subgraph IaaS
+B1[Sistema Operativo y Apps];
+B2[Configuración de Red];
+B3[Grupos de Seguridad];
+end
+end"
+/>
+
+<Mermaid
+  chart="
+graph TD;
+subgraph Distribución de Responsabilidades
+subgraph SaaS
+S1[Cliente: 20%];
+S2[Proveedor: 80%];
+end
+subgraph PaaS
+P1[Cliente: 50%];
+P2[Proveedor: 50%];
+end
+subgraph IaaS
+I1[Cliente: 80%];
+I2[Proveedor: 20%];
+end
+end"
+/>
+
+
+#### Responsabilidades del Proveedor de la Nube
+
+<Mermaid
+  chart="
+graph TD;
+subgraph Responsabilidad del Proveedor de la Nube
+E1[Infraestructura Física];
+E2[Infraestructura de Red];
+E3[Hipervisor];
+E4[Sistema Operativo para PaaS];
+E5[Aplicación para SaaS];
+end"
+/>
+
+#### Responsabilidades del Cliente
+
+<Mermaid
+  chart="
+graph TD
+subgraph Responsabilidad del Cliente
+A1[Datos y Contenido]
+A2[Gestión de Identidad y Acceso]
+A3[Seguridad del Lado del Cliente]
+A4[Configuración de Plataforma y Aplicaciones]
+end"
+/>
+
+
+#### Explicación de la responsabilidad compartida
+
+El modelo de responsabilidad compartida define las obligaciones de seguridad a través de diferentes modelos de servicios en la nube:
+
+- **IaaS (Infrastructure as a Service)**: El proveedor gestiona la infraestructura física, la red y la virtualización. Los clientes son responsables de los sistemas operativos, aplicaciones, datos y configuraciones.
+
+- **PaaS (Platform as a Service)**: El proveedor extiende la gestión para incluir sistemas operativos y middleware. Los clientes se enfocan en aplicaciones y datos mientras tienen menos carga de gestión de infraestructura.
+
+- **SaaS (Software as a Service)**: El proveedor gestiona casi todo, incluyendo la aplicación misma. Los clientes son principalmente responsables de los datos, controles de acceso de usuarios y requisitos de cumplimiento.
+
+A medida que avanzas de IaaS a SaaS, más responsabilidad se transfiere al proveedor de la nube, pero la protección de datos y la gestión de acceso siempre siguen siendo responsabilidades del cliente.
+

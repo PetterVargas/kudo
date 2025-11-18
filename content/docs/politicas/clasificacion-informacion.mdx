@@ -1,0 +1,261 @@
+---
+title: Clasificación de la Información
+description: Criterios para clasificar y manejar la información según su sensibilidad.
+---
+
+## 📋 Información General
+
+**Documento:** Clasificación de la Información  
+**Versión:** 1.0.0  
+**Fecha:** Enero 2025  
+**Clasificación:** Interno  
+**Audiencia:** Todos los empleados, contratistas y terceros de DivisionCero
+
+## 🎯 Propósito
+
+Establecer un sistema de clasificación uniforme para la información de DivisionCero, definiendo criterios claros para categorizar datos según su sensibilidad, criticidad e impacto al negocio, y determinar los controles de protección apropiados para cada nivel de clasificación.
+
+## 🏢 Alcance
+
+Esta política aplica a:
+- Toda la información creada, procesada, almacenada o transmitida por DivisionCero
+- Documentos físicos y digitales
+- Bases de datos y sistemas de información
+- Comunicaciones internas y externas
+- Información de clientes, empleados y terceros
+- Código fuente y propiedad intelectual
+- Información financiera y estratégica
+
+## 📚 Definiciones
+
+- **Información:** Datos en cualquier formato que tengan valor para la organización
+- **Clasificación:** Categorización sistemática basada en sensibilidad e impacto
+- **Propietario de la Información:** Persona responsable de clasificar y proteger la información
+- **Custodio:** Persona responsable del manejo técnico y operativo de la información
+- **Marcado:** Etiquetado visible que indica el nivel de clasificación
+- **Degradación:** Reducción del nivel de clasificación cuando aplique
+
+## 🛡️ Niveles de Clasificación
+
+### 🔴 CONFIDENCIAL (Nivel 4 - Máxima Restricción)
+
+**Definición:** Información cuya divulgación no autorizada causaría daño severo a DivisionCero.
+
+**Ejemplos:**
+- Estrategias corporativas y planes de negocio
+- Información financiera no pública
+- Código fuente propietario y algoritmos críticos
+- Contratos estratégicos y términos comerciales
+- Datos personales sensibles de empleados y clientes
+- Información de fusiones y adquisiciones
+- Credenciales administrativas y claves maestras
+
+**Controles Requeridos:**
+- Cifrado AES-256 para datos en reposo y tránsito
+- Acceso limitado por lista explícita autorizada por C-Suite
+- Autenticación multifactor obligatoria
+- Monitoreo y logging de todos los accesos
+- Almacenamiento en infraestructura de alta seguridad
+- Acuerdos de confidencialidad (NDA) para acceso externo
+- Destrucción segura al final de vida útil
+
+**Marcado:** **CONFIDENCIAL** en rojo, visible en todos los documentos
+
+**Retención:** Según política específica del tipo de información
+
+### 🟡 RESTRINGIDO (Nivel 3 - Alta Restricción)
+
+**Definición:** Información cuya divulgación no autorizada causaría daño significativo a DivisionCero.
+
+**Ejemplos:**
+- Información de recursos humanos (salarios, evaluaciones)
+- Datos operacionales detallados
+- Información técnica de arquitectura de sistemas
+- Comunicaciones internas de nivel gerencial
+- Información de proveedores y partners
+- Reportes de auditoría y compliance
+- Planes de continuidad del negocio
+
+**Controles Requeridos:**
+- Cifrado estándar (mínimo AES-128)
+- Acceso basado en roles y necesidad de conocimiento
+- Autenticación robusta requerida
+- Logging de accesos críticos
+- Transmisión por canales seguros
+- Capacitación específica para manejadores
+- Retención controlada y eliminación segura
+
+**Marcado:** **RESTRINGIDO** en amarillo
+
+**Retención:** 7 años o según requerimientos legales
+
+### 🔵 INTERNO (Nivel 2 - Restricción Moderada)
+
+**Definición:** Información para uso interno que no debe ser compartida públicamente.
+
+**Ejemplos:**
+- Políticas y procedimientos internos
+- Organigramas y directorios internos
+- Comunicaciones corporativas generales
+- Manuales de usuario internos
+- Información de proyectos en desarrollo
+- Métricas operacionales básicas
+- Capacitaciones internas
+
+**Controles Requeridos:**
+- Acceso limitado a empleados y contratistas autorizados
+- Protección básica contra pérdida accidental
+- Transmisión por medios corporativos seguros
+- Marcado apropiado en documentos
+- Backup y recuperación estándar
+- Eliminación controlada al vencimiento
+
+**Marcado:** **INTERNO** en azul
+
+**Retención:** 5 años
+
+### 🟢 PÚBLICO (Nivel 1 - Sin Restricción)
+
+**Definición:** Información que puede ser compartida públicamente sin impacto negativo.
+
+**Ejemplos:**
+- Información del sitio web corporativo
+- Comunicados de prensa
+- Materiales de marketing aprobados
+- Información de productos publicada
+- Políticas públicas de privacidad
+- Información de contacto corporativo
+
+**Controles Requeridos:**
+- Protección básica contra alteración no autorizada
+- Aprobación formal antes de publicación
+- Control de versiones para actualizaciones
+- Revisión periódica de vigencia
+
+**Marcado:** **PÚBLICO** en verde (opcional)
+
+**Retención:** Indefinida mientras sea relevante
+
+## 📊 Proceso de Clasificación
+
+### Responsabilidades del Propietario de la Información
+
+1. **Clasificación Inicial**
+   - Evaluar sensibilidad e impacto de divulgación
+   - Asignar nivel de clasificación apropiado
+   - Documentar justificación de la clasificación
+   - Aplicar marcado visible en el documento
+
+2. **Revisión Periódica**
+   - Re-evaluar clasificación anualmente
+   - Considerar degradación cuando sea apropiado
+   - Actualizar controles según cambios de clasificación
+   - Documentar cambios en el control de versiones
+
+3. **Comunicación**
+   - Informar a usuarios autorizados sobre clasificación
+   - Capacitar en manejo apropiado según nivel
+   - Notificar cambios de clasificación oportunamente
+
+### Criterios de Clasificación
+
+**Para determinar CONFIDENCIAL:**
+- ¿La divulgación afectaría ventajas competitivas?
+- ¿Existe riesgo legal o regulatorio significativo?
+- ¿El impacto financiero sería mayor a \$1M USD?
+- ¿Afectaría la seguridad de personas?
+
+**Para determinar RESTRINGIDO:**
+- ¿La divulgación causaría desventaja competitiva?
+- ¿Violaría compromisos contractuales?
+- ¿El impacto financiero sería entre \$100K-1M USD?
+- ¿Afectaría operaciones críticas?
+
+**Para determinar INTERNO:**
+- ¿Es información privada de la organización?
+- ¿Su divulgación sería embarazosa o inconveniente?
+- ¿Podría ser malinterpretada fuera de contexto?
+
+## 🏷️ Marcado y Etiquetado
+
+### Documentos Digitales
+- Marca de agua visible en todas las páginas
+- Metadatos con clasificación en propiedades del archivo
+- Prefijo en nombre del archivo: [CONF], [REST], [INT], [PUB]
+- Headers/footers con clasificación y fecha
+
+### Documentos Físicos
+- Sello visible en primera página y cada página subsecuente
+- Carpetas y contenedores etiquetados apropiadamente
+- Uso de papel especial para información CONFIDENCIAL
+
+### Comunicaciones Electrónicas
+- Línea de asunto con prefijo de clasificación
+- Banner automático en cuerpo del correo
+- Restricciones de reenvío según clasificación
+- Expiración automática para niveles altos
+
+## 🔄 Manejo por Nivel de Clasificación
+
+### Almacenamiento
+- **CONFIDENCIAL:** Sistemas dedicados con cifrado extremo a extremo
+- **RESTRINGIDO:** Sistemas seguros con control de acceso granular
+- **INTERNO:** Sistemas corporativos estándar
+- **PÚBLICO:** Sistemas estándar sin restricciones especiales
+
+### Transmisión
+- **CONFIDENCIAL:** Canales cifrados punto a punto, entrega personal
+- **RESTRINGIDO:** Correo corporativo cifrado, VPN corporativa
+- **INTERNO:** Correo corporativo estándar
+- **PÚBLICO:** Cualquier medio
+
+### Destrucción
+- **CONFIDENCIAL:** Trituración cruzada, borrado criptográfico
+- **RESTRINGIDO:** Trituración estándar, borrado seguro
+- **INTERNO:** Eliminación estándar
+- **PÚBLICO:** Sin requisitos especiales
+
+## 👥 Roles y Responsabilidades
+
+- **CISO:** Aprobar política y supervisar implementación
+- **Propietarios de Información:** Clasificar y proteger información bajo su responsabilidad
+- **Custodios de Datos:** Implementar controles técnicos apropiados
+- **Usuarios:** Manejar información según su clasificación
+- **Equipo de Compliance:** Auditar cumplimiento de clasificación
+- **IT:** Proporcionar herramientas técnicas para protección
+
+## 📊 Cumplimiento y Medición
+
+### Métricas de Cumplimiento
+- Porcentaje de información clasificada apropiadamente
+- Tiempo promedio de clasificación de nueva información
+- Número de incidentes por manejo inadecuado
+- Efectividad de controles por nivel de clasificación
+
+### Auditorías
+- Revisión trimestral de muestras de clasificación
+- Verificación anual de controles implementados
+- Evaluación de madurez del programa de clasificación
+- Benchmarking con estándares de industria
+
+## 🚨 Incumplimiento
+
+### Consecuencias
+- **Clasificación Incorrecta:** Re-capacitación y monitoreo adicional
+- **Manejo Inadecuado:** Medidas disciplinarias progresivas
+- **Divulgación No Autorizada:** Investigación formal y posibles acciones legales
+- **Pérdida de Información:** Evaluación de impacto y medidas correctivas
+
+### Reporte de Incidentes
+- Notificación inmediata al propietario de la información
+- Escalamiento al CISO dentro de 2 horas
+- Documentación completa del incidente
+- Implementación de medidas correctivas
+
+## 📖 Referencias
+
+- ISO 27001:2022 - Control A.8.2 Clasificación de la Información
+- NIST SP 800-60 - Guide for Mapping Types of Information and Information Systems
+- Política de Protección de Datos Personales
+- Política de Retención y Eliminación Segura de Información
+- Procedimiento de Gestión de Incidentes de Seguridad

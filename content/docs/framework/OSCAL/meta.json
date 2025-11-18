@@ -1,0 +1,11 @@
+{
+  "pages": [
+    "catalog",
+    "profile",
+    "component-definition",
+    "ssp-system-security-plan",
+    "ap-assessment-plan",
+    "ar-assessment-results",
+    "poam-plan-of-actions-and-milestones"
+  ]
+}

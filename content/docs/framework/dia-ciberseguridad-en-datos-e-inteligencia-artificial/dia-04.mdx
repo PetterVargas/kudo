@@ -1,0 +1,202 @@
+---
+title: DIA-04 - Ciberseguridad en Información y Datos
+description: Control de protección de confidencialidad, integridad y disponibilidad de datos
+---
+
+## 🎯 Objetivo del Control
+
+Implementar y mantener controles técnicos y organizacionales para proteger la confidencialidad, integridad y disponibilidad de la información y datos de la organización, minimizando riesgos de acceso no autorizado, modificación, pérdida o divulgación.
+
+## 📋 Descripción
+
+Este control establece medidas de seguridad para:
+- Protección de datos en reposo, en tránsito y en uso
+- Control de acceso basado en principio de mínimo privilegio
+- Cifrado y tokenización de datos sensibles
+- Prevención de pérdida de datos (DLP)
+- Monitoreo y detección de accesos anómalos
+- Protección contra amenazas internas y externas
+
+## 🛡️ Controles Requeridos
+
+### Protección de Confidencialidad
+
+#### Cifrado de Datos
+- **Datos en Reposo (at-rest):**
+  - Cifrado a nivel de disco/volumen (BitLocker, dm-crypt, LUKS)
+  - Cifrado a nivel de base de datos (TDE - Transparent Data Encryption)
+  - Cifrado a nivel de aplicación para datos críticos
+  - Algoritmos aprobados: AES-256, ChaCha20
+- **Datos en Tránsito (in-transit):**
+  - TLS 1.3 para todas las comunicaciones web
+  - IPsec o VPN para conexiones site-to-site
+  - mTLS (mutual TLS) para APIs críticas
+  - Prohibición de protocolos inseguros (FTP, Telnet, HTTP)
+- **Datos en Uso (in-use):**
+  - Confidential Computing (Intel SGX, AMD SEV, AWS Nitro Enclaves)
+  - Homomorphic Encryption para procesamiento sobre datos cifrados
+  - Secure Multi-Party Computation (SMPC)
+
+#### Control de Acceso a Datos
+- **Identity-Based Access Control:**
+  - Autenticación multifactor (MFA) obligatoria
+  - Single Sign-On (SSO) corporativo
+  - Gestión centralizada de identidades
+- **Role-Based Access Control (RBAC):**
+  - Roles definidos por función y responsabilidad
+  - Principio de mínimo privilegio
+  - Separación de funciones (SoD)
+- **Attribute-Based Access Control (ABAC):**
+  - Políticas dinámicas basadas en contexto
+  - Evaluación de riesgo en tiempo real
+  - Geo-fencing y device trust
+- **Data-Level Access Control:**
+  - Row-Level Security (RLS) en bases de datos
+  - Column-Level Encryption
+  - Dynamic Data Masking
+
+#### Tokenización y Anonimización
+- **Tokenización:**
+  - Reemplazo de datos sensibles con tokens
+  - Vault seguro para mapeo token-valor real
+  - Tokenización de PCI-DSS (tarjetas de crédito)
+- **Pseudonimización:**
+  - Separación de identificadores directos
+  - Uso de identificadores pseudónimos
+  - Capacidad de re-identificación controlada
+- **Anonimización:**
+  - K-anonymity (k ≥ 5)
+  - L-diversity y t-closeness
+  - Differential Privacy
+
+### Protección de Integridad
+
+#### Validación y Verificación
+- **Data Integrity Checks:**
+  - Hashing (SHA-256, SHA-3) de archivos críticos
+  - Firmas digitales para documentos importantes
+  - Checksums en transferencias de datos
+- **Database Integrity:**
+  - Foreign key constraints
+  - Check constraints y triggers
+  - Auditoría de cambios (change data capture)
+- **Input Validation:**
+  - Validación de tipo, formato y rango
+  - Sanitización de inputs
+  - Prevención de SQL injection, XSS, LDAP injection
+
+#### Versionado y Auditoría
+- Control de versiones de datasets críticos
+- Inmutabilidad de registros históricos
+- Audit logs detallados de modificaciones
+- Write-Once-Read-Many (WORM) storage para compliance
+
+### Protección de Disponibilidad
+
+#### Redundancia y Backup
+- **High Availability:**
+  - Replicación sincrónica/asincrónica
+  - Multi-AZ deployment
+  - Auto-scaling y load balancing
+- **Backup Strategy:**
+  - Regla 3-2-1 (3 copias, 2 medios, 1 offsite)
+  - Backups incrementales diarios
+  - Backup completo semanal
+  - Testing trimestral de restauración
+- **Disaster Recovery:**
+  - RTO (Recovery Time Objective) definido por criticidad
+  - RPO (Recovery Point Objective) alineado a riesgo
+  - DR site en región geográfica diferente
+
+#### Protección contra Ransomware
+- Immutable backups
+- Air-gapped backups
+- Snapshots frecuentes con retención
+- Honeypots y canary files
+
+### Prevención de Pérdida de Datos (DLP)
+
+#### DLP en Endpoints
+- Detección de datos sensibles en discos locales
+- Control de dispositivos USB y externos
+- Bloqueo de transferencias no autorizadas
+- Watermarking de documentos confidenciales
+
+#### DLP en Red
+- Inspección de tráfico HTTPS (SSL/TLS inspection)
+- Análisis de patrones de datos sensibles
+- Bloqueo de uploads a servicios no aprobados
+- Detección de exfiltración por protocolos inusuales
+
+#### DLP en Cloud
+- Cloud Access Security Broker (CASB)
+- Monitoreo de compartición en servicios SaaS
+- Control de acceso público a buckets/containers
+- Alertas de configuraciones inseguras
+
+### Monitoreo y Detección
+
+#### Logging y Auditoría
+- Logs centralizados en SIEM
+- Registro de accesos a datos sensibles
+- Monitoreo de privilegios elevados
+- Retención de logs según compliance (12+ meses)
+
+#### Detección de Anomalías
+- User and Entity Behavior Analytics (UEBA)
+- Detección de accesos fuera de horario
+- Alertas de volumen inusual de descargas
+- Correlación de eventos de seguridad
+
+## 📊 Métricas e Indicadores
+
+- Porcentaje de datos sensibles cifrados (objetivo: 100%)
+- Número de incidentes de pérdida/fuga de datos (objetivo: 0)
+- Tiempo medio de detección de acceso no autorizado (MTTD)
+- Cobertura de DLP (endpoints, red, cloud) (objetivo: 100%)
+- Porcentaje de usuarios con MFA habilitado (objetivo: 100%)
+- Éxito de pruebas de restauración de backups (objetivo: 100%)
+- Violaciones de políticas de acceso detectadas
+- Tiempo de recuperación ante incidente (RTO real vs objetivo)
+
+## 🔗 Herramientas Recomendadas
+
+- **Encryption:** Azure Key Vault, AWS KMS, HashiCorp Vault, Thales CipherTrust
+- **DLP:** Microsoft Purview DLP, Symantec DLP, Forcepoint DLP, Digital Guardian
+- **CASB:** Microsoft Defender for Cloud Apps, Netskope, Zscaler, Palo Alto Prisma
+- **Database Security:** Imperva, IBM Guardium, Oracle Data Safe
+- **Data Masking:** Delphix, Informatica, K2view
+- **Tokenization:** TokenEx, Protegrity, Voltage SecureData
+- **UEBA:** Splunk UBA, Exabeam, Microsoft Sentinel
+- **Backup:** Veeam, Commvault, Rubrik, Cohesity
+
+## 📚 Referencias
+
+- [Política de Cifrado de Datos](/docs/kudo/politicas/politica-cifrado-datos)
+- [Política de Control de Acceso](/docs/kudo/politicas/politica-control-acceso)
+- [Política de Clasificación de Información](/docs/kudo/politicas/clasificacion-informacion)
+- [Mecanismos de Cifrado](/docs/kudo/politicas/mecanismos-cifrado)
+- [DIA-01: Inventario de Datos](/docs/kudo/dia-ciberseguridad-en-datos-e-inteligencia-artificial/dia-01)
+- [DIA-03: Ciclo de Vida de los Datos](/docs/kudo/dia-ciberseguridad-en-datos-e-inteligencia-artificial/dia-03)
+- GDPR Art. 32 - Security of processing
+- ISO 27001:2022 - A.8.24, A.5.12, A.5.13
+- NIST SP 800-53 - SC (System and Communications Protection)
+- PCI-DSS v4.0 - Requirement 3 (Protect stored data)
+
+## ✅ Checklist de Implementación
+
+- [ ] Inventario de datos sensibles completo
+- [ ] Clasificación de datos según sensibilidad
+- [ ] Cifrado at-rest implementado en todos los sistemas críticos
+- [ ] TLS 1.3 configurado en todas las aplicaciones web
+- [ ] MFA habilitado para acceso a datos sensibles
+- [ ] Implementación de solución DLP (endpoint, red, cloud)
+- [ ] Data masking en ambientes de desarrollo/testing
+- [ ] Tokenización de datos PCI-DSS
+- [ ] Configuración de RBAC/ABAC en sistemas de datos
+- [ ] Logs de auditoría centralizados en SIEM
+- [ ] UEBA configurado con reglas de detección
+- [ ] Estrategia de backup 3-2-1 implementada
+- [ ] Testing de DR completado exitosamente
+- [ ] Políticas de DLP ajustadas y validadas
+- [ ] Capacitación en manejo seguro de datos

@@ -1,0 +1,418 @@
+---
+title: Registro y Retención de Logs
+description: Política de almacenamiento y conservación de registros.
+---
+
+## 📋 Información General
+
+**Documento:** Registro y Retención de Logs  
+**Versión:** 1.0.0  
+**Fecha:** Enero 2025  
+**Clasificación:** Confidencial  
+**Audiencia:** Equipo de TI, Administradores de Sistemas, CISO, Analistas de Seguridad, Auditores
+
+## 🎯 Propósito
+
+Establecer los lineamientos para la generación, recolección, almacenamiento, retención y eliminación segura de registros de eventos (logs) en todos los sistemas de DivisionCero, garantizando la disponibilidad de evidencia para investigaciones de seguridad, cumplimiento regulatorio y análisis forense.
+
+## 🏢 Alcance
+
+Esta política aplica a:
+- Todos los sistemas de información de DivisionCero
+- Infraestructura tecnológica (servidores, redes, endpoints)
+- Aplicaciones empresariales y de desarrollo
+- Servicios de nube pública y privada
+- Dispositivos de seguridad (firewalls, IDS/IPS, proxies)
+- Sistemas de control de acceso físico y lógico
+- Bases de datos y sistemas de almacenamiento
+
+## 📚 Definiciones
+
+- **Log:** Registro cronológico de eventos y actividades en sistemas tecnológicos
+- **SIEM:** Security Information and Event Management - Sistema de gestión de eventos de seguridad
+- **Correlación:** Análisis de patrones y relaciones entre eventos de múltiples fuentes
+- **Integridad de Logs:** Garantía de que los registros no han sido alterados o eliminados
+- **Log Forwarding:** Envío automático de logs desde fuentes hacia sistemas centralizados
+
+## 🛡️ Política
+
+### Clasificación de Logs por Criticidad
+
+#### Logs Críticos
+**Características:**
+- Eventos de seguridad de alto impacto
+- Accesos administrativos y privilegiados
+- Modificaciones a configuraciones críticas
+- Intentos de intrusión y ataques
+
+**Ejemplos:**
+- Intentos fallidos de autenticación repetidos
+- Escalación de privilegios
+- Cambios en políticas de seguridad
+- Accesos a datos confidenciales
+- Actividad de malware detectada
+
+**Retención:** 7 años mínimo
+
+#### Logs de Alto Valor
+**Características:**
+- Eventos operacionales importantes
+- Transacciones de negocio significativas
+- Cambios en configuraciones de sistemas
+- Eventos de auditoría regulatoria
+
+**Ejemplos:**
+- Transacciones financieras
+- Cambios en bases de datos críticas
+- Actividad de usuarios privilegiados
+- Eventos de backup y recuperación
+- Accesos a sistemas de producción
+
+**Retención:** 3 años
+
+#### Logs Estándar
+**Características:**
+- Actividad operacional rutinaria
+- Eventos de rendimiento y monitoreo
+- Actividad de usuarios normales
+- Eventos de sistema no críticos
+
+**Ejemplos:**
+- Login/logout de usuarios regulares
+- Eventos de aplicaciones estándar
+- Métricas de rendimiento
+- Eventos de red rutinarios
+- Actividad de servicios del sistema
+
+**Retención:** 1 año
+
+#### Logs de Depuración
+**Características:**
+- Información técnica detallada
+- Eventos de desarrollo y testing
+- Datos de troubleshooting
+- Información de rendimiento granular
+
+**Ejemplos:**
+- Logs de aplicaciones en desarrollo
+- Eventos de debug de sistemas
+- Métricas detalladas de performance
+- Información de diagnóstico técnico
+
+**Retención:** 90 días
+
+### Configuración Obligatoria de Logging
+
+#### Sistemas Operativos
+**Windows Server:**
+- Security Log: Éxitos y fallos de autenticación
+- System Log: Eventos críticos del sistema
+- Application Log: Errores de aplicaciones críticas
+- PowerShell Execution Policy: Comandos ejecutados
+
+**Linux/Unix:**
+- Syslog: Todos los eventos del sistema
+- Auth Log: Intentos de autenticación
+- Secure Log: Eventos de seguridad
+- Audit Log: Actividad de usuarios privilegiados
+
+#### Bases de Datos
+**SQL Server/MySQL/PostgreSQL:**
+- Login attempts (exitosos y fallidos)
+- Cambios en esquemas y estructuras
+- Acceso a datos sensibles
+- Ejecutión de comandos administrativos
+- Cambios en permisos y roles
+
+#### Aplicaciones Web
+**Logs Obligatorios:**
+- Autenticación y autorización
+- Transacciones de negocio críticas
+- Errores de aplicación y excepciones
+- Accesos a APIs y servicios web
+- Cambios en configuraciones de seguridad
+
+#### Dispositivos de Red
+**Routers y Switches:**
+- Cambios en configuración
+- Eventos de conectividad críticos
+- Detección de anomalías de tráfico
+- Accesos administrativos
+
+**Firewalls:**
+- Conexiones bloqueadas y permitidas
+- Cambios en reglas de firewall
+- Intentos de intrusión detectados
+- Actividad de administración
+
+### Centralización y Agregación
+
+#### Arquitectura de Logging Centralizado
+**Componentes Obligatorios:**
+- **SIEM Central:** Splunk Enterprise o similar
+- **Log Collectors:** Agentes en todos los endpoints
+- **Storage Primario:** SAN con replicación en tiempo real
+- **Storage Secundario:** Almacenamiento a largo plazo
+
+**Flujo de Datos:**
+1. Generación de logs en fuentes origen
+2. Recolección por agentes especializados
+3. Normalización y enriquecimiento
+4. Almacenamiento en SIEM central
+5. Indexación para búsquedas eficientes
+
+#### Configuración de Envío
+**Tiempo Real (< 30 segundos):**
+- Logs críticos de seguridad
+- Eventos de sistemas críticos
+- Alertas de seguridad automatizadas
+
+**Batch Processing (cada 5 minutos):**
+- Logs de aplicaciones estándar
+- Eventos operacionales rutinarios
+- Métricas de rendimiento
+
+**Almacenamiento Local Temporal:**
+- Buffer mínimo de 24 horas en origen
+- Compresión automática después de 4 horas
+- Reenvío automático en caso de conectividad restaurada
+
+### Formato y Normalización
+
+#### Estándares de Formato
+**Formato Preferido:** JSON estructurado
+```json
+{
+  "timestamp": "2025-01-15T10:30:45.123Z",
+  "source_host": "server01.divisioncero.com",
+  "source_type": "authentication",
+  "event_type": "login_success",
+  "user_id": "jdoe@divisioncero.com",
+  "source_ip": "192.168.1.100",
+  "severity": "INFO",
+  "message": "User successfully authenticated"
+}
+```
+
+**Campos Obligatorios:**
+- Timestamp con zona horaria UTC
+- Host o sistema origen
+- Tipo de evento categorizado
+- Nivel de severidad (CRITICAL, HIGH, MEDIUM, LOW, INFO)
+- Usuario o proceso responsable
+- Dirección IP de origen cuando aplique
+
+#### Normalización de Timestamps
+**Estándar:** ISO 8601 con UTC
+- Formato: YYYY-MM-DDTHH:MM:SS.sssZ
+- Sincronización NTP obligatoria en todas las fuentes
+- Tolerancia máxima de drift: 100ms entre sistemas críticos
+
+### Integridad y Protección
+
+#### Protección contra Alteración
+**Controles Técnicos:**
+- Hash SHA-256 de logs cada hora
+- Firma digital de archivos de log diarios
+- Almacenamiento en storage WORM (Write Once, Read Many)
+- Replicación inmediata a sitio secundario
+
+**Controles Administrativos:**
+- Acceso restringido a administradores de logging
+- Segregación de funciones entre generación y administración
+- Auditoría de todos los accesos a logs
+- Backup diario con verificación de integridad
+
+#### Cifrado de Logs
+**En Tránsito:**
+- TLS 1.3 para transmisión de logs
+- Certificados con validación extendida
+- Mutual authentication entre agentes y SIEM
+
+**En Reposo:**
+- AES-256 para almacenamiento a largo plazo
+- Gestión de llaves con HSM (Hardware Security Module)
+- Rotación de llaves de cifrado cada 90 días
+
+### Monitoreo y Alertas
+
+#### Alertas Automáticas
+**Fallos de Logging:**
+- Interrupción de envío de logs > 5 minutos
+- Pérdida de conectividad con SIEM central
+- Espacio de almacenamiento < 20% disponible
+- Fallos en verificación de integridad
+
+**Eventos de Seguridad:**
+- Múltiples intentos fallidos de autenticación
+- Accesos fuera de horario laboral
+- Patrones de comportamiento anómalos
+- Actividad de cuentas privilegiadas no programada
+
+#### Dashboard de Monitoreo
+**Métricas en Tiempo Real:**
+- Volumen de logs por fuente y tipo
+- Estado de conectividad de agentes
+- Latencia de procesamiento de eventos
+- Utilización de almacenamiento
+
+**Reportes Automáticos:**
+- Reporte diario de salud del sistema de logging
+- Resumen semanal de eventos de seguridad
+- Análisis mensual de tendencias y patrones
+- Reporte trimestral de cumplimiento
+
+### Retención y Archivado
+
+#### Políticas de Retención por Tipo
+**Storage Activo (Acceso Inmediato):**
+- Logs críticos: 90 días
+- Logs de alto valor: 30 días
+- Logs estándar: 7 días
+- Logs de depuración: 3 días
+
+**Storage Nearline (Acceso en Horas):**
+- Logs críticos: 1 año adicional
+- Logs de alto valor: 6 meses adicionales
+- Logs estándar: 3 meses adicionales
+
+**Storage Offline (Acceso en Días):**
+- Logs críticos: Restante del periodo de retención
+- Logs de alto valor: Restante del periodo de retención
+- Compresión máxima y cifrado
+
+#### Proceso de Archivado
+**Automatización:**
+- Migración automática basada en edad y criticidad
+- Compresión progresiva (gzip → 7zip → LZMA)
+- Verificación de integridad en cada migración
+- Indexación para búsquedas eficientes
+
+**Validación:**
+- Testing mensual de recuperación de archives
+- Verificación de integridad trimestral
+- Auditoría anual del proceso completo
+
+### Eliminación Segura
+
+#### Criterios para Eliminación
+**Automática:**
+- Expiración del periodo de retención definido
+- Ausencia de holds legales o regulatorios
+- Confirmación de no requerimiento para auditorías activas
+
+**Manual (Excepcional):**
+- Orden judicial o regulatoria
+- Autorización del CISO y Legal
+- Documentación completa del proceso
+
+#### Proceso de Eliminación
+**Pasos Obligatorios:**
+1. Verificación de criterios de eliminación
+2. Generación de reporte de logs a eliminar
+3. Aprobación del CISO y Legal
+4. Eliminación criptográfica (destrucción de llaves)
+5. Sobrescritura física de medios (3 pases mínimo)
+6. Certificado de destrucción por proveedor acreditado
+
+### Acceso y Consulta
+
+#### Niveles de Acceso
+**Administradores de SIEM:**
+- Acceso completo a configuración y consultas
+- Gestión de usuarios y permisos
+- Administración de retención y archivado
+
+**Analistas de Seguridad:**
+- Consulta de logs de seguridad
+- Creación de reportes e investigaciones
+- Acceso a herramientas de correlación
+
+**Auditores:**
+- Acceso de solo lectura a logs relevantes
+- Exportación controlada para auditorías
+- Consultas con supervisión
+
+**Usuarios de Negocio:**
+- Acceso limitado a logs de sus aplicaciones
+- Consultas pre-aprobadas por seguridad
+- Datos anonimizados cuando sea posible
+
+#### Control de Acceso
+**Autenticación:**
+- Autenticación multifactor obligatoria
+- Integración con Active Directory corporativo
+- Sesiones con timeout automático (30 minutos)
+
+**Autorización:**
+- Principio de menor privilegio
+- Aprobación del CISO para accesos privilegiados
+- Revisión trimestral de permisos
+
+**Auditoría de Acceso:**
+- Log de todas las consultas realizadas
+- Registro de exportaciones de datos
+- Alertas por accesos fuera de horario
+
+## 👥 Roles y Responsabilidades
+
+- **CISO:** Aprobar políticas de retención y niveles de acceso
+- **Administrador de SIEM:** Gestionar infraestructura centralizada y configuraciones
+- **Administradores de Sistemas:** Configurar logging en sistemas bajo su responsabilidad
+- **Analistas de Seguridad:** Monitorear eventos y realizar investigaciones
+- **Equipo Legal:** Definir requerimientos de retención por aspectos regulatorios
+- **Auditores Internos:** Verificar cumplimiento de políticas de logging
+
+## 📊 Cumplimiento y Medición
+
+### Métricas de Disponibilidad
+- 99.9% de disponibilidad del sistema de logging central
+- < 30 segundos de latencia para logs críticos
+- 0 pérdida de logs por fallos de sistema
+- 100% de sistemas críticos enviando logs
+
+### Indicadores de Integridad
+- 0 alteraciones no autorizadas detectadas
+- 100% de verificaciones de integridad exitosas
+- 95% de cumplimiento en retención de logs según política
+- < 1% de logs perdidos por fallos de conectividad
+
+### Métricas Operacionales
+- Tiempo promedio de consulta < 5 segundos
+- 100% de logs archivados según cronograma
+- 95% de alertas de seguridad procesadas en < 15 minutos
+- 0 violaciones de acceso no autorizadas
+
+## 🚨 Incumplimiento
+
+### Sanciones Técnicas
+**Sistemas sin Logging Adecuado:**
+- Restricción de acceso a producción
+- Clasificación como sistema no conforme
+- Plan de remediación obligatorio en 30 días
+
+**Administradores:**
+- Capacitación adicional en políticas de logging
+- Supervisión intensificada por 90 días
+- Medidas disciplinarias según políticas de RRHH
+
+### Violaciones de Acceso
+**Acceso No Autorizado:**
+- Suspensión inmediata de acceso a logs
+- Investigación formal del incidente
+- Reporte al comité de ética
+
+**Alteración de Logs:**
+- Escalamiento inmediato al CISO
+- Investigación forense completa
+- Posibles acciones legales
+
+## 📖 Referencias
+
+- ISO 27001:2022 - Control A.12.4 Logging and monitoring
+- ISO 27002:2022 - Event logging
+- NIST SP 800-92 - Guide to Computer Security Log Management
+- PCI DSS 4.0 - Requirement 10: Log and monitor all access
+- GDPR - Article 30: Records of processing activities
+- Política de Monitoreo de Eventos de Seguridad
+- Correlación de Eventos SIEM

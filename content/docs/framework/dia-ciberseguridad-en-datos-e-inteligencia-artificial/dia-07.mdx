@@ -1,0 +1,279 @@
+---
+title: DIA-07 - Ciberseguridad en Modelos de Inteligencia Artificial
+description: Control de seguridad en el ciclo de vida de modelos de IA/ML y protección de datos de entrenamiento
+---
+
+## 🎯 Objetivo del Control
+
+Establecer y mantener controles de seguridad para el desarrollo, entrenamiento, despliegue y operación de modelos de inteligencia artificial y machine learning, protegiendo los datos de entrenamiento, mitigando sesgos, previniendo ataques adversariales y garantizando transparencia y responsabilidad.
+
+## 📋 Descripción
+
+Este control aborda riesgos específicos de IA/ML:
+- Seguridad de datos de entrenamiento y datasets
+- Protección de modelos y propiedad intelectual
+- Ataques adversariales (evasion, poisoning, model inversion)
+- Sesgo algorítmico y fairness
+- Privacidad y fuga de información de entrenamiento
+- Explicabilidad y auditoría de decisiones
+- Gobernanza de modelos en producción
+
+## 🛡️ Controles Requeridos
+
+### Seguridad en Datos de Entrenamiento
+
+#### Calidad y Procedencia de Datos
+- **Data Provenance:**
+  - Registro de origen de datasets
+  - Cadena de custodia de datos
+  - Versionado de datasets (DVC - Data Version Control)
+  - Metadatos de recolección y procesamiento
+- **Data Quality:**
+  - Validación de completitud y exactitud
+  - Detección de outliers y anomalías
+  - Limpieza y normalización documentada
+  - Evaluación de representatividad y balance
+- **Data Sanitization:**
+  - Detección y eliminación de datos tóxicos o maliciosos
+  - Filtrado de contenido inapropiado
+  - Desduplicación de registros
+
+#### Protección de Datos Sensibles
+- **Privacidad en Entrenamiento:**
+  - Anonimización/pseudonimización de PII
+  - Differential Privacy (ε-differential privacy, δ < 0.001)
+  - Federated Learning para datos distribuidos sin centralización
+  - Synthetic data generation para casos de uso no críticos
+- **Data Minimization:**
+  - Uso de datos estrictamente necesarios
+  - Feature selection y dimensionality reduction
+  - Eliminación de atributos sensibles innecesarios
+- **Cumplimiento GDPR/LGPD:**
+  - Consentimiento para uso en IA cuando aplique
+  - Data Protection Impact Assessment (DPIA) para IA de alto riesgo
+  - Documentación de base legal para procesamiento
+
+### Seguridad del Modelo
+
+#### Model Security
+- **Protección de Propiedad Intelectual:**
+  - Cifrado de modelos almacenados
+  - Control de acceso a model registry (MLflow, W&B, Neptune)
+  - Watermarking de modelos
+  - Ofuscación de arquitectura en edge deployment
+- **Model Versioning:**
+  - Registro de todas las versiones de modelos
+  - Trazabilidad de hiperparámetros y configuraciones
+  - Reproducibilidad de experimentos (MLOps)
+  - Rollback capability
+- **Supply Chain Security:**
+  - Verificación de integridad de modelos pre-entrenados
+  - Scanning de dependencias (Dependabot, Snyk)
+  - Uso de modelos de fuentes confiables (Hugging Face verified)
+  - Checksum y firmas digitales de artefactos
+
+#### Ataques Adversariales
+
+**Data Poisoning:**
+- **Backdoor Attacks:**
+  - Detección de triggers o patrones maliciosos en datos
+  - Validación de datasets de terceros
+  - Auditoría de proveedores de datos
+- **Label Flipping:**
+  - Validación de labels mediante multiple annotators
+  - Detección de inconsistencias estadísticas
+  - Cross-validation rigurosa
+
+**Model Evasion (Inference Attacks):**
+- **Adversarial Examples:**
+  - Testing con frameworks de adversarial attacks (CleverHans, Foolbox, ART)
+  - Adversarial training (reentrenamiento con ejemplos adversariales)
+  - Input validation y sanitization
+  - Ensemble methods y randomization
+- **Model Extraction:**
+  - Rate limiting en APIs de inferencia
+  - Detección de queries sospechosos (volumen, patrones)
+  - Watermarking de predicciones
+  - API authentication obligatoria
+
+**Model Inversion / Membership Inference:**
+- **Fuga de Información de Entrenamiento:**
+  - Differential Privacy en entrenamiento
+  - Regularización agresiva (dropout, L2)
+  - Limitación de confianza en outputs (temperature scaling)
+  - Auditoría de susceptibilidad a membership inference
+
+### Sesgo y Fairness
+
+#### Detección de Sesgo
+- **Métricas de Fairness:**
+  - Demographic Parity
+  - Equalized Odds
+  - Predictive Parity
+  - Individual Fairness
+- **Testing:**
+  - Evaluación en subgrupos demográficos
+  - Análisis de disparate impact
+  - Fairness audits periódicos
+- **Herramientas:**
+  - AI Fairness 360 (IBM)
+  - Fairlearn (Microsoft)
+  - What-If Tool (Google)
+
+#### Mitigación de Sesgo
+- **Pre-processing:**
+  - Reweighting de samples
+  - Resampling y synthetic minority oversampling (SMOTE)
+- **In-processing:**
+  - Adversarial debiasing
+  - Prejudice remover
+  - Constrained optimization
+- **Post-processing:**
+  - Threshold optimization por grupo
+  - Calibration
+  - Reject option classification
+
+### Explicabilidad y Transparencia
+
+#### Interpretability
+- **Model-Agnostic Methods:**
+  - SHAP (SHapley Additive exPlanations)
+  - LIME (Local Interpretable Model-agnostic Explanations)
+  - Partial Dependence Plots
+  - Feature importance
+- **Model-Specific:**
+  - Attention mechanisms en transformers
+  - Decision tree visualization
+  - Coefficient analysis en modelos lineales
+- **Documentación:**
+  - Model cards (Google)
+  - Datasheets for datasets (Microsoft)
+  - Factsheets (IBM)
+
+#### Auditoría de Decisiones
+- Logging de inferencias con contexto
+- Explicaciones almacenadas por decisión crítica
+- Capacidad de contestar apelaciones
+- Human-in-the-loop para decisiones de alto impacto
+
+### Gobernanza de Modelos (MLOps Security)
+
+#### Desarrollo Seguro
+- **Secure ML Pipeline:**
+  - Code review de notebooks y scripts
+  - Secrets management (no hardcoded credentials)
+  - SAST/DAST en código de ML
+  - Container scanning en imágenes de entrenamiento
+- **Experiment Tracking:**
+  - Registro centralizado (MLflow, W&B)
+  - Auditoría de accesos a experimentos
+  - Segregación por proyecto/equipo
+
+#### Despliegue Seguro
+- **Model Registry:**
+  - Aprobación antes de promoción a producción
+  - Staging environment obligatorio
+  - A/B testing y canary deployments
+  - Automated rollback en degradación de métricas
+- **Inference Security:**
+  - API authentication y authorization
+  - Rate limiting y throttling
+  - Input validation (type, range, format)
+  - Output sanitization
+  - DDoS protection
+
+#### Monitoreo en Producción
+- **Model Monitoring:**
+  - Data drift detection (distribution shifts)
+  - Concept drift detection (cambio en relación X-Y)
+  - Model performance degradation
+  - Bias drift (cambio en fairness metrics)
+- **Alertas:**
+  - Caída en accuracy/F1 score
+  - Aumento en latencia de inferencia
+  - Distribución de inputs fuera de lo esperado
+  - Detección de adversarial patterns
+- **Incident Response:**
+  - Playbook para degradación de modelo
+  - Procedimiento de rollback rápido
+  - Comunicación a stakeholders
+
+### Cumplimiento Regulatorio de IA
+
+#### AI Act (Unión Europea)
+- **Clasificación de Riesgo:**
+  - IA Prohibida (social scoring, manipulación)
+  - IA de Alto Riesgo (salud, seguridad, infraestructura crítica)
+  - IA de Riesgo Limitado (chatbots - transparencia requerida)
+  - IA de Riesgo Mínimo
+- **Requisitos para IA de Alto Riesgo:**
+  - Risk management system
+  - Data governance y calidad
+  - Documentación técnica completa
+  - Transparencia y provisión de información a usuarios
+  - Supervisión humana
+  - Accuracy, robustez, ciberseguridad
+
+#### Otros Marcos Regulatorios
+- **NIST AI Risk Management Framework (AI RMF):**
+  - Govern, Map, Measure, Manage
+- **ISO/IEC 42001 - AI Management System**
+- **Algorithmic Accountability Acts (USA)**
+
+## 📊 Métricas e Indicadores
+
+- Modelos en producción con documentación completa (model cards) (objetivo: 100%)
+- Cobertura de testing adversarial (objetivo: 100% modelos críticos)
+- Incidentes de sesgo algorítmico detectados y remediados
+- Tiempo medio de detección de data drift (MTTD)
+- Porcentaje de modelos con monitoreo de fairness activo
+- Vulnerabilidades críticas en dependencias de ML (objetivo: 0)
+- Modelos con differential privacy implementado (para datos sensibles)
+- Solicitudes de explicación de decisiones atendidas en SLA
+- Auditorías de modelos de alto riesgo (objetivo: anual)
+
+## 🔗 Herramientas Recomendadas
+
+- **MLOps Platforms:** MLflow, Weights & Biases, Neptune.ai, Kubeflow
+- **Model Registry:** MLflow Model Registry, AWS SageMaker Model Registry
+- **Adversarial Testing:** CleverHans, Foolbox, Adversarial Robustness Toolbox (ART)
+- **Fairness:** AI Fairness 360, Fairlearn, Aequitas
+- **Explainability:** SHAP, LIME, InterpretML, Captum
+- **Privacy:** PySyft (Federated Learning), Opacus (Differential Privacy), TensorFlow Privacy
+- **Data Versioning:** DVC, Pachyderm, LakeFS
+- **Monitoring:** Evidently AI, WhyLabs, Fiddler AI, Arize AI
+- **Security Scanning:** Snyk, Dependabot, Trivy, Aqua Security
+
+## 📚 Referencias
+
+- [Política de Desarrollo Seguro](/docs/kudo/politicas/politica-desarrollo-seguro)
+- [Política de Protección de Datos Personales](/docs/kudo/politicas/politica-proteccion-datos-personales)
+- [Política de Clasificación de Información](/docs/kudo/politicas/clasificacion-informacion)
+- [DIA-01: Inventario de Datos](/docs/kudo/dia-ciberseguridad-en-datos-e-inteligencia-artificial/dia-01)
+- [DIA-04: Ciberseguridad en Información y Datos](/docs/kudo/dia-ciberseguridad-en-datos-e-inteligencia-artificial/dia-04)
+- EU AI Act (Regulation 2024/1689)
+- NIST AI Risk Management Framework (AI RMF 1.0)
+- ISO/IEC 42001:2023 - Artificial Intelligence Management System
+- OWASP Machine Learning Security Top 10
+- MITRE ATLAS - Adversarial Threat Landscape for AI Systems
+- Google Model Cards, Microsoft Datasheets for Datasets
+- GDPR Art. 22 - Automated decision-making
+
+## ✅ Checklist de Implementación
+
+- [ ] Inventario de modelos de IA/ML en desarrollo y producción
+- [ ] Clasificación de riesgo según AI Act o framework local
+- [ ] Data Protection Impact Assessment (DPIA) para IA de alto riesgo
+- [ ] Implementación de data versioning (DVC)
+- [ ] Anonimización/pseudonimización de datos de entrenamiento
+- [ ] Testing adversarial en modelos críticos
+- [ ] Implementación de differential privacy para datos sensibles
+- [ ] Evaluación de fairness en subgrupos demográficos
+- [ ] Model cards documentados para todos los modelos
+- [ ] Model registry con control de acceso
+- [ ] API de inferencia con autenticación y rate limiting
+- [ ] Monitoreo de data drift y concept drift
+- [ ] Alertas de degradación de performance
+- [ ] SHAP/LIME implementado para explicabilidad
+- [ ] Proceso de auditoría de modelos establecido
+- [ ] Capacitación en AI Security a equipos de Data Science

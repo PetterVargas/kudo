@@ -1,0 +1,83 @@
+---
+title: ADR-03 - Retención y Monitoreo de Registros
+description: Control de gestión de logs y monitoreo de eventos de seguridad
+---
+
+## 🎯 Objetivo del Control
+
+Asegurar la recolección, almacenamiento, protección y análisis de registros de eventos de seguridad para detectar amenazas, investigar incidentes y cumplir con requisitos regulatorios.
+
+## 📋 Descripción
+
+Este control establece los requisitos para:
+- Generación y recolección centralizada de logs
+- Retención segura según requisitos legales y de negocio
+- Monitoreo continuo de eventos de seguridad
+- Análisis y correlación para detección de amenazas
+
+## 🛡️ Controles Requeridos
+
+### Generación de Registros
+- Logs de autenticación y autorización
+- Logs de acceso a sistemas críticos
+- Logs de cambios en configuraciones
+- Logs de aplicaciones y bases de datos
+- Logs de red (firewall, IDS/IPS, proxy)
+- Logs de seguridad (EDR, antimalware)
+
+### Recolección Centralizada
+- SIEM para agregación de logs
+- Normalización de formatos
+- Sincronización de time stamps (NTP)
+- Redundancia y alta disponibilidad
+- Protección de integridad de logs
+
+### Retención
+- Logs de seguridad: mínimo 12 meses
+- Logs de acceso: mínimo 90 días
+- Logs de aplicaciones: según política
+- Almacenamiento inmutable para forense
+- Backup de logs críticos
+
+### Monitoreo y Alertas
+- Correlación de eventos en tiempo real
+- Reglas de detección de amenazas
+- Alertas automáticas por severidad
+- Dashboards de visibilidad
+- Casos de uso de seguridad (playbooks)
+
+## 📊 Métricas e Indicadores
+
+- Volumen de logs procesados (EPS - Events Per Second)
+- Cobertura de fuentes de logs (% de sistemas)
+- Tiempo de retención promedio por tipo de log
+- Número de alertas generadas vs confirmadas
+- MTTD (Mean Time To Detect) de incidentes
+
+## 🔗 Herramientas Recomendadas
+
+- **SIEM:** Splunk, Microsoft Sentinel, IBM QRadar, Elastic Security
+- **Log Management:** Graylog, Datadog, Sumo Logic
+- **Recolectores:** Fluentd, Logstash, Filebeat
+- **SOAR:** Cortex XSOAR, Splunk Phantom, Swimlane
+
+## 📚 Referencias
+
+- [Política de Monitoreo de Eventos de Seguridad](/docs/kudo/politicas/politica-monitoreo-eventos-seguridad)
+- [Registro y Retención de Logs](/docs/kudo/politicas/registro-retencion-logs)
+- [Correlación de Eventos SIEM](/docs/kudo/politicas/correlacion-eventos-siem)
+- NIST SP 800-92 - Guide to Computer Security Log Management
+- ISO 27001:2022 - A.8.15, A.8.16
+
+## ✅ Checklist de Implementación
+
+- [ ] Inventario de fuentes de logs
+- [ ] Implementación de SIEM centralizado
+- [ ] Configuración de colectores de logs
+- [ ] Definición de políticas de retención
+- [ ] Reglas de correlación y alertas
+- [ ] Sincronización de tiempo (NTP)
+- [ ] Protección de integridad de logs
+- [ ] Dashboards operativos y ejecutivos
+- [ ] Procedimientos de revisión de logs
+- [ ] Plan de respuesta a alertas

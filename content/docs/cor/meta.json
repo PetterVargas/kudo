@@ -1,0 +1,9 @@
+{
+  "title": "COR - Coherencia Organizacional",
+  "description": "Gobernanza y estructura organizacional de ciberseguridad",
+  "icon": "Building2",
+  "root": true,
+  "pages": [
+    "index"
+  ]
+}

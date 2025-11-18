@@ -1,0 +1,99 @@
+---
+title: CAP-03 - Ciberseguridad en APIs
+description: Control de protección y gestión segura de APIs
+---
+
+## 🎯 Objetivo del Control
+
+Asegurar que todas las APIs (internas y externas) sean desarrolladas, desplegadas y mantenidas siguiendo las mejores prácticas de seguridad para proteger datos y funcionalidades críticas.
+
+## 📋 Descripción
+
+Este control establece requisitos de seguridad específicos para APIs:
+- Autenticación y autorización robusta
+- Validación y sanitización de entradas
+- Protección contra ataques comunes (OWASP API Top 10)
+- Monitoreo y rate limiting
+- Gestión del ciclo de vida de APIs
+
+## 🛡️ Controles Requeridos
+
+### Autenticación y Autorización
+- OAuth 2.0 / OpenID Connect para APIs públicas
+- API Keys con rotación periódica
+- JWT (JSON Web Tokens) firmados
+- Mutual TLS (mTLS) para APIs críticas
+- Autorización granular (RBAC/ABAC)
+
+### Validación de Entrada
+- Validación de schema (OpenAPI/Swagger)
+- Sanitización de todos los inputs
+- Límites de tamaño de payload
+- Tipo y formato de datos validados
+- Protección contra injection attacks
+
+### Protección de Datos
+- Cifrado en tránsito (TLS 1.3)
+- Cifrado en reposo para datos sensibles
+- Enmascaramiento de datos en logs
+- Prevención de exposición de datos sensibles
+- Headers de seguridad HTTP
+
+### Control de Acceso y Rate Limiting
+- Rate limiting por usuario/IP/API key
+- Throttling de peticiones
+- Cuotas de uso definidas
+- Circuit breakers para protección
+- DDoS protection
+
+### Logging y Monitoreo
+- Logs de todas las peticiones
+- Monitoreo de anomalías en uso
+- Alertas de patrones sospechosos
+- Dashboard de métricas de API
+- Retención de logs según política
+
+### Gestión de Versiones
+- Versionado semántico de APIs
+- Deprecación comunicada con antelación
+- Compatibilidad hacia atrás considerada
+- Documentación actualizada por versión
+- Testing de regresión
+
+## 📊 Métricas e Indicadores
+
+- Número de APIs inventariadas vs seguras
+- Tasa de autenticación fallida
+- Número de ataques detectados y bloqueados
+- Latencia de validación de seguridad
+- Cobertura de testing de APIs (% endpoints)
+
+## 🔗 Herramientas Recomendadas
+
+- **API Gateway:** Kong, Apigee, AWS API Gateway, Azure API Management
+- **Testing:** Postman, SoapUI, REST Assured, Katalon
+- **Security Testing:** OWASP ZAP, Burp Suite, Astra, 42Crunch
+- **Documentation:** Swagger/OpenAPI, Redoc, Stoplight
+- **Monitoring:** Datadog, New Relic, Prometheus, Grafana
+
+## 📚 Referencias
+
+- [Guías de Integración Segura de APIs](/docs/kudo/politicas/guias-integracion-segura-apis)
+- [Política de Desarrollo Seguro](/docs/kudo/politicas/politica-desarrollo-seguro)
+- [Estándar de Codificación Segura](/docs/kudo/politicas/estandar-codificacion-segura)
+- OWASP API Security Top 10
+- OWASP API Security Project
+- NIST SP 800-204 - Security Strategies for Microservices
+
+## ✅ Checklist de Implementación
+
+- [ ] Inventario completo de APIs
+- [ ] API Gateway implementado
+- [ ] Autenticación OAuth 2.0 / JWT configurada
+- [ ] Validación de schema automatizada
+- [ ] Rate limiting configurado
+- [ ] TLS 1.3 obligatorio en todas las APIs
+- [ ] Logging centralizado de APIs
+- [ ] Documentación OpenAPI actualizada
+- [ ] Testing de seguridad en CI/CD
+- [ ] Monitoreo y alertas activas

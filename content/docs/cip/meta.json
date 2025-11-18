@@ -1,0 +1,9 @@
+{
+  "title": "CIP - Identidad y Puntos Finales",
+  "description": "Gestión de identidades y dispositivos",
+  "icon": "ShieldCheck",
+  "root": true,
+  "pages": [
+    "index"
+  ]
+}

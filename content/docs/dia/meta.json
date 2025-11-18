@@ -1,0 +1,9 @@
+{
+  "title": "DIA - Datos e Inteligencia Artificial",
+  "description": "Protección de datos e IA responsable",
+  "icon": "Database",
+  "root": true,
+  "pages": [
+    "index"
+  ]
+}

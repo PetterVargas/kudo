@@ -1,0 +1,310 @@
+---
+title: Kudo y OSCAL
+description: Integración del framework Kudo con OSCAL (Open Security Controls Assessment Language)
+icon: FileText
+---
+
+import { Shield, Code, Database, GitBranch, Zap } from 'lucide-react';
+import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
+
+## ¿Qué es OSCAL?
+
+OSCAL (Open Security Controls Assessment Language) es un conjunto de formatos desarrollado por NIST que estandariza la expresión, evaluación e intercambio de información sobre controles de seguridad de sistemas de información.
+
+<Callout type="info">
+OSCAL permite automatizar muchos aspectos de la gestión de controles de seguridad, desde la documentación hasta la evaluación y el monitoreo continuo.
+</Callout>
+
+## Integración Kudo-OSCAL
+
+El framework Kudo está diseñado para ser compatible con OSCAL, proporcionando una implementación práctica de controles de seguridad que puede ser expresada en formato OSCAL para:
+
+<Cards>
+  <Card icon={<Code />} title="Automatización">
+    Automatizar evaluaciones de cumplimiento y reportes de estado de controles
+  </Card>
+  <Card icon={<Database />} title="Interoperabilidad">
+    Facilitar el intercambio de información con otras herramientas y frameworks
+  </Card>
+  <Card icon={<GitBranch />} title="Trazabilidad">
+    Mantener un registro auditable de cambios en controles y políticas
+  </Card>
+  <Card icon={<Zap />} title="Monitoreo Continuo">
+    Implementar monitoreo automatizado del estado de los controles
+  </Card>
+</Cards>
+
+## Estructura de Mapeo
+
+### Catálogo de Controles Kudo en OSCAL
+
+```json
+{
+  "catalog": {
+    "uuid": "kudo-framework-catalog",
+    "metadata": {
+      "title": "Catálogo de Controles Kudo",
+      "version": "1.0.0",
+      "oscal-version": "1.1.2"
+    },
+    "groups": [
+      {
+        "id": "kudo-governance",
+        "title": "Gobernanza y Gestión de Riesgos",
+        "controls": [...]
+      },
+      {
+        "id": "kudo-access-control",
+        "title": "Control de Acceso",
+        "controls": [...]
+      }
+    ]
+  }
+}
+```
+
+### Profile de Implementación
+
+El profile OSCAL define qué controles Kudo se implementan y cómo se configuran:
+
+```json
+{
+  "profile": {
+    "uuid": "kudo-implementation-profile",
+    "metadata": {
+      "title": "Profile de Implementación Kudo",
+      "version": "1.0.0"
+    },
+    "imports": [
+      {
+        "href": "#kudo-framework-catalog",
+        "include-controls": [
+          {"control-id": "kudo-gov-001"},
+          {"control-id": "kudo-ac-001"}
+        ]
+      }
+    ]
+  }
+}
+```
+
+## Beneficios de la Integración
+
+### Para Organizaciones
+
+- **Automatización de Auditorías**: Generación automática de evidencias de cumplimiento.
+- **Gestión Centralizada**: Un solo punto de verdad para todos los controles de ciberseguridad.
+- **Reparte Estandarizado**: Informes consistentes y comparables entre organizaciones.
+
+### Para Auditores
+
+- **Evaluación Estructurada**: Procesos de evaluación estandarizados y repetibles.
+- **Evidencia Digital**: Acceso directo a evidencias de implementación de controles.
+- **Trazabilidad Completa**: Historial completo de cambios y evaluaciones.
+
+### Para Herramientas de Ciberseguridad
+
+- **Interoperabilidad**: Capacidad de intercambiar información entre diferentes plataformas.
+- **Automatización de GRC**: Integración con herramientas de Governance, Risk & Compliance.
+- **API Estándar**: Interfaz común para todas las herramientas compatibles con OSCAL.
+
+## Componentes OSCAL en Kudo
+
+<Accordions type="single">
+  <Accordion title="System Security Plan (SSP)">
+    Documenta cómo se implementan los controles Kudo en un sistema específico:
+    
+    ```json
+    {
+      "system-security-plan": {
+        "uuid": "divisioncero-ssp",
+        "metadata": {
+          "title": "Plan de Seguridad del Sistema DivisionCero",
+          "version": "1.0.0"
+        },
+        "system-characteristics": {
+          "system-name": "DivisionCero SaaS Platform",
+          "description": "Plataforma SaaS de DivisionCero"
+        },
+        "control-implementation": {
+          "implemented-requirements": [
+            {
+              "control-id": "kudo-gov-001",
+              "statements": [
+                {
+                  "statement-id": "kudo-gov-001_stmt.a",
+                  "description": "Se ha establecido una política de gobernanza..."
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+    ```
+  </Accordion>
+  
+  <Accordion title="Assessment Plan (AP)">
+    Define cómo evaluar la implementación de controles Kudo:
+    
+    ```json
+    {
+      "assessment-plan": {
+        "uuid": "kudo-assessment-plan",
+        "metadata": {
+          "title": "Plan de Evaluación Kudo",
+          "version": "1.0.0"
+        },
+        "reviewed-controls": {
+          "control-selections": [
+            {
+              "include-controls": [
+                {"control-id": "kudo-gov-001"},
+                {"control-id": "kudo-ac-001"}
+              ]
+            }
+          ]
+        },
+        "assessment-activities": [
+          {
+            "uuid": "activity-001",
+            "title": "Revisión de Políticas",
+            "description": "Evaluación de políticas de gobernanza"
+          }
+        ]
+      }
+    }
+    ```
+  </Accordion>
+  
+  <Accordion title="Assessment Results (AR)">
+    Registra los resultados de las evaluaciones de controles:
+    
+    ```json
+    {
+      "assessment-results": {
+        "uuid": "kudo-assessment-results",
+        "metadata": {
+          "title": "Resultados de Evaluación Kudo",
+          "version": "1.0.0"
+        },
+        "results": [
+          {
+            "uuid": "result-001",
+            "title": "Evaluación de Gobernanza",
+            "findings": [
+              {
+                "uuid": "finding-001",
+                "title": "Control KUDO-GOV-001 Implementado",
+                "description": "Se verificó la implementación correcta del control",
+                "target": {
+                  "type": "control-id",
+                  "target-id": "kudo-gov-001",
+                  "status": {
+                    "state": "satisfied"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+    ```
+  </Accordion>
+  
+  <Accordion title="Plan of Action and Milestones (POA&M)">
+    Documenta acciones correctivas para deficiencias identificadas:
+    
+    ```json
+    {
+      "plan-of-action-and-milestones": {
+        "uuid": "kudo-poam",
+        "metadata": {
+          "title": "Plan de Acción Correctiva Kudo",
+          "version": "1.0.0"
+        },
+        "poam-items": [
+          {
+            "uuid": "poam-001",
+            "title": "Actualizar Política de Acceso",
+            "description": "Revisar y actualizar la política de control de acceso",
+            "related-findings": [
+              {"finding-uuid": "finding-002"}
+            ],
+            "remediation-tracking": {
+              "tracking-entries": [
+                {
+                  "uuid": "tracking-001",
+                  "date-time-stamp": "2025-01-15T00:00:00Z",
+                  "type": "milestone",
+                  "title": "Revisión completada"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+    ```
+  </Accordion>
+</Accordions>
+
+## Herramientas de Soporte
+
+### Validadores OSCAL
+
+Para validar documentos OSCAL generados desde Kudo:
+
+```bash
+# Instalación de herramientas NIST OSCAL
+npm install -g @nist/oscal-cli
+
+# Validación de catálogo
+oscal-cli validate --schema=catalog kudo-catalog.json
+
+# Validación de SSP
+oscal-cli validate --schema=ssp system-security-plan.json
+```
+
+### Generadores Automáticos
+
+```python
+# Ejemplo de generador Python para SSP Kudo
+import json
+from datetime import datetime
+
+def generate_kudo_ssp(system_name, controls):
+    ssp = {
+        "system-security-plan": {
+            "uuid": f"kudo-ssp-{datetime.now().strftime('%Y%m%d')}",
+            "metadata": {
+                "title": f"Plan de Seguridad - {system_name}",
+                "version": "1.0.0",
+                "oscal-version": "1.1.2",
+                "last-modified": datetime.now().isoformat()
+            },
+            "system-characteristics": {
+                "system-name": system_name,
+                "description": f"Implementación de controles Kudo para {system_name}"
+            },
+            "control-implementation": {
+                "implemented-requirements": controls
+            }
+        }
+    }
+    return json.dumps(ssp, indent=2)
+```
+
+
+## Referencia
+
+La integración Kudo-OSCAL es un proyecto colaborativo. Para contribuir:
+
+1. Revisa los [estándares OSCAL de NIST](https://pages.nist.gov/OSCAL/?utm_source=kudo.divisioncero.com)
+2. Consulta nuestro [repositorio en GitHub](https://github.com/PetterVargas/divisioncero-docs?utm_source=kudo.divisioncero.com)
+3. Participa en las discusiones de la comunidad
+
+<Callout type="success">
+La adopción de OSCAL en Kudo representa un paso significativo hacia la estandarización y automatización de la gestión de controles de ciberseguridad en Latinoamérica.
+</Callout>

@@ -1,0 +1,304 @@
+---
+title: Política de Gestión de Endpoints
+description: Controles para la administración segura de dispositivos finales.
+---
+
+## 📋 Información General
+
+**Documento:** Política de Gestión de Endpoints  
+**Versión:** 1.0.0  
+**Fecha:** Enero 2025  
+**Clasificación:** Confidencial  
+**Audiencia:** Administradores de TI, Equipo de seguridad, Gerentes, Usuarios finales
+
+## 🎯 Propósito
+
+Establecer controles integrales para la administración segura de todos los dispositivos endpoint en DivisionCero, incluyendo workstations, laptops, dispositivos móviles, tablets y servidores, implementando medidas de protección, detección y respuesta para prevenir compromisos de seguridad, malware, acceso no autorizado y exfiltración de datos a través de dispositivos finales en el entorno corporativo distribuido y remoto.
+
+## 🏢 Alcance
+
+Esta política aplica a:
+- Workstations y laptops corporativos (Windows, macOS, Linux)
+- Dispositivos móviles corporativos (smartphones, tablets)
+- Servidores físicos y virtuales
+- Dispositivos BYOD autorizados para uso corporativo
+- Dispositivos IoT y sistemas embebidos
+- Estaciones de trabajo especializadas (CAD, desarrollo, análisis)
+- Terminales de punto de venta y kioscos públicos
+- Dispositivos de infraestructura crítica
+
+## 📚 Definiciones
+
+- **Endpoint:** Cualquier dispositivo que se conecta a la red corporativa
+- **EDR (Endpoint Detection and Response):** Solución de detección y respuesta en endpoints
+- **MDM (Mobile Device Management):** Gestión centralizada de dispositivos móviles
+- **Hardening:** Fortalecimiento de configuración de seguridad en dispositivos
+- **Zero Touch Deployment:** Implementación automatizada sin intervención manual
+- **Device Compliance:** Cumplimiento de políticas de seguridad en dispositivos
+- **Remote Wipe:** Eliminación remota de datos en dispositivos comprometidos
+
+## 🛡️ Política
+
+### Gestión del Ciclo de Vida de Endpoints
+
+#### Adquisición e Inventario
+
+**1. Inventario de Dispositivos**
+- Registro completo de todos los endpoints en CMDB (Configuration Management Database)
+- Etiquetado físico con códigos de activo únicos
+- Documentación de especificaciones técnicas y configuraciones
+- Clasificación por criticidad de negocio y sensibilidad de datos
+- Registro de propietario, usuario asignado y ubicación física
+- Tracking de garantías, contratos de soporte y ciclo de vida
+
+**2. Estándares de Hardware**
+- Lista aprobada de fabricantes y modelos de dispositivos
+- Especificaciones mínimas de seguridad hardware (TPM 2.0, Secure Boot)
+- Requisitos de cifrado de hardware y almacenamiento
+- Certificaciones de seguridad requeridas (Common Criteria, FIPS 140-2)
+- Compatibilidad con herramientas de gestión empresarial
+- Consideraciones de sustentabilidad y ciclo de vida del producto
+
+#### Configuración y Hardening
+
+**3. Configuración Base (Gold Image)**
+- Desarrollo de imágenes estándar para cada tipo de dispositivo
+- Implementación de benchmarks de seguridad (CIS, NIST, DISA STIGs)
+- Configuración automática de políticas de seguridad
+- Instalación de agentes de seguridad (antivirus, EDR, DLP)
+- Configuración de autenticación y cifrado por defecto
+- Eliminación de software y servicios innecesarios
+
+**4. Hardening de Sistemas Operativos**
+- Deshabilitación de servicios y protocolos no esenciales
+- Configuración de firewalls locales con reglas restrictivas
+- Implementación de User Account Control (UAC) y controles equivalentes
+- Configuración de políticas de contraseñas locales
+- Habilitación de logging y auditoría de eventos de seguridad
+- Configuración de actualizaciones automáticas de seguridad
+
+**5. Cifrado de Datos**
+- Implementación obligatoria de cifrado de disco completo (BitLocker/FileVault/LUKS)
+- Gestión centralizada de claves de cifrado
+- Cifrado de datos en tránsito para todas las comunicaciones
+- Protección de datos en memoria mediante tecnologías como VBS
+- Implementación de DRM para documentos sensibles
+- Configuración de cifrado para dispositivos de almacenamiento extraíble
+
+### Gestión de Dispositivos Móviles (MDM)
+
+#### Enrollment y Configuración
+
+**6. Mobile Device Management**
+- Implementación de solución MDM empresarial (Microsoft Intune/VMware Workspace ONE)
+- Enrollment automático de dispositivos corporativos
+- Configuración de perfiles de dispositivo y aplicaciones
+- Separación de datos corporativos y personales en dispositivos BYOD
+- Implementación de contenedores seguros para aplicaciones empresariales
+- Configuración de políticas de compliance continua
+
+**7. Políticas de Dispositivos Móviles**
+- Requerimiento de PIN/biometría para desbloqueo de dispositivo
+- Configuración de timeout automático de pantalla
+- Restricción de instalación de aplicaciones no autorizadas
+- Bloqueo de jailbreak/rooting en dispositivos corporativos
+- Control de uso de cámaras y micrófonos en áreas sensibles
+- Geofencing para restricciones basadas en ubicación
+
+**8. Gestión de Aplicaciones Móviles (MAM)**
+- Catálogo de aplicaciones empresariales autorizadas
+- Distribución centralizada através de app stores privados
+- Wrapping de aplicaciones con controles de seguridad adicionales
+- Políticas de prevención de pérdida de datos en aplicaciones
+- Monitoreo de uso de aplicaciones y detección de malware
+- Gestión de actualizaciones de aplicaciones críticas
+
+### Detección y Respuesta en Endpoints (EDR)
+
+#### Implementación de EDR
+
+**9. Endpoint Detection and Response**
+- Despliegue de solución EDR empresarial (CrowdStrike/Microsoft Defender/SentinelOne)
+- Cobertura del 100% de endpoints críticos y sensibles
+- Configuración de políticas de detección basadas en MITRE ATT&CK
+- Integración con SIEM y plataforma SOAR para respuesta automatizada
+- Implementación de machine learning para detección de amenazas avanzadas
+- Configuración de sandboxing para análisis de archivos sospechosos
+
+**10. Monitoreo Continuo**
+- Monitoreo 24/7 de actividades en endpoints por SOC
+- Detección de indicadores de compromiso (IOCs) en tiempo real
+- Análisis de comportamiento anómalo de usuarios y procesos
+- Correlación de eventos entre endpoints y infraestructura de red
+- Threat hunting proactivo en endpoints de alto riesgo
+- Integración con threat intelligence feeds para detección actualizada
+
+**11. Respuesta a Incidentes**
+- Capacidad de aislamiento remoto de endpoints comprometidos
+- Recolección forense remota para análisis de evidencia
+- Rollback automático de cambios maliciosos
+- Reimaging remoto de sistemas comprometidos
+- Comunicación automática con usuarios afectados
+- Documentación automatizada de incidentes para análisis post-mortem
+
+### Control de Software y Aplicaciones
+
+#### Application Control
+
+**12. Whitelisting de Aplicaciones**
+- Implementación de controles de ejecución de aplicaciones
+- Lista blanca de aplicaciones autorizadas por departamento/rol
+- Bloqueo de ejecución de software no autorizado
+- Excepciones controladas con aprobación de seguridad
+- Monitoreo de intentos de ejecución de software bloqueado
+- Actualización automática de listas blancas/negras
+
+**13. Gestión de Software**
+- Inventario completo de software instalado en todos los endpoints
+- Detección y remoción de software no autorizado o malicioso
+- Gestión centralizada de licencias de software
+- Automatización de instalación/desinstalación de aplicaciones
+- Control de versiones y vulnerabilidades de software instalado
+- Políticas de actualización para software crítico vs. no crítico
+
+#### Prevención de Pérdida de Datos (DLP)
+
+**14. Data Loss Prevention**
+- Implementación de solución DLP en endpoints
+- Políticas granulares basadas en clasificación de datos
+- Prevención de exfiltración través de email, USB, cloud storage
+- Monitoreo de actividades de copia/pegado y screenshots
+- Watermarking de documentos sensibles
+- Integración con herramientas de clasificación automática de datos
+
+**15. Control de Dispositivos Extraíbles**
+- Bloqueo por defecto de dispositivos USB no autorizados
+- Whitelist de dispositivos USB corporativos aprobados
+- Cifrado obligatorio para dispositivos de almacenamiento autorizados
+- Logging de todas las actividades con dispositivos extraíbles
+- Políticas diferenciadas por rol y clasificación de datos
+- Alternativas seguras para transferencia de archivos (cloud corporativo)
+
+### Mantenimiento y Actualizaciones
+
+#### Gestión de Parches
+
+**16. Patch Management**
+- Cronograma automatizado de actualizaciones de seguridad críticas
+- Testing de parches en entorno de laboratorio antes de despliegue
+- Implementación escalonada: critical > high > medium > low priority
+- Ventanas de mantenimiento definidas para minimizar impacto operacional
+- Rollback automático en caso de fallas post-instalación
+- Reporte ejecutivo de compliance de parches instalados
+
+**17. Gestión de Vulnerabilidades**
+- Escaneo continuo de vulnerabilidades en endpoints
+- Integración con vulnerability management platform
+- Priorización de remediación basada en riesgo y exposición
+- Métricas de tiempo de remediación por criticidad
+- Coordinación con vendors para parches de zero-day vulnerabilities
+- Assessment regular de postura de seguridad de endpoints
+
+### Remote Work y Conectividad
+
+#### Acceso Remoto Seguro
+
+**18. VPN Corporativa**
+- VPN obligatoria para acceso remoto a recursos corporativos
+- Autenticación multifactor para conexiones VPN
+- Split tunneling controlado basado en políticas de datos
+- Monitoreo de conexiones VPN para detectar actividad anómala
+- Políticas de acceso condicional basadas en ubicación geográfica
+- Backup de conectividad para trabajadores remotos críticos
+
+**19. Zero Trust Network Access**
+- Implementación gradual de arquitectura Zero Trust
+- Verificación continua de identidad y postura de dispositivos
+- Micro-segmentación de acceso a recursos específicos
+- Políticas dinámicas basadas en contexto de riesgo
+- Integración con identity providers y threat intelligence
+- Monitoreo de sesiones para detectar comportamiento anómalo
+
+### Disposición Segura de Dispositivos
+
+#### End-of-Life Management
+
+**20. Sanitización de Datos**
+- Procedimientos estandarizados para eliminación segura de datos
+- Múltiples pases de sobrescritura según estándares NIST/DoD
+- Verificación de completitud de eliminación de datos
+- Destrucción física de medios de almacenamiento cuando sea requerida
+- Certificados de destrucción para dispositivos con datos críticos
+- Auditoría de procesos de disposición para cumplimiento regulatorio
+
+**21. Asset Recovery**
+- Descommisioning controlado con documentación completa
+- Recuperación de licencias de software para reutilización
+- Evaluación para reutilización interna o donación
+- Cumplimiento con regulaciones ambientales para e-waste
+- Actualización de inventario y sistemas CMDB
+- Lecciones aprendidas para mejorar gestión de ciclo de vida
+
+## 👥 Roles y Responsabilidades
+
+- **IT Asset Manager:** Gestionar inventario, lifecycle, y adquisiciones de endpoints
+- **Endpoint Security Team:** Implementar EDR, políticas de seguridad, respuesta a incidentes
+- **System Administrators:** Mantener configuraciones, actualizaciones, soporte técnico
+- **Security Operations Center:** Monitorear alertas, investigar amenazas, coordinar respuesta
+- **End Users:** Cumplir políticas, reportar incidentes, proteger dispositivos asignados
+- **CISO:** Aprobar políticas, supervisar métricas, asegurar cumplimiento regulatorio
+
+## 📊 Cumplimiento y Medición
+
+**KPIs Operacionales:**
+- Porcentaje de endpoints con EDR desplegado (objetivo: 100%)
+- Tiempo promedio de deployment de nuevos endpoints (menos de 4 horas)
+- Compliance rate con políticas de configuración (más de 95%)
+- Tiempo promedio de respuesta a incidentes críticos (menos de 1 hora)
+
+**Métricas de Seguridad:**
+- Número de endpoints comprometidos detectados mensualmente
+- Tiempo promedio de contención post-detección (menos de 30 minutos)
+- Porcentaje de endpoints con parches críticos aplicados (menos de 72 horas del release)
+- Efectividad de controles de application whitelisting (más de 99%)
+
+**Indicadores de Riesgo:**
+- Endpoints sin actualizaciones por >30 días
+- Dispositivos con software no autorizado detectado
+- Intentos de conexión desde ubicaciones geográficas anómalas
+- Endpoints con múltiples alertas de seguridad no resueltas
+
+**Métricas de Experiencia de Usuario:**
+- Tiempo de boot promedio de endpoints corporativos
+- Disponibilidad de aplicaciones críticas (>99.5%)
+- Tickets de soporte relacionados con políticas de seguridad
+- Satisfaction score de usuarios con herramientas de seguridad
+
+## 🚨 Incumplimiento
+
+**Violaciones Críticas:**
+- Deshabilitación de agentes de seguridad (EDR, antivirus)
+- Conexión de dispositivos no autorizados a red corporativa
+- Instalación de software malicioso o no autorizado
+- Exfiltración de datos corporativos através de endpoints
+
+**Violaciones Graves:**
+- No cumplimiento con políticas de cifrado de datos
+- Uso de dispositivos personales para datos corporativos sin autorización
+- No instalación de actualizaciones críticas de seguridad
+- Pérdida o robo de dispositivos sin reporte inmediato
+
+**Consecuencias:**
+- Aislamiento automático de dispositivo de la red corporativa
+- Investigación de seguridad y posible acción disciplinaria
+- Reimaging obligatorio del dispositivo afectado
+- Capacitación adicional en políticas de seguridad
+
+## 📖 Referencias
+
+- ISO 27001:2022 - A.8.1 Inventory of assets, A.8.2 Information classification
+- NIST SP 800-53 - CM-8 Information System Component Inventory
+- CIS Controls v8 - Control 1: Inventory and Control of Enterprise Assets
+- SANS Critical Security Controls - Asset Management
+- NIST Cybersecurity Framework - ID.AM (Identify - Asset Management)
+- Mobile Security Guidelines - NIST SP 800-124

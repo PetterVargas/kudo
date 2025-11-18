@@ -1,0 +1,220 @@
+---
+title: THP-04 - Modelo de Responsabilidad Compartida en la Cadena de Suministro
+description: Control de definición y gestión de responsabilidades de seguridad con proveedores
+---
+
+## 🎯 Objetivo del Control
+
+Establecer un marco claro de responsabilidades de seguridad entre la organización y sus proveedores, garantizando que todos los aspectos de la seguridad estén adecuadamente cubiertos y no existan brechas o superposiciones que generen riesgos.
+
+## 📋 Descripción
+
+Este control define el modelo de responsabilidad compartida que incluye:
+- Matriz RACI de responsabilidades de seguridad
+- Clausulas contractuales de seguridad específicas
+- SLAs de seguridad medibles
+- Procesos de coordinación ante incidentes
+- Auditoría y verificación de cumplimiento
+
+## 🛡️ Controles Requeridos
+
+### Matriz de Responsabilidades
+
+#### IaaS (Infrastructure as a Service)
+| Capa de Seguridad | Cliente | Proveedor |
+|-------------------|---------|-----------|
+| Seguridad física | - | Responsable |
+| Hardware y red física | - | Responsable |
+| Hipervisor | - | Responsable |
+| Sistema operativo | Responsable | - |
+| Aplicaciones | Responsable | - |
+| Datos | Responsable | - |
+| Identidad y acceso | Compartido | Compartido |
+| Cifrado | Responsable | Herramientas |
+| Monitoreo de seguridad | Responsable | Infraestructura |
+
+#### PaaS (Platform as a Service)
+| Capa de Seguridad | Cliente | Proveedor |
+|-------------------|---------|-----------|
+| Infraestructura | - | Responsable |
+| Sistema operativo | - | Responsable |
+| Runtime/middleware | - | Responsable |
+| Aplicaciones | Responsable | - |
+| Datos | Responsable | - |
+| Identidad y acceso | Compartido | Compartido |
+| Configuración segura | Responsable | Defaults seguros |
+
+#### SaaS (Software as a Service)
+| Capa de Seguridad | Cliente | Proveedor |
+|-------------------|---------|-----------|
+| Infraestructura completa | - | Responsable |
+| Aplicación | - | Responsable |
+| Configuración de aplicación | Responsable | - |
+| Gestión de usuarios | Responsable | - |
+| Datos | Responsable | Custodia |
+| Identidad y acceso | Compartido | SSO/MFA |
+| Clasificación de datos | Responsable | - |
+
+### Clausulas Contractuales de Seguridad
+
+#### Clausulas Obligatorias
+- **Confidencialidad:**
+  - Acuerdo de no divulgación (NDA)
+  - Restricciones de uso de información
+  - Prohibición de subcontratación sin aprobación
+- **Protección de Datos:**
+  - Data Processing Agreement (DPA) según GDPR/CCPA
+  - Ubicación de procesamiento y almacenamiento
+  - Transferencias internacionales de datos
+  - Derechos de los titulares de datos
+- **Evaluación de Seguridad:**
+  - Derecho a auditar (on-site o SOC 2)
+  - Frecuencia de evaluaciones (anual mínimo)
+  - Certificaciones requeridas (ISO 27001, SOC 2 Type II)
+  - Penetration testing anual
+- **Gestión de Incidentes:**
+  - Notificación de brechas de seguridad (24-72 horas)
+  - Colaboración en investigación forense
+  - Responsabilidad y remedios ante incidentes
+  - Seguro de ciberseguridad (mínimo recomendado)
+- **Continuidad del Negocio:**
+  - SLA de disponibilidad (99.9% típico)
+  - RTO y RPO acordados
+  - Plan de recuperación ante desastres
+  - Backups y retención de datos
+- **Seguridad del Desarrollo:**
+  - SDLC seguro para proveedores de software
+  - Gestión de vulnerabilidades y parches
+  - Análisis de código estático y dinámico
+  - Divulgación responsable de vulnerabilidades
+
+### SLAs de Seguridad Medibles
+
+#### Disponibilidad y Rendimiento
+- Uptime mensual: 99.9% (8.76 horas de downtime/año)
+- Uptime crítico: 99.95% para servicios tier 1
+- Tiempo de respuesta de soporte: menos de 1 hora para P1, menos de 4 horas para P2
+
+#### Respuesta a Incidentes
+- Notificación inicial: menos de 4 horas para incidentes críticos
+- Reporte detallado: menos de 72 horas
+- Remediación: según criticidad (CVSS)
+  - Crítica (9.0-10.0): 7 días
+  - Alta (7.0-8.9): 30 días
+  - Media (4.0-6.9): 60 días
+
+#### Gestión de Vulnerabilidades
+- Escaneo de vulnerabilidades: mensual
+- Penetration testing: anual
+- Tiempo de remediación según CVSS
+- Porcentaje de parches aplicados: mayor a 95% en SLA
+
+### Due Diligence de Seguridad
+
+#### Evaluación Inicial (Pre-contratación)
+- Cuestionario de seguridad (SIG, CAIQ, VSA)
+- Revisión de certificaciones
+- Referencias de clientes actuales
+- Evaluación de reputación (breaches previos)
+- Análisis de postura de seguridad externa (BitSight, SecurityScorecard)
+
+#### Evaluación Continua (Post-contratación)
+- Revisión anual de certificaciones
+- Monitoreo de incidentes públicos
+- Reevaluación de riesgo ante cambios significativos
+- Auditorías programadas según criticidad
+
+### Gestión de Incidentes Conjunta
+
+#### Proceso de Notificación
+1. Proveedor detecta o es notificado de incidente
+2. Notificación inmediata a punto de contacto de seguridad
+3. Provisión de detalles iniciales (alcance, datos afectados)
+4. Updates regulares durante investigación
+5. Reporte post-incidente con lecciones aprendidas
+
+#### Coordinación de Respuesta
+- Puntos de contacto 24/7 definidos
+- Canales de comunicación seguros (Signal, PGP)
+- Participación en war rooms virtuales
+- Compartición de IOCs y TTP
+- Remediación coordinada
+
+### Derecho de Auditoría
+
+#### Auditorías Programadas
+- Frecuencia según nivel de riesgo:
+  - Crítico: Semestral
+  - Alto: Anual
+  - Medio: Bianual
+  - Bajo: Trianual o mediante certificaciones
+- Tipos de auditoría:
+  - Revisión documental
+  - Entrevistas con personal
+  - Inspección técnica
+  - Revisión de logs y evidencias
+
+#### Certificaciones Aceptadas (en lugar de auditoría)
+- SOC 2 Type II (vigencia menor a 12 meses)
+- ISO/IEC 27001 (vigencia menor a 3 años)
+- PCI DSS (para procesamiento de pagos)
+- FedRAMP (para servicios a gobierno US)
+- HIPAA/HITRUST (para datos de salud)
+
+### Terminación de Relación
+
+#### Proceso de Offboarding Seguro
+- Notificación con 30-90 días de anticipación
+- Plan de migración de datos y servicios
+- Devolución o destrucción certificada de datos
+- Revocación de accesos y credenciales
+- Devolución de dispositivos o activos
+- Certificación de eliminación segura (NIST 800-88)
+- Retención de logs según requerimientos legales
+
+## 📊 Métricas e Indicadores
+
+- Porcentaje de contratos con clausulas de seguridad (objetivo: 100%)
+- Número de proveedores con certificaciones vigentes
+- Cumplimiento de SLAs de seguridad (promedio)
+- Tiempo promedio de notificación de incidentes
+- Número de incidentes originados en proveedores
+- Porcentaje de proveedores auditados según plan
+- Resultado de evaluaciones de seguridad (score promedio)
+
+## 🔗 Herramientas Recomendadas
+
+- **TPRM:** OneTrust, ServiceNow TPRM, Vanta, Tugboat Logic
+- **Evaluación Externa:** BitSight, SecurityScorecard, UpGuard, RiskRecon
+- **Cuestionarios:** SharedAssessments SIG, CSA CAIQ, Google VSA
+- **Monitoreo Continuo:** Black Kite, Panorays, CyberGRX
+- **Contract Management:** Ironclad, DocuSign CLM, Agiloft
+
+## 📚 Referencias
+
+- [Política de Gestión de Terceros](/docs/kudo/politicas/politica-gestion-terceros)
+- [Evaluación de Seguridad de Proveedores](/docs/kudo/politicas/evaluacion-seguridad-proveedores)
+- [Acuerdo de Procesamiento de Datos (DPA)](/docs/kudo/politicas/acuerdo-procesamiento-datos)
+- [Plan de Respuesta a Incidentes](/docs/kudo/politicas/plan-respuesta-incidentes)
+- [Control THP-03 - Inventario de la Cadena de Suministro](/docs/kudo/thp-ciberseguridad-en-talento-humano-y-proveedores/thp-03)
+- [Modelo de Responsabilidad Compartida](/docs/kudo/responsabilidad-compartida)
+- NIST SP 800-161 Rev. 1 - Cybersecurity Supply Chain Risk Management
+- ISO/IEC 27036 - Information Security for Supplier Relationships
+- Cloud Security Alliance - Shared Responsibility Model
+- CIS Control 15 - Service Provider Management
+
+## ✅ Checklist de Implementación
+
+- [ ] Definir matriz RACI por tipo de servicio (IaaS, PaaS, SaaS)
+- [ ] Crear template de clausulas de seguridad contractuales
+- [ ] Establecer SLAs de seguridad estándar
+- [ ] Implementar proceso de due diligence pre-contratación
+- [ ] Seleccionar herramienta de evaluación de proveedores
+- [ ] Definir cuestionarios de seguridad por categoría
+- [ ] Establecer proceso de notificación de incidentes
+- [ ] Crear plan de auditoría de proveedores críticos
+- [ ] Documentar proceso de offboarding seguro
+- [ ] Capacitar a equipos de compras, legal y seguridad
+- [ ] Integrar evaluaciones con proceso de adquisición
+- [ ] Establecer revisión trimestral de cumplimiento de SLAs
+- [ ] Crear dashboard de riesgo de cadena de suministro

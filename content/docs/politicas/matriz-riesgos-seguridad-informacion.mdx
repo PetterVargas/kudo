@@ -1,0 +1,278 @@
+---
+title: Matriz de Riesgos de Seguridad de la Información
+description: Matriz de riesgos de seguridad de la información.
+---
+
+## 📋 Información General
+
+**Documento:** Matriz de Riesgos de Seguridad de la Información  
+**Versión:** 1.0.0  
+**Fecha:** Enero 2025  
+**Clasificación:** Confidencial  
+**Audiencia:** CISO, Equipo GRC, Propietarios de Riesgos, Alta Dirección
+
+## 🎯 Propósito
+
+Definir la metodología para identificar, evaluar, priorizar y tratar los riesgos de seguridad de la información en DivisionCero, proporcionando un marco estructurado para la gestión integral de riesgos que apoye la toma de decisiones informadas y la protección de activos críticos.
+
+## 🏢 Alcance
+
+Esta política aplica a:
+- Todos los activos de información de DivisionCero
+- Sistemas de información, aplicaciones e infraestructura
+- Procesos de negocio que involucren tratamiento de información
+- Amenazas internas y externas que puedan afectar la organización
+- Operaciones en todos los países donde DivisionCero tiene presencia
+
+## 📚 Definiciones
+
+- **Riesgo:** Efecto de la incertidumbre sobre el logro de objetivos de seguridad
+- **Activo:** Cualquier elemento que tenga valor para la organización
+- **Amenaza:** Causa potencial de un incidente no deseado
+- **Vulnerabilidad:** Debilidad que puede ser explotada por amenazas
+- **Impacto:** Consecuencias de la materialización de un riesgo
+- **Probabilidad:** Posibilidad de que ocurra un evento de riesgo
+
+## 🛡️ Política
+
+### Marco de Gestión de Riesgos
+
+#### Metodología Base
+**Estándar ISO 31000** - Gestión de Riesgos
+- Principios fundamentales de gestión de riesgos
+- Proceso estructurado y sistemático
+- Integración con objetivos organizacionales
+- Mejora continua del proceso
+
+**ISO 27005** - Gestión de Riesgos de Seguridad de la Información
+- Metodología específica para riesgos de seguridad
+- Alineación con ISO 27001 SGSI
+- Consideración de aspectos técnicos y organizacionales
+
+#### Escalas de Valoración
+
+**Escala de Probabilidad (P):**
+1. **Muy Baja (1):** Improbable que ocurra (< 5%)
+2. **Baja (2):** Puede ocurrir ocasionalmente (5-25%)
+3. **Media (3):** Probable que ocurra (26-50%)
+4. **Alta (4):** Muy probable que ocurra (51-75%)
+5. **Muy Alta (5):** Casi certeza de ocurrencia (> 75%)
+
+**Escala de Impacto (I):**
+1. **Muy Bajo (1):** Impacto mínimo, sin afectación significativa
+2. **Bajo (2):** Impacto menor, afectación localizada
+3. **Medio (3):** Impacto moderado, afectación departamental
+4. **Alto (4):** Impacto significativo, afectación organizacional
+5. **Muy Alto (5):** Impacto crítico, afectación de continuidad del negocio
+
+**Matriz de Riesgo (P x I):**
+
+| Probabilidad | I=1 | I=2 | I=3 | I=4 | I=5 |
+|-------------|-----|-----|-----|-----|-----|
+| P=5 | 5 | 10 | 15 | 20 | 25 |
+| P=4 | 4 | 8 | 12 | 16 | 20 |
+| P=3 | 3 | 6 | 9 | 12 | 15 |
+| P=2 | 2 | 4 | 6 | 8 | 10 |
+| P=1 | 1 | 2 | 3 | 4 | 5 |
+
+**Niveles de Riesgo:**
+- **Crítico (20-25):** Riesgo inaceptable, requiere tratamiento inmediato
+- **Alto (15-16):** Riesgo alto, requiere tratamiento prioritario
+- **Medio (8-12):** Riesgo moderado, requiere tratamiento planificado
+- **Bajo (4-6):** Riesgo bajo, puede aceptarse con monitoreo
+- **Muy Bajo (1-3):** Riesgo mínimo, aceptable con revisión periódica
+
+### Categorías de Riesgos
+
+#### Riesgos Tecnológicos
+**R.TEC.001 - Ataques de Malware**
+- **Descripción:** Infección por virus, ransomware, troyanos
+- **Activos Afectados:** Estaciones de trabajo, servidores, datos
+- **Probabilidad:** Alta (4)
+- **Impacto:** Alto (4)
+- **Riesgo Residual:** 16 (Alto)
+
+**R.TEC.002 - Vulnerabilidades de Software**
+- **Descripción:** Explotación de vulnerabilidades no parchadas
+- **Activos Afectados:** Aplicaciones, sistemas operativos
+- **Probabilidad:** Media (3)
+- **Impacto:** Alto (4)
+- **Riesgo Residual:** 12 (Medio)
+
+**R.TEC.003 - Fallas de Infraestructura**
+- **Descripción:** Indisponibilidad por fallas de hardware/red
+- **Activos Afectados:** Servidores, equipos de red, datacenter
+- **Probabilidad:** Baja (2)
+- **Impacto:** Alto (4)
+- **Riesgo Residual:** 8 (Medio)
+
+#### Riesgos de Datos
+**R.DAT.001 - Filtración de Datos Personales**
+- **Descripción:** Exposición no autorizada de datos sensibles
+- **Activos Afectados:** Bases de datos de clientes, RRHH
+- **Probabilidad:** Media (3)
+- **Impacto:** Muy Alto (5)
+- **Riesgo Residual:** 15 (Alto)
+
+**R.DAT.002 - Pérdida de Integridad de Datos**
+- **Descripción:** Corrupción o modificación no autorizada
+- **Activos Afectados:** Datos críticos de negocio
+- **Probabilidad:** Baja (2)
+- **Impacto:** Alto (4)
+- **Riesgo Residual:** 8 (Medio)
+
+**R.DAT.003 - Indisponibilidad de Datos**
+- **Descripción:** Pérdida temporal o permanente de acceso
+- **Activos Afectados:** Sistemas de producción, backups
+- **Probabilidad:** Baja (2)
+- **Impacto:** Alto (4)
+- **Riesgo Residual:** 8 (Medio)
+
+#### Riesgos Organizacionales
+**R.ORG.001 - Errores Humanos**
+- **Descripción:** Errores operativos por falta de capacitación
+- **Activos Afectados:** Datos, configuraciones, procesos
+- **Probabilidad:** Alta (4)
+- **Impacto:** Medio (3)
+- **Riesgo Residual:** 12 (Medio)
+
+**R.ORG.002 - Amenazas Internas**
+- **Descripción:** Acciones maliciosas de empleados internos
+- **Activos Afectados:** Toda la información organizacional
+- **Probabilidad:** Baja (2)
+- **Impacto:** Alto (4)
+- **Riesgo Residual:** 8 (Medio)
+
+**R.ORG.003 - Incumplimiento Regulatorio**
+- **Descripción:** Violación de regulaciones de protección de datos
+- **Activos Afectados:** Datos personales, procesos de negocio
+- **Probabilidad:** Media (3)
+- **Impacto:** Alto (4)
+- **Riesgo Residual:** 12 (Medio)
+
+#### Riesgos Externos
+**R.EXT.001 - Ataques Dirigidos (APT)**
+- **Descripción:** Ataques persistentes por actores sofisticados
+- **Activos Afectados:** Propiedad intelectual, datos estratégicos
+- **Probabilidad:** Media (3)
+- **Impacto:** Muy Alto (5)
+- **Riesgo Residual:** 15 (Alto)
+
+**R.EXT.002 - Ataques DDoS**
+- **Descripción:** Denegación de servicio distribuida
+- **Activos Afectados:** Servicios web, infraestructura de red
+- **Probabilidad:** Media (3)
+- **Impacto:** Medio (3)
+- **Riesgo Residual:** 9 (Medio)
+
+**R.EXT.003 - Comprometimiento de Proveedores**
+- **Descripción:** Incidentes de seguridad en la cadena de suministro
+- **Activos Afectados:** Datos compartidos, servicios críticos
+- **Probabilidad:** Baja (2)
+- **Impacto:** Alto (4)
+- **Riesgo Residual:** 8 (Medio)
+
+### Tratamiento de Riesgos
+
+#### Estrategias de Tratamiento
+**Mitigar (Controlar):**
+- Implementar controles para reducir probabilidad o impacto
+- Aplicable a riesgos críticos y altos
+- Requiere inversión en controles de seguridad
+
+**Transferir (Compartir):**
+- Transferir riesgo mediante seguros o outsourcing
+- Aplicable cuando el costo de control excede el riesgo
+- Mantener supervisión sobre terceros
+
+**Evitar (Eliminar):**
+- Eliminar la actividad que genera el riesgo
+- Aplicable cuando el riesgo es inaceptable
+- Considerar impacto en objetivos de negocio
+
+**Aceptar (Retener):**
+- Aceptar el riesgo sin controles adicionales
+- Aplicable solo a riesgos bajos y muy bajos
+- Requiere aprobación formal de la alta dirección
+
+#### Controles por Categoria de Riesgo
+
+**Controles Tecnológicos:**
+- Sistemas de detección y prevención de intrusiones (IDS/IPS)
+- Antimalware de próxima generación (EDR/XDR)
+- Gestión de vulnerabilidades automatizada
+- Backup y recuperación ante desastres
+- Cifrado de datos en reposo y en tránsito
+
+**Controles Organizacionales:**
+- Capacitación continua en seguridad
+- Políticas y procedimientos actualizados
+- Segregación de funciones críticas
+- Monitoreo de actividades privilegiadas
+- Programa de concienciación en seguridad
+
+**Controles Físicos:**
+- Control de acceso a instalaciones críticas
+- Videovigilancia y sistemas de alarma
+- Protección ambiental (HVAC, energía)
+- Destrucción segura de medios
+- Áreas seguras para procesamiento sensible
+
+### Monitoreo y Revisión
+
+#### Indicadores Clave de Riesgo (KRIs)
+- Número de vulnerabilidades críticas sin parchar
+- Tiempo promedio de detección de incidentes
+- Porcentaje de empleados capacitados en seguridad
+- Disponibilidad de sistemas críticos
+- Número de incidentes de seguridad por mes
+
+#### Revisión Periódica
+**Frecuencia de Revisión:**
+- **Riesgos Críticos:** Mensual
+- **Riesgos Altos:** Trimestral
+- **Riesgos Medios:** Semestral
+- **Riesgos Bajos:** Anual
+
+**Disparadores de Revisión:**
+- Nuevas amenazas identificadas
+- Cambios en el entorno tecnológico
+- Incidentes de seguridad significativos
+- Cambios en el negocio o regulación
+
+## 👥 Roles y Responsabilidades
+
+- **CISO:** Aprobar la matriz de riesgos y supervisar su gestión
+- **Equipo GRC:** Mantener y actualizar la matriz de riesgos
+- **Propietarios de Activos:** Identificar y evaluar riesgos en sus áreas
+- **Equipo SOC:** Monitorear indicadores de materialización de riesgos
+- **Alta Dirección:** Aprobar tratamiento de riesgos críticos y altos
+
+## 📊 Cumplimiento y Medición
+
+**Métricas de Efectividad:**
+- Porcentaje de riesgos críticos con tratamiento implementado
+- Tiempo promedio de respuesta a nuevos riesgos identificados
+- Reducción en la exposición total al riesgo por trimestre
+- Cumplimiento de cronogramas de implementación de controles
+
+**Reporting:**
+- Reporte mensual de estado de riesgos críticos
+- Dashboard en tiempo real de KRIs
+- Reporte trimestral a la alta dirección
+- Informe anual de gestión de riesgos
+
+## 🚨 Incumplimiento
+
+- Riesgos críticos no tratados requieren escalamiento inmediato
+- Incumplimiento de cronogramas debe ser justificado formalmente
+- Falta de actualización de la matriz genera alertas automáticas
+- Materialización de riesgos con controles insuficientes requiere revisión
+
+## 📖 Referencias
+
+- ISO 31000:2018 - Gestión de Riesgos
+- ISO 27005:2022 - Gestión de Riesgos de Seguridad de la Información
+- NIST SP 800-30 - Guide for Conducting Risk Assessments
+- COSO ERM Framework
+- Plan de Tratamiento de Riesgos

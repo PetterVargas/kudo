@@ -1,0 +1,146 @@
+---
+title: CNB-05 - Administración y Gestión de Claves
+description: Control de gestión del ciclo de vida de claves criptográficas
+---
+
+## 🎯 Objetivo del Control
+
+Establecer un sistema robusto de gestión del ciclo de vida completo de claves criptográficas, desde su generación hasta su destrucción segura.
+
+## 📋 Descripción
+
+Este control define la gestión de claves:
+- Generación segura de claves
+- Almacenamiento protegido
+- Distribución controlada
+- Rotación periódica
+- Auditoría de uso
+- Destrucción segura
+
+## 🛡️ Controles Requeridos
+
+### Key Management Service (KMS)
+Uso obligatorio de servicios gestionados de claves:
+- **AWS:** AWS KMS, CloudHSM
+- **Azure:** Azure Key Vault
+- **GCP:** Cloud KMS
+- **Multi-Cloud:** HashiCorp Vault
+
+### Jerarquía de Claves
+
+**Master Keys (Claves Maestras):**
+- Almacenadas en HSM
+- Utilizadas para cifrar Data Keys
+- Rotación anual
+- Backup en ubicación segura
+
+**Data Keys (Claves de Datos):**
+- Generadas por aplicación/servicio
+- Cifradas con Master Key (envelope encryption)
+- Rotación trimestral
+- Almacenadas junto con datos cifrados
+
+**Key Encryption Keys (KEKs):**
+- Capa intermedia de protección
+- Facilitan rotación de Master Keys
+
+### Ciclo de Vida de Claves
+
+1. **Generación:**
+   - Generador criptográfico robusto (CSPRNG)
+   - Longitud adecuada (AES-256, RSA-2048+)
+   - Generación dentro de HSM cuando sea posible
+
+2. **Almacenamiento:**
+   - Nunca en texto plano
+   - Cifradas con Key Encryption Key
+   - Separación por ambiente (dev, prod)
+   - Backups cifrados en ubicación geográfica distinta
+
+3. **Distribución:**
+   - Canales seguros (TLS, APIs autenticadas)
+   - Just-in-Time distribution
+   - Principio de menor privilegio
+
+4. **Uso:**
+   - Auditoría de cada operación criptográfica
+   - Limits de rate para prevenir abuso
+   - Separación de keys entre ambientes
+
+5. **Rotación:**
+   - Rotación programada:
+     - Master keys: anual
+     - Data keys: trimestral
+     - API keys: mensual
+     - Certificados: antes de expiración
+   - Rotación de emergencia ante compromiso
+
+6. **Destrucción:**
+   - Eliminar todas las copias
+   - Sobrescribir en storage
+   - Documentar destrucción
+   - Mantener re-cifrado de datos con nueva clave
+
+### Separación de Keys
+- Keys diferentes para cada ambiente (dev, qa, prod)
+- Keys diferentes por aplicación crítica
+- Keys diferentes por clasificación de datos
+- Keys de firma vs keys de cifrado
+
+### Control de Acceso a Claves
+- RBAC para acceso a KMS
+- MFA para operaciones de master keys
+- Separación de funciones:
+  - Key administrator ≠ Key user
+  - Quien crea ≠ quien autoriza
+- Logs de acceso a claves
+
+### Backup y Recuperación
+- Backup de master keys en HSM secundario
+- Procedimiento de recuperación documentado
+- Testing periódico de recuperación
+- Custodia compartida (key ceremony)
+
+### Auditoría y Monitoreo
+- Logs de CloudTrail / Azure Monitor
+- Alertas de uso anómalo de claves
+- Reportes de rotación de claves
+- Revisión trimestral de permisos
+
+## 📊 Métricas e Indicadores
+
+- Número de claves sin rotación en período definido
+- Intentos fallidos de acceso a KMS
+- Operaciones criptográficas por servicio
+- Cumplimiento de política de rotación
+- Keys sin propietario definido
+
+## 🔗 Herramientas Recomendadas
+
+- **Cloud KMS:** AWS KMS, Azure Key Vault, GCP Cloud KMS
+- **Multi-Cloud:** HashiCorp Vault, Thales CipherTrust Manager
+- **HSM:** AWS CloudHSM, Azure Dedicated HSM, Thales Luna
+- **Secrets Management:** AWS Secrets Manager, Azure Key Vault Secrets
+- **Monitoring:** AWS CloudTrail, Azure Monitor, Splunk
+
+## 📚 Referencias
+
+- [Inventario y Ciclo de Vida de Llaves](/docs/kudo/politicas/inventario-ciclo-vida-llaves)
+- [Gestión de Certificados Digitales](/docs/kudo/politicas/gestion-certificados-digitales)
+- [Mecanismos de Cifrado](/docs/kudo/politicas/mecanismos-cifrado)
+- NIST SP 800-57 - Recommendation for Key Management
+- ISO 27001:2022 - A.8.24 Cryptography
+- FIPS 140-2/140-3 - Security Requirements for Cryptographic Modules
+
+## ✅ Checklist de Implementación
+
+- [ ] KMS centralizado implementado
+- [ ] Jerarquía de claves definida (Master/KEK/Data)
+- [ ] Políticas de rotación configuradas y automatizadas
+- [ ] HSM para master keys críticas
+- [ ] Separación de claves por ambiente
+- [ ] Control de acceso (RBAC) a KMS
+- [ ] Auditoría de operaciones criptográficas
+- [ ] Backup de master keys en ubicación secundaria
+- [ ] Procedimiento de recuperación documentado y probado
+- [ ] Monitoreo y alertas de uso anómalo

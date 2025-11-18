@@ -1,0 +1,305 @@
+---
+title: Registros de Acceso y Autenticación
+description: Monitoreo y auditoría de intentos de acceso y autenticación.
+---
+
+## 📋 Información General
+
+**Documento:** Registros de Acceso y Autenticación  
+**Versión:** 1.0.0  
+**Fecha:** Enero 2025  
+**Clasificación:** Confidencial  
+**Audiencia:** Administradores de sistemas, Equipo SOC, Auditores, CISO, Responsable de compliance
+
+## 🎯 Propósito
+
+Establecer controles integrales para el registro, monitoreo y análisis de eventos de acceso y autenticación en todos los sistemas de DivisionCero, asegurando trazabilidad completa de actividades de usuarios, detección temprana de amenazas de seguridad, cumplimiento de requerimientos regulatorios, y capacidades de investigación forense para respuesta a incidentes y análisis post-compromiso.
+
+## 🏢 Alcance
+
+Esta política aplica a:
+- Todos los sistemas de autenticación (Active Directory, Azure AD, LDAP)
+- Aplicaciones SaaS y servicios cloud (Microsoft 365, AWS, Salesforce)
+- Sistemas operativos (Windows, Linux, macOS) y servidores
+- Dispositivos de red (firewalls, switches, routers, WAPs)
+- Bases de datos y sistemas de gestión de contenido
+- Aplicaciones web internas y públicas
+- Sistemas de control industrial (SCADA/ICS) si aplica
+- Dispositivos IoT y sistemas embebidos
+
+## 📚 Definiciones
+
+- **Evento de Autenticación:** Cualquier intento de verificación de identidad de usuario o sistema
+- **Log de Acceso:** Registro detallado de actividades de acceso a recursos tecnológicos
+- **SIEM (Security Information and Event Management):** Plataforma centralizada de análisis de logs
+- **UBA (User Behavior Analytics):** Análisis de comportamiento de usuarios para detectar anomalías
+- **Threat Hunting:** Búsqueda proactiva de amenazas en logs y eventos de seguridad
+- **Forensic Readiness:** Preparación de evidencia digital para investigaciones legales
+- **Log Aggregation:** Centralización y normalización de logs de múltiples fuentes
+
+## 🛡️ Política
+
+### Registro de Eventos de Autenticación
+
+#### Eventos Obligatorios de Registro
+
+**1. Eventos de Autenticación Exitosa**
+- Timestamp preciso con zona horaria
+- Usuario/cuenta utilizada para autenticación
+- Origen de la conexión (IP, hostname, ubicación geográfica)
+- Método de autenticación utilizado (password, MFA, SSO, certificado)
+- Aplicación o sistema de destino
+- Duración de la sesión y timestamp de logout
+
+**2. Eventos de Autenticación Fallida**
+- Timestamp del intento fallido
+- Usuario/cuenta que intentó autenticar
+- Motivo específico de la falla (password incorrecto, cuenta bloqueada, MFA fallido)
+- Número de intentos consecutivos fallidos
+- Dirección IP y información de geolocalización del origen
+- User-Agent o información del cliente utilizado
+
+**3. Eventos de Gestión de Cuentas**
+- Creación, modificación y eliminación de cuentas de usuario
+- Cambios en permisos y grupos de seguridad
+- Activación/desactivación de cuentas
+- Cambios de contraseñas y reset de credenciales
+- Modificación de configuraciones de MFA
+- Asignación y revocación de roles y privilegios
+
+#### Datos de Contexto Requeridos
+
+**4. Información Técnica**
+- Session ID único para correlación de eventos
+- Protocolo utilizado (HTTPS, SSH, RDP, etc.)
+- Información del dispositivo (OS, browser, aplicación cliente)
+- Certificados digitales utilizados si aplica
+- Métodos de cifrado y versiones de protocolo
+- Información de red (VLAN, subred, segmento de red)
+
+**5. Información de Contexto Organizacional**
+- Departamento y rol organizacional del usuario
+- Clasificación del sistema o datos accedidos
+- Propietario del recurso accedido
+- Política de acceso aplicable
+- Nivel de criticidad del sistema
+- Horario laboral vs. fuera de horario
+
+### Configuración de Logging
+
+#### Sistemas de Autenticación Centralizados
+
+**6. Active Directory / Azure AD**
+- Habilitación de auditoría avanzada para eventos de logon
+- Registro de eventos de Kerberos y NTLM
+- Monitoreo de cambios en Group Policy relacionados con autenticación
+- Auditoría de uso de cuentas de servicio y administrativas
+- Registro de modificaciones en esquema de directorio
+- Monitoreo de replicación entre controladores de dominio
+
+**7. Identity Providers (IdP)**
+- Logging completo de flujos SAML/OAuth/OpenID Connect
+- Registro de emisión y validación de tokens de acceso
+- Monitoreo de configuraciones de trust relationships
+- Auditoría de cambios en aplicaciones federadas
+- Registro de eventos de Single Sign-On (SSO)
+- Monitoreo de uso de API keys y service accounts
+
+#### Aplicaciones y Servicios
+
+**8. Aplicaciones Web**
+- Integración con framework de logging centralizado
+- Registro de eventos de session management
+- Monitoreo de intentos de bypassing de autenticación
+- Logging de cambios en configuración de seguridad
+- Registro de uso de funciones privilegiadas dentro de aplicaciones
+- Monitoreo de patrones de acceso anómalos
+
+**9. Bases de Datos**
+- Habilitación de auditoría nativa de DB (SQL Server Audit, MySQL Enterprise Audit)
+- Registro de conexiones y desconexiones de usuarios
+- Monitoreo de cambios en permisos de base de datos
+- Auditoría de ejecución de procedimientos almacenados críticos
+- Registro de acceso a tablas con información sensible
+- Monitoreo de uso de cuentas de servicio para acceso a datos
+
+### Centralización y Gestión de Logs
+
+#### Agregación de Logs
+
+**10. SIEM Implementation**
+- Implementación de plataforma SIEM empresarial (Splunk/Microsoft Sentinel/IBM QRadar)
+- Configuración de conectores para todas las fuentes de logs críticas
+- Normalización y enriquecimiento automático de eventos
+- Implementación de casos de uso específicos para detección de amenazas
+- Configuración de dashboards ejecutivos y técnicos
+- Integración con threat intelligence feeds
+
+**11. Log Collection Architecture**
+- Implementación de log collectors distribuidos para alta disponibilidad
+- Configuración de fail-over automático entre collectors
+- Implementación de buffering local para prevenir pérdida de logs
+- Cifrado de logs en tránsito usando TLS 1.3
+- Compresión y optimización de transferencia de logs
+- Monitoreo de salud y rendimiento de infraestructura de logging
+
+#### Almacenamiento y Retención
+
+**12. Log Storage Requirements**
+- Almacenamiento inmutable para logs críticos de autenticación
+- Implementación de WORM (Write Once Read Many) storage
+- Respaldo automático de logs a múltiples ubicaciones geográficas
+- Cifrado de logs en reposo usando AES-256
+- Implementación de controles de acceso granular a logs históricos
+- Pruebas periódicas de recuperación de logs desde backups
+
+**13. Data Retention Policies**
+- Retención mínima de 12 meses para logs de autenticación en sistemas críticos
+- Retención extendida de 7 años para logs relacionados con regulaciones financieras
+- Retención de 3 años para logs de sistemas con información personal
+- Implementación de eliminación automática post-retención con certificación
+- Documentación legal de políticas de retención para uso en procesos judiciales
+- Revisión anual de requerimientos de retención según cambios regulatorios
+
+### Monitoreo y Alerting
+
+#### Detección de Anomalías en Tiempo Real
+
+**14. Behavioral Analytics**
+- Implementación de UBA (User Behavior Analytics) para detección de patrones anómalos
+- Machine learning para establecer baselines de comportamiento normal
+- Detección de accesos desde ubicaciones geográficas inusuales
+- Identificación de horarios de acceso fuera de patrones normales
+- Análisis de velocidad imposible (impossible travel) entre ubicaciones
+- Correlación de patrones de acceso con intelligence de amenazas
+
+**15. Real-time Alerting**
+- Alertas inmediatas para múltiples fallos de autenticación consecutivos (>5 en 15 minutos)
+- Notificación de primer acceso exitoso después de múltiples fallos
+- Alertas para uso de cuentas administrativas fuera de horario laboral
+- Detección de autenticación desde direcciones IP en blacklists conocidas
+- Alertas para uso simultáneo de credenciales desde múltiples ubicaciones
+- Notificación de cambios en configuraciones críticas de autenticación
+
+#### Casos de Uso de Detección
+
+**16. Threat Detection Use Cases**
+- **Brute Force Attacks:** Detección de ataques de fuerza bruta coordinados
+- **Credential Stuffing:** Identificación de uso de credenciales comprometidas
+- **Account Takeover:** Detección de toma de control de cuentas legítimas
+- **Lateral Movement:** Identificación de movimiento lateral post-compromiso
+- **Privilege Escalation:** Detección de escalación no autorizada de privilegios
+- **Data Exfiltration:** Identificación de patrones de acceso indicativos de exfiltración
+
+**17. Advanced Threat Detection**
+- Integración con threat intelligence feeds para IPs maliciosas conocidas
+- Detección de uso de herramientas de hacking y exploitation frameworks
+- Identificación de técnicas MITRE ATT&CK en logs de autenticación
+- Correlación con eventos de endpoint detection and response (EDR)
+- Análisis de patterns de command and control (C2) communications
+- Detección de living-off-the-land techniques en eventos de autenticación
+
+### Investigación y Respuesta
+
+#### Forensic Capabilities
+
+**18. Investigation Support**
+- Capacidad de búsqueda granular por usuario, tiempo, IP, sistema
+- Exportación de evidencia en formatos forenses estándar
+- Mantenimiento de cadena de custodia para evidencia digital
+- Capacidad de reconstrucción de timelines de eventos
+- Correlación automatizada de eventos relacionados
+- Generación de reportes forenses para procesos legales
+
+**19. Incident Response Integration**
+- Integración con plataforma SOAR para respuesta automatizada
+- Triggers automáticos para escalación de incidentes críticos
+- Enriquecimiento automático de eventos con contexto organizacional
+- Capacidad de containment automático para cuentas comprometidas
+- Integración con sistemas de tickets para tracking de investigaciones
+- Métricas de tiempo de detección y respuesta (MTTD/MTTR)
+
+### Compliance y Auditoría
+
+#### Regulatory Compliance
+
+**20. Compliance Requirements**
+- Cumplimiento con requerimientos de SOX para acceso a sistemas financieros
+- Adherencia a PCI DSS para logs de acceso a datos de tarjetas
+- Cumplimiento con GDPR para logs que contengan datos personales
+- Satisfacción de requerimientos de auditoría ISO 27001
+- Cumplimiento con regulaciones locales de protección de datos
+- Preparación para auditorías de certificaciones de seguridad
+
+**21. Audit Trail Integrity**
+- Implementación de digital signatures para integridad de logs
+- Protección contra tampering mediante blockchain o similar
+- Auditoría regular de integridad de logs históricos
+- Documentación de cualquier modificación o eliminación de logs
+- Implementación de controles de acceso para personal de auditoría
+- Generación automática de reportes de compliance
+
+## 👥 Roles y Responsabilidades
+
+- **Administradores SIEM:** Configurar y mantener plataforma de logging, crear reglas de detección
+- **SOC Analysts:** Monitorear alertas, investigar incidentes, responder a eventos de seguridad
+- **System Administrators:** Configurar logging en sistemas, mantener conectividad con SIEM
+- **Database Administrators:** Habilitar auditoría en bases de datos, configurar log shipping
+- **Compliance Officer:** Validar cumplimiento regulatorio, coordinar con auditores externos
+- **CISO:** Aprobar política de logging, supervisar métricas de seguridad, reportar a ejecutivos
+- **Incident Response Team:** Utilizar logs para investigaciones, documentar lecciones aprendidas
+
+## 📊 Cumplimiento y Medición
+
+**Métricas Operacionales:**
+- Porcentaje de sistemas con logging habilitado (objetivo: 100%)
+- Tiempo promedio de ingesta de logs en SIEM (menos de 5 minutos)
+- Disponibilidad de plataforma de logging (objetivo: 99.9%)
+- Volumen diario de eventos procesados y correlacionados
+
+**KPIs de Seguridad:**
+- Tiempo promedio de detección de incidentes (MTTD menos de 15 minutos)
+- Tiempo promedio de respuesta a incidentes críticos (MTTR menos de 1 hora)
+- Porcentaje de falsos positivos en alertas (objetivo: menos de 5%)
+- Número de amenazas detectadas proactivamente por mes
+
+**Métricas de Compliance:**
+- Porcentaje de cumplimiento en auditorías de logging (>95%)
+- Número de excepciones identificadas en revisiones de acceso
+- Tiempo de retención efectivo vs. política establecida
+- Completitud de logs requeridos para compliance (100%)
+
+**Indicadores de Calidad:**
+- Integridad de logs verificada mediante checksums
+- Disponibilidad de logs para investigaciones forenses
+- Cobertura de casos de uso de detección implementados
+- Efectividad de correlación de eventos (reducción de ruido)
+
+## 🚨 Incumplimiento
+
+**Riesgos del Incumplimiento:**
+- Incapacidad de detectar brechas de seguridad oportunamente
+- Pérdida de evidencia digital para investigaciones forenses
+- Violación de requerimientos regulatorios con multas asociadas
+- Imposibilidad de demostrar due diligence en auditorías
+
+**Violaciones Graves:**
+- Deshabilitación intencional de logging en sistemas críticos
+- Modificación o eliminación no autorizada de logs de auditoría
+- Falta de configuración de alertas para eventos críticos de seguridad
+- No reporte de incidentes detectados en logs dentro de SLA
+
+**Consecuencias:**
+- Investigación inmediata por equipo de seguridad y compliance
+- Medidas disciplinarias según gravedad de la violación
+- Remediación obligatoria de gaps identificados
+- Reporte a reguladores cuando sea requerido por ley
+
+## 📖 Referencias
+
+- ISO 27001:2022 - A.12.4 Logging and monitoring
+- NIST SP 800-53 - AU-2 Event Logging, AU-3 Content of Audit Records
+- PCI DSS Requirement 10: Log and monitor all access to network resources
+- GDPR Article 32 - Security of processing
+- SOX Section 404 - Internal controls over financial reporting
+- NIST Cybersecurity Framework - DE.AE (Detection - Anomalies and Events)

@@ -1,0 +1,114 @@
+---
+title: CIP-05 - Inventario de puntos finales
+description: Control de gestión de activos de endpoints
+---
+
+## 🎯 Objetivo del Control
+
+Mantener un inventario actualizado y completo de todos los dispositivos endpoints (computadoras, laptops, móviles, tablets) que se conectan a la red corporativa.
+
+## 📋 Descripción
+
+Este control establece el registro y gestión de:
+- Inventario automatizado de endpoints
+- Clasificación y categorización de dispositivos
+- Estado de seguridad de cada endpoint
+- Propiedad y asignación de dispositivos
+- Ciclo de vida de equipos
+
+## 🛡️ Controles Requeridos
+
+### Tipos de Endpoints
+- **Corporativos Gestionados:**
+  - Laptops Windows/macOS
+  - Desktops
+  - Smartphones y tablets corporativos
+- **BYOD (Bring Your Own Device):**
+  - Dispositivos personales con acceso corporativo
+  - Políticas restrictivas de acceso
+- **IoT y Especializados:**
+  - Impresoras de red
+  - Dispositivos IoT
+  - Equipos industriales conectados
+
+### Atributos de Inventario
+- **Identificación:**
+  - Hostname
+  - Dirección MAC
+  - Dirección IP
+  - Serial number / Asset tag
+- **Especificaciones:**
+  - Marca y modelo
+  - Sistema operativo y versión
+  - CPU, RAM, almacenamiento
+- **Gestión:**
+  - Usuario asignado
+  - Ubicación física
+  - Estado (activo/almacenamiento/retirado)
+  - Fecha de compra/adquisición
+  - Fin de vida útil (EOL)
+  - Costo de adquisición
+- **Seguridad:**
+  - Agente EDR instalado y versión
+  - Estado de cifrado de disco
+  - Último escaneo de vulnerabilidades
+  - Compliance status
+  - Última conexión a red
+
+### Descubrimiento Automatizado
+- Network scanning (Nmap, Lansweeper)
+- Agent-based inventory (SCCM, Intune, Jamf)
+- MDM (Mobile Device Management)
+- CMDB (Configuration Management Database)
+- Integración con herramientas de asset management
+
+### Gestión del Ciclo de Vida
+1. **Adquisición:** Registro en inventario
+2. **Asignación:** Vinculación con usuario
+3. **Uso:** Monitoreo de estado y seguridad
+4. **Mantenimiento:** Actualizaciones y reparaciones
+5. **Retiro:** Wiping seguro y baja de inventario
+
+### Reconciliación de Inventario
+- Auditoría física vs lógica (trimestral)
+- Detección de dispositivos no autorizados
+- Identificación de dispositivos faltantes
+- Actualización de estados
+
+## 📊 Métricas e Indicadores
+
+- Total de endpoints activos por tipo
+- Porcentaje de endpoints sin agente de seguridad
+- Dispositivos no reportados en >30 días
+- Tasa de precisión de inventario (objetivo: >95%)
+- Endpoints fuera de soporte (EOL)
+
+## 🔗 Herramientas Recomendadas
+
+- **Endpoint Management:** Microsoft Intune, Jamf, VMware Workspace ONE
+- **Asset Management:** ServiceNow, Lansweeper, Snipe-IT
+- **MDM:** Microsoft Intune, Jamf, MobileIron, Workspace ONE
+- **Network Discovery:** Nmap, Angry IP Scanner, SolarWinds
+- **CMDB:** ServiceNow, Jira Assets, Device42
+
+## 📚 Referencias
+
+- [Política de Gestión de Endpoints](/docs/kudo/politicas/politica-gestion-endpoints)
+- [Control de Dispositivos BYOD](/docs/kudo/politicas/control-dispositivos-byod)
+- [Gestión de Parches y Configuración de Endpoints](/docs/kudo/politicas/gestion-parches-configuracion-endpoints)
+- ISO 27001:2022 - A.5.9, A.8.1
+- NIST SP 800-53 - CM-8 Information System Component Inventory
+- CIS Control 1 - Inventory and Control of Enterprise Assets
+
+## ✅ Checklist de Implementación
+
+- [ ] Herramienta de asset management implementada
+- [ ] MDM para dispositivos móviles configurado
+- [ ] Agent de inventario desplegado
+- [ ] Proceso de onboarding de nuevos equipos
+- [ ] Clasificación de tipos de endpoints
+- [ ] Dashboard de inventario actualizado
+- [ ] Detección de dispositivos no autorizados
+- [ ] Auditoría física programada (trimestral)
+- [ ] Proceso de retiro seguro documentado
+- [ ] Integración con CMDB/ITSM

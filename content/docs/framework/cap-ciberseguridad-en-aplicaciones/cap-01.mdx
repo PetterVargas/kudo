@@ -1,0 +1,93 @@
+---
+title: CAP-01 - Ciberseguridad en el Ciclo de Desarrollo del Software
+description: Control de seguridad integrada en el SDLC
+---
+
+## 🎯 Objetivo del Control
+
+Integrar prácticas de seguridad en todas las fases del ciclo de vida de desarrollo de software (SDLC) para identificar y remediar vulnerabilidades de forma temprana y costo-efectiva.
+
+## 📋 Descripción
+
+Este control establece un enfoque "Shift Left" donde la seguridad se incorpora desde la fase de diseño hasta el despliegue y mantenimiento:
+- Requisitos de seguridad desde la planificación
+- Revisión de arquitectura y diseño seguro
+- Desarrollo con prácticas de código seguro
+- Pruebas de seguridad automatizadas
+- Validación pre-producción
+
+## 🛡️ Controles Requeridos
+
+### Fase de Planificación
+- Modelado de amenazas (STRIDE, PASTA)
+- Requisitos de seguridad documentados
+- Análisis de riesgos de la aplicación
+- Definición de casos de abuso
+
+### Fase de Diseño
+- Revisión de arquitectura segura
+- Principios de diseño (Defense in Depth, Least Privilege)
+- Selección de frameworks y librerías seguras
+- Diagramas de flujo de datos
+
+### Fase de Desarrollo
+- Estándares de codificación segura
+- Capacitación en secure coding (OWASP Top 10)
+- IDE plugins de seguridad
+- Pre-commit hooks de seguridad
+
+### Fase de Pruebas
+- Análisis estático (SAST) en código fuente
+- Análisis dinámico (DAST) en aplicación corriendo
+- Análisis de composición (SCA) de dependencias
+- Pruebas de penetración para aplicaciones críticas
+
+### Fase de Despliegue
+- Hardening de infraestructura
+- Configuración segura de servicios
+- Secretos gestionados (no en código)
+- Revisión de seguridad pre-producción
+
+### Fase de Mantenimiento
+- Monitoreo de vulnerabilidades en dependencias
+- Parches de seguridad
+- Respuesta a incidentes de aplicación
+- Revisiones de seguridad periódicas
+
+## 📊 Métricas e Indicadores
+
+- Número de vulnerabilidades por severidad en cada fase
+- Tiempo promedio de remediación de vulnerabilidades
+- Porcentaje de código cubierto por SAST/DAST
+- Densidad de defectos de seguridad (por KLOC)
+- Costo de remediación por fase de detección
+
+## 🔗 Herramientas Recomendadas
+
+- **Threat Modeling:** Microsoft Threat Modeling Tool, OWASP Threat Dragon
+- **SAST:** SonarQube, Checkmarx, Semgrep, CodeQL
+- **DAST:** OWASP ZAP, Burp Suite, Acunetix
+- **SCA:** Snyk, Dependabot, WhiteSource, OWASP Dependency-Check
+- **Secrets:** GitGuardian, TruffleHog, AWS Secrets Manager
+
+## 📚 Referencias
+
+- [Política de Desarrollo Seguro](/docs/kudo/politicas/politica-desarrollo-seguro)
+- [Estándar de Codificación Segura](/docs/kudo/politicas/estandar-codificacion-segura)
+- [Procedimientos de Revisión de Código y Pruebas](/docs/kudo/politicas/procedimientos-revision-codigo-pruebas)
+- OWASP SAMM (Software Assurance Maturity Model)
+- NIST SP 800-218 - Secure Software Development Framework (SSDF)
+- ISO 27034 - Application Security
+
+## ✅ Checklist de Implementación
+
+- [ ] Definición de requisitos de seguridad en SDLC
+- [ ] Capacitación en secure coding para desarrolladores
+- [ ] Implementación de herramientas SAST/DAST/SCA
+- [ ] Integración en pipeline CI/CD
+- [ ] Definición de gates de seguridad
+- [ ] Proceso de threat modeling establecido
+- [ ] Revisión de código con foco en seguridad
+- [ ] Políticas de gestión de secretos
+- [ ] Documentación de procedimientos
+- [ ] Métricas y KPIs configurados
