@@ -63,7 +63,10 @@ export default async function Page(props: {
 }
 
 export async function generateStaticParams() {
-  return source.generateParams();
+  // Filtrar la ruta raíz (/) para evitar conflicto con la home page
+  return source.generateParams().filter(params =>
+    params.slug && params.slug.length > 0
+  );
 }
 
 export async function generateMetadata(props: {
