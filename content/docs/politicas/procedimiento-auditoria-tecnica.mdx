@@ -1,0 +1,391 @@
+---
+title: Procedimiento de Auditoría Técnica
+description: Procedimiento de auditoría técnica.
+---
+
+## 📋 Información General
+
+**Documento:** Procedimiento de Auditoría Técnica  
+**Versión:** 1.0.0  
+**Fecha:** Enero 2025  
+**Clasificación:** Confidencial  
+**Audiencia:** Auditores de TI, CISO, Arquitectos de Seguridad, Administradores de Sistemas
+
+## 🎯 Propósito
+
+Establecer procedimientos detallados para la ejecución de auditorías técnicas de seguridad de la información, proporcionando metodologías específicas para evaluar controles tecnológicos, configuraciones de seguridad y arquitecturas de sistemas en el entorno de DivisionCero.
+
+## 🏢 Alcance
+
+Esta política aplica a:
+- Auditorías de infraestructura de TI y nube
+- Evaluación de configuraciones de seguridad de sistemas
+- Testing de controles automatizados y técnicos
+- Auditorías de aplicaciones y desarrollo seguro
+- Evaluación de arquitecturas de seguridad y redes
+
+## 📚 Definiciones
+
+- **Auditoría Técnica:** Evaluación especializada de controles tecnológicos y configuraciones de seguridad
+- **Baseline de Seguridad:** Configuración mínima de seguridad requerida para sistemas
+- **Vulnerability Assessment:** Identificación sistemática de vulnerabilidades técnicas
+- **Penetration Testing:** Simulación autorizada de ataques para evaluar defensas
+- **Configuration Management:** Gestión de configuraciones de sistemas y aplicaciones
+
+## 🛡️ Política
+
+### Marco de Auditoría Técnica
+
+#### Tipos de Auditoría Técnica
+
+**1. Auditoría de Infraestructura**
+- Evaluación de servidores, redes y dispositivos de seguridad
+- Revisión de configuraciones de hardening
+- Análisis de arquitectura de seguridad implementada
+- Verificación de controles de acceso a nivel de red
+
+**2. Auditoría de Aplicaciones**
+- Testing de seguridad de aplicaciones web y móviles
+- Revisión de código fuente y prácticas de desarrollo
+- Evaluación de controles de autenticación y autorización
+- Análisis de manejo seguro de datos
+
+**3. Auditoría de Nube**
+- Evaluación de configuraciones de servicios cloud
+- Revisión de controles de identidad y acceso (IAM)
+- Análisis de cifrado y protección de datos
+- Verificación de monitoreo y logging
+
+**4. Auditoría de Base de Datos**
+- Evaluación de configuraciones de seguridad de DBMS
+- Revisión de controles de acceso a datos
+- Análisis de cifrado de datos en reposo y tránsito
+- Verificación de auditoría y monitoreo de actividades
+
+### Metodología de Auditoría Técnica
+
+#### Fase 1: Planificación Técnica
+
+**Definición de Alcance Técnico:**
+- Identificación de sistemas, aplicaciones y componentes a auditar
+- Determinación de tipos de testing requeridos
+- Establecimiento de ventanas de tiempo para pruebas
+- Coordinación con equipos de operaciones para minimizar impacto
+
+**Preparación de Herramientas:**
+- Selección de herramientas de auditoría apropiadas
+- Configuración de ambientes de testing
+- Preparación de scripts y procedimientos automatizados
+- Verificación de accesos necesarios para testing
+
+**Criterios de Evaluación:**
+- Definición de baselines de seguridad aplicables
+- Identificación de estándares técnicos relevantes
+- Establecimiento de criterios de aceptación
+- Determinación de niveles de riesgo para hallazgos
+
+#### Fase 2: Ejecución de Auditoría Técnica
+
+**Recolección de Información Técnica**
+
+*Network Discovery y Mapping:*
+- Escaneo de red para identificar activos
+- Mapeo de topología y servicios activos
+- Identificación de puertos y servicios expuestos
+- Documentación de arquitectura de red actual
+
+*Análisis de Configuraciones:*
+- Extracción de configuraciones de sistemas críticos
+- Comparación contra baselines establecidos
+- Identificación de desviaciones de estándares
+- Documentación de configuraciones personalizadas
+
+*Vulnerability Assessment:*
+- Escaneo automatizado de vulnerabilidades
+- Análisis de parches faltantes y CVEs aplicables
+- Identificación de configuraciones inseguras
+- Evaluación de servicios y aplicaciones expuestas
+
+**Testing de Controles Técnicos**
+
+*Testing de Controles de Acceso:*
+```bash
+# Verificación de configuraciones de autenticación
+# Validación de políticas de contraseñas
+# Testing de controles de autorización
+# Evaluación de segregación de privilegios
+```
+
+*Testing de Controles de Red:*
+- Verificación de reglas de firewall
+- Testing de segmentación de red
+- Evaluación de controles de IDS/IPS
+- Análisis de configuraciones de VPN
+
+*Testing de Controles de Aplicación:*
+- Testing de vulnerabilidades OWASP Top 10
+- Evaluación de controles de entrada
+- Testing de manejo de sesiones
+- Análisis de controles criptográficos
+
+**Técnicas Especializadas**
+
+*Penetration Testing Autorizado:*
+- Testing ético con autorización explícita
+- Simulación de ataques dirigidos
+- Evaluación de capacidades de detección
+- Testing de respuesta a incidentes
+
+*Social Engineering Testing:*
+- Campañas de phishing simulado (con autorización)
+- Testing de concienciación de seguridad
+- Evaluación de respuesta a ingeniería social
+- Testing de procedimientos de verificación
+
+### Procedimientos por Tipo de Sistema
+
+#### Auditoría de Servidores
+
+**Preparación:**
+1. Obtener inventario actualizado de servidores
+2. Identificar sistemas críticos y no críticos
+3. Coordinar ventanas de mantenimiento si necesario
+4. Preparar herramientas de auditoría específicas
+
+**Ejecución:**
+```bash
+# Verificación de hardening de OS
+# Análisis de servicios innecesarios
+# Evaluación de configuraciones de seguridad
+# Testing de controles de acceso local
+```
+
+**Áreas de Evaluación:**
+- Configuraciones del sistema operativo
+- Servicios y procesos en ejecución
+- Configuraciones de logging y auditoría
+- Controles de acceso físico y lógico
+- Gestión de parches y actualizaciones
+
+#### Auditoría de Aplicaciones Web
+
+**Preparación:**
+1. Identificar aplicaciones web en alcance
+2. Obtener documentación de arquitectura
+3. Coordinar con equipos de desarrollo
+4. Configurar herramientas de testing web
+
+**Metodología de Testing:**
+```bash
+# Reconocimiento y mapeo de aplicación
+# Testing de autenticación y autorización
+# Análisis de vulnerabilidades de inyección
+# Testing de manejo de sesiones
+# Evaluación de controles criptográficos
+```
+
+**Checklist de Verificación:**
+- [ ] Autenticación multifactor implementada
+- [ ] Controles de autorización granulares
+- [ ] Validación de entrada en todos los campos
+- [ ] Protección contra ataques CSRF
+- [ ] Implementación segura de HTTPS
+- [ ] Headers de seguridad configurados
+- [ ] Manejo seguro de errores
+- [ ] Logging de eventos de seguridad
+
+#### Auditoría de Infraestructura de Nube
+
+**Preparación:**
+1. Inventariar recursos de nube por proveedor
+2. Identificar cuentas y suscripciones en alcance
+3. Obtener accesos de solo lectura para auditoría
+4. Configurar herramientas de auditoría cloud
+
+**Áreas de Evaluación:**
+
+*Identity and Access Management (IAM):*
+- Configuraciones de políticas de acceso
+- Principio de menor privilegio
+- Rotación de credenciales
+- Uso de roles vs. usuarios directos
+
+*Network Security:*
+- Configuraciones de grupos de seguridad
+- Segmentación de redes virtuales
+- Configuraciones de balanceadores de carga
+- Protección DDoS habilitada
+
+*Data Protection:*
+- Cifrado en reposo habilitado
+- Cifrado en tránsito configurado
+- Gestión de llaves de cifrado
+- Backup y recuperación configurados
+
+*Monitoring y Logging:*
+- CloudTrail/Activity Logs habilitados
+- Monitoreo de recursos críticos
+- Alertas de seguridad configuradas
+- Retención de logs apropiada
+
+#### Auditoría de Bases de Datos
+
+**Preparación:**
+1. Identificar instancias de bases de datos
+2. Coordinar con administradores de BD
+3. Obtener accesos de auditoría apropiados
+4. Preparar herramientas de auditoría de BD
+
+**Procedimientos de Evaluación:**
+
+*Configuración de Seguridad:*
+```sql
+-- Verificación de usuarios y privilegios
+-- Análisis de roles y permisos
+-- Evaluación de configuraciones de autenticación
+-- Review de parámetros de seguridad
+```
+
+*Protección de Datos:*
+- Verificación de cifrado TDE (Transparent Data Encryption)
+- Evaluación de cifrado de backups
+- Análisis de masking/anonymization de datos
+- Verificación de clasificación de datos
+
+*Auditoría y Monitoreo:*
+- Configuración de auditoría de BD habilitada
+- Revisión de eventos auditados
+- Análisis de logs de acceso
+- Verificación de alertas de seguridad
+
+### Herramientas de Auditoría Técnica
+
+#### Herramientas de Vulnerability Assessment
+- **Nessus/OpenVAS:** Escaneo de vulnerabilidades
+- **Nmap:** Discovery y mapeo de red
+- **Nikto:** Testing de aplicaciones web
+- **OWASP ZAP:** Análisis de seguridad web
+
+#### Herramientas de Configuration Assessment
+- **CIS-CAT:** Verificación de CIS Benchmarks
+- **Lynis:** Auditoría de hardening de Linux
+- **Microsoft Baseline Security Analyzer:** Auditoría Windows
+- **ScoutSuite:** Auditoría de configuraciones cloud
+
+#### Herramientas de Penetration Testing
+- **Metasploit:** Framework de penetration testing
+- **Burp Suite:** Testing de aplicaciones web
+- **Wireshark:** Análisis de tráfico de red
+- **Hashcat:** Testing de robustez de contraseñas
+
+### Documentación y Reporte Técnico
+
+#### Estructura del Reporte Técnico
+
+**Resumen Ejecutivo Técnico:**
+- Resumen de sistemas evaluados
+- Principales vulnerabilidades identificadas
+- Riesgo técnico general evaluado
+- Recomendaciones prioritarias
+
+**Metodología Técnica:**
+- Herramientas utilizadas y versiones
+- Técnicas de testing aplicadas
+- Limitaciones y restricciones
+- Criterios de evaluación utilizados
+
+**Hallazgos Técnicos Detallados:**
+```
+Para cada hallazgo incluir:
+- Descripción técnica detallada
+- Sistemas/componentes afectados
+- Evidencia técnica (logs, screenshots, outputs)
+- Impacto técnico y de negocio
+- Recomendación técnica específica
+- Referencias técnicas (CVE, CWE, etc.)
+```
+
+**Evidencia Técnica:**
+- Screenshots de herramientas
+- Outputs de comandos ejecutados
+- Archivos de configuración relevantes
+- Logs de sistemas auditados
+- Diagramas de arquitectura
+
+#### Clasificación de Hallazgos Técnicos
+
+**Crítico:**
+- Vulnerabilidades con CVSS ≥ 9.0
+- Acceso no autorizado a sistemas críticos
+- Exposición de datos sensibles
+- Capacidad de ejecución remota de código
+
+**Alto:**
+- Vulnerabilidades con CVSS 7.0-8.9
+- Configuraciones que permiten escalación de privilegios
+- Falta de controles críticos de seguridad
+- Exposición de servicios críticos
+
+**Medio:**
+- Vulnerabilidades con CVSS 4.0-6.9
+- Configuraciones subóptimas de seguridad
+- Falta de hardening en sistemas no críticos
+- Oportunidades de mejora en arquitectura
+
+**Bajo:**
+- Vulnerabilidades con CVSS < 4.0
+- Mejores prácticas no implementadas
+- Recomendaciones de optimización
+- Actualizaciones de seguridad menores
+
+### Seguimiento Técnico
+
+#### Verificación de Remediation
+- Re-testing de vulnerabilidades reportadas
+- Verificación de implementación de controles
+- Validación de configuraciones corregidas
+- Testing de regresión en cambios implementados
+
+#### Métricas Técnicas
+- Tiempo de remediation por tipo de vulnerabilidad
+- Porcentaje de vulnerabilidades críticas cerradas
+- Efectividad de controles implementados
+- Tendencias de postura de seguridad técnica
+
+## 👥 Roles y Responsabilidades
+
+- **Auditor de TI Senior:** Liderar auditorías técnicas complejas y revisar hallazgos
+- **Auditor de TI:** Ejecutar procedimientos técnicos y documentar resultados
+- **Arquitecto de Seguridad:** Proporcionar contexto técnico y validar hallazgos
+- **Administradores de Sistemas:** Facilitar acceso y explicar configuraciones
+- **Desarrolladores:** Cooperar en auditorías de aplicaciones y código
+
+## 📊 Cumplimiento y Medición
+
+**Indicadores de Efectividad:**
+- Porcentaje de sistemas auditados según cronograma (≥95%)
+- Tiempo promedio de completion de auditorías técnicas
+- Precisión de hallazgos técnicos (confirmación post-validación ≥90%)
+- Satisfacción de stakeholders técnicos con auditorías
+
+**Métricas de Calidad Técnica:**
+- Cobertura de testing por tipo de sistema
+- Profundidad de evaluación técnica realizada
+- Uso efectivo de herramientas de auditoría
+- Identificación de vulnerabilidades no conocidas
+
+## 🚨 Incumplimiento
+
+- Testing no autorizado fuera de alcance definido resulta en suspensión inmediata
+- Uso inadecuado de herramientas puede causar impacto operacional
+- Falta de coordinación con equipos técnicos genera riesgos de disponibilidad
+- Documentación inadecuada de procedimientos técnicos afecta validez de resultados
+
+## 📖 Referencias
+
+- NIST SP 800-115 - Technical Guide to Information Security Testing
+- OWASP Testing Guide v4.2
+- PTES (Penetration Testing Execution Standard)
+- NIST SP 800-53 - Security Controls Assessment Procedures
+- CIS Controls Version 8
+- SANS Audit Guidelines

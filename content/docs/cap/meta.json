@@ -1,0 +1,9 @@
+{
+  "title": "CAP - Ciberseguridad en Aplicaciones",
+  "description": "Desarrollo seguro y seguridad de aplicaciones",
+  "icon": "Code",
+  "root": true,
+  "pages": [
+    "index"
+  ]
+}

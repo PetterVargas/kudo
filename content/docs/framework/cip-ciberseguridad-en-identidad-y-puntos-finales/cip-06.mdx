@@ -1,0 +1,129 @@
+---
+title: CIP-06 - Ciberseguridad en Puntos Finales
+description: Control de protección y hardening de endpoints
+---
+
+## 🎯 Objetivo del Control
+
+Implementar medidas de protección integral en todos los endpoints para prevenir, detectar y responder a amenazas de ciberseguridad.
+
+## 📋 Descripción
+
+Este control establece requisitos de seguridad para endpoints:
+- EDR/XDR para detección y respuesta
+- Hardening de sistema operativo
+- Cifrado de datos
+- Control de aplicaciones
+- Gestión de parches
+
+## 🛡️ Controles Requeridos
+
+### EDR/XDR (Endpoint Detection and Response)
+- Despliegue en 100% de endpoints corporativos
+- Protección en tiempo real contra malware
+- Behavioral analysis y machine learning
+- Aislamiento automático de endpoints comprometidos
+- Integración con SIEM/SOC
+- Threat hunting capabilities
+
+### Hardening de Sistema Operativo
+**Windows:**
+- CIS Benchmarks aplicados
+- BitLocker habilitado
+- Windows Defender configurado
+- PowerShell logging habilitado
+- Deshabilitación de SMBv1
+- UAC (User Access Control) activo
+
+**macOS:**
+- FileVault habilitado
+- Gatekeeper activo
+- XProtect actualizado
+- Firewall habilitado
+- Secure boot
+
+**Linux:**
+- SELinux/AppArmor configurado
+- Firewall (iptables/firewalld)
+- Fail2ban para protección SSH
+- Actualizaciones automáticas
+
+### Cifrado de Disco
+- Cifrado completo de disco (FDE) obligatorio
+- BitLocker (Windows)
+- FileVault (macOS)
+- LUKS (Linux)
+- Gestión centralizada de recovery keys
+
+### Control de Aplicaciones
+- Application whitelisting
+- Bloqueo de aplicaciones no autorizadas
+- Software Restriction Policies
+- AppLocker (Windows) / Gatekeeper (macOS)
+- Validación de firmas digitales
+
+### Gestión de Parches
+- Actualizaciones automáticas de SO
+- Parches críticos: menos de 7 días
+- Parches altos: menos de 30 días
+- Testing de parches en ambiente piloto
+- Rollback plan para parches problemáticos
+
+### Protección de Red
+- VPN obligatoria para acceso remoto
+- DNS filtering
+- Web content filtering
+- Protección contra phishing
+- Firewall local habilitado
+
+### Control de Dispositivos
+- USB restringido o bloqueado
+- Políticas de dispositivos extraíbles
+- DLP (Data Loss Prevention)
+- Impresión controlada
+- Bluetooth y WiFi gestionados
+
+### Backup de Endpoints
+- Backup automático de datos críticos
+- Retención según política (30 días)
+- Testing de restauración
+- Backup incremental diario
+
+## 📊 Métricas e Indicadores
+
+- Porcentaje de endpoints con EDR activo (objetivo: 100%)
+- Porcentaje de endpoints con cifrado (objetivo: 100%)
+- Tiempo promedio de parcheo
+- Número de amenazas detectadas y bloqueadas
+- Compliance score de hardening
+
+## 🔗 Herramientas Recomendadas
+
+- **EDR/XDR:** Microsoft Defender for Endpoint, CrowdStrike, SentinelOne, Carbon Black
+- **Endpoint Management:** Microsoft Intune, Jamf, VMware Workspace ONE
+- **Hardening:** CIS-CAT, Microsoft Security Compliance Toolkit
+- **Patch Management:** WSUS, SCCM, Ivanti, ManageEngine
+- **DLP:** Microsoft Purview, Symantec DLP, Forcepoint
+
+## 📚 Referencias
+
+- [Política de Gestión de Endpoints](/docs/kudo/politicas/politica-gestion-endpoints)
+- [Gestión de Parches y Configuración de Endpoints](/docs/kudo/politicas/gestion-parches-configuracion-endpoints)
+- [Gestion de Parches y Hardening](/docs/kudo/politicas/gestion-parches-hardening)
+- [Control de Dispositivos BYOD](/docs/kudo/politicas/control-dispositivos-byod)
+- CIS Benchmarks for Windows, macOS, Linux
+- NIST SP 800-171 - Protecting CUI
+- ISO 27001:2022 - A.8.8, A.8.9, A.8.10
+
+## ✅ Checklist de Implementación
+
+- [ ] EDR/XDR desplegado en todos los endpoints
+- [ ] Hardening baselines aplicadas
+- [ ] Cifrado de disco habilitado (100%)
+- [ ] Gestión de parches automatizada
+- [ ] Application control configurado
+- [ ] VPN para acceso remoto
+- [ ] Firewall local habilitado
+- [ ] USB y dispositivos extraíbles controlados
+- [ ] Backup automático configurado
+- [ ] Monitoreo y alertas activas

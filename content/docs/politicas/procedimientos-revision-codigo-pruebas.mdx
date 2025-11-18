@@ -1,0 +1,266 @@
+---
+title: Procedimientos de Revisión de Código y Pruebas de Seguridad
+description: Procedimientos para revisión de código y pruebas de seguridad.
+---
+
+## 📋 Información General
+
+**Documento:** Procedimientos de Revisión de Código y Pruebas de Seguridad  
+**Versión:** 1.0.0  
+**Fecha:** Enero 2025  
+**Clasificación:** Confidencial  
+**Audiencia:** Desarrolladores, QA Engineers, Security Engineers y Tech Leads de DivisionCero
+
+## 🎯 Propósito
+
+Establecer procedimientos detallados y sistemáticos para la revisión de código y ejecución de pruebas de seguridad en DivisionCero, asegurando que todo el código que llega a producción haya sido evaluado bajo criterios rigurosos de seguridad, calidad y funcionamiento. Estos procedimientos garantizan la detección temprana de vulnerabilidades y defectos de seguridad.
+
+## 🏢 Alcance
+
+Este procedimiento aplica a:
+- Todo el código fuente desarrollado para la plataforma SaaS de DivisionCero
+- Pull requests, merge requests y cambios de código en repositorios
+- Pruebas automatizadas y manuales de seguridad
+- Procesos de CI/CD y pipelines de despliegue
+- Revisiones de arquitectura y diseño de seguridad
+- Código de terceros y bibliotecas integradas al producto
+
+## 📚 Definiciones
+
+- **Code Review:** Proceso sistemático de examinar código para detectar defectos y vulnerabilidades
+- **Pull Request (PR):** Solicitud para fusionar cambios de código en una rama principal
+- **SAST:** Static Application Security Testing - Análisis estático de seguridad
+- **DAST:** Dynamic Application Security Testing - Análisis dinámico de seguridad
+- **IAST:** Interactive Application Security Testing - Análisis durante la ejecución
+- **SCA:** Software Composition Analysis - Análisis de componentes de terceros
+- **Security Champion:** Desarrollador con expertise adicional en seguridad
+- **Shift-Left:** Práctica de integrar testing de seguridad en fases tempranas
+
+## 🛡️ Política
+
+### Procedimientos de Revisión de Código
+
+#### Requisitos Generales de Code Review
+- **Obligatorio para todo código:** Ningún código puede fusionarse sin revisión
+- **Mínimo dos aprobaciones:** Una técnica y una de seguridad para cambios críticos
+- **Revisión automatizada:** Herramientas SAST deben ejecutarse antes de review manual
+- **Documentación de decisiones:** Registrar rationale detrás de decisiones de seguridad
+
+#### Criterios de Revisión de Seguridad
+
+##### Nivel 1: Revisión Estándar (Todos los PRs)
+- Verificar cumplimiento del Estándar de Codificación Segura
+- Validar manejo apropiado de errores y excepciones
+- Confirmar sanitización y validación de inputs
+- Revisar gestión de autenticación y autorización
+- Evaluar logging y auditoría de eventos de seguridad
+
+##### Nivel 2: Revisión Avanzada (Cambios Críticos)
+- Análisis de threat modeling para nuevas funcionalidades
+- Revisión de arquitectura de seguridad
+- Evaluación de surface de ataque
+- Análisis de dependencias y bibliotecas externas
+- Verificación de controles de acceso y separación de privilegios
+
+##### Nivel 3: Revisión de Seguridad Profunda (Componentes Críticos)
+- Revisión por Security Engineer certificado
+- Análisis de criptografía y gestión de claves
+- Evaluación de resistencia a ataques conocidos
+- Verificación de cumplimiento regulatorio
+- Assessment de impacto en modelo de amenazas general
+
+#### Checklist de Revisión de Código
+
+```markdown
+### Seguridad General
+- [ ] No hay secretos o credenciales hardcodeadas
+- [ ] Se validan y sanitizan todos los inputs
+- [ ] Se manejan errores sin revelar información sensible
+- [ ] Se implementan controles de autorización apropiados
+- [ ] Se registran eventos de seguridad relevantes
+
+### Autenticación y Sesiones
+- [ ] Hashing seguro de contraseñas (bcrypt, scrypt, Argon2)
+- [ ] Gestión segura de tokens y sesiones
+- [ ] Implementación correcta de logout/invalidación
+- [ ] Protección contra session fixation y hijacking
+
+### Inyección y XSS
+- [ ] Uso de consultas parametrizadas/prepared statements
+- [ ] Sanitización apropiada de outputs HTML
+- [ ] Headers de seguridad (CSP, X-Frame-Options, etc.)
+- [ ] Validación del lado servidor de todos los inputs
+
+### Configuración y Deployment
+- [ ] Configuraciones seguras por defecto
+- [ ] No hay debug info en código de producción
+- [ ] Principio de menor privilegio aplicado
+- [ ] Manejo seguro de archivos y uploads
+```
+
+### Procedimientos de Pruebas de Seguridad
+
+#### Integración en Pipeline CI/CD
+
+##### Stage 1: Análisis Estático (SAST)
+```yaml
+sast_analysis:
+  stage: security_testing
+  script:
+    - sonarqube-scanner
+    - checkmarx-scan
+    - bandit (Python) / ESLint Security (JS)
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+  artifacts:
+    reports:
+      sast: results/sast-report.json
+  allow_failure: false  # Block pipeline on critical/high findings
+```
+
+##### Stage 2: Análisis de Dependencias (SCA)
+```yaml
+dependency_scan:
+  stage: security_testing
+  script:
+    - snyk test
+    - safety check (Python) / audit (npm/yarn)
+    - owasp-dependency-check
+  artifacts:
+    reports:
+      dependency_scanning: results/dependency-report.json
+  allow_failure: false
+```
+
+##### Stage 3: Análisis de Secretos
+```yaml
+secret_detection:
+  stage: security_testing
+  script:
+    - gitleaks detect
+    - trufflehog scan
+  artifacts:
+    reports:
+      secret_detection: results/secret-report.json
+  allow_failure: false
+```
+
+#### Pruebas Dinámicas (DAST)
+
+##### Configuración de DAST Automatizado
+- **Herramientas:** OWASP ZAP, Burp Suite Enterprise, Rapid7 AppSpider
+- **Frecuencia:** En cada deployment a ambiente de testing
+- **Scope:** Todas las APIs y endpoints web expuestos
+- **Configuración:** Autenticación automática para testing de rutas protegidas
+
+##### Procedimiento DAST
+1. **Pre-configuración:** Preparar ambiente de testing con datos de prueba
+2. **Ejecución:** Ejecutar escaneo completo de aplicación
+3. **Análisis:** Revisar y clasificar hallazgos
+4. **Validación:** Confirmar verdaderos positivos vs. falsos positivos
+5. **Reporte:** Generar informe con recomendaciones de remediación
+
+#### Pruebas de Penetración
+
+##### Criterios para Pentesting
+- Aplicaciones nuevas antes del primer release
+- Cambios arquitectónicos significativos
+- Funcionalidades que manejan datos sensibles
+- Después de incidentes de seguridad importantes
+- Anualmente para aplicaciones críticas
+
+##### Proceso de Pentesting
+1. **Alcance:** Definir objetivos, limitaciones y metodología
+2. **Reconnaissance:** Recopilación de información y mapeo de superficie de ataque
+3. **Vulnerability Assessment:** Identificación automatizada y manual de vulnerabilidades
+4. **Exploitation:** Demostración controlada de explotación de vulnerabilidades
+5. **Post-Exploitation:** Evaluación de impacto y movimiento lateral
+6. **Reporting:** Documentación detallada con evidencia y recomendaciones
+
+### Gestión de Hallazgos y Remediación
+
+#### Clasificación de Vulnerabilidades
+- **Critical:** Explotación remota sin autenticación, acceso completo al sistema
+- **High:** Explotación que permite acceso significativo o escalación de privilegios
+- **Medium:** Vulnerabilidades que requieren precondiciones específicas
+- **Low:** Problemas de configuración o información disclosure menor
+- **Info:** Hallazgos informativos sin impacto directo en seguridad
+
+#### SLA de Remediación
+- **Critical:** 24 horas (bloqueo inmediato de deployment)
+- **High:** 7 días calendario
+- **Medium:** 30 días calendario
+- **Low:** 90 días calendario
+- **Info:** Siguiente ciclo de desarrollo
+
+#### Proceso de Excepción
+1. **Justificación:** Documentar razón técnica/business para no remediar
+2. **Mitigación:** Implementar controles compensatorios
+3. **Aprobación:** Revisión y aprobación por CISO y Product Owner
+4. **Tracking:** Seguimiento continuo en registro de excepciones
+5. **Re-evaluación:** Revisión trimestral de excepciones activas
+
+### Herramientas y Tecnologías
+
+#### Stack de Herramientas de Seguridad
+- **SAST:** SonarQube, Checkmarx, Veracode
+- **DAST:** OWASP ZAP, Burp Suite Enterprise
+- **SCA:** Snyk, WhiteSource, Black Duck
+- **Secret Detection:** GitLeaks, TruffleHog
+- **Container Security:** Twistlock, Aqua Security
+- **Infrastructure as Code:** Checkov, Terraform Security
+
+#### Integración con Development Workflow
+- **IDE Plugins:** Extensiones de seguridad para VS Code, IntelliJ
+- **Git Hooks:** Pre-commit hooks para validación básica
+- **CI/CD Integration:** Pipelines automatizados con gates de calidad
+- **Reporting Dashboard:** Visualización centralizada de métricas de seguridad
+
+## 👥 Roles y Responsabilidades
+
+- **Desarrolladores:** Ejecutar revisiones de pares y remediar vulnerabilidades
+- **Security Champions:** Realizar revisiones de seguridad especializadas
+- **Tech Leads:** Asegurar cumplimiento de procedimientos en sus equipos
+- **QA Engineers:** Ejecutar y mantener pruebas automatizadas de seguridad
+- **Security Engineers:** Configurar herramientas y definir políticas de seguridad
+- **DevOps Engineers:** Mantener pipelines de CI/CD con controles de seguridad
+- **CISO:** Supervisar efectividad del programa y aprobar excepciones
+
+## 📊 Cumplimiento y Medición
+
+### Métricas de Proceso
+- Porcentaje de PRs que pasan revisión de seguridad en primer intento
+- Tiempo promedio de revisión de código por tipo de cambio
+- Cobertura de análisis SAST/DAST en pipelines
+- Número de vulnerabilidades detectadas por herramienta y fase
+
+### Métricas de Calidad
+- Densidad de vulnerabilidades por KLOC (líneas de código)
+- Tiempo promedio de remediación por criticidad
+- Porcentaje de vulnerabilidades encontradas en producción vs. desarrollo
+- Efectividad de detección (verdaderos positivos vs. falsos positivos)
+
+### Reporting
+- Dashboard en tiempo real de métricas de seguridad
+- Reportes semanales a Tech Leads sobre estado de vulnerabilidades
+- Reportes mensuales a management sobre tendencias y mejoras
+- Reportes trimestrales de efectividad del programa a alta dirección
+
+## 🚨 Incumplimiento
+
+El incumplimiento de estos procedimientos puede resultar en:
+- Bloqueo automático de deployments que no cumplan criterios
+- Escalamiento a management para equipos con incumplimientos recurrentes
+- Auditoría adicional de código de equipos infractores
+- Reentrenamiento obligatorio en procedimientos de seguridad
+- Medidas disciplinarias para violaciones intencionales de proceso
+
+## 📖 Referencias
+
+- OWASP Code Review Guide
+- NIST SP 800-218 Secure Software Development Framework
+- Microsoft Security Development Lifecycle (SDL)
+- Google Security Code Review Guidelines
+- SANS Secure Code Review Process
+- ISO 27034 Application Security Management
+- CWE/SANS Top 25 Most Dangerous Software Errors

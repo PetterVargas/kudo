@@ -1,0 +1,397 @@
+---
+title: Registro de Incidentes y Lecciones Aprendidas
+description: Documentación de eventos y mejoras tras la respuesta a incidentes.
+---
+
+## 📋 Información General
+
+**Documento:** Registro de Incidentes y Lecciones Aprendidas  
+**Versión:** 1.0.0  
+**Fecha:** Enero 2025  
+**Clasificación:** Confidencial  
+**Audiencia:** CISO, Equipo de Respuesta a Incidentes, Gerentes de TI, Analistas de Seguridad, Auditores
+
+## 🎯 Propósito
+
+Establecer los procedimientos para el registro sistemático, documentación, análisis y seguimiento de incidentes de seguridad, incluyendo la captura y aplicación de lecciones aprendidas para mejorar continuamente la postura de seguridad y capacidades de respuesta de DivisionCero.
+
+## 🏢 Alcance
+
+Esta política aplica a:
+- Todos los incidentes de seguridad confirmados y sospechosos
+- Incidentes operacionales que afecten la disponibilidad de servicios
+- Eventos que comprometan confidencialidad, integridad o disponibilidad
+- Near misses y vulnerabilidades explotables detectadas
+- Incidentes de terceros que impacten operaciones de DivisionCero
+- Ejercicios de respuesta y simulacros de incidentes
+
+## 📚 Definiciones
+
+- **Incidente de Seguridad:** Evento que compromete o amenaza la CIA de información o sistemas
+- **Lección Aprendida:** Conocimiento obtenido de la experiencia que mejora capacidades futuras
+- **Post-Mortem:** Análisis retrospectivo estructurado de un incidente significativo
+- **Indicador de Compromiso (IoC):** Artefacto técnico que evidencia actividad maliciosa
+- **Tiempo de Resolución:** Periodo desde detección hasta restauración completa del servicio
+
+## 🛡️ Política
+
+### Clasificación de Incidentes
+
+#### Incidentes Críticos
+**Características:**
+- Compromiso total de sistemas críticos de negocio
+- Robo o exposición masiva de datos confidenciales
+- Interrupción completa de servicios de producción
+- Ataques que afecten infraestructura nacional crítica
+
+**Ejemplos:**
+- Ransomware en sistemas de producción
+- Filtración de datos de clientes a gran escala
+- Compromiso de sistemas de control industrial
+- Ataques APT (Advanced Persistent Threat) confirmados
+
+**Tiempo de Registro:** Inmediato (< 15 minutos)
+
+#### Incidentes de Alto Impacto
+**Características:**
+- Compromiso parcial de sistemas importantes
+- Acceso no autorizado a información sensible
+- Interrupciones significativas de servicios
+- Violaciones de cumplimiento regulatorio
+
+**Ejemplos:**
+- Malware en sistemas administrativos
+- Acceso no autorizado a bases de datos
+- DDoS que afecte disponibilidad
+- Violaciones de datos personales
+
+**Tiempo de Registro:** 1 hora máximo
+
+#### Incidentes Moderados
+**Características:**
+- Compromiso limitado sin acceso a datos críticos
+- Intentos de intrusión detectados y bloqueados
+- Vulnerabilidades críticas explotables
+- Violaciones de políticas de seguridad
+
+**Ejemplos:**
+- Phishing dirigido bloqueado
+- Vulnerabilidades zero-day detectadas
+- Acceso indebido a sistemas no críticos
+- Instalación de software no autorizado
+
+**Tiempo de Registro:** 4 horas máximo
+
+#### Incidentes Menores
+**Características:**
+- Eventos de seguridad sin impacto operacional
+- Intentos automatizados de scanning
+- Violaciones menores de políticas
+- False positives investigados
+
+**Ejemplos:**
+- Scanning automatizado de puertos
+- Intentos de login automatizados
+- Detección de software potencialmente no deseado
+- Violaciones de políticas de uso aceptable
+
+**Tiempo de Registro:** 24 horas máximo
+
+### Proceso de Registro de Incidentes
+
+#### Detección y Reporte Inicial
+**Información Mínima Requerida:**
+- Fecha y hora de detección (timestamp UTC)
+- Fuente de detección (herramienta, persona, proceso)
+- Descripción inicial del evento observado
+- Sistemas o servicios aparentemente afectados
+- Clasificación inicial de severidad
+
+**Canales de Reporte:**
+- **Email:** security-incidents@divisioncero.com
+- **Teléfono:** Línea directa 24/7 para incidentes críticos
+- **Portal Web:** Sistema interno de ticketing
+- **Slack:** Canal #security-incidents para coordinación
+
+#### Asignación y Escalamiento
+**Proceso Automático:**
+1. Ticket generado automáticamente en sistema ITSM
+2. Asignación inicial basada en severidad y tipo
+3. Notificación a Incident Response Team
+4. Escalamiento automático según matriz definida
+
+**Criterios de Escalamiento:**
+- **Críticos:** CISO + CTO + CEO (inmediato)
+- **Alto Impacto:** CISO + Gerente TI (15 minutos)
+- **Moderados:** Team Lead de Seguridad (1 hora)
+- **Menores:** Analista de turno (siguiente día hábil)
+
+### Documentación Durante el Incidente
+
+#### Registro Cronológico (Timeline)
+**Formato Estándar:**
+```
+[TIMESTAMP UTC] [ACTOR] [ACTION] - [DESCRIPTION]
+[2025-01-15T14:30:00Z] [J.Doe] [DETECTION] - Alerta SIEM por múltiples login fallidos desde IP 203.0.113.0
+[2025-01-15T14:32:00Z] [M.Smith] [ANALYSIS] - Confirmado patrón de ataque de fuerza bruta contra servidor web
+[2025-01-15T14:35:00Z] [J.Doe] [CONTAINMENT] - Bloqueada IP atacante en firewall perimetral
+```
+
+**Elementos Obligatorios por Entrada:**
+- Timestamp preciso en UTC
+- Identificación de quien ejecuta la acción
+- Tipo de acción realizada
+- Descripción específica del resultado
+
+#### Evidencia y Artefactos
+**Recolección Obligatoria:**
+- Screenshots de alertas y dashboards
+- Logs relevantes con contexto temporal
+- Capturas de tráfico de red cuando aplique
+- Imágenes forenses de sistemas comprometidos
+- Comunicaciones internas y externas relacionadas
+
+**Cadena de Custodia:**
+- Hash SHA-256 de todos los archivos de evidencia
+- Firma digital de recolector autorizado
+- Timestamps de recolección y transferencia
+- Control de acceso con logs de consulta
+
+### Análisis y Investigación
+
+#### Análisis de Causa Raíz
+**Metodología 5 Whys:**
+1. **¿Por qué ocurrió el incidente?** - Descripción del evento inmediato
+2. **¿Por qué no fue detectado antes?** - Análisis de controles de detección
+3. **¿Por qué los controles existentes fallaron?** - Evaluación de efectividad
+4. **¿Por qué no se implementaron controles mejores?** - Análisis de procesos
+5. **¿Por qué el proceso de mejora continua no capturó esto?** - Análisis sistémico
+
+**Análisis de Factores Contribuyentes:**
+- **Factores Técnicos:** Vulnerabilidades, configuraciones, arquitectura
+- **Factores Humanos:** Capacitación, procedimientos, fatiga
+- **Factores Organizacionales:** Recursos, prioridades, cultura
+- **Factores Ambientales:** Amenazas externas, cambios en el entorno
+
+#### Determinación de Impacto
+**Dimensiones de Evaluación:**
+- **Confidencialidad:** Tipo y volumen de información expuesta
+- **Integridad:** Sistemas y datos modificados o corrompidos
+- **Disponibilidad:** Servicios interrumpidos y duración
+- **Financiero:** Costos directos e indirectos del incidente
+- **Reputacional:** Impacto en marca y confianza de clientes
+- **Regulatorio:** Violaciones de cumplimiento y posibles sanciones
+
+**Herramientas de Cuantificación:**
+- Calculadora de costos de incidentes
+- Matriz de criticidad de sistemas
+- Métricas de SLA y disponibilidad
+- Framework de evaluación de riesgos
+
+### Documentación Post-Incidente
+
+#### Reporte de Incidente Completo
+**Estructura Obligatoria:**
+1. **Resumen Ejecutivo** (máximo 1 página)
+   - Descripción del incidente en términos de negocio
+   - Impacto total y tiempo de resolución
+   - Costo estimado y acciones correctivas principales
+
+2. **Cronología Detallada**
+   - Timeline completo desde detección hasta cierre
+   - Decisiones clave y puntos de escalamiento
+   - Efectividad de cada acción tomada
+
+3. **Análisis Técnico**
+   - Vectores de ataque y técnicas utilizadas
+   - Sistemas y datos comprometidos
+   - Indicadores de compromiso identificados
+
+4. **Evaluación de Respuesta**
+   - Efectividad de planes y procedimientos
+   - Desempeño del equipo de respuesta
+   - Herramientas y recursos utilizados
+
+5. **Lecciones Aprendidas y Recomendaciones**
+   - Mejoras inmediatas implementadas
+   - Recomendaciones de mediano y largo plazo
+   - Plan de implementación con responsables
+
+#### Indicadores de Compromiso (IoCs)
+**Base de Datos Centralizada:**
+- IPs maliciosas y dominios comprometidos
+- Hashes de archivos maliciosos (MD5, SHA-1, SHA-256)
+- Patrones de comportamiento anómalos
+- Técnicas, tácticas y procedimientos (TTPs) observados
+
+**Formato de IoC:**
+```json
+{
+  "ioc_id": "IOC-2025-0001",
+  "type": "ip_address",
+  "value": "203.0.113.0",
+  "confidence": "high",
+  "first_seen": "2025-01-15T14:30:00Z",
+  "last_seen": "2025-01-15T15:45:00Z",
+  "associated_incidents": ["INC-2025-0001"],
+  "threat_actor": "Unknown",
+  "mitigation": "Blocked in firewall",
+  "source": "Internal Investigation"
+}
+```
+
+### Gestión de Lecciones Aprendidas
+
+#### Captura Sistemática
+**Reunión Post-Mortem (obligatoria para incidentes críticos y alto impacto):**
+- **Participantes:** Todos los involucrados en respuesta + stakeholders de negocio
+- **Timing:** Dentro de 72 horas del cierre del incidente
+- **Duración:** 2 horas máximo con agenda estructurada
+- **Facilitador:** Persona externa al equipo de respuesta
+
+**Preguntas Clave:**
+- ¿Qué funcionó bien durante la respuesta?
+- ¿Qué podría haberse hecho mejor?
+- ¿Qué información o herramientas faltaron?
+- ¿Qué factores contribuyeron al incidente?
+- ¿Cómo podemos prevenir incidentes similares?
+
+#### Categorización de Lecciones
+**Tipos de Mejoras:**
+- **Preventivas:** Controles para evitar incidentes similares
+- **Detectivas:** Mejoras en capacidades de monitoreo y detección
+- **Correctivas:** Optimización de procesos de respuesta
+- **Recuperativas:** Aceleración de procesos de restauración
+
+**Áreas de Aplicación:**
+- **Tecnología:** Herramientas, sistemas, configuraciones
+- **Procesos:** Procedimientos, playbooks, escalamiento
+- **Personas:** Capacitación, roles, comunicación
+- **Organización:** Políticas, recursos, gobernanza
+
+#### Implementación de Mejoras
+**Proceso de Seguimiento:**
+1. **Priorización** basada en impacto y factibilidad
+2. **Asignación** de responsables con fechas específicas
+3. **Seguimiento** quincenal del progreso
+4. **Verificación** de implementación efectiva
+5. **Medición** de mejora en capacidades
+
+**Métricas de Efectividad:**
+- Reducción en tiempo de detección para tipos similares
+- Mejora en tiempo de respuesta y contención
+- Disminución en frecuencia de incidentes recurrentes
+- Incremento en eficacia de herramientas de detección
+
+### Base de Conocimiento
+
+#### Repositorio Centralizado
+**Estructura de Información:**
+- **Playbooks Actualizados:** Procedimientos refinados por lecciones aprendidas
+- **Casos de Estudio:** Análisis detallados de incidentes significativos
+- **Mejores Prácticas:** Técnicas probadas por el equipo
+- **Herramientas y Scripts:** Automatizaciones desarrolladas post-incidente
+
+**Acceso y Mantenimiento:**
+- Portal web interno con búsqueda avanzada
+- Versionado de documentos con control de cambios
+- Revisión trimestral de vigencia y relevancia
+- Contribuciones del equipo con proceso de validación
+
+#### Sharing de Inteligencia
+**Interno:**
+- Newsletter mensual de lecciones aprendidas
+- Presentaciones trimestrales a dirección ejecutiva
+- Training sessions basados en casos reales
+- Wiki colaborativo del equipo de seguridad
+
+**Externo (cuando apropiado):**
+- Participación en groups de inteligencia de amenazas
+- Compartir IoCs con organismos de seguridad
+- Presentaciones en conferencias de seguridad
+- Colaboración con vendors para mejoras de productos
+
+### Métricas y Reportes
+
+#### KPIs de Gestión de Incidentes
+**Tiempos de Respuesta:**
+- Tiempo promedio de detección por tipo de incidente
+- Tiempo promedio de contención por severidad
+- Tiempo promedio de resolución completa
+- Tiempo promedio de comunicación a stakeholders
+
+**Calidad de Respuesta:**
+- Porcentaje de incidentes con documentación completa
+- Porcentaje de incidentes con post-mortem realizado
+- Número de lecciones aprendidas implementadas
+- Porcentaje de mejoras completadas en plazo
+
+#### Reportes Regulares
+**Reporte Mensual al CISO:**
+- Resumen de incidentes por tipo y severidad
+- Análisis de tendencias y patrones emergentes
+- Estado de implementación de lecciones aprendidas
+- Recomendaciones de mejoras a procesos
+
+**Reporte Trimestral a Directorio:**
+- Impacto total de incidentes en el negocio
+- Mejoras implementadas en capacidades de respuesta
+- Inversiones requeridas en herramientas y capacitación
+- Benchmarking con industria y mejores prácticas
+
+## 👥 Roles y Responsabilidades
+
+- **CISO:** Aprobar clasificación de incidentes y supervisar programa de lecciones aprendidas
+- **Incident Response Manager:** Coordinar respuesta y asegurar documentación completa
+- **Analistas de Seguridad:** Recolectar evidencia y documentar cronología detallada
+- **Investigadores Forenses:** Conducir análisis técnico profundo y captura de IoCs
+- **Gerentes de TI:** Facilitar acceso a sistemas y validar impacto operacional
+- **Comunicaciones:** Gestionar comunicación con stakeholders internos y externos
+
+## 📊 Cumplimiento y Medición
+
+### Métricas de Documentación
+- 100% de incidentes críticos con documentación completa en 72 horas
+- 95% de incidentes de alto impacto con post-mortem realizado
+- 90% de lecciones aprendidas implementadas en plazo definido
+- 100% de IoCs capturados e integrados en herramientas de detección
+
+### Indicadores de Mejora Continua
+- Reducción del 20% anual en tiempo promedio de detección
+- Reducción del 15% anual en tiempo promedio de contención
+- Aumento del 25% en detección automática vs manual
+- 0 incidentes recurrentes por las mismas causas raíz
+
+### Auditorías y Verificaciones
+- Revisión mensual de calidad de documentación de incidentes
+- Auditoría trimestral de proceso de lecciones aprendidas
+- Evaluación anual de efectividad del programa
+- Testing anual de planes de respuesta actualizados
+
+## 🚨 Incumplimiento
+
+### Sanciones por Documentación Inadecuada
+**Falta de Documentación:**
+- Plan de mejora con capacitación adicional
+- Supervisión intensificada por 90 días
+- Revisión de aptitud para rol en equipo de respuesta
+
+**Documentación Incompleta o Tardía:**
+- Capacitación adicional en procedimientos
+- Asignación de mentor para próximos incidentes
+- Evaluación de desempeño con observaciones
+
+### Incumplimiento en Implementación de Mejoras
+**Retrasos sin Justificación:**
+- Escalamiento al supervisor directo
+- Reasignación de responsabilidad
+- Reporte en evaluación anual de desempeño
+
+## 📖 Referencias
+
+- ISO 27001:2022 - Control A.16 Information security incident management
+- ISO 27035-1:2023 - Information security incident management
+- NIST SP 800-61 Rev. 2 - Computer Security Incident Handling Guide
+- ENISA - Good Practice Guide for Incident Management
+- Plan de Respuesta a Incidentes
+- Política de Gestión de Incidentes

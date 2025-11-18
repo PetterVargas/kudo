@@ -1,0 +1,109 @@
+---
+title: CNB-01 - Proveedores de Servicio de Nube
+description: Control de gestión y selección de CSP
+---
+
+## 🎯 Objetivo del Control
+
+Establecer criterios de selección, evaluación y gestión de proveedores de servicios en la nube (CSP - Cloud Service Provider) asegurando cumplimiento de requisitos de seguridad y regulatorios.
+
+## 📋 Descripción
+
+Este control define la gestión de CSPs:
+- Evaluación de seguridad de proveedores
+- Modelo de responsabilidad compartida
+- Due diligence y auditorías
+- Cumplimiento de certificaciones
+- Gestión de contratos y SLAs
+
+## 🛡️ Controles Requeridos
+
+### Selección de CSP
+- Evaluación de madurez de seguridad
+- Certificaciones requeridas:
+  - ISO 27001, ISO 27017, ISO 27018
+  - SOC 2 Type II
+  - PCI-DSS (si aplica)
+  - HIPAA (si datos de salud)
+  - Regulaciones locales (GDPR, LGPD, etc.)
+- Ubicación de data centers (residencia de datos)
+- Evaluación de estabilidad financiera
+
+### Modelo de Responsabilidad Compartida
+Claridad en responsabilidades entre CSP y organización:
+
+**IaaS (AWS EC2, Azure VMs):**
+- CSP: Infraestructura física, hipervisor, red física
+- Cliente: OS, aplicaciones, datos, configuración, cifrado
+
+**PaaS (Azure App Service, Google App Engine):**
+- CSP: Hasta runtime y middleware
+- Cliente: Aplicaciones, datos, configuración
+
+**SaaS (Microsoft 365, Salesforce):**
+- CSP: Toda la stack tecnológica
+- Cliente: Datos, usuarios, configuración de accesos
+
+### Due Diligence
+- Revisión de políticas de seguridad del CSP
+- Auditoría de controles (cuestionarios SIG)
+- Validación de certificaciones vigentes
+- Revisión de incidentes de seguridad históricos
+- Evaluación de capacidades de respuesta
+
+### Contratos y SLAs
+- **SLAs de Disponibilidad:** 99.9% mínimo
+- **SLAs de Rendimiento:** Latencia, throughput
+- **Cláusulas de Seguridad:**
+  - Derecho a auditoría
+  - Notificación de incidentes
+  - Portabilidad de datos
+  - Eliminación segura al terminar contrato
+- **Proceso de salida (Exit Strategy):**
+  - Migración de datos
+  - Período de transición
+  - Eliminación certificada
+
+### Multi-Cloud y Diversificación
+- Estrategia multi-cloud para evitar vendor lock-in
+- Distribución de cargas de trabajo críticas
+- Portabilidad entre CSPs
+- Costos vs beneficios de multi-cloud
+
+## 📊 Métricas e Indicadores
+
+- Número de CSPs evaluados vs aprobados
+- Cumplimiento de SLAs (uptime, performance)
+- Incidentes de seguridad del CSP
+- Tiempo de respuesta del CSP a incidentes
+- Costo total de ownership (TCO)
+
+## 🔗 Herramientas Recomendadas
+
+- **Multi-Cloud Management:** CloudHealth, Flexera, Spot.io
+- **CSPM:** Prisma Cloud, Microsoft Defender for Cloud, Wiz
+- **Compliance:** Vanta, Drata, Thoropass
+- **Cost Management:** AWS Cost Explorer, Azure Cost Management, CloudCheckr
+
+## 📚 Referencias
+
+- [Política de Interoperabilidad en Nube](/docs/kudo/politicas/politica-interoperabilidad-nube)
+- [Estrategia de Migración y Portabilidad](/docs/kudo/politicas/estrategia-migracion-portabilidad)
+- [Matriz de Controles de Nube](/docs/kudo/matriz-controles-nube-mcn)
+- [Responsabilidad Compartida](/docs/kudo/responsabilidad-compartida)
+- ISO 27017 - Cloud Security
+- CSA Cloud Controls Matrix (CCM)
+- NIST SP 800-144 - Guidelines on Security and Privacy in Public Cloud
+
+## ✅ Checklist de Implementación
+
+- [ ] Criterios de selección de CSP definidos
+- [ ] Evaluación de seguridad de proveedores actuales
+- [ ] Certificaciones validadas y vigentes
+- [ ] Matriz de responsabilidad compartida documentada
+- [ ] Contratos con cláusulas de seguridad
+- [ ] SLAs definidos y monitoreados
+- [ ] Estrategia de salida (exit) documentada
+- [ ] Evaluación de multi-cloud realizada
+- [ ] Revisión anual de CSPs programada
+- [ ] Contactos de escalamiento del CSP

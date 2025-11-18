@@ -1,0 +1,248 @@
+---
+title: Estándar de Codificación Segura
+description: Estándares para la codificación segura de aplicaciones.
+---
+
+## 📋 Información General
+
+**Documento:** Estándar de Codificación Segura  
+**Versión:** 1.0.0  
+**Fecha:** Enero 2025  
+**Clasificación:** Confidencial  
+**Audiencia:** Desarrolladores, arquitectos de software y equipos de QA de DivisionCero
+
+## 🎯 Propósito
+
+Definir los estándares técnicos y mejores prácticas de codificación segura que deben seguir todos los desarrolladores de DivisionCero para prevenir vulnerabilidades de seguridad comunes y garantizar que el código sea resistente a ataques. Este estándar complementa la Política de Desarrollo Seguro estableciendo requisitos técnicos específicos.
+
+## 🏢 Alcance
+
+Este estándar aplica a:
+- Todo el código fuente desarrollado para la plataforma SaaS de DivisionCero
+- Aplicaciones web, APIs REST/GraphQL, microservicios y componentes backend
+- Código frontend incluyendo aplicaciones SPA y componentes JavaScript
+- Scripts de automatización, infraestructura como código (IaC) y configuraciones
+- Bibliotecas internas y componentes reutilizables
+- Integraciones con servicios externos y APIs de terceros
+
+## 📚 Definiciones
+
+- **Inyección de Código:** Vulnerabilidad que permite ejecutar código malicioso en el sistema
+- **XSS:** Cross-Site Scripting - Inyección de scripts en aplicaciones web
+- **CSRF:** Cross-Site Request Forgery - Ataques que explotan la confianza de un sitio
+- **IDOR:** Insecure Direct Object Reference - Acceso no autorizado a objetos
+- **Sanitización:** Proceso de limpieza y validación de datos de entrada
+- **Principio de Menor Privilegio:** Otorgar solo los permisos mínimos necesarios
+- **Secrets:** Información sensible como claves API, tokens y credenciales
+
+## 🛡️ Política
+
+### Validación y Sanitización de Entrada
+
+#### Validación de Datos
+- **Validación del lado servidor:** Toda validación crítica debe realizarse en el backend
+- **Lista blanca sobre lista negra:** Definir qué está permitido en lugar de qué está prohibido
+- **Validación de tipo de dato:** Verificar tipos, rangos y formatos esperados
+- **Encoding de salida:** Codificar datos antes de mostrarlos al usuario
+
+```javascript
+// ✅ Correcto: Validación robusta
+function validateEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email || typeof email !== 'string') {
+        throw new Error('Email inválido');
+    }
+    return emailRegex.test(email.trim());
+}
+
+// ❌ Incorrecto: Sin validación
+function processEmail(email) {
+    return email; // Vulnerable a inyección
+}
+```
+
+#### Prevención de Inyección SQL
+- **Consultas parametrizadas:** Usar siempre prepared statements
+- **ORM seguro:** Utilizar ORMs que manejen sanitización automática
+- **Validación de entrada:** Nunca construir queries con concatenación de strings
+
+```sql
+-- ✅ Correcto: Query parametrizada
+SELECT * FROM users WHERE email = ? AND status = ?
+
+-- ❌ Incorrecto: Concatenación directa
+SELECT * FROM users WHERE email = '" + userEmail + "'
+```
+
+### Gestión de Autenticación y Sesiones
+
+#### Autenticación Robusta
+- **Hashing de contraseñas:** Usar bcrypt, scrypt o Argon2 con salt apropiado
+- **Múltiples factores:** Implementar 2FA/MFA para cuentas privilegiadas
+- **Bloqueo por intentos:** Limitar intentos de login fallidos
+- **Tokens seguros:** Usar JWT con algoritmos seguros (RS256, no HS256 con secrets débiles)
+
+```javascript
+// ✅ Correcto: Hashing seguro
+const bcrypt = require('bcrypt');
+const saltRounds = 12;
+
+async function hashPassword(password) {
+    return await bcrypt.hash(password, saltRounds);
+}
+
+// ❌ Incorrecto: Almacenamiento en texto plano
+function storePassword(password) {
+    return password; // Nunca almacenar contraseñas en texto plano
+}
+```
+
+#### Gestión de Sesiones
+- **Tokens de sesión seguros:** Generar tokens criptográficamente seguros
+- **Expiración apropiada:** Configurar timeouts de sesión razonables
+- **Invalidación:** Implementar logout que invalide completamente la sesión
+- **Rotación de tokens:** Renovar tokens periódicamente
+
+### Manejo de Errores y Logging
+
+#### Manejo Seguro de Errores
+- **Información mínima:** No exponer detalles internos en mensajes de error
+- **Logging completo:** Registrar errores detalladamente para debugging interno
+- **Códigos de estado apropiados:** Usar códigos HTTP correctos sin revelar arquitectura
+
+```javascript
+// ✅ Correcto: Error handling seguro
+try {
+    await processPayment(paymentData);
+} catch (error) {
+    logger.error('Payment processing failed', { 
+        userId: user.id, 
+        error: error.message,
+        timestamp: new Date().toISOString()
+    });
+    
+    // Usuario solo ve mensaje genérico
+    res.status(500).json({ 
+        error: 'Error procesando el pago. Intente nuevamente.' 
+    });
+}
+
+// ❌ Incorrecto: Exposición de información interna
+catch (error) {
+    res.status(500).json({ error: error.stack }); // Revela arquitectura
+}
+```
+
+### Comunicaciones Seguras
+
+#### Encriptación en Tránsito
+- **HTTPS obligatorio:** Todas las comunicaciones deben usar TLS 1.2+
+- **HSTS headers:** Implementar HTTP Strict Transport Security
+- **Certificate pinning:** Para conexiones críticas con APIs externas
+
+#### Encriptación en Reposo
+- **Datos sensibles:** Encriptar PII, tokens y secretos en base de datos
+- **Claves de encriptación:** Usar servicios de gestión de claves (AWS KMS, HashiCorp Vault)
+- **Rotación de claves:** Implementar rotación automática de claves de encriptación
+
+### Gestión de Secretos y Configuración
+
+#### Secretos y Credenciales
+- **Variables de entorno:** Nunca hardcodear secretos en el código
+- **Vaults de secretos:** Usar soluciones especializadas para gestión de secretos
+- **Rotación automática:** Implementar rotación automática de API keys y tokens
+- **Principio de menor privilegio:** Cada servicio solo debe tener acceso a sus secretos necesarios
+
+```javascript
+// ✅ Correcto: Uso de variables de entorno
+const dbPassword = process.env.DB_PASSWORD;
+const apiKey = process.env.EXTERNAL_API_KEY;
+
+// ❌ Incorrecto: Secretos hardcodeados
+const dbPassword = "mySecretPassword123"; // Nunca hacer esto
+const apiKey = "sk-1234567890abcdef"; // Vulnerable
+```
+
+### Control de Acceso y Autorización
+
+#### Implementación de RBAC
+- **Verificación en cada endpoint:** Validar permisos en todas las rutas protegidas
+- **Contexto de autorización:** Considerar contexto del usuario y recurso solicitado
+- **Principio de menor privilegio:** Otorgar solo permisos mínimos necesarios
+
+```javascript
+// ✅ Correcto: Verificación de autorización
+async function updateUser(userId, userData, currentUser) {
+    // Verificar que el usuario puede modificar este recurso
+    if (currentUser.id !== userId && !currentUser.hasRole('admin')) {
+        throw new ForbiddenError('No autorizado para modificar este usuario');
+    }
+    
+    return await userService.update(userId, userData);
+}
+```
+
+### Seguridad Frontend
+
+#### Prevención XSS
+- **Content Security Policy:** Implementar CSP headers restrictivos
+- **Sanitización de HTML:** Usar bibliotecas como DOMPurify para contenido dinámico
+- **Escapado de caracteres:** Escapar datos antes de insertar en DOM
+
+#### Protección CSRF
+- **Tokens CSRF:** Implementar tokens anti-CSRF en formularios
+- **SameSite cookies:** Configurar cookies con atributo SameSite
+- **Verificación de origen:** Validar headers Origin y Referer
+
+### Análisis y Testing de Seguridad
+
+#### Herramientas Obligatorias
+- **SAST:** Análisis estático integrado en CI/CD (SonarQube, Checkmarx)
+- **Dependency checking:** Escaneo de vulnerabilidades en dependencias (Snyk, OWASP Dependency Check)
+- **Secret scanning:** Detección de secretos hardcodeados (GitLeaks, TruffleHog)
+
+#### Métricas de Calidad
+- **Cobertura de código:** Mínimo 80% cobertura con tests de seguridad incluidos
+- **Complejidad ciclomática:** Mantener funciones con complejidad < 10
+- **Deuda técnica:** Remediar vulnerabilidades según SLA establecido
+
+## 👥 Roles y Responsabilidades
+
+- **Desarrolladores Senior:** Mentorear en prácticas de codificación segura
+- **Arquitectos de Software:** Definir patrones y bibliotecas seguras
+- **Tech Leads:** Asegurar cumplimiento en revisiones de código
+- **Security Champions:** Promover adopción de estándares en equipos
+- **DevOps Engineers:** Configurar herramientas de análisis automático
+- **QA Engineers:** Validar implementación de controles de seguridad
+
+## 📊 Cumplimiento y Medición
+
+### Métricas de Cumplimiento
+- Porcentaje de código que pasa análisis SAST sin vulnerabilidades críticas/altas
+- Tiempo promedio de remediación de vulnerabilidades por severidad
+- Número de vulnerabilidades detectadas en producción vs. desarrollo
+- Cobertura de pruebas de seguridad en suite de testing
+
+### Auditorías
+- Revisión mensual de métricas de calidad de código
+- Auditorías trimestrales de cumplimiento de estándares
+- Evaluación anual de efectividad de controles implementados
+
+## 🚨 Incumplimiento
+
+El incumplimiento de este estándar puede resultar en:
+- Rechazo automático de pull requests que no cumplan criterios
+- Reentrenamiento obligatorio en prácticas de codificación segura
+- Revisión adicional de todo el código del desarrollador
+- Escalamiento a management para casos recurrentes
+- Revocación temporal de privilegios de commit para violaciones graves
+
+## 📖 Referencias
+
+- OWASP Top 10 Web Application Security Risks
+- OWASP Secure Coding Practices Quick Reference
+- CWE/SANS Top 25 Most Dangerous Software Errors
+- NIST SP 800-218 Secure Software Development Framework
+- ISO 27034 Application Security Management
+- Mozilla Web Security Guidelines
+- Google Web Fundamentals - Security

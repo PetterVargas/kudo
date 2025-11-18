@@ -1,0 +1,117 @@
+---
+title: DIA-01 - Inventario de Datos
+description: Control de registro y clasificación del inventario de datos organizacionales
+---
+
+## 🎯 Objetivo del Control
+
+Mantener un inventario completo, preciso y actualizado de todos los datos que la organización recopila, procesa, almacena y transmite, incluyendo su clasificación, propietario, ubicación y propósito de tratamiento.
+
+## 📋 Descripción
+
+Este control establece los requisitos para documentar y mantener un catálogo de datos que permita:
+- Conocer qué datos posee la organización
+- Identificar datos personales, sensibles y críticos
+- Cumplir con requisitos de GDPR, LGPD y otras regulaciones
+- Facilitar la gestión de privacidad y protección de datos
+- Habilitar el ejercicio de derechos de los titulares
+
+## 🛡️ Controles Requeridos
+
+### Catálogo de Datos
+- **Identificación de Datos:**
+  - Nombre y descripción del dataset
+  - Categoría de datos (personal, sensible, confidencial, público)
+  - Formato y estructura (estructurado, no estructurado, semi-estructurado)
+  - Volumen estimado de registros
+  - Tasa de crecimiento
+
+### Clasificación de Datos
+- **Datos Personales:**
+  - Identificadores directos (nombre, email, teléfono, DNI/NIF)
+  - Identificadores indirectos (IP, cookies, device ID)
+  - Datos de contacto y ubicación
+- **Datos Sensibles (Categorías Especiales):**
+  - Datos de salud
+  - Datos biométricos
+  - Origen étnico o racial
+  - Opiniones políticas, religiosas o filosóficas
+  - Orientación sexual
+  - Datos genéticos
+- **Datos Financieros:**
+  - Información bancaria
+  - Tarjetas de crédito/débito
+  - Historial de transacciones
+  - Datos de nómina
+- **Propiedad Intelectual:**
+  - Código fuente
+  - Secretos comerciales
+  - Documentación técnica propietaria
+  - Algoritmos y modelos de ML
+
+### Atributos del Inventario
+- **Datos Maestros:**
+  - ID único del dataset
+  - Nombre y descripción
+  - Propietario del dato (Data Owner)
+  - Custodio del dato (Data Steward)
+  - Nivel de clasificación (Público, Interno, Confidencial, Restringido)
+- **Propósito y Base Legal:**
+  - Finalidad del tratamiento
+  - Base legal (consentimiento, contrato, interés legítimo, obligación legal)
+  - Categorías de titulares
+  - Transferencias internacionales
+- **Ubicación y Almacenamiento:**
+  - Sistema o aplicación donde reside
+  - Ubicación geográfica (región de cloud, datacenter)
+  - Tipo de almacenamiento (base de datos, filesystem, object storage)
+  - Backups y réplicas
+
+### Flujo de Datos
+- Origen de los datos
+- Sistemas que procesan los datos
+- Integraciones y transferencias
+- Destinatarios o terceros con acceso
+- Tiempo de retención
+
+## 📊 Métricas e Indicadores
+
+- Número total de datasets inventariados
+- Porcentaje de datos clasificados (objetivo: 100%)
+- Datasets sin propietario asignado (objetivo: 0)
+- Porcentaje de datos personales/sensibles identificados
+- Tiempo promedio de actualización del inventario (objetivo: mensual)
+- Datasets con transferencias internacionales
+- Cobertura de data lineage (trazabilidad del flujo)
+
+## 🔗 Herramientas Recomendadas
+
+- **Data Catalog:** Azure Purview, AWS Glue Data Catalog, Collibra, Alation
+- **Data Discovery:** BigID, OneTrust, Securiti.ai, Varonis
+- **DLP (Data Loss Prevention):** Microsoft Purview DLP, Forcepoint, Symantec DLP
+- **DSPM (Data Security Posture Management):** Normalyze, Dig Security, Cyera
+- **Metadata Management:** Apache Atlas, Amundsen, DataHub
+
+## 📚 Referencias
+
+- [Política de Clasificación de Información](/docs/kudo/politicas/clasificacion-informacion)
+- [Política de Protección de Datos Personales](/docs/kudo/politicas/politica-proteccion-datos-personales)
+- [Política de Retención y Eliminación Segura](/docs/kudo/politicas/politica-retencion-eliminacion-segura)
+- GDPR Art. 30 - Records of Processing Activities
+- ISO 27001:2022 - A.5.9, A.5.12
+- NIST Privacy Framework - ID.IM-P1, ID.IM-P2
+
+## ✅ Checklist de Implementación
+
+- [ ] Definir taxonomía de clasificación de datos
+- [ ] Identificar Data Owners y Data Stewards
+- [ ] Implementar herramienta de Data Catalog
+- [ ] Realizar data discovery automático en sistemas clave
+- [ ] Clasificar datos según sensibilidad y regulación
+- [ ] Documentar flujos de datos (data lineage)
+- [ ] Registrar bases legales de tratamiento
+- [ ] Mapear transferencias internacionales
+- [ ] Establecer proceso de actualización continua
+- [ ] Integrar con DLP y herramientas de seguridad
+- [ ] Capacitar a propietarios de datos
+- [ ] Generar reportes de cumplimiento regulatorio

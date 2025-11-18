@@ -1,0 +1,119 @@
+---
+title: CNB-04 - Cifrado de Información y Datos
+description: Control de cifrado en nube
+---
+
+## 🎯 Objetivo del Control
+
+Implementar cifrado robusto para proteger la confidencialidad e integridad de datos en reposo y en tránsito en entornos cloud.
+
+## 📋 Descripción
+
+Este control establece requisitos de cifrado:
+- Cifrado de datos en reposo
+- Cifrado de datos en tránsito
+- Gestión de claves criptográficas
+- Cifrado a nivel de aplicación
+- Cumplimiento de estándares criptográficos
+
+## 🛡️ Controles Requeridos
+
+### Cifrado en Reposo (Data at Rest)
+
+**Storage:**
+- S3 / Azure Blob: Server-Side Encryption (SSE) habilitado
+- EBS / Managed Disks: Cifrado por defecto
+- RDS / SQL Database: Transparent Data Encryption (TDE)
+- Backups: Cifrados automáticamente
+- Archivos: Azure Files, EFS con cifrado
+
+**Algoritmos Permitidos:**
+- AES-256 (simétrico)
+- RSA-2048 o superior (asimétrico)
+
+**Prohibidos:**
+- DES, 3DES
+- RC4
+- MD5, SHA-1
+
+### Cifrado en Tránsito (Data in Transit)
+
+**TLS/SSL:**
+- TLS 1.2 mínimo (preferible TLS 1.3)
+- Certificados válidos y actualizados
+- Perfect Forward Secrecy (PFS)
+- HSTS habilitado en aplicaciones web
+
+**Comunicaciones Cloud:**
+- VPN con IPSec o SSL/TLS
+- ExpressRoute / Direct Connect cifrado
+- Communication entre servicios con TLS
+
+**APIs y Microservicios:**
+- HTTPS obligatorio (no HTTP)
+- Mutual TLS (mTLS) para service-to-service
+- API Gateway con TLS
+
+### Gestión de Claves (Ver CNB-05)
+- Key Management Service (KMS)
+- Hardware Security Module (HSM) para llaves críticas
+- Rotación periódica de claves
+- Separación de claves por ambiente
+- Auditoría de uso de claves
+
+### Cifrado a Nivel de Aplicación
+- Column-level encryption en bases de datos
+- Field-level encryption para datos sensibles
+- Client-side encryption antes de enviar a cloud
+- Envelope encryption (data key + master key)
+
+### Clasificación y Cifrado
+Según clasificación de datos:
+- **Público:** Cifrado opcional
+- **Interno:** Cifrado recomendado
+- **Confidencial:** Cifrado obligatorio
+- **Restringido:** Cifrado + HSM
+
+### Cumplimiento Regulatorio
+- PCI-DSS: Cifrado de datos de tarjetas
+- GDPR: Pseudonimización y cifrado
+- HIPAA: Cifrado de PHI (datos de salud)
+- Regulaciones locales
+
+## 📊 Métricas e Indicadores
+
+- Porcentaje de datos en reposo cifrados (objetivo: 100%)
+- Porcentaje de comunicaciones con TLS 1.2+ (objetivo: 100%)
+- Recursos de storage sin cifrado
+- APIs sin HTTPS
+- Claves sin rotación en >365 días
+
+## 🔗 Herramientas Recomendadas
+
+- **Key Management:** AWS KMS, Azure Key Vault, GCP KMS, HashiCorp Vault
+- **HSM:** AWS CloudHSM, Azure Dedicated HSM, Thales Luna
+- **Certificate Management:** AWS Certificate Manager, Let's Encrypt, DigiCert
+- **Monitoring:** AWS Config, Azure Policy, Prisma Cloud, Wiz
+
+## 📚 Referencias
+
+- [Política de Cifrado de Datos](/docs/kudo/politicas/politica-cifrado-datos)
+- [Mecanismos de Cifrado](/docs/kudo/politicas/mecanismos-cifrado)
+- [Gestión de Certificados Digitales](/docs/kudo/politicas/gestion-certificados-digitales)
+- [Inventario y Ciclo de Vida de Llaves](/docs/kudo/politicas/inventario-ciclo-vida-llaves)
+- NIST SP 800-52 - Guidelines for TLS Implementations
+- NIST SP 800-57 - Key Management
+- ISO 27001:2022 - A.8.24 Cryptography
+
+## ✅ Checklist de Implementación
+
+- [ ] Cifrado en reposo habilitado en todos los storage
+- [ ] TLS 1.2+ obligatorio en todas las comunicaciones
+- [ ] KMS configurado y operativo
+- [ ] Rotación de claves automatizada
+- [ ] Certificados SSL/TLS con renovación automática
+- [ ] APIs con HTTPS obligatorio
+- [ ] Monitoreo de recursos sin cifrado
+- [ ] Políticas de cifrado según clasificación de datos
+- [ ] HSM para claves críticas (si aplica)
+- [ ] Documentación de estándares criptográficos

@@ -1,0 +1,204 @@
+---
+title: DIA-05 - Tiempo de Retención de Datos y Derecho al Olvido
+description: Control de gestión de períodos de retención y eliminación de datos personales
+---
+
+## 🎯 Objetivo del Control
+
+Establecer y hacer cumplir políticas de retención de datos alineadas con requisitos legales, regulatorios y de negocio, garantizando la eliminación segura cuando ya no sean necesarios y facilitando el ejercicio del derecho al olvido de los titulares de datos.
+
+## 📋 Descripción
+
+Este control define:
+- Períodos de retención por categoría de datos
+- Procesos de eliminación segura y verificable
+- Mecanismos de atención al derecho al olvido (GDPR Art. 17)
+- Excepciones y retenciones legales (legal hold)
+- Anonimización como alternativa a la eliminación
+- Gestión de backups y réplicas en el proceso de eliminación
+
+## 🛡️ Controles Requeridos
+
+### Políticas de Retención
+
+#### Períodos por Categoría de Datos
+- **Datos de Clientes Activos:**
+  - Duración de la relación comercial + período legal
+  - Revisión anual de necesidad
+- **Datos de Clientes Inactivos:**
+  - 2-3 años tras última interacción (según jurisdicción)
+  - Notificación previa a eliminación
+- **Datos Financieros y Contables:**
+  - 7-10 años (según legislación fiscal)
+  - Acceso restringido tras cierre de ejercicio
+- **Logs de Acceso y Auditoría:**
+  - 12-24 meses (según compliance)
+  - 7 años para sectores regulados (financiero, salud)
+- **Datos de Marketing/Cookies:**
+  - 13 meses (GDPR)
+  - Renovación de consentimiento periódica
+- **Datos de RRHH:**
+  - Empleados activos: duración de contrato
+  - Empleados cesados: 5-10 años (según legislación laboral)
+  - CV no seleccionados: 12 meses máximo
+
+#### Requisitos Legales por Jurisdicción
+- **GDPR (UE):**
+  - Principio de limitación de conservación (Art. 5.1.e)
+  - No más tiempo del necesario para finalidad
+- **LGPD (Brasil):**
+  - Similar a GDPR
+  - Eliminación tras finalidad o solicitud del titular
+- **CCPA/CPRA (California):**
+  - Derecho a eliminación con excepciones
+  - Notificación a terceros que recibieron los datos
+- **Legislación Fiscal:**
+  - España: 4-6 años (según tipo de documento)
+  - México: 5 años
+  - Argentina: 10 años
+
+### Derecho al Olvido (Right to be Forgotten)
+
+#### Proceso de Solicitud
+1. **Recepción de Solicitud:**
+   - Canal dedicado (email, formulario web, portal)
+   - Verificación de identidad del solicitante
+   - Registro en sistema de gestión de solicitudes ARCO
+   - Plazo de respuesta: 30 días (GDPR), 20 días (LGPD)
+
+2. **Evaluación de Procedencia:**
+   - Verificación de existencia de datos del solicitante
+   - Análisis de excepciones aplicables:
+     - Obligación legal de conservación
+     - Ejercicio/defensa de reclamaciones legales
+     - Interés público (investigaciones, salud pública)
+     - Libertad de expresión
+   - Documentación de decisión
+
+3. **Ejecución de Eliminación:**
+   - Identificación de todos los sistemas con datos del solicitante
+   - Eliminación en sistemas productivos
+   - Eliminación en backups (o espera a expiración natural)
+   - Notificación a terceros que recibieron los datos
+   - Confirmación al solicitante
+
+#### Excepciones a la Eliminación
+- Conservación necesaria por obligación legal
+- Ejercicio o defensa de reclamaciones
+- Litigios activos o previsibles (legal hold)
+- Archivo en interés público, investigación o estadística
+- Cumplimiento de contratos vigentes
+
+### Eliminación Segura
+
+#### Métodos de Eliminación
+- **Eliminación Lógica:**
+  - Soft delete con flag de eliminación
+  - Período de gracia (30 días) para recuperación
+  - Eliminación física automática posterior
+- **Eliminación Física:**
+  - Sobrescritura de sectores (DoD 5220.22-M: 7 pasadas)
+  - Eliminación de índices y referencias
+  - Purge de caches y memorias temporales
+- **Destrucción de Medios:**
+  - Degaussing para medios magnéticos
+  - Trituración física para discos duros
+  - Certificado de destrucción por proveedor autorizado
+- **Anonimización Irreversible:**
+  - Eliminación de identificadores directos e indirectos
+  - Generalización y supresión de atributos
+  - Validación de imposibilidad de re-identificación
+
+#### Ámbito de Eliminación
+- **Sistemas Productivos:**
+  - Bases de datos transaccionales
+  - Data warehouses y data lakes
+  - Sistemas de archivos
+  - CRM, ERP, HRIS
+- **Backups y Réplicas:**
+  - Opciones:
+    1. Eliminación inmediata en todos los backups (complejo)
+    2. Marcado para eliminación en restauración
+    3. Expiración natural según política de retención
+  - Documentar enfoque seleccionado
+- **Logs y Auditoría:**
+  - Anonimización de identificadores personales
+  - Conservación de eventos sin datos personales
+- **Terceros:**
+  - Notificación formal de eliminación requerida
+  - Verificación de cumplimiento
+  - Registro de comunicaciones
+
+### Automatización y Workflows
+
+#### Data Retention Automation
+- **Reglas Automatizadas:**
+  - Políticas por tabla/colección
+  - Triggers basados en fecha de creación o última actividad
+  - Marcado automático de registros para eliminación
+- **Alertas y Notificaciones:**
+  - Alertas a Data Owners antes de eliminación masiva
+  - Notificación a usuarios antes de eliminar sus cuentas
+- **Dashboards:**
+  - Volumen de datos próximos a expirar
+  - Historial de eliminaciones
+  - Solicitudes ARCO pendientes
+
+#### Legal Hold Management
+- **Retención por Litigio:**
+  - Suspensión automática de políticas de eliminación
+  - Marcado de datasets afectados
+  - Notificación a equipos legales y custodios
+- **Liberación de Hold:**
+  - Workflow de aprobación legal
+  - Reanudación de políticas de retención normales
+
+## 📊 Métricas e Indicadores
+
+- Porcentaje de datasets con política de retención definida (objetivo: 100%)
+- Solicitudes de eliminación (derecho al olvido) recibidas
+- Tiempo promedio de respuesta a solicitudes ARCO (objetivo: menos de 15 días)
+- Porcentaje de solicitudes atendidas en plazo legal (objetivo: 100%)
+- Volumen de datos eliminados por expiración de retención (TB/mes)
+- Incidentes de eliminación de datos necesarios (objetivo: 0)
+- Cobertura de eliminación en backups (objetivo: 100% con enfoque documentado)
+- Auditorías de retención realizadas vs planificadas
+
+## 🔗 Herramientas Recomendadas
+
+- **Data Retention Management:** Microsoft Purview Retention, Informatica, Collibra
+- **Data Subject Request Management:** OneTrust, BigID, Securiti.ai, TrustArc
+- **Secure Deletion:** Blancco, BitRaser, Eraser
+- **Legal Hold Management:** Exterro, Zapproved, Onna, Logikcull
+- **Workflow Automation:** ServiceNow, Jira Service Management
+- **Data Discovery (for DSAR):** BigID, Spirion, Varonis
+
+## 📚 Referencias
+
+- [Política de Retención y Eliminación Segura](/docs/kudo/politicas/politica-retencion-eliminacion-segura)
+- [Política de Protección de Datos Personales](/docs/kudo/politicas/politica-proteccion-datos-personales)
+- [DIA-01: Inventario de Datos](/docs/kudo/dia-ciberseguridad-en-datos-e-inteligencia-artificial/dia-01)
+- [DIA-03: Ciclo de Vida de los Datos](/docs/kudo/dia-ciberseguridad-en-datos-e-inteligencia-artificial/dia-03)
+- GDPR Art. 17 - Right to erasure (right to be forgotten)
+- GDPR Art. 5.1.e - Storage limitation principle
+- ISO 27001:2022 - A.8.10
+- NIST SP 800-88 - Guidelines for Media Sanitization
+- CCPA/CPRA - Right to Delete
+
+## ✅ Checklist de Implementación
+
+- [ ] Definir períodos de retención por categoría de datos
+- [ ] Mapear requisitos legales de retención por jurisdicción
+- [ ] Implementar políticas automatizadas de retención
+- [ ] Establecer proceso de solicitudes de derecho al olvido
+- [ ] Portal o formulario para solicitudes ARCO
+- [ ] Procedimiento de verificación de identidad del solicitante
+- [ ] Workflow de aprobación y ejecución de eliminaciones
+- [ ] Procedimiento de eliminación segura documentado
+- [ ] Estrategia de eliminación en backups definida
+- [ ] Notificación automatizada a terceros cuando aplique
+- [ ] Sistema de legal hold implementado
+- [ ] Dashboard de gestión de retención y solicitudes
+- [ ] Testing de proceso completo de eliminación
+- [ ] Capacitación a equipos de atención al cliente
+- [ ] Auditoría anual de cumplimiento de retención

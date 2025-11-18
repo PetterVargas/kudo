@@ -1,0 +1,9 @@
+{
+  "title": "CCN - Continuidad del Negocio",
+  "description": "Gestión de cambios y continuidad operacional",
+  "icon": "RefreshCw",
+  "root": true,
+  "pages": [
+    "index"
+  ]
+}

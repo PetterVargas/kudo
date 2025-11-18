@@ -1,0 +1,512 @@
+---
+title: Guías para la Integración Segura de APIs
+description: Guías para la integración segura de APIs.
+---
+
+## 📋 Información General
+
+**Documento:** Guías para la Integración Segura de APIs  
+**Versión:** 1.0.0  
+**Fecha:** Enero 2025  
+**Clasificación:** Confidencial  
+**Audiencia:** Desarrolladores, arquitectos de APIs, DevOps engineers y equipos de integración de DivisionCero
+
+## 🎯 Propósito
+
+Establecer lineamientos técnicos y de seguridad para el diseño, desarrollo, implementación y consumo seguro de APIs en el ecosistema de DivisionCero. Estas guías aseguran que todas las integraciones de APIs mantengan los más altos estándares de seguridad, protegiendo datos sensibles y previniendo vulnerabilidades en las comunicaciones entre sistemas.
+
+## 🏢 Alcance
+
+Estas guías aplican a:
+- APIs REST y GraphQL desarrolladas internamente por DivisionCero
+- APIs de terceros integradas en la plataforma SaaS
+- Microservicios y comunicación inter-servicios
+- APIs públicas expuestas a clientes y partners
+- APIs internas para comunicación entre componentes del sistema
+- Webhooks y callbacks de sistemas externos
+- Gateways de API y proxy layers
+
+## 📚 Definiciones
+
+- **API Gateway:** Componente que actúa como punto de entrada único para todas las APIs
+- **OAuth 2.0:** Framework de autorización para acceso delegado seguro
+- **JWT:** JSON Web Token para transmisión segura de información
+- **Rate Limiting:** Control de frecuencia de solicitudes para prevenir abuso
+- **API Key:** Identificador único para autenticación y control de acceso
+- **CORS:** Cross-Origin Resource Sharing para controlar acceso desde navegadores
+- **API Versioning:** Gestión de diferentes versiones de APIs manteniendo compatibilidad
+- **Circuit Breaker:** Patrón para manejar fallos en servicios externos
+
+## 🛡️ Política
+
+### Diseño Seguro de APIs
+
+#### Principios de Seguridad API-First
+- **Security by Design:** Incorporar seguridad desde la fase de diseño
+- **Zero Trust:** Validar y autorizar cada solicitud sin excepción
+- **Least Privilege:** Conceder solo permisos mínimos necesarios
+- **Defense in Depth:** Múltiples capas de controles de seguridad
+- **Fail Secure:** APIs deben fallar de manera segura ante errores
+
+#### Estándares de Diseño de API
+
+##### Arquitectura RESTful Segura
+```yaml
+# Ejemplo de endpoint bien diseñado
+/api/v1/users/{userId}/orders/{orderId}
+GET    /api/v1/users/{userId}/orders     # Lista órdenes del usuario
+POST   /api/v1/users/{userId}/orders     # Crea nueva orden
+GET    /api/v1/users/{userId}/orders/{orderId}  # Obtiene orden específica
+PUT    /api/v1/users/{userId}/orders/{orderId}  # Actualiza orden completa
+PATCH  /api/v1/users/{userId}/orders/{orderId}  # Actualiza parcialmente
+DELETE /api/v1/users/{userId}/orders/{orderId}  # Elimina orden
+
+# ❌ Evitar endpoints inseguros
+/api/getAllUserData                    # Muy amplio, riesgo de exposición
+/api/user?sql=SELECT * FROM users     # Vulnerable a inyección
+/api/admin/deleteUser/{userId}         # Expone funcionalidad privilegiada
+```
+
+##### GraphQL Security Guidelines
+```graphql
+# ✅ Query con controles de profundidad y complejidad
+type Query {
+  user(id: ID!): User @auth(requires: USER)
+  users(limit: Int = 10, offset: Int = 0): [User] 
+    @auth(requires: ADMIN) 
+    @rateLimit(limit: 100, window: 3600)
+}
+
+type User {
+  id: ID!
+  email: String @auth(requires: OWNER_OR_ADMIN)
+  profile: UserProfile
+  orders(first: Int = 10): OrderConnection 
+    @complexity(multipliers: ["first"], maximum: 1000)
+}
+
+# ❌ Evitar queries sin restricciones
+type Query {
+  allUsers: [User]  # Sin paginación ni autorización
+  sensitiveData: String  # Sin controles de acceso
+}
+```
+
+### Autenticación y Autorización
+
+#### Implementación de OAuth 2.0 + OpenID Connect
+
+##### Flujo de Autorización Code + PKCE
+```javascript
+// ✅ Implementación segura con PKCE
+const authConfig = {
+  clientId: process.env.OAUTH_CLIENT_ID,
+  redirectUri: process.env.OAUTH_REDIRECT_URI,
+  scope: 'openid profile email api:read',
+  responseType: 'code',
+  codeChallenge: generateCodeChallenge(codeVerifier),
+  codeChallengeMethod: 'S256',
+  state: generateSecureRandomState()
+};
+
+// Validación del token
+async function validateAccessToken(token) {
+  try {
+    const decoded = jwt.verify(token, publicKey, {
+      issuer: process.env.OAUTH_ISSUER,
+      audience: process.env.OAUTH_AUDIENCE,
+      algorithms: ['RS256']
+    });
+    
+    return decoded;
+  } catch (error) {
+    throw new UnauthorizedError('Token inválido');
+  }
+}
+```
+
+#### Gestión de API Keys
+```javascript
+// ✅ Estructura segura de API Key
+const apiKeyStructure = {
+  prefix: 'dzc_',  // Identificador de DivisionCero
+  version: 'v1',
+  keyId: generateUUID(),
+  hash: sha256(secretKey + salt),
+  permissions: ['api:read', 'webhooks:write'],
+  expiresAt: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000),
+  ipWhitelist: ['192.168.1.0/24'],
+  rateLimit: {
+    requests: 1000,
+    window: 3600  // por hora
+  }
+};
+
+// Validación de API Key
+async function validateApiKey(apiKey) {
+  const keyData = await apiKeyService.getByKey(apiKey);
+  
+  if (!keyData || keyData.expiresAt < new Date()) {
+    throw new UnauthorizedError('API Key inválida o expirada');
+  }
+  
+  if (!isIpAllowed(request.ip, keyData.ipWhitelist)) {
+    throw new ForbiddenError('IP no autorizada');
+  }
+  
+  await rateLimiter.checkLimit(apiKey, keyData.rateLimit);
+  return keyData;
+}
+```
+
+### Controles de Seguridad en Runtime
+
+#### Rate Limiting y Throttling
+```javascript
+// Implementación de rate limiting multinivel
+const rateLimitConfig = {
+  global: {
+    windowMs: 15 * 60 * 1000,  // 15 minutos
+    max: 1000,                 // 1000 requests por ventana
+    message: 'Demasiadas solicitudes globales'
+  },
+  perUser: {
+    windowMs: 60 * 1000,       // 1 minuto
+    max: 100,                  // 100 requests por usuario por minuto
+    keyGenerator: (req) => req.user.id
+  },
+  perEndpoint: {
+    '/api/v1/auth/login': { max: 5, windowMs: 15 * 60 * 1000 },
+    '/api/v1/users': { max: 50, windowMs: 60 * 1000 },
+    '/api/v1/orders': { max: 200, windowMs: 60 * 1000 }
+  }
+};
+```
+
+#### Validación y Sanitización de Input
+```javascript
+// ✅ Validación robusta con esquemas
+const userCreateSchema = {
+  type: 'object',
+  required: ['email', 'name'],
+  properties: {
+    email: {
+      type: 'string',
+      format: 'email',
+      maxLength: 255
+    },
+    name: {
+      type: 'string',
+      minLength: 2,
+      maxLength: 100,
+      pattern: '^[a-zA-Z\\s]+$'
+    },
+    age: {
+      type: 'integer',
+      minimum: 13,
+      maximum: 120
+    }
+  },
+  additionalProperties: false
+};
+
+async function createUser(req, res) {
+  // Validar esquema
+  const validation = validate(req.body, userCreateSchema);
+  if (!validation.valid) {
+    return res.status(400).json({
+      error: 'Datos inválidos',
+      details: validation.errors
+    });
+  }
+  
+  // Sanitizar datos
+  const sanitizedData = {
+    email: validator.normalizeEmail(req.body.email),
+    name: validator.escape(req.body.name.trim()),
+    age: parseInt(req.body.age, 10)
+  };
+  
+  const user = await userService.create(sanitizedData);
+  res.status(201).json(user);
+}
+```
+
+### Seguridad en Comunicaciones
+
+#### Configuración TLS/SSL
+```nginx
+# Configuración de proxy para API Gateway
+server {
+    listen 443 ssl http2;
+    server_name api.divisioncero.com;
+    
+    # Certificados SSL
+    ssl_certificate /etc/ssl/certs/api.divisioncero.com.crt;
+    ssl_certificate_key /etc/ssl/private/api.divisioncero.com.key;
+    
+    # Configuración TLS segura
+    ssl_protocols TLSv1.2 TLSv1.3;
+    ssl_ciphers ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-CHACHA20-POLY1305;
+    ssl_prefer_server_ciphers off;
+    
+    # Headers de seguridad
+    add_header Strict-Transport-Security "max-age=63072000; includeSubDomains; preload";
+    add_header X-Content-Type-Options nosniff;
+    add_header X-Frame-Options DENY;
+    add_header X-XSS-Protection "1; mode=block";
+    add_header Referrer-Policy "strict-origin-when-cross-origin";
+}
+```
+
+#### Implementación de CORS Seguro
+```javascript
+const corsConfig = {
+  origin: function (origin, callback) {
+    // Lista blanca de dominios permitidos
+    const allowedOrigins = [
+      'https://app.divisioncero.com',
+      'https://admin.divisioncero.com',
+      /https:\/\/.*\.divisioncero\.com$/  // Subdominios
+    ];
+    
+    if (!origin || allowedOrigins.some(allowed => 
+      typeof allowed === 'string' ? allowed === origin : allowed.test(origin)
+    )) {
+      callback(null, true);
+    } else {
+      callback(new Error('No permitido por CORS'));
+    }
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+  allowedHeaders: [
+    'Authorization',
+    'Content-Type',
+    'X-Requested-With',
+    'X-API-Version'
+  ],
+  exposedHeaders: ['X-RateLimit-Remaining', 'X-RateLimit-Reset'],
+  maxAge: 86400  // 24 horas
+};
+```
+
+### Manejo de Errores y Logging
+
+#### Respuestas de Error Consistentes
+```javascript
+// ✅ Estructura estándar de errores
+const errorResponse = {
+  error: {
+    code: 'VALIDATION_FAILED',
+    message: 'Los datos proporcionados no son válidos',
+    details: [
+      {
+        field: 'email',
+        message: 'Formato de email inválido'
+      }
+    ],
+    timestamp: '2025-01-20T10:30:00Z',
+    requestId: 'req_1234567890'
+  }
+};
+
+// ❌ Evitar exposición de información interna
+const badErrorResponse = {
+  error: 'Database connection failed: Connection timeout to postgres://user:pass@db:5432/dbname',
+  stack: 'Error: Connection timeout\n    at Connection.connect (/app/db.js:45:12)'
+};
+```
+
+#### Logging de Seguridad
+```javascript
+const securityLogger = winston.createLogger({
+  level: 'info',
+  format: winston.format.combine(
+    winston.format.timestamp(),
+    winston.format.json()
+  ),
+  transports: [
+    new winston.transports.File({ filename: 'security.log' }),
+    new winston.transports.Console()
+  ]
+});
+
+// Eventos a registrar
+function logSecurityEvent(eventType, details) {
+  securityLogger.info({
+    eventType,
+    userId: details.userId,
+    ip: details.ip,
+    userAgent: details.userAgent,
+    endpoint: details.endpoint,
+    timestamp: new Date().toISOString(),
+    ...details
+  });
+}
+
+// Ejemplos de uso
+logSecurityEvent('AUTH_FAILURE', {
+  userId: 'user123',
+  ip: '192.168.1.100',
+  reason: 'Invalid credentials'
+});
+
+logSecurityEvent('RATE_LIMIT_EXCEEDED', {
+  apiKey: 'dzc_v1_abc123',
+  ip: '10.0.0.50',
+  endpoint: '/api/v1/users'
+});
+```
+
+### Testing de Seguridad para APIs
+
+#### Pruebas Automatizadas DAST
+```javascript
+// Configuración de ZAP para testing automatizado
+const zapConfig = {
+  baseUrl: 'https://api-staging.divisioncero.com',
+  authentication: {
+    type: 'bearer',
+    token: process.env.TEST_API_TOKEN
+  },
+  scanPolicies: [
+    'API-scan-policy',
+    'SQL-injection',
+    'XSS-reflected',
+    'Authentication-bypass'
+  ],
+  excludeUrls: [
+    '/api/v1/health',      // Health checks
+    '/api/v1/metrics'      // Monitoring endpoints
+  ]
+};
+
+// Script de testing
+async function runApiSecurityTests() {
+  const scanner = new ZapApiScanner(zapConfig);
+  
+  // Escaneo pasivo
+  await scanner.spider('/api/v1');
+  
+  // Escaneo activo
+  const results = await scanner.activeScan();
+  
+  // Filtrar y reportar hallazgos críticos
+  const criticalFindings = results.filter(
+    finding => finding.risk === 'High' || finding.risk === 'Critical'
+  );
+  
+  if (criticalFindings.length > 0) {
+    throw new Error(`${criticalFindings.length} vulnerabilidades críticas encontradas`);
+  }
+}
+```
+
+### Integración con Servicios Externos
+
+#### Configuración Segura de Webhooks
+```javascript
+// Validación de firma de webhook
+function validateWebhookSignature(payload, signature, secret) {
+  const expectedSignature = crypto
+    .createHmac('sha256', secret)
+    .update(payload, 'utf8')
+    .digest('hex');
+    
+  const providedSignature = signature.replace('sha256=', '');
+  
+  return crypto.timingSafeEqual(
+    Buffer.from(expectedSignature, 'hex'),
+    Buffer.from(providedSignature, 'hex')
+  );
+}
+
+// Endpoint de webhook seguro
+app.post('/webhooks/payment-provider', (req, res) => {
+  const signature = req.headers['x-webhook-signature'];
+  const payload = JSON.stringify(req.body);
+  
+  if (!validateWebhookSignature(payload, signature, webhookSecret)) {
+    return res.status(401).json({ error: 'Firma inválida' });
+  }
+  
+  // Procesar webhook de manera segura
+  processPaymentWebhook(req.body);
+  res.status(200).json({ received: true });
+});
+```
+
+#### Circuit Breaker para APIs Externas
+```javascript
+const CircuitBreaker = require('opossum');
+
+const options = {
+  timeout: 3000,                    // 3 segundos timeout
+  errorThresholdPercentage: 50,     // 50% error rate
+  resetTimeout: 30000,              // 30 segundos para reset
+  rollingCountTimeout: 10000,       // Ventana de 10 segundos
+  rollingCountBuckets: 10           // 10 buckets
+};
+
+const breaker = new CircuitBreaker(callExternalAPI, options);
+
+// Fallback cuando el circuit está abierto
+breaker.fallback(() => ({ 
+  error: 'Servicio externo no disponible',
+  useCache: true 
+}));
+
+// Monitoring de eventos
+breaker.on('open', () => {
+  logger.warn('Circuit breaker opened for external API');
+});
+
+breaker.on('halfOpen', () => {
+  logger.info('Circuit breaker half-open, testing external API');
+});
+```
+
+## 👥 Roles y Responsabilidades
+
+- **API Architects:** Diseñar arquitectura segura y definir estándares
+- **Backend Developers:** Implementar APIs siguiendo guías de seguridad
+- **Frontend Developers:** Consumir APIs de manera segura
+- **DevOps Engineers:** Configurar infraestructura segura para APIs
+- **Security Engineers:** Revisar diseños y configurar herramientas de testing
+- **QA Engineers:** Ejecutar pruebas de seguridad automatizadas
+- **Product Owners:** Definir requisitos de seguridad para nuevas APIs
+
+## 📊 Cumplimiento y Medición
+
+### Métricas de Seguridad API
+- Porcentaje de APIs con autenticación implementada
+- Tiempo promedio de respuesta vs. overhead de seguridad
+- Número de intentos de acceso no autorizado por API
+- Cobertura de pruebas de seguridad automatizadas
+- Porcentaje de APIs que cumplen estándares de rate limiting
+
+### Auditorías Regulares
+- Revisión mensual de logs de seguridad de APIs
+- Penetration testing trimestral de APIs públicas
+- Auditoría semestral de configuraciones de seguridad
+- Evaluación anual de cumplimiento de estándares industriales
+
+## 🚨 Incumplimiento
+
+El incumplimiento de estas guías puede resultar en:
+- Bloqueo de deployment de APIs que no cumplan criterios mínimos
+- Revisión de seguridad obligatoria antes de publicación
+- Remediación inmediata de vulnerabilidades críticas detectadas
+- Reentrenamiento en desarrollo seguro de APIs
+- Escalamiento a CISO para violaciones repetidas
+
+## 📖 Referencias
+
+- OWASP API Security Top 10
+- NIST SP 800-204 Security Strategies for Microservices
+- RFC 6749 - OAuth 2.0 Authorization Framework
+- RFC 7519 - JSON Web Token (JWT)
+- OpenAPI Specification 3.0+ Security Guidelines
+- REST Security Cheat Sheet - OWASP
+- GraphQL Security Best Practices

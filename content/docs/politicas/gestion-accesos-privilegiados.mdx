@@ -1,0 +1,266 @@
+---
+title: Gestión de Accesos Privilegiados (PAM)
+description: Controles para proteger cuentas con permisos elevados.
+---
+
+## 📋 Información General
+
+**Documento:** Gestión de Accesos Privilegiados (PAM)  
+**Versión:** 1.0.0  
+**Fecha:** Enero 2025  
+**Clasificación:** Confidencial  
+**Audiencia:** Administradores de sistemas, DevOps, Arquitectos de seguridad, CISO
+
+## 🎯 Propósito
+
+Establecer controles rigurosos para la gestión, monitoreo y protección de cuentas y accesos privilegiados en DivisionCero, minimizando el riesgo de compromiso de sistemas críticos, escalación de privilegios no autorizada y movimiento lateral de atacantes en la infraestructura tecnológica, mediante la implementación de principios de Zero Trust y arquitectura de seguridad defensiva en profundidad.
+
+## 🏢 Alcance
+
+Esta política aplica a:
+- Cuentas administrativas locales y de dominio (Windows/Linux/macOS)
+- Accesos privilegiados a servicios cloud (AWS, Azure, GCP)
+- Cuentas de servicio y aplicaciones con permisos elevados  
+- Acceso administrativo a bases de datos (SQL Server, MySQL, MongoDB)
+- Privilegios en herramientas de DevOps (Jenkins, GitLab, Terraform)
+- Consolas de administración de seguridad (SIEM, EDR, firewalls)
+- Accesos de emergencia "break-glass" para contingencias
+
+## 📚 Definiciones
+
+- **Cuenta Privilegiada:** Usuario o servicio con permisos administrativos o de configuración
+- **PAM (Privileged Access Management):** Solución tecnológica para gestionar accesos privilegiados
+- **Break-Glass Access:** Acceso de emergencia para situaciones críticas
+- **Session Recording:** Grabación completa de sesiones administrativas
+- **Password Vaulting:** Almacenamiento seguro y rotación automática de credenciales
+- **Just-in-Time (JIT):** Acceso privilegiado temporal con expiración automática
+- **Bastión Host:** Servidor fortificado que actúa como punto de acceso controlado
+
+## 🛡️ Política
+
+### Principios Fundamentales de PAM
+
+#### Zero Standing Privileges
+- Eliminación de accesos privilegiados permanentes para usuarios regulares
+- Implementación de elevación de privilegios bajo demanda (JIT)
+- Expiración automática de privilegios después de uso autorizado
+- Validación continua de necesidad de acceso privilegiado
+
+#### Principle of Least Privilege
+- Otorgamiento del mínimo privilegio necesario para tareas específicas
+- Segmentación granular de permisos por sistema y función
+- Revisión periódica y reducción progresiva de privilegios acumulados
+- Separación de funciones entre roles administrativos
+
+#### Assume Breach Mentality
+- Monitoreo continuo de actividades privilegiadas
+- Detección de comportamientos anómalos en cuentas administrativas
+- Controles de contención para limitar impacto de compromiso
+- Respuesta automatizada a indicadores de compromiso
+
+### Gestión de Cuentas Privilegiadas
+
+#### Inventario y Clasificación
+
+**1. Registro de Cuentas Privilegiadas**
+- Inventario completo actualizado mensualmente
+- Clasificación por nivel de criticidad: Crítico, Alto, Medio
+- Documentación de propósito y justificación de negocio
+- Identificación de propietario y custodio responsable
+
+**2. Categorización de Privilegios**
+- **Nivel 0 (Domain/Enterprise Admin):** Control completo del dominio
+- **Nivel 1 (Server Admin):** Administración de servidores específicos  
+- **Nivel 2 (Application Admin):** Gestión de aplicaciones y servicios
+- **Nivel 3 (Database Admin):** Administración de bases de datos
+- **Nivel 4 (Security Admin):** Gestión de herramientas de seguridad
+
+#### Aprovisionamiento de Cuentas Privilegiadas
+
+**3. Proceso de Solicitud**
+- Solicitud formal con justificación de negocio detallada
+- Aprobación de propietario de datos y supervisor directo
+- Validación adicional del CISO para privilegios Nivel 0-1
+- Documentación de fecha de expiración y revisión programada
+
+**4. Creación de Cuentas Administrativas**
+- Nomenclatura estandarizada: adm-[nombre].[sistema]
+- Cuentas separadas de identidades de usuario regular
+- Configuración en UO (Organizational Unit) específica para administradores
+- Aplicación automática de políticas de seguridad reforzadas
+
+**5. Configuración de Credenciales**
+- Contraseñas de alta complejidad (mínimo 16 caracteres)
+- Rotación automática cada 30 días para cuentas de servicio
+- Almacenamiento en bóveda de contraseñas (Azure Key Vault/CyberArk)
+- Prohibición de contraseñas por defecto o predecibles
+
+### Gestión de Accesos y Sesiones
+
+#### Autenticación Reforzada
+
+**6. Multi-Factor Authentication (MFA)**
+- MFA obligatorio para todas las cuentas privilegiadas
+- Uso preferente de tokens de hardware FIDO2/YubiKey
+- Aplicaciones de autenticación como respaldo (Microsoft Authenticator)
+- Prohibición de SMS como factor de autenticación para accesos críticos
+
+**7. Autenticación Condicional**
+- Restricciones geográficas para accesos administrativos
+- Validación de dispositivos corporativos gestionados
+- Horarios laborales restringidos para operaciones no críticas
+- Análisis de riesgo basado en comportamiento histórico
+
+#### Control de Sesiones Privilegiadas
+
+**8. Session Management**
+- Todas las sesiones privilegiadas grabadas íntegramente
+- Timeout automático después de 30 minutos de inactividad
+- Sesiones concurrentes limitadas por cuenta (máximo 2)
+- Re-autenticación requerida cada 4 horas para sesiones prolongadas
+
+**9. Bastión Hosts y Jump Servers**
+- Acceso a servidores críticos únicamente através de bastión hosts
+- Bastiones con hardening extremo y monitoreo continuo
+- Segregación de red con políticas de firewall restrictivas
+- Registro detallado de comandos ejecutados y archivos transferidos
+
+**10. Privileged Session Monitoring**
+- Monitoreo en tiempo real de actividades administrativas
+- Alertas automáticas para comandos de alto riesgo
+- Análisis de patrones para detectar actividad maliciosa
+- Integración con SIEM para correlación de eventos
+
+### Gestión de Cuentas de Servicio
+
+#### Identificación y Protección
+
+**11. Inventario de Service Accounts**
+- Catálogo completo de cuentas de servicio y su propósito
+- Identificación de servicios que las utilizan
+- Documentación de dependencias y criticidad de negocio
+- Propietario designado para cada cuenta de servicio
+
+**12. Hardening de Service Accounts**
+- Contraseñas complejas con rotación automática trimestral
+- Principio de menor privilegio aplicado estrictamente
+- Restricción de inicio de sesión interactivo
+- Monitoreo de uso para detectar actividad anómala
+
+#### Automatización de Gestión
+
+**13. Password Rotation**
+- Rotación automática de contraseñas de servicio sin impacto operacional
+- Sincronización con aplicaciones dependientes vía API
+- Notificación a propietarios antes de rotación programada
+- Rollback automático en caso de falla en aplicaciones
+
+**14. Service Account Monitoring**
+- Alertas por uso fuera de horarios normales de operación
+- Detección de intentos de autenticación desde ubicaciones no autorizadas
+- Monitoreo de escalación de privilegios no programada
+- Auditoría de cambios en permisos de cuentas de servicio
+
+### Accesos de Emergencia (Break-Glass)
+
+#### Procedimientos de Emergencia
+
+**15. Break-Glass Accounts**
+- Cuentas de emergencia para acceso cuando sistemas PAM no disponibles
+- Credenciales almacenadas en sobre sellado en caja fuerte física
+- Activación requiere autorización dual (CISO + CTO)
+- Rotación inmediata de credenciales post-uso
+
+**16. Emergency Access Procedures**
+- Documentación clara de escenarios que justifican break-glass
+- Proceso de escalación con cadena de aprobación definida
+- Activación debe ser documentada con timestamp y justificación
+- Auditoría post-incidente obligatoria dentro de 24 horas
+
+### Monitoreo y Auditoría
+
+#### Logging y Alerting
+
+**17. Comprehensive Logging**
+- Log de 100% de actividades en cuentas privilegiadas
+- Retención de logs por mínimo 12 meses
+- Respaldo de logs en almacenamiento inmutable
+- Integridad protegida con firmas digitales
+
+**18. Real-time Alerting**
+- Alertas inmediatas para actividades fuera de horario normal
+- Notificación de comandos de alto riesgo (formato, eliminación masiva)
+- Escalación automática para múltiples fallos de autenticación
+- Integración con plataforma SOAR para respuesta automatizada
+
+#### Reporting y Auditorías
+
+**19. Dashboards y Métricas**
+- Dashboard ejecutivo con KPIs de gestión PAM
+- Reportes automáticos mensuales de uso de privilegios
+- Métricas de compliance y adherencia a políticas
+- Tendencias de actividad privilegiada y detección de anomalías
+
+**20. Auditorías Periódicas**
+- Revisión trimestral de cuentas privilegiadas activas
+- Validación semestral de necesidad de privilegios por rol
+- Auditoría anual completa de implementación PAM
+- Certificación de accesos por propietarios de datos
+
+## 👥 Roles y Responsabilidades
+
+- **CISO:** Aprobar política PAM, supervisar implementación, autorizar break-glass crítico
+- **Administradores PAM:** Gestionar solución técnica, monitorear sesiones, mantener inventarios
+- **Propietarios de Sistemas:** Justificar necesidad de privilegios, autorizar accesos, revisar actividades
+- **Usuarios Privilegiados:** Cumplir procedimientos, proteger credenciales, reportar incidentes
+- **SOC Team:** Monitorear alertas, investigar anomalías, responder a incidentes privilegiados
+- **Auditoría Interna:** Validar cumplimiento, revisar controles, reportar hallazgos
+
+## 📊 Cumplimiento y Medición
+
+**KPIs Operacionales:**
+- Tiempo promedio de aprovisionamiento de acceso privilegiado (menos de 4 horas)
+- Porcentaje de cuentas privilegiadas con MFA habilitado (100%)
+- Cobertura de grabación de sesiones administrativas (100%)
+- Tiempo de respuesta a alertas de actividad sospechosa (menos de 15 minutos)
+
+**Métricas de Seguridad:**
+- Número de cuentas privilegiadas huérfanas (objetivo: 0)
+- Porcentaje de rotación exitosa de contraseñas (>99%)
+- Incidentes de seguridad relacionados con privilegios (tendencia decreciente)
+- Cumplimiento en auditorías de revisión de accesos (>95%)
+
+**Indicadores de Riesgo:**
+- Cuentas con privilegios excesivos identificadas en auditorías
+- Sesiones privilegiadas sin justificación de negocio documentada
+- Accesos privilegiados desde ubicaciones no autorizadas
+- Actividad administrativa fuera de horarios de operación sin autorización
+
+## 🚨 Incumplimiento
+
+**Violaciones Críticas:**
+- Uso compartido de credenciales privilegiadas
+- Otorgamiento de privilegios sin autorización formal
+- Deshabilitación de controles de monitoreo PAM
+- Uso no autorizado de cuentas break-glass
+
+**Violaciones Graves:**
+- Acceso privilegiado sin MFA habilitado
+- Sesiones administrativas no grabadas
+- Contraseñas privilegiadas no rotadas según política
+- Actividad privilegiada no documentada o justificada
+
+**Consecuencias:**
+- Revocación inmediata de privilegios administrativos
+- Investigación formal de seguridad con equipo legal
+- Suspensión temporal o terminación según gravedad
+- Reporte obligatorio a alta dirección y auditores externos
+
+## 📖 Referencias
+
+- ISO 27001:2022 - A.9.2 Gestión de acceso privilegiado
+- NIST SP 800-53 - AC-6 Least Privilege, AC-7 Unsuccessful Logon Attempts
+- CIS Controls v8 - Control 5: Account Management
+- SANS Critical Security Controls - Privileged Account Management
+- Zero Trust Architecture - NIST SP 800-207
+- PCI DSS Requirement 7: Restrict access by business need to know

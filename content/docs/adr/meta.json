@@ -1,0 +1,9 @@
+{
+  "title": "ADR - Análisis y Respuesta",
+  "description": "Detección y respuesta a incidentes de seguridad",
+  "icon": "Search",
+  "root": true,
+  "pages": [
+    "index"
+  ]
+}

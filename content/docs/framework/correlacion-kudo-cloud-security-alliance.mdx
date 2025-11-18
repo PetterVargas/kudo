@@ -1,0 +1,103 @@
+---
+title: Kudo y CSA
+description: Referencia con otros frameworks como Cloud Security Alliance
+icon: Rocket
+---
+
+import { Building2, Shield, Repeat, Server, Users, KeyRound, Activity, DatabaseZap } from 'lucide-react';
+
+
+## 📝 Correlación Kudo y CSA
+
+Los dominios son los componentes centrales del marco Kudo, correlacionados con los dominios de Cloud Security Alliance.
+
+<Mermaid
+  chart="
+graph LR
+KUDO[Kudo]
+DOM_1[**COR - Coherencia Organizacional**
+*GRC > A&A*]
+DOM_2[**CIP - Ciberseguridad en Identidad y Puntos Finales**
+*IAM > UEM*]
+DOM_3[**CNB - Ciberseguridad en Nube**
+*DCS > IVS > CEK*]
+DOM_4[**CAP - Ciberseguridad en Aplicaciones**
+*AIS > IPY*]
+DOM_5[**CCN - Continuidad y Cambios del Negocio**
+*BCR > CCC*]
+DOM_6[**THP - Ciberseguridad en Talento Humano y Proveedores**
+*HRS > STA*]
+DOM_7[**DIA - Ciberseguridad en Datos e Inteligencia Artificial**
+*DSP > MDS*]
+DOM_8[**ADR - Análisis, Detección y Respuesta de Ciberseguridad**
+*TVM > LOG > SEF*]
+
+DOM1[A&A - Audit and Assurance]
+DOM2[AIS – Application and Interface Security]
+DOM3[BCR – Business Continuity and Operational Resilience]
+DOM4[CCC – Change Control and Configuration Management]
+DOM5[CEK – Cryptography, Encryption, and Key Management]
+DOM6[STA - Supply Chain Mgmt, Transparency & Accountability]
+DOM7[DCS – Datacenter Security]
+DOM8[DSP – Data Security and Privacy Lifecycle Management]
+DOM9[GRC – Governance, Risk, and Compliance]
+DOM10[HRS – Human Resources Security]
+DOM11[IAM – Identity and Access Management]
+DOM12[IPY – Interoperability and Portability]
+DOM13[IVS – Infrastructure and Virtualization Security]
+DOM14[LOG – Logging and Monitoring]
+DOM15[SEF – Security Incident Management, E-Discovery & Forensics]
+DOM16[TVM – Threat and Vulnerability Management]
+DOM17[UEM – Universal Endpoint Management]
+DOM18[MDS – Model Security]
+
+CSA[Cloud Security Alliance]
+
+KUDO --> DOM_1
+KUDO --> DOM_2
+KUDO --> DOM_3
+KUDO --> DOM_4
+KUDO --> DOM_5
+KUDO --> DOM_6
+KUDO --> DOM_7
+KUDO --> DOM_8
+
+DOM_1 --> DOM1
+DOM_1 --> DOM9
+DOM_2 --> DOM11
+DOM_2 --> DOM17
+DOM_3 --> DOM7
+DOM_3 --> DOM13
+DOM_3 --> DOM5
+DOM_4 --> DOM2
+DOM_4 --> DOM12
+DOM_5 --> DOM3
+DOM_5 --> DOM4
+DOM_6 --> DOM10
+DOM_6 --> DOM6
+DOM_7 --> DOM8
+DOM_7 --> DOM18
+DOM_8 --> DOM16
+DOM_8 --> DOM14
+DOM_8 --> DOM15
+
+DOM1 --> CSA
+DOM2 --> CSA
+DOM3 --> CSA
+DOM4 --> CSA
+DOM5 --> CSA
+DOM6 --> CSA
+DOM7 --> CSA
+DOM8 --> CSA
+DOM9 --> CSA
+DOM10 --> CSA
+DOM11 --> CSA
+DOM12 --> CSA
+DOM13 --> CSA
+DOM14 --> CSA
+DOM15 --> CSA
+DOM16 --> CSA
+DOM17 --> CSA
+DOM18 --> CSA"
+/>
+

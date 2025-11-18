@@ -1,0 +1,9 @@
+{
+  "title": "THP - Talento Humano y Proveedores",
+  "description": "Gestión de personas y terceros",
+  "icon": "Users",
+  "root": true,
+  "pages": [
+    "index"
+  ]
+}
