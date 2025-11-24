@@ -39,7 +39,7 @@ divisioncero-docs/
 │       ├── cap/                 # Dominio: Ciberseguridad en Aplicaciones
 │       ├── ccn/                 # Dominio: Continuidad y Cambios del Negocio
 │       ├── cip/                 # Dominio: Identidad y Puntos Finales
-│       ├── cnb/                 # Dominio: Ciberseguridad en Nube
+│       ├── cif/                 # Dominio: Ciberseguridad en Infraestructura
 │       ├── cor/                 # Dominio: Coherencia Organizacional
 │       ├── dia/                 # Dominio: Datos e Inteligencia Artificial
 │       ├── thp/                 # Dominio: Talento Humano y Proveedores
@@ -49,7 +49,7 @@ divisioncero-docs/
 │       │   ├── cap-ciberseguridad-en-aplicaciones/
 │       │   ├── ccn-continuidad-y-cambios-del-negocio/
 │       │   ├── cip-ciberseguridad-en-identidad-y-puntos-finales/
-│       │   ├── cnb-ciberseguridad-en-nube/
+│       │   ├── cif-ciberseguridad-en-infraestructura/
 │       │   ├── cor-coherencia-organizacional/
 │       │   ├── dia-ciberseguridad-en-datos-e-inteligencia-artificial/
 │       │   ├── thp-ciberseguridad-en-talento-humano-y-proveedores/
@@ -79,13 +79,13 @@ divisioncero-docs/
 Kudo está organizado en 8 dominios de seguridad que cubren todos los aspectos de la ciberseguridad organizacional:
 
 1. **COR - Coherencia Organizacional**: Gobernanza y estructura organizacional
-2. **CIP - Identidad y Puntos Finales**: Gestión de identidades y dispositivos
-3. **CNB - Ciberseguridad en Nube**: Seguridad en infraestructura cloud
+2. **CIP - Ciberseguridad en Identidad y Puntos Finales**: Gestión de identidades y dispositivos
+3. **CIF - Ciberseguridad en Infraestructura**: Seguridad en infraestructura y redes
 4. **CAP - Ciberseguridad en Aplicaciones**: Desarrollo seguro y AppSec
-5. **CCN - Continuidad del Negocio**: Gestión de cambios y continuidad
-6. **ADR - Análisis y Respuesta**: Detección y respuesta a incidentes
-7. **THP - Talento Humano**: Gestión de personas y proveedores
-8. **DIA - Datos e IA**: Protección de datos e inteligencia artificial
+5. **CCN - Continuidad y Cambios del Negocio**: Gestión de cambios y continuidad
+6. **ADR - Análisis, Detección y Respuesta de Ciberseguridad**: Detección y respuesta a incidentes
+7. **THP - Ciberseguridad en Talento Humano y Proveedores**: Gestión de personas y proveedores
+8. **DIA - Ciberseguridad en Datos e Inteligencia Artificial**: Protección de datos e inteligencia artificial
 
 ### Contenido
 
@@ -165,7 +165,7 @@ Cada política sigue la estructura:
 4. Validar con desarrollo local: `pnpm run dev`
 
 #### Agregar Controles por Dominio (Baselines)
-1. Para controles resumidos: navegar a `/content/docs/[dominio]/` (adr, cap, ccn, cip, cnb, cor, dia, thp)
+1. Para controles resumidos: navegar a `/content/docs/[dominio]/` (adr, cap, ccn, cip, cif, cor, dia, thp)
 2. Para documentación detallada: navegar a `/content/docs/framework/[dominio-nombre-completo]/`
 3. Crear/editar archivos de controles en formato MDX
 4. Actualizar `meta.json` del dominio si es necesario

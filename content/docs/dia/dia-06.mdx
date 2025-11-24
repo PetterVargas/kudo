@@ -1,0 +1,208 @@
+---
+title: DIA-06 - Ubicación de Información y Datos
+description: Control de residencia de datos y cumplimiento de requisitos de localización geográfica
+---
+
+## 🎯 Objetivo del Control
+
+Garantizar el conocimiento, control y cumplimiento de requisitos de residencia y localización de datos, asegurando que los datos se almacenen y procesen en jurisdicciones permitidas según regulaciones aplicables, contratos con clientes y políticas corporativas.
+
+## 📋 Descripción
+
+Este control aborda:
+- Mapeo de ubicación física y lógica de datos
+- Cumplimiento de data residency requirements
+- Gestión de transferencias internacionales de datos
+- Mecanismos de protección para transferencias (SCC, BCR, Adequacy Decisions)
+- Soberanía de datos y requisitos de industrias reguladas
+- Latencia y rendimiento vs compliance
+
+## 🛡️ Controles Requeridos
+
+### Inventario de Ubicaciones
+
+#### Mapeo Geográfico de Datos
+- **Clasificación por Ubicación:**
+  - Región geográfica del datacenter/cloud region
+  - País de almacenamiento primario
+  - Países de réplicas y backups
+  - Países donde transitan los datos (routing)
+  - Ubicación de proveedores de servicios
+- **Tipos de Ubicación:**
+  - Producción (primary storage)
+  - Disaster Recovery (DR site)
+  - Backups (backup vaults)
+  - Archivos (cold storage)
+  - Cache y CDN (content delivery)
+  - Logging y analytics
+
+#### Documentación de Flujos Transfronterizos
+- Origen y destino de transferencias
+- Volumen y frecuencia
+- Propósito de la transferencia
+- Mecanismo legal aplicado (SCC, BCR, Adequacy)
+- Fecha de implementación y revisión
+
+### Requisitos Regulatorios por Jurisdicción
+
+#### Unión Europea (GDPR)
+- **Transferencias dentro del EEE:**
+  - Libres sin restricciones adicionales
+- **Transferencias fuera del EEE:**
+  - Decisión de Adecuación (Adequacy Decision)
+  - Standard Contractual Clauses (SCC)
+  - Binding Corporate Rules (BCR)
+  - Derogaciones específicas (Art. 49)
+  - Evaluación de Impacto de Transferencia (TIA - Transfer Impact Assessment)
+- **Schrems II Considerations:**
+  - Evaluación de leyes de vigilancia del país destino
+  - Medidas suplementarias de protección
+  - Documentación de due diligence
+
+#### Países con Localización Obligatoria
+- **Rusia (Federal Law No. 242-FZ):**
+  - Datos personales de ciudadanos rusos deben almacenarse en Rusia
+  - Permitido almacenamiento adicional fuera de Rusia
+- **China (Cybersecurity Law, PIPL):**
+  - Operadores de infraestructura crítica: almacenamiento local
+  - Evaluación de seguridad para transferencias al extranjero
+  - Critical Information Infrastructure (CII) operators
+- **India (Draft Data Protection Bill):**
+  - Copia de datos personales sensibles en India
+  - Restricciones a transferencias internacionales
+- **Brasil (LGPD):**
+  - No requiere localización, pero transferencias requieren protección
+  - Standard Contractual Clauses o Adequacy
+
+#### Sectores Regulados
+- **Servicios Financieros:**
+  - MAS (Singapur): Notificación de almacenamiento offshore
+  - OCC (USA): Evaluación de riesgos de outsourcing
+  - PSD2 (UE): Datos de pagos en EEE
+- **Salud:**
+  - HIPAA (USA): Business Associate Agreements (BAA)
+  - PHI almacenado en USA o jurisdicciones con protección equivalente
+- **Gobierno:**
+  - FedRAMP (USA): Datos en datacenters USA
+  - Esquema Nacional de Seguridad (España): Datos críticos en territorio nacional
+
+### Mecanismos de Transferencia
+
+#### Standard Contractual Clauses (SCC)
+- **SCC 2021 (GDPR):**
+  - Módulo 1: Controller to Controller
+  - Módulo 2: Controller to Processor
+  - Módulo 3: Processor to Processor
+  - Módulo 4: Processor to Controller
+- **Requisitos:**
+  - Firma entre exportador e importador de datos
+  - Transfer Impact Assessment (TIA)
+  - Medidas técnicas y organizacionales suplementarias
+  - Revisión cada 12-24 meses
+
+#### Binding Corporate Rules (BCR)
+- Políticas corporativas vinculantes para grupo empresarial
+- Aprobación por Data Protection Authority
+- Mecanismos de enforcement y compliance
+- Derechos exigibles por titulares
+
+#### Data Processing Agreements (DPA)
+- Cláusulas de protección de datos con proveedores
+- Definición de roles (Controller/Processor)
+- Obligaciones de seguridad
+- Sub-procesadores y transferencias
+
+### Controles Técnicos de Residencia
+
+#### Configuración de Cloud Regions
+- **AWS:**
+  - Selección de regiones permitidas
+  - S3 bucket policies para restringir regiones
+  - AWS Organizations SCPs para bloquear regiones
+- **Azure:**
+  - Geo-pinning de recursos
+  - Azure Policy para cumplimiento de regiones
+  - Customer Lockbox para control de acceso
+- **Google Cloud:**
+  - Resource Location Restrictions
+  - Organization Policies
+  - VPC Service Controls
+
+#### Data Residency Enforcement
+- **Políticas Preventivas:**
+  - IAM policies para bloquear creación de recursos en regiones no permitidas
+  - Network controls (firewall, VPN) para limitar flujos
+  - Validation en CI/CD pipelines (Infrastructure as Code)
+- **Detección y Monitoreo:**
+  - Cloud Security Posture Management (CSPM)
+  - Alertas de recursos en regiones no conformes
+  - Auditoría continua de configuraciones
+- **Cifrado Específico por Región:**
+  - KMS keys regionales
+  - Customer-managed keys (BYOK - Bring Your Own Key)
+  - Key residency en jurisdicción requerida
+
+### Gestión de Excepciones
+
+- **Excepciones Temporales:**
+  - DR o incidentes que requieren failover a región alternativa
+  - Mantenimiento programado
+  - Limitaciones técnicas temporales
+- **Documentación:**
+  - Justificación de negocio o técnica
+  - Análisis de riesgo
+  - Aprobación de Data Protection Officer (DPO)
+  - Plan de remediación con fecha límite
+  - Comunicación a autoridades si es requerido
+
+## 📊 Métricas e Indicadores
+
+- Porcentaje de datos con ubicación documentada (objetivo: 100%)
+- Número de regiones/países donde residen datos
+- Transferencias internacionales con mecanismo legal implementado (objetivo: 100%)
+- Recursos en regiones no conformes detectados (objetivo: 0)
+- Tiempo promedio de corrección de recursos en regiones incorrectas
+- Auditorías de residencia de datos realizadas vs planificadas
+- Porcentaje de proveedores con DPA firmado (objetivo: 100%)
+- SCC/BCR con revisión actualizada (objetivo: 100% revisados anualmente)
+
+## 🔗 Herramientas Recomendadas
+
+- **Data Mapping:** OneTrust, BigID, Securiti.ai, Collibra
+- **Cloud Compliance:** CloudHealth, CloudCheckr, Prisma Cloud, Wiz
+- **CSPM:** Palo Alto Prisma Cloud, Wiz, Orca Security, Aqua Security
+- **DPA/SCC Management:** OneTrust Vendorpedia, Prevalent, SecurityScorecard
+- **Infrastructure as Code Scanning:** Checkov, Terraform Sentinel, CloudFormation Guard
+- **Multi-Cloud Management:** HashiCorp Terraform, Pulumi, CloudBolt
+
+## 📚 Referencias
+
+- [Política de Protección de Datos Personales](/docs/kudo/politicas/politica-proteccion-datos-personales)
+- [Política de Evaluación de Terceros](/docs/kudo/politicas/politica-evaluacion-terceros)
+- [Cláusulas de Seguridad en Contratos](/docs/kudo/politicas/clausulas-seguridad-contratos)
+- [DIA-01: Inventario de Datos](/docs/kudo/dia-ciberseguridad-en-datos-e-inteligencia-artificial/dia-01)
+- [CIF-01: Inventario de Servicios Cloud](/docs/kudo/cif-ciberseguridad-en-infraestructura/cif-01)
+- GDPR Chapter V - Transfers of personal data to third countries
+- GDPR Art. 44-50 - International transfers
+- ISO 27001:2022 - A.5.14
+- ISO 27701:2019 - 6.13 (Data transfers)
+- European Commission - Standard Contractual Clauses (2021)
+- EDPB Guidelines 2/2020 - Transfers under Article 46 GDPR
+
+## ✅ Checklist de Implementación
+
+- [ ] Inventario de todas las ubicaciones de datos (producción, DR, backups)
+- [ ] Mapeo de flujos de datos transfronterizos
+- [ ] Identificación de requisitos regulatorios aplicables por jurisdicción
+- [ ] Evaluación de países destino (Adequacy, leyes de vigilancia)
+- [ ] Implementación de Standard Contractual Clauses con proveedores
+- [ ] Transfer Impact Assessment (TIA) completado
+- [ ] Configuración de Cloud Regions permitidas
+- [ ] Políticas de IAM para bloquear regiones no permitidas
+- [ ] CSPM configurado con reglas de residencia de datos
+- [ ] KMS keys regionales configuradas
+- [ ] Documentación de mecanismos legales por transferencia
+- [ ] DPAs firmados con todos los procesadores de datos
+- [ ] Registro de excepciones de residencia
+- [ ] Auditoría técnica de ubicaciones reales vs documentadas
+- [ ] Capacitación a equipos de infraestructura y desarrollo

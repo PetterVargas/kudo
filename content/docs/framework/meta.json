@@ -6,19 +6,11 @@
   "pages": [
     "---Framework Kudo---",
     "index",
+    "dominios",
     "matriz-controles-nube-mcn",
     "responsabilidad-compartida",
-    "OSCAL",
-    "---Dominios y Controles---",
-    "cor-coherencia-organizacional",
-    "cip-ciberseguridad-en-identidad-y-puntos-finales",
-    "cnb-ciberseguridad-en-nube",
-    "cap-ciberseguridad-en-aplicaciones",
-    "ccn-continuidad-y-cambios-del-negocio",
-    "adr-analisis-deteccion-y-respuesta-de-ciberseguridad",
-    "thp-ciberseguridad-en-talento-humano-y-proveedores",
-    "dia-ciberseguridad-en-datos-e-inteligencia-artificial",
     "---Correlación---",
+    "OSCAL",
     "correlacion-kudo-iso-27001-2022",
     "correlacion-kudo-cloud-security-alliance"
   ]

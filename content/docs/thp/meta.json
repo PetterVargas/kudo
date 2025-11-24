@@ -4,6 +4,14 @@
   "icon": "Users",
   "root": true,
   "pages": [
-    "index"
+    "---Dominio THP---",
+    "index",
+    "---Controles THP---",
+    "thp-01",
+    "thp-02",
+    "thp-03",
+    "thp-04",
+    "---Herramientas THP---",
+    "herramientas"
   ]
 }

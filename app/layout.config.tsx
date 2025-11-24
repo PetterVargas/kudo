@@ -1,5 +1,5 @@
 import type { BaseLayoutProps } from 'fumadocs-ui/layouts/shared';
-import { BookIcon, FileTextIcon, UserIcon, LogInIcon, Building2Icon, ShieldCheckIcon, CloudIcon, CodeIcon, RefreshCwIcon, SearchIcon, UsersIcon, DatabaseIcon } from 'lucide-react';
+import { BookIcon, FileTextIcon, UserIcon, LogInIcon, Building2Icon, ShieldCheckIcon, CloudIcon, CodeIcon, RefreshCwIcon, SearchIcon, UsersIcon, DatabaseIcon, NewspaperIcon, ClipboardCheckIcon } from 'lucide-react';
 
 /**
  * Shared layout configurations
@@ -45,6 +45,12 @@ export const baseOptions: BaseLayoutProps = {
       secondary: false,
     },
     {
+      icon: <FileTextIcon />,
+      text: 'Políticas',
+      url: '/politicas',
+      secondary: false,
+    },
+    {
       type: 'menu',
       text: 'Dominios',
       items: [
@@ -56,15 +62,15 @@ export const baseOptions: BaseLayoutProps = {
         },
         {
           icon: <ShieldCheckIcon />,
-          text: 'CIP - Identidad y Puntos Finales',
+          text: 'CIP - Ciberseguridad en Identidad y Puntos Finales',
           description: 'Gestión de identidades y dispositivos',
           url: '/cip',
         },
         {
           icon: <CloudIcon />,
-          text: 'CNB - Ciberseguridad en Nube',
-          description: 'Seguridad en infraestructura cloud',
-          url: '/cnb',
+          text: 'CIF - Ciberseguridad en Infraestructura',
+          description: 'Seguridad en infraestructura y redes',
+          url: '/cif',
         },
         {
           icon: <CodeIcon />,
@@ -74,39 +80,45 @@ export const baseOptions: BaseLayoutProps = {
         },
         {
           icon: <RefreshCwIcon />,
-          text: 'CCN - Continuidad del Negocio',
+          text: 'CCN - Continuidad y Cambios del Negocio',
           description: 'Gestión de cambios y continuidad',
           url: '/ccn',
         },
         {
           icon: <SearchIcon />,
-          text: 'ADR - Análisis y Respuesta',
+          text: 'ADR - Análisis, Detección y Respuesta de Ciberseguridad',
           description: 'Detección y respuesta a incidentes',
           url: '/adr',
         },
         {
           icon: <UsersIcon />,
-          text: 'THP - Talento Humano',
+          text: 'THP - Ciberseguridad en Talento Humano y Proveedores',
           description: 'Gestión de personas y proveedores',
           url: '/thp',
         },
         {
           icon: <DatabaseIcon />,
-          text: 'DIA - Datos e IA',
+          text: 'DIA - Ciberseguridad en Datos e Inteligencia Artificial',
           description: 'Protección de datos e inteligencia artificial',
           url: '/dia',
         },
       ],
     },
     {
-      icon: <FileTextIcon />,
-      text: 'Políticas',
-      url: '/politicas',
+      icon: <ClipboardCheckIcon />,
+      text: 'Cuestionarios',
+      url: '/cuestionarios',
+      secondary: false,
+    },
+    {
+      icon: <NewspaperIcon />,
+      text: 'Blog',
+      url: '/blog',
       secondary: false,
     },
     {
       type: 'icon',
-      url: 'https://github.com/PetterVargas/divisioncero-docs',
+      url: 'https://github.com/PetterVargas/kudo',
       text: 'Github',
       icon: (
         <svg role="img" viewBox="0 0 24 24" fill="currentColor">

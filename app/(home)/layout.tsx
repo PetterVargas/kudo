@@ -127,8 +127,8 @@ function Footer() {
             <div className="flex flex-col gap-y-2.5">
               <h3 className="font-medium mb-4">Acerca de</h3>
               <ul className="space-y-2">
-                <li><a href="/" className="text-sm hover:underline">Documentación</a></li>
-                <li><a href="/framework" className="text-sm hover:underline">Framework Kudo</a></li>
+                <li><a href="https://divisioncero.com/herramientas?utm_source=kudo.divisioncero.com" className="text-sm hover:underline" target="_blank" rel="noopener noreferrer">Herramientas</a></li>
+                <li><a href="https://docs.divisioncero.com?utm_source=kudo.divisioncero.com" className="text-sm hover:underline" target="_blank" rel="noopener noreferrer">Documentación</a></li>
                 <li><a href="/politicas" className="text-sm hover:underline">Políticas</a></li>
               </ul>
             </div>
@@ -139,7 +139,7 @@ function Footer() {
               <ul className="space-y-2">
                 <li><a href="https://divisioncero.com/cursos?utm_source=kudo.divisioncero.com" className="text-sm hover:underline" target="_blank" rel="noopener noreferrer">CyberAcademy</a></li>
                 <li><a href="https://divisioncero.com/home/empresas?utm_source=kudo.divisioncero.com" className="text-sm hover:underline" target="_blank" rel="noopener noreferrer">Ciberseguridad Empresarial</a></li>
-                <li><a href="/framework" className="text-sm hover:underline">Framework</a></li>
+                <li><a href="/framework" className="text-sm hover:underline">Framework Kudo</a></li>
               </ul>
             </div>
 

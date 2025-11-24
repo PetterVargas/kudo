@@ -4,6 +4,13 @@
   "icon": "RefreshCw",
   "root": true,
   "pages": [
-    "index"
+    "---Dominio CCN---",
+    "index",
+    "---Controles CCN---",
+    "ccn-01",
+    "ccn-02",
+    "ccn-03",
+    "---Herramientas CCN---",
+    "herramientas"
   ]
 }

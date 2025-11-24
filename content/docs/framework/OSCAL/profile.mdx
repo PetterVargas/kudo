@@ -60,7 +60,7 @@ quadrant-chart
   - **Parámetro**: Matriz RACI actualizada trimestralmente
   - **Customización**: Roles específicos para startup scaling
 
-### ADR - Análisis, Detección y Respuesta [CRÍTICO]
+### ADR - Análisis, Detección y Respuesta de Ciberseguridad [CRÍTICO]
 **Nivel de Implementación**: Alto (90% controles)  
 **Justificación**: Protección 24/7 esencial para SaaS platform
 
@@ -121,24 +121,24 @@ quadrant-chart
   - **Justificación**: Cloud-native, no aplica físico
   - **Alternativa**: Multi-cloud strategy (2025)
 
-### CNB - Ciberseguridad en Nube [ALTO]
+### CIF - Ciberseguridad en Infraestructura [ALTO]
 **Nivel de Implementación**: Alto (80% controles)  
 **Justificación**: Infraestructura crítica para operaciones
 
 #### Controles Incluidos:
-- ✅ **CNB-001**: Hardening de Sistemas
+- ✅ **CIF-001**: Hardening de Sistemas
   - **Parámetro**: CIS Benchmarks Level 1
   - **Customización**: Container-focused hardening
   
-- ✅ **CNB-002**: Gestión de Vulnerabilidades
+- ✅ **CIF-002**: Gestión de Vulnerabilidades
   - **Parámetro**: Scan diario, remediation < 7 días critical
   - **Customización**: Automated patching para non-critical
 
-- ✅ **CNB-003**: Network Segmentation
+- ✅ **CIF-003**: Network Segmentation
   - **Parámetro**: Zero-trust micro-segmentation
   - **Customización**: Kubernetes network policies
 
-### CIP - Identidad y Puntos Finales [CRÍTICO]
+### CIP - Ciberseguridad en Identidad y Puntos Finales [CRÍTICO]
 **Nivel de Implementación**: Completo (95% controles)  
 **Justificación**: Remote-first workforce, high identity risk
 
@@ -177,7 +177,7 @@ quadrant-chart
   - **Justificación**: No AI models críticos en producción
   - **Revisión**: Cuando implemente AI features
 
-### THP - Talento Humano y Proveedores [MEDIO]
+### THP - Ciberseguridad en Talento Humano y Proveedores [MEDIO]
 **Nivel de Implementación**: Medio (65% controles)  
 **Justificación**: Equipo pequeño, proveedores limitados
 
@@ -243,7 +243,7 @@ quadrant-chart
 
 ### Q2 2024: Controles Altos
 - 🔄 CAP-001, CAP-002, CAP-003
-- 🔄 CNB-001, CNB-002, CNB-003
+- 🔄 CIF-001, CIF-002, CIF-003
 - ⏳ CCN-001, CCN-002
 
 ### Q3 2024: Controles Medios

@@ -5,7 +5,7 @@ import { blog } from '@/lib/source';
 import { ViewOptions } from '@/components/page-actions';
 
 const owner = 'PetterVargas';
-const repo = 'divisioncero-docs';
+const repo = 'kudo';
 
 export default async function Page(props: {
   params: Promise<{ slug: string }>;

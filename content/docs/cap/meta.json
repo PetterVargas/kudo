@@ -4,6 +4,15 @@
   "icon": "Code",
   "root": true,
   "pages": [
-    "index"
+    "---Dominio CAP---",
+    "index",
+    "---Controles CAP---",
+    "cap-01",
+    "cap-02",
+    "cap-03",
+    "---Herramientas CAP---",
+    "herramientas",
+    "---Blog CAP---",
+    "blog"
   ]
 }

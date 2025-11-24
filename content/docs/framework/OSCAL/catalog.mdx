@@ -44,7 +44,7 @@ La organización debe establecer, documentar y mantener una estructura de gobern
 **Declaración del Control**:
 La organización debe establecer una política marco que defina el enfoque organizacional hacia la ciberseguridad y los principios fundamentales.
 
-## ADR - Análisis, Detección y Respuesta
+## ADR - Análisis, Detección y Respuesta de Ciberseguridad
 
 ### ADR-001: Monitoreo Continuo
 **Objetivo**: Implementar capacidades de detección 24/7  
@@ -115,9 +115,9 @@ La organización debe mantener planes de continuidad del negocio que incluyan co
 **Declaración del Control**:
 La organización debe implementar procesos de gestión de cambios que incluyan evaluación de impacto en seguridad.
 
-## CNB - Ciberseguridad en Nube
+## CIF - Ciberseguridad en Infraestructura
 
-### CNB-001: Hardening de Sistemas
+### CIF-001: Hardening de Sistemas
 **Objetivo**: Implementar configuraciones seguras  
 **Tipo**: Técnico  
 **Familia**: System Hardening  
@@ -126,7 +126,7 @@ La organización debe implementar procesos de gestión de cambios que incluyan e
 **Declaración del Control**:
 La organización debe aplicar configuraciones de seguridad basadas en benchmarks reconocidos para todos los sistemas.
 
-### CNB-002: Gestión de Parches
+### CIF-002: Gestión de Parches
 **Objetivo**: Mantener sistemas actualizados  
 **Tipo**: Técnico  
 **Familia**: Patch Management  
@@ -160,7 +160,7 @@ La organización debe implementar un sistema integral de gestión de identidades
 **Declaración del Control**:
 La organización debe implementar protecciones integrales en todos los endpoints corporativos.
 
-## DIA - Ciberseguridad en Datos e IA
+## DIA - Ciberseguridad en Datos e Inteligencia Artificial
 
 ### DIA-001: Clasificación de Datos
 **Objetivo**: Categorizar información según criticidad  
@@ -180,7 +180,7 @@ La organización debe implementar un esquema de clasificación de datos que incl
 **Declaración del Control**:
 La organización debe implementar cifrado apropiado para datos en tránsito, reposo y proceso.
 
-## THP - Talento Humano y Proveedores
+## THP - Ciberseguridad en Talento Humano y Proveedores
 
 ### THP-001: Capacitación en Seguridad
 **Objetivo**: Desarrollar competencias de seguridad  
@@ -219,19 +219,19 @@ La organización debe implementar procesos para evaluar y gestionar los riesgos 
 
 ```mermaid
 graph TD
-    COR[Coherencia Organizacional] --> ADR[Análisis, Detección y Respuesta]
+    COR[Coherencia Organizacional] --> ADR[Análisis, Detección y Respuesta de Ciberseguridad]
     COR --> CAP[Ciberseguridad en Aplicaciones]
-    COR --> CCN[Continuidad del Negocio]
-    COR --> CNB[Ciberseguridad en Nube]
-    COR --> CIP[Identidad y Endpoints]
-    COR --> DIA[Datos e IA]
-    COR --> THP[Talento Humano]
-    
+    COR --> CCN[Continuidad y Cambios del Negocio]
+    COR --> CIF[Ciberseguridad en Infraestructura]
+    COR --> CIP[Ciberseguridad en Identidad y Puntos Finales]
+    COR --> DIA[Ciberseguridad en Datos e Inteligencia Artificial]
+    COR --> THP[Ciberseguridad en Talento Humano y Proveedores]
+
     ADR --> CCN
-    CAP --> CNB
+    CAP --> CIF
     CIP --> DIA
     THP --> CAP
-    THP --> CNB
+    THP --> CIF
     THP --> CIP
 ```
 

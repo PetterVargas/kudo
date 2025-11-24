@@ -4,6 +4,14 @@
   "icon": "Search",
   "root": true,
   "pages": [
-    "index"
+    "---Dominio ADR---",
+    "index",
+    "---Controles ADR---",
+    "adr-01",
+    "adr-02",
+    "adr-03",
+    "adr-04",
+    "---Herramientas ADR---",
+    "herramientas"
   ]
 }
