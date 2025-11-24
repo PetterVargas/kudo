@@ -1,9 +1,0 @@
-{
-  "title": "CNB - Ciberseguridad en Nube",
-  "description": "Seguridad en infraestructura cloud",
-  "icon": "Cloud",
-  "root": true,
-  "pages": [
-    "index"
-  ]
-}

@@ -38,7 +38,7 @@ export default function Layout({ children }: { children: ReactNode }) {
         links={[
         {
           type: 'icon',
-          url: 'https://github.com/PetterVargas/divisioncero-docs?utm_source=kudo.divisioncero.com',
+          url: 'https://github.com/PetterVargas/kudo?utm_source=kudo.divisioncero.com',
           text: 'Github',
           icon: (
             <svg role="img" viewBox="0 0 24 24" fill="currentColor">

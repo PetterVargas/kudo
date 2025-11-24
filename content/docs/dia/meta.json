@@ -4,6 +4,17 @@
   "icon": "Database",
   "root": true,
   "pages": [
-    "index"
+    "---Dominio DIA---",
+    "index",
+    "---Controles DIA---",
+    "dia-01",
+    "dia-02",
+    "dia-03",
+    "dia-04",
+    "dia-05",
+    "dia-06",
+    "dia-07",
+    "---Herramientas DIA---",
+    "herramientas"
   ]
 }

@@ -4,6 +4,16 @@
   "icon": "ShieldCheck",
   "root": true,
   "pages": [
-    "index"
+    "---Dominio CIP---",
+    "index",
+    "---Controles CIP---",
+    "cip-01",
+    "cip-02",
+    "cip-03",
+    "cip-04",
+    "cip-05",
+    "cip-06",
+    "---Herramientas CIP---",
+    "herramientas"
   ]
 }

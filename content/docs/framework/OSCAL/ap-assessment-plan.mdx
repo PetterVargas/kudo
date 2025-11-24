@@ -20,12 +20,12 @@ Establecer un enfoque sistemático para evaluar la efectividad de los controles 
 
 #### Dominios Kudo a Evaluar:
 - **COR**: Coherencia Organizacional
-- **ADR**: Análisis, Detección y Respuesta
+- **ADR**: Análisis, Detección y Respuesta de Ciberseguridad
 - **CAP**: Ciberseguridad en Aplicaciones
 - **CCN**: Continuidad y Cambios del Negocio
-- **CNB**: Ciberseguridad en Nube
+- **CIF**: Ciberseguridad en Infraestructura
 - **CIP**: Ciberseguridad en Identidad y Puntos Finales
-- **DIA**: Ciberseguridad en Datos e IA
+- **DIA**: Ciberseguridad en Datos e Inteligencia Artificial
 - **THP**: Ciberseguridad en Talento Humano y Proveedores
 
 ### 3. Metodología de Evaluación
@@ -54,9 +54,9 @@ gantt
     COR - Coherencia Org    :cor, after prep2, 2w
     ADR - Detección        :adr, after cor, 2w
     CAP - Aplicaciones     :cap, after adr, 2w
-    CNB - Nube  :cnb, after cap, 2w
+    CIF - Infraestructura  :cif, after cap, 2w
     section Consolidación
-    Análisis de resultados  :analisis, after cnb, 2w
+    Análisis de resultados  :analisis, after cif, 2w
     Reporte final          :reporte, after analisis, 1w
 ```
 

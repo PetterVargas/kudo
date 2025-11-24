@@ -4,6 +4,14 @@
   "icon": "Building2",
   "root": true,
   "pages": [
-    "index"
+    "---Dominio COR---",
+    "index",
+    "---Controles COR---",
+    "cor-01",
+    "cor-02",
+    "cor-03",
+    "cor-04",
+    "---Herramientas COR---",
+    "herramientas"
   ]
 }

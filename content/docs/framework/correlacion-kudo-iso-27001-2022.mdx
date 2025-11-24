@@ -7,36 +7,7 @@ icon: Shield
 import { Building2, Shield, Repeat, Server, Users, KeyRound, Activity, DatabaseZap } from 'lucide-react';
 import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
 
-## 📝 Correlación Kudo y ISO 27001:2022
-
-El framework Kudo mapea sus **8 dominios especializados** con los **requisitos del SGSI** y **controles del Anexo A** de ISO/IEC 27001:2022, proporcionando una implementación práctica y estructurada del estándar internacional.
-
-### 🏢 Requisitos del Sistema de Gestión (Cláusulas 4-10)
-
-Los dominios Kudo se alinean con los requisitos fundamentales del SGSI:
-
-| Cláusula ISO | Requisito | Dominios Kudo Relacionados |
-|--------------|-----------|----------------------------|
-| **Cláusula 4** | Contexto de la organización | COR - Coherencia Organizacional |
-| **Cláusula 5** | Liderazgo | COR - Coherencia Organizacional |
-| **Cláusula 6** | Planificación | COR + CCN - Coherencia Organizacional y Continuidad |
-| **Cláusula 7** | Apoyo | THP - Talento Humano y Proveedores |
-| **Cláusula 8** | Operación | Todos los dominios (implementación) |
-| **Cláusula 9** | Evaluación del desempeño | ADR - Análisis, Detección y Respuesta |
-| **Cláusula 10** | Mejora | COR - Coherencia Organizacional |
-
-### 🛡️ Controles del Anexo A
-
-Los dominios Kudo cubren las **4 categorías principales de controles** del Anexo A:
-
-| Categoría ISO 27001:2022 | Dominios Kudo Relacionados | Controles Cubiertos |
-|---------------------------|----------------------------|---------------------|
-| **A.5 - Controles organizacionales** | COR (Coherencia Organizacional) | 37 controles organizacionales |
-| **A.6 - Controles de personal** | THP (Talento Humano y Proveedores) | 8 controles de personal |
-| **A.7 - Controles físicos** | CNB (Ciberseguridad en Nube) | 14 controles físicos y ambientales |
-| **A.8 - Controles tecnológicos** | CAP + CNB + CIP + ADR + DIA | 34 controles tecnológicos |
-
-### 📊 Mapeo Detallado por Dominio
+## 📝 Correlación Kudo y ISO27001:2022
 
 <Mermaid
   chart="
@@ -62,18 +33,18 @@ graph LR
   
   subgraph KUDO_DOMAINS[🎯 Dominios Kudo]
     COR[COR<br/>Coherencia Organizacional<br/>4 controles]
-    CIP[CIP<br/>Identidad y Puntos Finales<br/>6 controles]
-    CNB[CNB<br/>Ciberseguridad en Nube<br/>5 controles]
+    CIP[CIP<br/>Ciberseguridad en Identidad y Puntos Finales<br/>6 controles]
+    CIF[CIF<br/>Ciberseguridad en Infraestructura<br/>5 controles]
     CAP[CAP<br/>Ciberseguridad en Aplicaciones<br/>3 controles]
-    CCN[CCN<br/>Continuidad y Cambios<br/>3 controles]
-    THP[THP<br/>Talento Humano y Proveedores<br/>4 controles]
-    DIA[DIA<br/>Datos e Inteligencia Artificial<br/>7 controles]
-    ADR[ADR<br/>Análisis, Detección y Respuesta<br/>4 controles]
+    CCN[CCN<br/>Continuidad y Cambios del Negocio<br/>3 controles]
+    THP[THP<br/>Ciberseguridad en Talento Humano y Proveedores<br/>4 controles]
+    DIA[DIA<br/>Ciberseguridad en Datos e Inteligencia Artificial<br/>7 controles]
+    ADR[ADR<br/>Análisis, Detección y Respuesta de Ciberseguridad<br/>4 controles]
   end
   
   KUDO --> COR
   KUDO --> CIP
-  KUDO --> CNB
+  KUDO --> CIF
   KUDO --> CAP
   KUDO --> CCN
   KUDO --> THP
@@ -90,8 +61,8 @@ graph LR
   THP --> REQ7
   THP --> PEOPLE
   
-  CNB --> PHYSICAL
-  CNB --> TECH
+  CIF --> PHYSICAL
+  CIF --> TECH
   
   CAP --> TECH
   CIP --> TECH
@@ -99,25 +70,7 @@ graph LR
   ADR --> TECH
   DIA --> TECH
   
-  class COR,CAP,CCN,CNB,THP,CIP,ADR,DIA kudoDomain
+  class COR,CAP,CCN,CIF,THP,CIP,ADR,DIA kudoDomain
   class REQ4,REQ5,REQ6,REQ7,REQ8,REQ9,REQ10 isoReq
   class ORG,PEOPLE,PHYSICAL,TECH isoControl"
 />
-
-## 🔄 Correlación Práctica
-
-### Implementación del SGSI con Kudo
-
-El framework Kudo proporciona una **ruta de implementación práctica** para cumplir con ISO 27001:2022:
-
-| Fase de Implementación | Dominios Kudo Prioritarios | Resultado ISO |
-|------------------------|----------------------------|---------------|
-| **Fase 1: Fundamentos** | COR (Coherencia Organizacional) | Cláusulas 4, 5, 6, 10 + A.5 Organizacionales |
-| **Fase 2: Accesos** | CIP (Ciberseguridad en Identidad y Puntos Finales) | A.8 Tecnológicos (identidad) |
-| **Fase 3: Tecnología Base** | CNB (Ciberseguridad en Nube) | A.7 Físicos + A.8 Tecnológicos |
-| **Fase 4: Aplicaciones** | CAP (Ciberseguridad en Aplicaciones) | A.8 Tecnológicos (desarrollo) |
-| **Fase 5: Continuidad** | CCN (Continuidad y Cambios del Negocio) | Cláusula 6 + A.8 Tecnológicos |
-| **Fase 6: Personas** | THP (Ciberseguridad en Talento Humano y Proveedores) | Cláusula 7 + A.6 Personal |
-| **Fase 7: Datos** | DIA (Ciberseguridad en Datos e Inteligencia Artificial) | A.8 Tecnológicos (datos) |
-| **Fase 8: Operación** | ADR (Análisis, Detección y Respuesta de Ciberseguridad) | Cláusula 9 + A.8 Tecnológicos |
-

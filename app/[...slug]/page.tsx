@@ -10,7 +10,7 @@ import { getMDXComponents } from '@/mdx-components';
 import { Rate } from '@/components/rate';
 
 const owner = 'PetterVargas';
-const repo = 'divisioncero-docs';
+const repo = 'kudo';
 
 export default async function Page(props: {
   params: Promise<{ slug?: string[] }>;

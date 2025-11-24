@@ -115,8 +115,8 @@ export default function HomePage() {
             Framework de Ciberseguridad por y para LatAm
           </h2>
           <p className="text-xl text-fd-muted-foreground max-w-3xl mx-auto mb-12 leading-relaxed">
-            Marco completo de políticas, procedimientos y controles de ciberseguridad. 
-            Más de 85 templates organizacionales listos para implementar.
+            Marco completo de políticas, procedimientos y controles de Ciberseguridad. 
+            Más de 25 templates organizacionales listos para implementar.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link 
@@ -164,14 +164,14 @@ export default function HomePage() {
               </div>
               <h4 className="text-xl font-semibold mb-3">36 Controles</h4>
               <p className="text-fd-muted-foreground">
-                Marco completo con 36 controles de ciberseguridad distribuidos en 8 dominios especializados
+                Marco completo con 36 controles de Ciberseguridad
               </p>
             </div>
             <div className="text-center">
               <div className="w-16 h-16 bg-fd-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Shield className="h-8 w-8 text-fd-primary" />
               </div>
-              <h4 className="text-xl font-semibold mb-3">85+ Políticas</h4>
+              <h4 className="text-xl font-semibold mb-3">25+ Políticas</h4>
               <p className="text-fd-muted-foreground">
                 Templates completos de políticas organizacionales basados en estándares internacionales
               </p>
@@ -300,7 +300,7 @@ export default function HomePage() {
         <div className="max-w-4xl mx-auto text-center">
           <h3 className="text-3xl font-bold mb-6">Comienza tu implementación hoy</h3>
           <p className="text-xl text-fd-muted-foreground mb-8">
-            Accede a más de 85 templates de políticas organizacionales y construye un marco de ciberseguridad sólido
+            Accede a más de 25 templates de políticas organizacionales y construye un marco de ciberseguridad sólido
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
@@ -312,7 +312,7 @@ export default function HomePage() {
               <ArrowRight className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" />
             </Link>
             <Link 
-              href="/framework#-dominios"
+              href="/framework/dominios"
               className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-fd-foreground border border-fd-border hover:bg-fd-muted/50 rounded-lg transition-colors"
             >
               <Book className="h-5 w-5 mr-2" />

@@ -34,7 +34,7 @@ Abre [http://localhost:3000](http://localhost:3000) en tu navegador para ver el 
 ## 🎯 Productos Principales
 
 ### 🛡️ Kudo - Framework de Ciberseguridad
-- **85+ Templates** de políticas organizacionales.
+- **25+ Templates** de políticas organizacionales.
 - **8 Dominios** de seguridad estructurados.
 - **Marco completo** de controles y procedimientos.
 - **Diseñado específicamente** para el contexto de LatAm.
@@ -53,7 +53,7 @@ divisioncero-docs/
 │   ├── docs/                     # Documentación principal
 │   │   └── kudo/                 # Framework Kudo
 │   │       ├── dominios/         # Baselines por dominios
-│   │       └── politicas/        # Templates de políticas (85+)
+│   │       └── politicas/        # Templates de políticas (25+)
 ├── lib/                          # Utilities y configuración
 └── source.config.ts             # Configuración de Fumadocs
 ```
@@ -64,7 +64,7 @@ divisioncero-docs/
 | ------------------------- | ----------------------------------------------------- |
 | `/`                       | Landing page con Kudo como protagonista              |
 | `/docs/kudo`             | Framework principal de ciberseguridad                |
-| `/docs/kudo/politicas`   | 85+ templates de políticas organizacionales          |
+| `/docs/kudo/politicas`   | 25+ templates de políticas organizacionales          |
 | `/docs/kudo#-dominios`    | 8 dominios de seguridad estructurados                |
 | `/blog`                   | Artículos y actualizaciones                         |
 
