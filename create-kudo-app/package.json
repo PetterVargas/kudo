@@ -1,0 +1,65 @@
+{
+  "name": "@divisioncero/create-kudo-app",
+  "version": "0.1.0",
+  "description": "CLI para crear nuevas aplicaciones Kudo con templates de políticas de Ciberseguridad",
+  "type": "module",
+  "bin": {
+    "create-kudo-app": "./bin/cli.js"
+  },
+  "files": [
+    "bin",
+    "dist",
+    "src/templates",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "prepublishOnly": "pnpm build",
+    "test": "echo \"Tests coming soon\" && exit 0"
+  },
+  "keywords": [
+    "kudo",
+    "divisioncero",
+    "ciberseguridad",
+    "cybersecurity",
+    "políticas",
+    "policies",
+    "framework",
+    "fumadocs",
+    "cli",
+    "scaffolding",
+    "nextjs",
+    "documentation",
+    "iso27001",
+    "latam"
+  ],
+  "author": "DivisionCero <hello@divisioncero.com> (https://divisioncero.com)",
+  "license": "MIT",
+  "homepage": "https://kudo.divisioncero.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/PetterVargas/kudo.git",
+    "directory": "create-kudo-app"
+  },
+  "bugs": {
+    "url": "https://github.com/PetterVargas/kudo/issues"
+  },
+  "dependencies": {
+    "@clack/prompts": "^0.8.2",
+    "commander": "^12.1.0",
+    "picocolors": "^1.1.1",
+    "fs-extra": "^11.2.0",
+    "execa": "^9.5.2",
+    "ora": "^8.1.1"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "@types/node": "^22.10.2",
+    "typescript": "^5.8.3"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}
