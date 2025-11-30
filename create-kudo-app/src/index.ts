@@ -7,15 +7,11 @@ import * as p from '@clack/prompts';
 import pc from 'picocolors';
 import { runInteractivePrompts } from './prompts.js';
 import { copyBaseTemplates, copyPolicies } from './utils/copy-template.js';
-import { installDependencies } from './utils/install-deps.js';
-import { initGit } from './utils/git-init.js';
 import { logger } from './utils/logger.js';
 
 const program = new Command();
 
 interface CliOptions {
-  skipInstall?: boolean;
-  skipGit?: boolean;
   packageManager?: 'npm' | 'pnpm' | 'yarn';
 }
 
@@ -24,8 +20,6 @@ program
   .description('CLI para crear nuevas aplicaciones Kudo con templates de políticas de Ciberseguridad')
   .version('0.1.0')
   .argument('[project-name]', 'Nombre del proyecto')
-  .option('--skip-install', 'No instalar dependencias automáticamente')
-  .option('--skip-git', 'No inicializar repositorio Git')
   .option('-p, --package-manager <pm>', 'Package manager a usar (npm, pnpm, yarn)')
   .action(async (projectName: string | undefined, options: CliOptions) => {
     try {
@@ -56,7 +50,7 @@ program
       logger.title('🚀 Creando tu aplicación Kudo...');
 
       // Paso 1: Copiar estructura base
-      logger.step(1, 4, 'Copiando estructura base del proyecto...');
+      logger.step(1, 2, 'Copiando estructura base del proyecto...');
       await copyBaseTemplates({
         projectName: choices.projectName,
         targetDir,
@@ -66,26 +60,10 @@ program
 
       // Paso 2: Copiar políticas
       if (choices.selectedPolicies.length > 0) {
-        logger.step(2, 4, 'Copiando políticas de seguridad...');
+        logger.step(2, 2, 'Copiando políticas de seguridad...');
         await copyPolicies(targetDir, choices.selectedPolicies);
       } else {
-        logger.step(2, 4, 'Saltando políticas (ninguna seleccionada)');
-      }
-
-      // Paso 3: Instalar dependencias
-      if (!options.skipInstall) {
-        logger.step(3, 4, 'Instalando dependencias...');
-        await installDependencies(targetDir, options.packageManager || choices.packageManager);
-      } else {
-        logger.step(3, 4, 'Instalación de dependencias omitida');
-      }
-
-      // Paso 4: Inicializar Git
-      if (!options.skipGit) {
-        logger.step(4, 4, 'Inicializando repositorio Git...');
-        await initGit(targetDir);
-      } else {
-        logger.step(4, 4, 'Inicialización de Git omitida');
+        logger.step(2, 2, 'Saltando políticas (ninguna seleccionada)');
       }
 
       // Mensaje de éxito
@@ -97,11 +75,7 @@ program
       logger.title('📝 Próximos pasos:');
       console.log();
       console.log(pc.cyan(`  cd ${choices.projectName}`));
-
-      if (options.skipInstall) {
-        console.log(pc.cyan(`  ${choices.packageManager} install`));
-      }
-
+      console.log(pc.cyan(`  ${choices.packageManager} install`));
       console.log(pc.cyan(`  ${choices.packageManager} dev`));
       console.log();
       logger.info('Tu aplicación estará disponible en http://localhost:3000');
