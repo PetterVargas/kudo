@@ -1,45 +1,10 @@
-# DivisionCero Documentation
+# Kudo - DivisionCero
 
 > **Framework de Ciberseguridad por y para LatAm**
 
 Documentación completa de **Kudo**, el framework open-source de Ciberseguridad para Latinoamérica.
 
-## 🚀 Desarrollo Local
-
-```bash
-# Instalar dependencias
-pnpm install
-
-# Ejecutar servidor de desarrollo
-pnpm run dev
-
-# Build para producción
-pnpm run build
-
-# Exportar sitio estático
-pnpm run export
-```
-
-Abre [http://localhost:3000](http://localhost:3000) en tu navegador para ver el resultado.
-
-## 🏗️ Tecnologías
-
-- **Framework**: Next.js 15.4.2 con React 19.1.0
-- **Documentation**: Fumadocs (UI y MDX)
-- **Styling**: Tailwind CSS 4.1.11
-- **Content**: MDX con soporte para matemáticas (KaTeX) y diagramas (Mermaid)
-- **Package Manager**: pnpm
-- **TypeScript**: 5.8.3
-
-## 🎯 Productos Principales
-
-### 🛡️ Kudo - Framework de Ciberseguridad
-- **25+ Templates** de políticas organizacionales.
-- **8 Dominios** de seguridad estructurados.
-- **Marco completo** de controles y procedimientos.
-- **Diseñado específicamente** para el contexto de LatAm.
-
-### 🚀 @divisioncero/create-kudo-app - CLI Oficial
+## 🚀 @divisioncero/create-kudo-app - CLI Oficial
 
 Inicia tu proyecto Kudo en segundos:
 
@@ -85,15 +50,41 @@ kudo/
 └── source.config.ts              # Configuración de Fumadocs
 ```
 
-## 📋 Rutas Principales
+## 🚀 Desarrollo Local
 
-| Ruta                      | Descripción                                           |
-| ------------------------- | ----------------------------------------------------- |
-| `/`                       | Landing page con Kudo como protagonista              |
-| `/docs/kudo`             | Framework principal de ciberseguridad                |
-| `/docs/kudo/politicas`   | 25+ templates de políticas organizacionales          |
-| `/docs/kudo#-dominios`    | 8 dominios de seguridad estructurados                |
-| `/blog`                   | Artículos y actualizaciones                         |
+```bash
+# Instalar dependencias
+pnpm install
+
+# Ejecutar servidor de desarrollo
+pnpm run dev
+
+# Build para producción
+pnpm run build
+
+# Exportar sitio estático
+pnpm run export
+```
+
+Abre [http://localhost:3000](http://localhost:3000) en tu navegador para ver el resultado.
+
+## 🏗️ Tecnologías
+
+- **Framework**: Next.js 15.4.2 con React 19.1.0
+- **Documentation**: Fumadocs (UI y MDX)
+- **Styling**: Tailwind CSS 4.1.11
+- **Content**: MDX con soporte para matemáticas (KaTeX) y diagramas (Mermaid)
+- **Package Manager**: pnpm
+- **TypeScript**: 5.8.3
+
+## 🎯 Productos Principales
+
+### 🛡️ Kudo - Framework de Ciberseguridad
+- **25+ Templates** de políticas organizacionales.
+- **8 Dominios** de seguridad estructurados.
+- **Marco completo** de controles y procedimientos.
+- **Diseñado específicamente** para el contexto de LatAm.
+
 
 ## 🎨 Características
 
@@ -115,14 +106,6 @@ kudo/
 - Configuración del navbar y navegación
 - Enlaces a productos y recursos
 - Integración con redes sociales
-
-## 📝 Contribuir
-
-1. Fork el repositorio
-2. Crea una rama para tu feature (`git checkout -b feature/nueva-funcionalidad`)
-3. Commit tus cambios (`git commit -am 'Agrega nueva funcionalidad'`)
-4. Push a la rama (`git push origin feature/nueva-funcionalidad`)
-5. Crea un Pull Request
 
 ## 📖 Recursos
 
