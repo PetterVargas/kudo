@@ -39,23 +39,50 @@ Abre [http://localhost:3000](http://localhost:3000) en tu navegador para ver el 
 - **Marco completo** de controles y procedimientos.
 - **Diseñado específicamente** para el contexto de LatAm.
 
+### 🚀 @divisioncero/create-kudo-app - CLI Oficial
+
+Inicia tu proyecto Kudo en segundos:
+
+```bash
+pnpm create @divisioncero/kudo-app
+```
+
+**Incluye:**
+- ✅ Next.js 15 + React 19 + TypeScript
+- ✅ 25+ templates de políticas en 8 dominios de seguridad
+- ✅ Fumadocs pre-configurado
+- ✅ Soporte MDX con matemáticas y diagramas
+- ✅ Blog opcional
+- ✅ Configuración completa lista para producción
+- ✅ Publicación segura con Trusted Publishing
+
+Ver [documentación completa](./create-kudo-app/README.md)
+
 ## 📁 Estructura del Proyecto
 
+Este es un monorepo que contiene:
+
 ```
-divisioncero-docs/
-├── app/                          # Next.js App Router
+kudo/
+├── app/                          # Portal de documentación (Next.js)
 │   ├── (home)/                   # Landing page y páginas principales
-│   ├── docs/                     # Layout de documentación
+│   ├── [...slug]/                # Páginas dinámicas de docs
 │   ├── api/search/               # API de búsqueda
-│   └── layout.tsx               # Layout global
-├── content/                      # Contenido MDX
+│   └── layout.config.tsx         # Configuración de navegación
+├── content/                      # Contenido MDX del portal
 │   ├── blog/                     # Artículos del blog
-│   ├── docs/                     # Documentación principal
-│   │   └── kudo/                 # Framework Kudo
-│   │       ├── dominios/         # Baselines por dominios
-│   │       └── politicas/        # Templates de políticas (25+)
+│   └── docs/                     # Documentación del framework Kudo
+│       ├── politicas/            # 25+ templates de políticas
+│       ├── framework/            # Documentación detallada
+│       └── [dominios]/           # 8 dominios de seguridad (COR, CIP, CIF, CAP, CCN, ADR, THP, DIA)
+├── create-kudo-app/              # CLI para crear proyectos Kudo
+│   ├── src/                      # Código fuente del CLI
+│   │   ├── templates/            # Templates base del proyecto
+│   │   └── index.ts              # Entry point del CLI
+│   ├── bin/                      # Ejecutables
+│   └── package.json              # Publicado en npm como @divisioncero/create-kudo-app
 ├── lib/                          # Utilities y configuración
-└── source.config.ts             # Configuración de Fumadocs
+└── source.config.ts              # Configuración de Fumadocs
 ```
 
 ## 📋 Rutas Principales

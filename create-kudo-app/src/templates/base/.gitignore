@@ -11,8 +11,6 @@
 # next.js
 /.next/
 /out/
-
-# production
 /build
 
 # misc
@@ -35,10 +33,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# generated content
+# fumadocs
 .contentlayer
 .content-collections
 .source
-
-# kudo app test app
-create-kudo-app/test-app

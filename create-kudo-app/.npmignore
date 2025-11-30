@@ -1,0 +1,30 @@
+# Source files
+src/
+*.ts
+!*.d.ts
+
+# Config files
+tsconfig.json
+.gitignore
+.github/
+
+# Dependencies
+node_modules/
+
+# Build artifacts
+*.log
+*.tgz
+
+# Development
+.DS_Store
+.vscode/
+.idea/
+
+# Testing
+coverage/
+.nyc_output/
+
+# Temporary files
+*.tmp
+*.temp
+app-test/
