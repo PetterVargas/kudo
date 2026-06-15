@@ -46,6 +46,9 @@ export const blogPosts = defineCollections({
   dir: 'content/blog',
   schema: pageSchema.extend({
     author: z.string(),
-    date: z.string(),
+    date: z.preprocess(
+      (val) => val instanceof Date ? val.toISOString().split('T')[0] : val,
+      z.string()
+    ),
   }),
 });
