@@ -1,0 +1,75 @@
+---
+title: Kudo y ISO 27001:2022
+description: Mapeo detallado entre los dominios del framework Kudo y los controles de ISO/IEC 27001:2022
+---
+
+import { Building2, Shield, Repeat, Server, Users, KeyRound, Activity, DatabaseZap } from 'lucide-react';
+import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
+
+## 📝 Correlación Kudo y ISO27001:2022
+
+<Mermaid
+  chart="
+graph LR
+  KUDO[🔐 Framework Kudo<br/>8 Dominios - 36 Controles]
+  
+  subgraph ISO_REQ[📋 ISO 27001:2022 - Requisitos SGSI]
+    REQ4[Cláusula 4<br/>Contexto de la organización]
+    REQ5[Cláusula 5<br/>Liderazgo]
+    REQ6[Cláusula 6<br/>Planificación]
+    REQ7[Cláusula 7<br/>Apoyo]
+    REQ8[Cláusula 8<br/>Operación]
+    REQ9[Cláusula 9<br/>Evaluación del desempeño]
+    REQ10[Cláusula 10<br/>Mejora]
+  end
+  
+  subgraph ISO_CONTROLS[🛡️ Anexo A - Controles]
+    ORG[A.5 Organizacionales<br/>37 controles]
+    PEOPLE[A.6 Personal<br/>8 controles]
+    PHYSICAL[A.7 Físicos<br/>14 controles]
+    TECH[A.8 Tecnológicos<br/>34 controles]
+  end
+  
+  subgraph KUDO_DOMAINS[🎯 Dominios Kudo]
+    COR[COR<br/>Coherencia Organizacional<br/>4 controles]
+    CIP[CIP<br/>Ciberseguridad en Identidad y Puntos Finales<br/>6 controles]
+    CIF[CIF<br/>Ciberseguridad en Infraestructura<br/>5 controles]
+    CAP[CAP<br/>Ciberseguridad en Aplicaciones<br/>3 controles]
+    CCN[CCN<br/>Continuidad y Cambios del Negocio<br/>3 controles]
+    THP[THP<br/>Ciberseguridad en Talento Humano y Proveedores<br/>4 controles]
+    DIA[DIA<br/>Ciberseguridad en Datos e Inteligencia Artificial<br/>7 controles]
+    ADR[ADR<br/>Análisis, Detección y Respuesta de Ciberseguridad<br/>4 controles]
+  end
+  
+  KUDO --> COR
+  KUDO --> CIP
+  KUDO --> CIF
+  KUDO --> CAP
+  KUDO --> CCN
+  KUDO --> THP
+  KUDO --> DIA
+  KUDO --> ADR
+  
+  COR --> REQ4
+  COR --> REQ5
+  COR --> REQ10
+  COR --> ORG
+  
+  CCN --> REQ6
+  
+  THP --> REQ7
+  THP --> PEOPLE
+  
+  CIF --> PHYSICAL
+  CIF --> TECH
+  
+  CAP --> TECH
+  CIP --> TECH
+  ADR --> REQ9
+  ADR --> TECH
+  DIA --> TECH
+  
+  class COR,CAP,CCN,CIF,THP,CIP,ADR,DIA kudoDomain
+  class REQ4,REQ5,REQ6,REQ7,REQ8,REQ9,REQ10 isoReq
+  class ORG,PEOPLE,PHYSICAL,TECH isoControl"
+/>

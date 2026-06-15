@@ -11,7 +11,7 @@ export default function BlogIndexPage() {
   );
 
   return (
-    <main className="grow container mx-auto px-4 py-12">
+    <main className="grow w-full max-w-(--fd-layout-width) mx-auto px-4 py-12">
       <div className="text-center mb-16">
         <div className="flex flex-col items-center justify-center mb-2">
           <svg

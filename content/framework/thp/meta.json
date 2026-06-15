@@ -1,0 +1,16 @@
+{
+  "title": "THP",
+  "description": "Talento Humano y Proveedores",
+  "root": true,
+  "pages": [
+    "---Dominio THP---",
+    "index",
+    "---Controles THP---",
+    "thp-01",
+    "thp-02",
+    "thp-03",
+    "thp-04",
+    "---Herramientas THP---",
+    "herramientas"
+  ]
+}

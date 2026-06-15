@@ -1,0 +1,13 @@
+{
+  "title": "Correlación",
+  "description": "Mapping y automatización",
+  "root": true,
+  "pages": [
+    "---Mapping---",
+    "index",
+    "correlacion-kudo-iso-27001-2022",
+    "correlacion-kudo-cloud-security-alliance",
+    "---OSCAL---",
+    "OSCAL"
+  ]
+}

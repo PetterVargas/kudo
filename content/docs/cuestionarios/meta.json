@@ -1,9 +1,0 @@
-{
-  "title": "Cuestionarios",
-  "description": "Cuestionarios de autoevaluación de ciberseguridad",
-  "icon": "ClipboardCheck",
-  "root": true,
-  "pages": [
-    "index"
-  ]
-}

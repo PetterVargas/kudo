@@ -32,7 +32,7 @@ export const baseOptions: BaseLayoutProps = {
             fill="#4DAE84"
           />
         </svg>
-        DivisionCero
+        Kudo
       </>
     ),
   },
@@ -46,8 +46,8 @@ export const baseOptions: BaseLayoutProps = {
     },
     {
       icon: <FileTextIcon />,
-      text: 'Políticas',
-      url: '/politicas',
+      text: 'SGSI',
+      url: '/sgsi',
       secondary: false,
     },
     {
@@ -58,56 +58,56 @@ export const baseOptions: BaseLayoutProps = {
           icon: <Building2Icon />,
           text: 'COR - Coherencia Organizacional',
           description: 'Gobernanza y estructura organizacional',
-          url: '/cor',
+          url: '/framework/cor',
         },
         {
           icon: <ShieldCheckIcon />,
           text: 'CIP - Ciberseguridad en Identidad y Puntos Finales',
           description: 'Gestión de identidades y dispositivos',
-          url: '/cip',
+          url: '/framework/cip',
         },
         {
           icon: <CloudIcon />,
           text: 'CIF - Ciberseguridad en Infraestructura',
           description: 'Seguridad en infraestructura y redes',
-          url: '/cif',
+          url: '/framework/cif',
         },
         {
           icon: <CodeIcon />,
           text: 'CAP - Ciberseguridad en Aplicaciones',
           description: 'Desarrollo seguro y AppSec',
-          url: '/cap',
+          url: '/framework/cap',
         },
         {
           icon: <RefreshCwIcon />,
           text: 'CCN - Continuidad y Cambios del Negocio',
           description: 'Gestión de cambios y continuidad',
-          url: '/ccn',
+          url: '/framework/ccn',
         },
         {
           icon: <SearchIcon />,
           text: 'ADR - Análisis, Detección y Respuesta de Ciberseguridad',
           description: 'Detección y respuesta a incidentes',
-          url: '/adr',
+          url: '/framework/adr',
         },
         {
           icon: <UsersIcon />,
           text: 'THP - Ciberseguridad en Talento Humano y Proveedores',
           description: 'Gestión de personas y proveedores',
-          url: '/thp',
+          url: '/framework/thp',
         },
         {
           icon: <DatabaseIcon />,
           text: 'DIA - Ciberseguridad en Datos e Inteligencia Artificial',
           description: 'Protección de datos e inteligencia artificial',
-          url: '/dia',
+          url: '/framework/dia',
         },
       ],
     },
     {
       icon: <ClipboardCheckIcon />,
       text: 'Cuestionarios',
-      url: '/cuestionarios',
+      url: '/framework/cuestionarios',
       secondary: false,
     },
     {
