@@ -5,6 +5,7 @@ import { remarkBlockId } from 'fumadocs-core/mdx-plugins/remark-block-id';
 import { transformerTwoslash } from 'fumadocs-twoslash';
 import { defineConfig, defineDocs, defineCollections } from 'fumadocs-mdx/config';
 import { metaSchema, pageSchema } from 'fumadocs-core/source/schema';
+import { z } from 'zod';
 
 const docsConfig = {
   docs: {
@@ -40,7 +41,11 @@ export default defineConfig({
 });
 
 // Definición de colección de blog
-export const blogPosts = defineCollections({   
-  type: 'doc',   
+export const blogPosts = defineCollections({
+  type: 'doc',
   dir: 'content/blog',
+  schema: pageSchema.extend({
+    author: z.string(),
+    date: z.string(),
+  }),
 });
