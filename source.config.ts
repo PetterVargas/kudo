@@ -1,40 +1,54 @@
-import {   
-  defineConfig,   
-  defineDocs,   
-  metaSchema,   
-  defineCollections,   
-  frontmatterSchema, 
-} from 'fumadocs-mdx/config'; 
+import rehypeKatex from 'rehype-katex';
+import remarkMath from 'remark-math';
+import { remarkMdxMermaid, rehypeCodeDefaultOptions } from 'fumadocs-core/mdx-plugins';
+import { remarkBlockId } from 'fumadocs-core/mdx-plugins/remark-block-id';
+import { transformerTwoslash } from 'fumadocs-twoslash';
+import { defineConfig, defineDocs, defineCollections } from 'fumadocs-mdx/config';
+import { metaSchema, pageSchema } from 'fumadocs-core/source/schema';
+import { z } from 'zod';
 
-import { z } from 'zod'; 
-import rehypeKatex from 'rehype-katex'; 
-import remarkMath from 'remark-math';  
+const docsConfig = {
+  docs: {
+    schema: pageSchema,
+    postprocess: {
+      includeProcessedMarkdown: true,
+      extractLinkReferences: true,
+    },
+  },
+  meta: {
+    schema: metaSchema,
+  },
+};
 
-// Definición de docs y metadatos
-export const docs = defineDocs({   
-  docs: {     
-    schema: frontmatterSchema,   
-  },   
-  meta: {     
-    schema: metaSchema,   
-  },   
-});  
+export const frameworkDocs = defineDocs({ dir: 'content/framework', ...docsConfig });
+export const sgsiDocs = defineDocs({ dir: 'content/sgsi', ...docsConfig });
 
-// Configuración principal
-export default defineConfig({   
-  lastModifiedTime: 'git', // 👈 añade la última modificación desde Git
-  mdxOptions: {     
-    remarkPlugins: [remarkMath],     
-    rehypePlugins: (v) => [rehypeKatex, ...v],   
-  }, 
-});  
+export default defineConfig({
+  mdxOptions: {
+    remarkPlugins: [remarkMath, remarkMdxMermaid, [remarkBlockId, { addDataAttribute: 'feedback' }]],
+    rehypePlugins: (v) => [rehypeKatex, ...v],
+    rehypeCodeOptions: {
+      themes: {
+        light: 'github-light',
+        dark: 'github-dark',
+      },
+      transformers: [
+        ...(rehypeCodeDefaultOptions.transformers ?? []),
+        transformerTwoslash(),
+      ],
+    },
+  },
+});
 
 // Definición de colección de blog
-export const blogPosts = defineCollections({   
-  type: 'doc',   
-  dir: 'content/blog',   
-  schema: frontmatterSchema.extend({     
-    author: z.string(),     
-    date: z.string().date().or(z.date()),   
-  }), 
+export const blogPosts = defineCollections({
+  type: 'doc',
+  dir: 'content/blog',
+  schema: pageSchema.extend({
+    author: z.string(),
+    date: z.preprocess(
+      (val) => val instanceof Date ? val.toISOString().split('T')[0] : val,
+      z.string()
+    ),
+  }),
 });

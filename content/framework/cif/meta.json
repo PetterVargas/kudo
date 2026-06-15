@@ -1,0 +1,17 @@
+{
+  "title": "CIF",
+  "description": "Ciberseguridad en Infraestructura",
+  "root": true,
+  "pages": [
+    "---Dominio CIF---",
+    "index",
+    "---Controles CIF---",
+    "cif-01",
+    "cif-02",
+    "cif-03",
+    "cif-04",
+    "cif-05",
+    "---Herramientas CIF---",
+    "herramientas"
+  ]
+}
