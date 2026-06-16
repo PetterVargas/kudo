@@ -12,7 +12,8 @@ import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
   chart="
 graph LR
   KUDO[🔐 Framework Kudo<br/>8 Dominios - 36 Controles]
-  
+  ISO[ISO 27001:2022]
+
   subgraph ISO_REQ[📋 ISO 27001:2022 - Requisitos SGSI]
     REQ4[Cláusula 4<br/>Contexto de la organización]
     REQ5[Cláusula 5<br/>Liderazgo]
@@ -40,34 +41,46 @@ graph LR
     DIA[DIA<br/>Ciberseguridad en Datos e Inteligencia Artificial<br/>7 controles]
     ADR[ADR<br/>Análisis, Detección y Respuesta de Ciberseguridad<br/>4 controles]
   end
+
+  ISO --> REQ4
+  ISO --> REQ5
+  ISO --> REQ6
+  ISO --> REQ7
+  ISO --> REQ8
+  ISO --> REQ9
+  ISO --> REQ10
+  ISO --> ORG
+  ISO --> PEOPLE
+  ISO --> PHYSICAL
+  ISO --> TECH
+
+  REQ4 --> COR
+  REQ5 --> COR
+  REQ10 --> COR
+  ORG --> COR
   
-  KUDO --> COR
-  KUDO --> CIP
-  KUDO --> CIF
-  KUDO --> CAP
-  KUDO --> CCN
-  KUDO --> THP
-  KUDO --> DIA
-  KUDO --> ADR
+  REQ6 --> CCN
   
-  COR --> REQ4
-  COR --> REQ5
-  COR --> REQ10
-  COR --> ORG
+  REQ7 --> THP
+  PEOPLE --> THP
   
-  CCN --> REQ6
+  PHYSICAL --> CIF
+  TECH --> CIF
   
-  THP --> REQ7
-  THP --> PEOPLE
-  
-  CIF --> PHYSICAL
-  CIF --> TECH
-  
-  CAP --> TECH
-  CIP --> TECH
-  ADR --> REQ9
-  ADR --> TECH
-  DIA --> TECH
+  TECH --> CAP
+  TECH --> CIP
+  REQ9 --> ADR
+  TECH --> ADR
+  TECH --> DIA
+
+  COR --> KUDO
+  CIP --> KUDO
+  CIF --> KUDO
+  CAP --> KUDO
+  CCN --> KUDO
+  THP --> KUDO
+  DIA --> KUDO
+  ADR --> KUDO
   
   class COR,CAP,CCN,CIF,THP,CIP,ADR,DIA kudoDomain
   class REQ4,REQ5,REQ6,REQ7,REQ8,REQ9,REQ10 isoReq

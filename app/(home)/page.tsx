@@ -120,7 +120,7 @@ export default function HomePage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link 
-              href="/framework"
+              href="/framework/overview"
               className="group inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-fd-primary-foreground bg-fd-primary hover:bg-fd-primary/90 rounded-lg transition-colors"
             >
               Explorar Framework 
@@ -304,7 +304,7 @@ export default function HomePage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/sgsi"
+              href="/sgsi/politicas"
               className="group inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-fd-primary-foreground bg-fd-primary hover:bg-fd-primary/90 rounded-lg transition-colors"
             >
               <FileText className="h-5 w-5 mr-2" />
@@ -312,7 +312,7 @@ export default function HomePage() {
               <ArrowRight className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" />
             </Link>
             <Link 
-              href="/framework"
+              href="/framework/overview"
               className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-fd-foreground border border-fd-border hover:bg-fd-muted/50 rounded-lg transition-colors"
             >
               <Book className="h-5 w-5 mr-2" />

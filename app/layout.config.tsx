@@ -1,5 +1,5 @@
 import type { BaseLayoutProps } from 'fumadocs-ui/layouts/shared';
-import { BookIcon, FileTextIcon, UserIcon, LogInIcon, Building2Icon, ShieldCheckIcon, CloudIcon, CodeIcon, RefreshCwIcon, SearchIcon, UsersIcon, DatabaseIcon, NewspaperIcon, ClipboardCheckIcon } from 'lucide-react';
+import { BookIcon, FileTextIcon, Building2Icon, ShieldCheckIcon, CloudIcon, CodeIcon, RefreshCwIcon, SearchIcon, UsersIcon, DatabaseIcon, NewspaperIcon, ClipboardCheckIcon } from 'lucide-react';
 
 /**
  * Shared layout configurations
@@ -126,18 +126,6 @@ export const baseOptions: BaseLayoutProps = {
         </svg>
       ),
       external: true,
-    },
-    {
-      icon: <LogInIcon />,
-      text: <span className="block md:inline">Login</span>,
-      url: 'http://divisioncero.com/auth/sign-in?utm_source=kudo.divisioncero.com',
-      secondary: true,
-    },
-    {
-      icon: <UserIcon />,
-      text: <span className="bg-fd-primary hover:bg-fd-primary/90 dark:bg-fd-primary/80 dark:hover:bg-fd-primary text-fd-primary-foreground rounded-md px-3 py-1 font-bold block md:inline-block">Regístrate</span>,
-      url: 'http://divisioncero.com/auth/sign-up?utm_source=kudo.divisioncero.com',
-      secondary: true,
     },
   ],
 };
