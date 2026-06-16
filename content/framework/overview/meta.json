@@ -5,10 +5,12 @@
   "pages": [
     "---Framework Kudo---",
     "index",
+    "ambitos-de-gestion",
     "dominios",
     "matriz-controles-nube-mcn",
     "responsabilidad-compartida",
-    "---Correlación---",
-    "frameworks-y-oscal"
+    "---Cobertura---",
+    "frameworks-revisados",
+    "oscal"
   ]
 }
