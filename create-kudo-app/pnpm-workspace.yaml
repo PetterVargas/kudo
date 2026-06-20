@@ -1,0 +1,3 @@
+# Marks create-kudo-app as its own pnpm workspace root.
+# Without this file, pnpm escalates to the parent /kudo workspace
+# and ignores this package's own pnpm-lock.yaml and node_modules.
