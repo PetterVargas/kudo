@@ -1,0 +1,128 @@
+---
+title: CIF-03 - Ciberseguridad en la Red y Sistemas
+description: Control de seguridad de redes y sistemas cloud
+---
+
+## 🎯 Objetivo del Control
+
+Implementar arquitectura de red segura y configuraciones de sistemas robustas en entornos cloud siguiendo principios de segmentación, defensa en profundidad y mínimo privilegio.
+
+## 📋 Descripción
+
+Este control establece requisitos de seguridad para:
+- Arquitectura de red cloud (VPC/VNet)
+- Segmentación y microsegmentación
+- Controles de tráfico (firewalls, NSGs)
+- Hardening de sistemas cloud
+- Monitoreo de red y sistemas
+
+## 🛡️ Controles Requeridos
+
+### Arquitectura de Red Cloud
+
+**Segmentación por Capas:**
+- **DMZ / Public Subnet:** Load balancers, bastion hosts
+- **Application Tier:** Aplicaciones y APIs
+- **Data Tier:** Bases de datos y almacenamiento
+- **Management Subnet:** Herramientas de gestión
+
+**Principio de Diseño:**
+- Network segmentation por función y criticidad
+- Private subnets sin acceso directo a internet
+- NAT Gateway para salida controlada
+- VPC/VNet peering para comunicación inter-redes
+- Transit Gateway para arquitecturas hub-and-spoke
+
+### Controles de Tráfico
+
+**Security Groups / Network Security Groups:**
+- Default deny (denegar todo por defecto)
+- Reglas específicas basadas en least privilege
+- Sin reglas 0.0.0.0/0 en inbound (salvo load balancers)
+- Revisión trimestral de reglas
+
+**Firewalls:**
+- Web Application Firewall (WAF)
+- Network Firewall / Azure Firewall
+- DDoS Protection
+- Protección contra OWASP Top 10
+
+**Access Control Lists (ACLs):**
+- Control de tráfico a nivel de subnet
+- Reglas stateless complementarias
+
+### Hardening de Sistemas Cloud
+
+**Compute (VMs/Instancias):**
+- Usar imágenes base hardened (CIS Benchmarks)
+- Desactivar servicios innecesarios
+- Actualizaciones automáticas de seguridad
+- Configuración de logging
+- Disk encryption habilitado
+- No exponer RDP/SSH directamente a internet
+
+**Bastion Hosts / Jump Servers:**
+- Único punto de acceso administrativo
+- MFA obligatorio
+- Session recording
+- Time-limited access (JIT)
+
+**Kubernetes:**
+- RBAC configurado
+- Network policies
+- Pod Security Standards
+- Admission controllers (OPA, Kyverno)
+- Container image scanning
+
+### Gestión de Acceso Remoto
+- VPN con MFA para acceso corporativo
+- AWS Systems Manager Session Manager
+- Azure Bastion
+- SSH keys gestionadas centralmente
+- Certificados en lugar de contraseñas
+
+### Logging y Monitoreo
+- Flow logs de VPC/VNet habilitados
+- Logs de firewall centralizados
+- Alertas de cambios en security groups
+- Monitoreo de tráfico anómalo
+- IDS/IPS en carga de trabajo crítica
+
+## 📊 Métricas e Indicadores
+
+- Número de security groups con reglas 0.0.0.0/0
+- Porcentaje de VMs con puertos críticos expuestos
+- Eventos de tráfico bloqueado por firewall
+- Ataques DDoS mitigados
+- Compliance score de hardening
+
+## 🔗 Herramientas Recomendadas
+
+- **Network Security:** AWS Network Firewall, Azure Firewall, Palo Alto VM-Series
+- **WAF:** AWS WAF, Azure WAF, Cloudflare WAF
+- **CSPM:** Prisma Cloud, Wiz, Microsoft Defender for Cloud
+- **Network Monitoring:** VPC Flow Logs, Azure Network Watcher, Datadog
+- **Hardening:** AWS Systems Manager, Azure Arc, CIS-CAT
+
+## 📚 Referencias
+
+- [Política de Seguridad en Entornos Virtuales](/docs/kudo/politicas/politica-seguridad-entornos-virtuales)
+- [Gestión de Parches y Hardening](/docs/kudo/politicas/gestion-parches-hardening)
+- [Matriz de Controles de Nube](/docs/kudo/matriz-controles-nube-mcn)
+- CIS Benchmarks for AWS, Azure, GCP
+- AWS Well-Architected Framework - Security Pillar
+- Azure Security Benchmark
+- NIST SP 800-53 - SC (System and Communications Protection)
+
+## ✅ Checklist de Implementación
+
+- [ ] Arquitectura de red con segmentación documentada
+- [ ] Security groups/NSGs con principio de menor privilegio
+- [ ] WAF implementado para aplicaciones web
+- [ ] DDoS Protection habilitado
+- [ ] Bastion hosts o Azure Bastion configurado
+- [ ] VPN con MFA para acceso remoto
+- [ ] Flow logs de red habilitados
+- [ ] Hardening baselines aplicadas a VMs
+- [ ] Kubernetes con network policies
+- [ ] Monitoreo y alertas de red configuradas

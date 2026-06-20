@@ -1,0 +1,102 @@
+---
+title: CIP-02 - Ciberseguridad en Autenticación
+description: Control de mecanismos de autenticación robusta
+---
+
+## 🎯 Objetivo del Control
+
+Implementar mecanismos de autenticación robustos y multifactor para verificar la identidad de usuarios y servicios que acceden a recursos organizacionales.
+
+## 📋 Descripción
+
+Este control establece requisitos de autenticación:
+- Autenticación multifactor (MFA) obligatoria
+- Políticas de contraseñas fuertes
+- Single Sign-On (SSO) corporativo
+- Autenticación sin contraseña (passwordless)
+- Protección contra ataques de credenciales
+
+## 🛡️ Controles Requeridos
+
+### Autenticación Multifactor (MFA)
+- MFA obligatorio para:
+  - Todos los accesos administrativos
+  - Accesos remotos (VPN)
+  - Sistemas críticos y datos sensibles
+  - Acceso a correo corporativo
+- Factores soportados:
+  - Algo que sabes (contraseña)
+  - Algo que tienes (app autenticador, token, SMS)
+  - Algo que eres (biométrico)
+
+### Políticas de Contraseñas
+- Longitud mínima: 14 caracteres
+- Complejidad: mayúsculas, minúsculas, números, símbolos
+- Sin palabras de diccionario
+- Historial: últimas 12 contraseñas
+- Expiración: 90 días (si no hay MFA)
+- Bloqueo tras 5 intentos fallidos
+
+### Single Sign-On (SSO)
+- Implementación corporativa (Azure AD, Okta)
+- Integración con aplicaciones SaaS
+- Protocolo SAML 2.0 / OAuth 2.0 / OIDC
+- Sesión única para múltiples aplicaciones
+- Logout centralizado
+
+### Autenticación Sin Contraseña
+- Windows Hello for Business
+- FIDO2 / WebAuthn
+- Biometría (huella, reconocimiento facial)
+- Claves de seguridad (YubiKey)
+
+### Protección de Credenciales
+- No almacenar contraseñas en texto plano
+- Hashing con algoritmo robusto (bcrypt, Argon2)
+- Salting obligatorio
+- Gestión de secretos con vault
+- Monitoreo de credenciales comprometidas (Have I Been Pwned)
+
+### Autenticación de Servicios
+- Service principals con credenciales rotadas
+- Managed identities en cloud
+- Certificados de cliente (mutual TLS)
+- API keys con expiración
+
+## 📊 Métricas e Indicadores
+
+- Porcentaje de usuarios con MFA habilitado (objetivo: 100%)
+- Tasa de adopción de SSO
+- Intentos de autenticación fallidos
+- Tiempo promedio de autenticación
+- Credenciales comprometidas detectadas
+
+## 🔗 Herramientas Recomendadas
+
+- **MFA:** Microsoft Authenticator, Google Authenticator, Duo, Authy
+- **SSO/IdP:** Azure AD, Okta, Auth0, Ping Identity
+- **Passwordless:** Windows Hello, FIDO2, YubiKey
+- **Password Managers:** 1Password, LastPass, Bitwarden
+- **Monitoring:** HaveIBeenPwned API, SpyCloud
+
+## 📚 Referencias
+
+- [Política de Control de Acceso](/docs/kudo/politicas/politica-control-acceso)
+- [Gestión de Accesos Privilegiados](/docs/kudo/politicas/gestion-accesos-privilegiados)
+- [Registros de Acceso y Autenticación](/docs/kudo/politicas/registros-acceso-autenticacion)
+- NIST SP 800-63B - Authentication and Lifecycle Management
+- ISO 27001:2022 - A.5.17, A.5.18
+- OWASP Authentication Cheat Sheet
+
+## ✅ Checklist de Implementación
+
+- [ ] MFA habilitado para todos los usuarios
+- [ ] SSO corporativo implementado
+- [ ] Políticas de contraseñas configuradas
+- [ ] Integración con aplicaciones críticas
+- [ ] Tokens de hardware para admins (YubiKey)
+- [ ] Passwordless en evaluación/piloto
+- [ ] Monitoreo de intentos fallidos
+- [ ] Alertas de credenciales comprometidas
+- [ ] Capacitación a usuarios
+- [ ] Documentación de procesos

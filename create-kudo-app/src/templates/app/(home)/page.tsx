@@ -115,16 +115,24 @@ export default function HomePage() {
             Framework de Ciberseguridad por y para LatAm
           </h2>
           <p className="text-xl text-fd-muted-foreground max-w-3xl mx-auto mb-12 leading-relaxed">
-            Marco completo de políticas, procedimientos y controles de Ciberseguridad. 
+            Marco completo con SGSI, políticas, procedimientos y controles de Ciberseguridad. 
             Más de 25 templates organizacionales listos para implementar.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link 
-              href="/framework"
+              href="/framework/overview"
               className="group inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-fd-primary-foreground bg-fd-primary hover:bg-fd-primary/90 rounded-lg transition-colors"
             >
               Explorar Framework 
               <ArrowRight className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" />
+            </Link>
+            <Link 
+              href="https://divisioncero.com/home/kit-inicio-ciberseguridad"
+              className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-fd-foreground border border-fd-border hover:bg-fd-muted/50 rounded-lg transition-colors"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Descargar Kit
             </Link>
           </div>
         </div>
@@ -245,7 +253,7 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <Link 
-              href="https://divisioncero.com/cursos"
+              href="https://cyberacademy.divisioncero.com/"
               className="group flex flex-col gap-4 p-8 rounded-xl border border-fd-border/60 bg-fd-card/40 hover:border-fd-foreground/40 hover:bg-fd-card/70 transition-all duration-200 shadow-md"
               target="_blank"
               rel="noopener noreferrer"
@@ -296,12 +304,19 @@ export default function HomePage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/politicas"
+              href="/sgsi/politicas"
               className="group inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-fd-primary-foreground bg-fd-primary hover:bg-fd-primary/90 rounded-lg transition-colors"
             >
               <FileText className="h-5 w-5 mr-2" />
-              Ver Políticas Templates
+              Ver SGSI
               <ArrowRight className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" />
+            </Link>
+            <Link 
+              href="/framework/overview"
+              className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-fd-foreground border border-fd-border hover:bg-fd-muted/50 rounded-lg transition-colors"
+            >
+              <Book className="h-5 w-5 mr-2" />
+              Explorar Framework
             </Link>
           </div>
         </div>

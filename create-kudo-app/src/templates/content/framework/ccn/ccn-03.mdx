@@ -1,0 +1,99 @@
+---
+title: CCN-03 - Revertir Cambios
+description: Control de rollback y reversión de cambios fallidos
+---
+
+## 🎯 Objetivo del Control
+
+Garantizar que todo cambio implementado pueda ser revertido de forma rápida y segura en caso de falla, minimizando el tiempo de interrupción del servicio.
+
+## 📋 Descripción
+
+Este control establece capacidades de rollback para:
+- Reversión rápida ante fallas
+- Procedimientos documentados y probados
+- Backups previos a cambios
+- Estrategias de deployment seguras
+- Comunicación de rollback
+
+## 🛡️ Controles Requeridos
+
+### Plan de Rollback Obligatorio
+- Procedimiento detallado paso a paso
+- Tiempo estimado de reversión (RTO)
+- Punto de recuperación (RPO)
+- Comandos específicos de rollback
+- Validación post-rollback
+
+### Backups Pre-Cambio
+- Backup de configuraciones actuales
+- Snapshot de bases de datos
+- Versionado de código (Git tags)
+- Imagen de VM/contenedor anterior
+- Documentación de estado inicial
+
+### Estrategias de Deployment
+- **Blue-Green Deployment:** Dos ambientes idénticos, switch instantáneo
+- **Canary Deployment:** Rollout gradual con validación
+- **Rolling Deployment:** Actualización progresiva de instancias
+- **Feature Flags:** Activación/desactivación sin deployment
+
+### Triggers de Rollback
+- Criterios claros de falla:
+  - Error rate > X%
+  - Latencia > SLA
+  - Caída de disponibilidad
+  - Vulnerabilidades críticas detectadas
+  - Pérdida de funcionalidad core
+- Decisión de rollback autorizada
+- Proceso automatizado cuando sea posible
+
+### Testing de Rollback
+- Rollback probado en staging antes de producción
+- Simulacros periódicos de rollback
+- Tiempo de rollback medido
+- Procedimiento validado funcionalmente
+
+### Monitoreo Post-Cambio
+- Monitoreo intensivo primeras 24-48h
+- Alertas configuradas para métricas clave
+- Equipo en standby durante ventana crítica
+- Dashboard en tiempo real
+
+## 📊 Métricas e Indicadores
+
+- Porcentaje de cambios con rollback necesario
+- Tiempo promedio de rollback (MTTR)
+- Éxito de rollback (primera vez)
+- Disponibilidad durante rollback
+- Cambios con plan de rollback documentado (objetivo: 100%)
+
+## 🔗 Herramientas Recomendadas
+
+- **Deployment:** Kubernetes (Rollout), Helm, ArgoCD, Spinnaker
+- **Infrastructure as Code:** Terraform (state management), Ansible
+- **Backup:** Velero, Veeam, AWS Backup, Azure Backup
+- **Feature Flags:** LaunchDarkly, Split.io, Unleash
+- **Monitoring:** Datadog, New Relic, Prometheus, Grafana
+
+## 📚 Referencias
+
+- [Política de Gestión de Cambios](/docs/kudo/politicas/politica-gestion-cambios)
+- [Plan de Continuidad Operacional](/docs/kudo/politicas/plan-continuidad-operacional)
+- [Plan de Recuperación de Desastres](/docs/kudo/politicas/plan-recuperacion-desastres)
+- [Estrategia de Migración y Portabilidad](/docs/kudo/politicas/estrategia-migracion-portabilidad)
+- ITIL 4 - Change Enablement
+- Site Reliability Engineering (SRE) - Google
+
+## ✅ Checklist de Implementación
+
+- [ ] Plantilla de plan de rollback creada
+- [ ] Estrategia de deployment definida (blue-green/canary)
+- [ ] Backups automáticos pre-cambio configurados
+- [ ] Criterios de rollback documentados
+- [ ] Procedimientos de rollback probados
+- [ ] Feature flags implementadas para cambios críticos
+- [ ] Monitoreo post-cambio configurado
+- [ ] Alertas de falla automáticas
+- [ ] Responsables de decisión de rollback definidos
+- [ ] Simulacros de rollback programados

@@ -3,7 +3,7 @@
 import { Command } from 'commander';
 import fs from 'fs-extra';
 import path from 'node:path';
-import * as p from '@clack/prompts';
+import { confirm, isCancel, cancel, outro } from '@clack/prompts';
 import pc from 'picocolors';
 import { runInteractivePrompts } from './prompts.js';
 import { copyBaseTemplates, copyPolicies } from './utils/copy-template.js';
@@ -31,13 +31,13 @@ program
 
       // Verificar si el directorio ya existe
       if (await fs.pathExists(targetDir)) {
-        const shouldOverwrite = await p.confirm({
+        const shouldOverwrite = await confirm({
           message: `El directorio ${pc.cyan(choices.projectName)} ya existe. ¿Quieres sobrescribirlo?`,
           initialValue: false,
         });
 
-        if (p.isCancel(shouldOverwrite) || !shouldOverwrite) {
-          p.cancel('Operación cancelada');
+        if (isCancel(shouldOverwrite) || !shouldOverwrite) {
+          cancel('Operación cancelada');
           process.exit(0);
         }
 
@@ -68,7 +68,7 @@ program
 
       // Mensaje de éxito
       console.log();
-      p.outro(pc.green('✨ ¡Proyecto creado exitosamente!'));
+      outro(pc.green('✨ ¡Proyecto creado exitosamente!'));
 
       // Mostrar siguiente pasos
       console.log();

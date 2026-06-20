@@ -1,13 +1,6 @@
 import type { BaseLayoutProps } from 'fumadocs-ui/layouts/shared';
-import { FileTextIcon, Building2Icon, ShieldCheckIcon, CloudIcon, CodeIcon, RefreshCwIcon, SearchIcon, UsersIcon, DatabaseIcon, NewspaperIcon, ClipboardCheckIcon } from 'lucide-react';
+import { BookIcon, FileTextIcon, Building2Icon, ShieldCheckIcon, CloudIcon, CodeIcon, RefreshCwIcon, SearchIcon, UsersIcon, DatabaseIcon, NewspaperIcon, ClipboardCheckIcon } from 'lucide-react';
 
-/**
- * Shared layout configurations
- *
- * you can customise layouts individually from:
- * Home Layout: app/(home)/layout.tsx
- * Docs Layout: app/docs/layout.tsx
- */
 export const baseOptions: BaseLayoutProps = {
   nav: {
     title: (
@@ -32,16 +25,21 @@ export const baseOptions: BaseLayoutProps = {
             fill="#4DAE84"
           />
         </svg>
-        DivisionCero
+        Kudo
       </>
     ),
   },
-  // see https://fumadocs.dev/docs/ui/navigation/links
   links: [
     {
+      icon: <BookIcon />,
+      text: 'Framework',
+      url: '/framework',
+      secondary: false,
+    },
+    {
       icon: <FileTextIcon />,
-      text: 'Políticas',
-      url: '/politicas',
+      text: 'SGSI',
+      url: '/sgsi',
       secondary: false,
     },
     {
@@ -52,66 +50,57 @@ export const baseOptions: BaseLayoutProps = {
           icon: <Building2Icon />,
           text: 'COR - Coherencia Organizacional',
           description: 'Gobernanza y estructura organizacional',
-          url: 'https://kudo.divisioncero.com/cor',
-          external: true,
+          url: '/framework/cor',
         },
         {
           icon: <ShieldCheckIcon />,
           text: 'CIP - Ciberseguridad en Identidad y Puntos Finales',
           description: 'Gestión de identidades y dispositivos',
-          url: 'https://kudo.divisioncero.com/cip',
-          external: true,
+          url: '/framework/cip',
         },
         {
           icon: <CloudIcon />,
           text: 'CIF - Ciberseguridad en Infraestructura',
           description: 'Seguridad en infraestructura y redes',
-          url: 'https://kudo.divisioncero.com/cif',
-          external: true,
+          url: '/framework/cif',
         },
         {
           icon: <CodeIcon />,
           text: 'CAP - Ciberseguridad en Aplicaciones',
           description: 'Desarrollo seguro y AppSec',
-          url: 'https://kudo.divisioncero.com/cap',
-          external: true,
+          url: '/framework/cap',
         },
         {
           icon: <RefreshCwIcon />,
           text: 'CCN - Continuidad y Cambios del Negocio',
           description: 'Gestión de cambios y continuidad',
-          url: 'https://kudo.divisioncero.com/ccn',
-          external: true,
+          url: '/framework/ccn',
         },
         {
           icon: <SearchIcon />,
           text: 'ADR - Análisis, Detección y Respuesta de Ciberseguridad',
           description: 'Detección y respuesta a incidentes',
-          url: 'https://kudo.divisioncero.com/adr',
-          external: true,
+          url: '/framework/adr',
         },
         {
           icon: <UsersIcon />,
           text: 'THP - Ciberseguridad en Talento Humano y Proveedores',
           description: 'Gestión de personas y proveedores',
-          url: 'https://kudo.divisioncero.com/thp',
-          external: true,
+          url: '/framework/thp',
         },
         {
           icon: <DatabaseIcon />,
           text: 'DIA - Ciberseguridad en Datos e Inteligencia Artificial',
           description: 'Protección de datos e inteligencia artificial',
-          url: 'https://kudo.divisioncero.com/dia',
-          external: true,
+          url: '/framework/dia',
         },
       ],
     },
     {
       icon: <ClipboardCheckIcon />,
       text: 'Cuestionarios',
-      url: 'https://kudo.divisioncero.com/cuestionarios',
+      url: '/framework/cuestionarios',
       secondary: false,
-      external: true,
     },
     {
       icon: <NewspaperIcon />,

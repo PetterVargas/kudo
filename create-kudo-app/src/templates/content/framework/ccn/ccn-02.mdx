@@ -1,0 +1,97 @@
+---
+title: CCN-02 - Pruebas de Calidad y Seguridad en la Gestión de Cambios
+description: Control de testing y validación de cambios
+---
+
+## 🎯 Objetivo del Control
+
+Garantizar que todos los cambios sean probados exhaustivamente en ambientes no productivos antes de su implementación, validando funcionalidad, seguridad y compatibilidad.
+
+## 📋 Descripción
+
+Este control establece requisitos de testing para cambios:
+- Testing funcional y de regresión
+- Validación de seguridad
+- Pruebas de rendimiento y carga
+- Validación en ambientes staging
+- Aprobación basada en resultados
+
+## 🛡️ Controles Requeridos
+
+### Ambientes de Testing
+- **Desarrollo (DEV):** Testing de desarrolladores
+- **QA/Testing:** Validación de QA y seguridad
+- **Staging/Pre-Producción:** Réplica de producción para testing final
+- **Producción (PROD):** Ambiente productivo
+- Paridad entre ambientes (configuración similar)
+
+### Pruebas Funcionales
+- Unit tests (cobertura mínima 80%)
+- Integration tests
+- End-to-end tests
+- Regression tests
+- User acceptance testing (UAT)
+
+### Pruebas de Seguridad
+- SAST (Static Application Security Testing)
+- DAST (Dynamic Application Security Testing)
+- SCA (Software Composition Analysis)
+- Vulnerability scanning
+- Pentesting para cambios críticos
+
+### Pruebas de Rendimiento
+- Load testing (carga normal)
+- Stress testing (carga extrema)
+- Soak testing (carga prolongada)
+- Spike testing (picos de carga)
+- Validación de SLAs
+
+### Criterios de Aprobación
+- Todos los tests críticos pasan
+- 0 vulnerabilidades críticas o altas
+- Performance dentro de SLAs
+- Rollback probado y funcional
+- Documentación completa
+
+### Automatización de Testing
+- CI/CD con gates de calidad
+- Testing automatizado en cada commit
+- Escaneos de seguridad automáticos
+- Reportes automáticos de resultados
+
+## 📊 Métricas e Indicadores
+
+- Porcentaje de cobertura de tests
+- Tasa de defectos encontrados por ambiente
+- Tiempo de ejecución de test suite
+- Número de vulnerabilidades por severidad
+- Porcentaje de cambios que pasan primera vez
+
+## 🔗 Herramientas Recomendadas
+
+- **Testing Frameworks:** Jest, Pytest, JUnit, Selenium
+- **Load Testing:** JMeter, Gatling, Locust, k6
+- **Security Testing:** SonarQube, Checkmarx, OWASP ZAP, Burp Suite
+- **CI/CD:** GitHub Actions, GitLab CI, Jenkins, Azure DevOps
+- **Test Management:** TestRail, Zephyr, qTest
+
+## 📚 Referencias
+
+- [Política de Gestión de Cambios](/docs/kudo/politicas/politica-gestion-cambios)
+- [Procedimientos de Revisión de Código y Pruebas](/docs/kudo/politicas/procedimientos-revision-codigo-pruebas)
+- [Estrategia de Pruebas de BCP/DRP](/docs/kudo/politicas/estrategia-pruebas-bcp-drp)
+- ISO 29119 - Software Testing Standard
+- NIST SP 800-115 - Technical Guide to Information Security Testing
+
+## ✅ Checklist de Implementación
+
+- [ ] Ambientes de testing configurados (DEV/QA/STAGING)
+- [ ] Suite de tests automatizados implementada
+- [ ] Herramientas de seguridad integradas en CI/CD
+- [ ] Criterios de aprobación definidos
+- [ ] Load testing para cambios críticos
+- [ ] Proceso de UAT establecido
+- [ ] Dashboards de resultados de testing
+- [ ] Plan de rollback probado
+- [ ] Documentación de casos de prueba
+- [ ] Capacitación a equipo de QA

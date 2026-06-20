@@ -15,19 +15,15 @@ export interface CopyTemplateOptions {
   author?: string;
 }
 
-/**
- * Copia los templates base del proyecto
- */
 export async function copyBaseTemplates(options: CopyTemplateOptions): Promise<void> {
   const { targetDir, projectName, packageManager, includeBlog = true, author = 'DivisionCero' } = options;
 
   const templatesDir = path.join(__dirname, '..', '..', 'src', 'templates');
 
   try {
-    // Copiar estructura base
     logger.info('Copiando estructura base del proyecto...');
 
-    // Copiar archivos de configuración base (incluyendo .template)
+    // Copiar archivos de configuración base
     await fs.copy(path.join(templatesDir, 'base'), targetDir);
 
     // Copiar app/
@@ -39,14 +35,25 @@ export async function copyBaseTemplates(options: CopyTemplateOptions): Promise<v
     // Copiar lib/
     await fs.copy(path.join(templatesDir, 'lib'), path.join(targetDir, 'lib'));
 
-    // Crear directorio content/docs
-    await fs.ensureDir(path.join(targetDir, 'content', 'docs'));
+    // Copiar content/framework/ completo
+    const frameworkSource = path.join(templatesDir, 'content', 'framework');
+    if (await fs.pathExists(frameworkSource)) {
+      await fs.copy(frameworkSource, path.join(targetDir, 'content', 'framework'));
+      logger.success('Contenido del framework copiado');
+    }
 
-    // Copiar componentes MDX (mermaid, etc.)
-    const mdxComponentsSource = path.join(templatesDir, 'content', 'docs', 'components');
-    if (await fs.pathExists(mdxComponentsSource)) {
-      await fs.copy(mdxComponentsSource, path.join(targetDir, 'content', 'docs', 'components'));
-      logger.success('Componentes MDX copiados');
+    // Copiar content/sgsi/ base (index, meta, lineamientos)
+    const sgsiSource = path.join(templatesDir, 'content', 'sgsi');
+    await fs.ensureDir(path.join(targetDir, 'content', 'sgsi'));
+    if (await fs.pathExists(path.join(sgsiSource, 'index.mdx'))) {
+      await fs.copy(path.join(sgsiSource, 'index.mdx'), path.join(targetDir, 'content', 'sgsi', 'index.mdx'));
+    }
+    if (await fs.pathExists(path.join(sgsiSource, 'meta.json'))) {
+      await fs.copy(path.join(sgsiSource, 'meta.json'), path.join(targetDir, 'content', 'sgsi', 'meta.json'));
+    }
+    if (await fs.pathExists(path.join(sgsiSource, 'lineamientos'))) {
+      await fs.copy(path.join(sgsiSource, 'lineamientos'), path.join(targetDir, 'content', 'sgsi', 'lineamientos'));
+      logger.success('Lineamientos SGSI copiados');
     }
 
     // Copiar blog si está habilitado
@@ -72,21 +79,18 @@ export async function copyBaseTemplates(options: CopyTemplateOptions): Promise<v
   }
 }
 
-/**
- * Copia las políticas seleccionadas
- */
 export async function copyPolicies(
   targetDir: string,
   selectedPolicies: string[]
 ): Promise<void> {
   const templatesDir = path.join(__dirname, '..', '..', 'src', 'templates');
-  const politicasSource = path.join(templatesDir, 'content', 'politicas');
-  const politicasTarget = path.join(targetDir, 'content', 'docs', 'politicas');
+  const politicasSource = path.join(templatesDir, 'content', 'sgsi', 'politicas');
+  const politicasTarget = path.join(targetDir, 'content', 'sgsi', 'politicas');
 
   try {
     await fs.ensureDir(politicasTarget);
 
-    // Copiar meta.json y index.mdx siempre
+    // Copiar meta.json e index.mdx siempre
     await fs.copy(
       path.join(politicasSource, 'meta.json'),
       path.join(politicasTarget, 'meta.json')
@@ -113,9 +117,6 @@ export async function copyPolicies(
   }
 }
 
-/**
- * Procesa archivos .template reemplazando placeholders
- */
 async function processTemplateFiles(
   targetDir: string,
   replacements: Record<string, string>
@@ -131,16 +132,12 @@ async function processTemplateFiles(
     if (await fs.pathExists(templatePath)) {
       let content = await fs.readFile(templatePath, 'utf-8');
 
-      // Reemplazar placeholders
       for (const [key, value] of Object.entries(replacements)) {
         content = content.replace(new RegExp(`{{${key}}}`, 'g'), value);
       }
 
-      // Escribir archivo sin extensión .template
       const outputPath = templatePath.replace('.template', '');
       await fs.writeFile(outputPath, content, 'utf-8');
-
-      // Eliminar archivo .template
       await fs.remove(templatePath);
     }
   }

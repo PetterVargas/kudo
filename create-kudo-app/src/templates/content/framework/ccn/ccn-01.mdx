@@ -1,0 +1,90 @@
+---
+title: CCN-01 - Gestión y Control de Cambios
+description: Control de gestión estructurada de cambios en sistemas
+---
+
+## 🎯 Objetivo del Control
+
+Establecer un proceso formal y estructurado para gestionar cambios en sistemas, aplicaciones e infraestructura, minimizando riesgos de interrupciones y vulnerabilidades de seguridad.
+
+## 📋 Descripción
+
+Este control define el proceso de gestión de cambios que incluye:
+- Solicitud y aprobación formal de cambios
+- Evaluación de impacto y riesgos
+- Planificación y testing de cambios
+- Documentación y comunicación
+- Revisión post-implementación
+
+## 🛡️ Controles Requeridos
+
+### Clasificación de Cambios
+- **Cambios Estándar:** Pre-aprobados, bajo riesgo, procedimiento documentado
+- **Cambios Normales:** Requieren evaluación y aprobación del CAB
+- **Cambios de Emergencia:** Proceso acelerado con aprobación ejecutiva
+- **Cambios Menores:** Bajo impacto, aprobación simplificada
+
+### Proceso de Solicitud
+- Formulario de solicitud de cambio (RFC - Request for Change)
+- Descripción detallada del cambio
+- Justificación de negocio
+- Análisis de impacto
+- Plan de implementación
+- Plan de rollback
+
+### Comité de Aprobación de Cambios (CAB)
+- Miembros: CTO, CISO, Gerente de Operaciones, Product Owner
+- Reuniones periódicas (semanal/quincenal)
+- Evaluación de riesgos técnicos y de seguridad
+- Aprobación/rechazo de cambios
+- Priorización de cambios
+
+### Ventanas de Cambio
+- Horarios definidos para cambios productivos
+- Ventanas de mantenimiento programadas
+- Comunicación anticipada a stakeholders
+- Freeze periods (períodos sin cambios)
+
+### Documentación Requerida
+- Diagrama de arquitectura afectada
+- Procedimiento de implementación paso a paso
+- Criterios de éxito/fallo
+- Plan de rollback detallado
+- Contactos de escalamiento
+
+## 📊 Métricas e Indicadores
+
+- Número de cambios exitosos vs fallidos
+- Tiempo promedio de aprobación de cambios
+- Porcentaje de cambios con rollback
+- Incidentes causados por cambios
+- Cumplimiento de ventanas de cambio
+
+## 🔗 Herramientas Recomendadas
+
+- **ITSM:** ServiceNow, Jira Service Management, BMC Remedy
+- **Collaboration:** Confluence, SharePoint
+- **CI/CD:** GitHub, GitLab, Azure DevOps
+- **Infrastructure as Code:** Terraform, CloudFormation, Ansible
+
+## 📚 Referencias
+
+- [Política de Gestión de Cambios](/docs/kudo/politicas/politica-gestion-cambios)
+- [Registro de Cambios Críticos en Producción](/docs/kudo/politicas/registro-cambios-criticos-produccion)
+- [Plan de Recuperación de Desastres](/docs/kudo/politicas/plan-recuperacion-desastres)
+- ITIL 4 - Change Enablement
+- ISO 20000 - Service Management
+- COBIT 2019 - Manage Change
+
+## ✅ Checklist de Implementación
+
+- [ ] Proceso de gestión de cambios documentado
+- [ ] CAB (Change Advisory Board) establecido
+- [ ] Categorías de cambios definidas
+- [ ] Plantillas de RFC creadas
+- [ ] Herramienta ITSM configurada
+- [ ] Ventanas de cambio definidas y comunicadas
+- [ ] Procedimiento de rollback estándar
+- [ ] Métricas y KPIs configurados
+- [ ] Capacitación a equipos
+- [ ] Comunicación a stakeholders

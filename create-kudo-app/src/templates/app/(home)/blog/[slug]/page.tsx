@@ -18,7 +18,7 @@ export default async function Page(props: {
 
   return (
     <>
-      <div className="container flex flex-col items-center py-12">
+      <div className="w-full max-w-(--fd-layout-width) mx-auto px-4 flex flex-col items-center py-12">
         <h1 className="mb-2 text-center text-3xl font-bold">{page.data.title}</h1>
         <p className="mb-2 text-center text-fd-muted-foreground">{page.data.description}</p>
         <div className="flex flex-row gap-2 items-center border-b mb-6 pb-4">
@@ -33,8 +33,8 @@ export default async function Page(props: {
           </span>
         </div>
       </div>
-      <article className="container flex flex-col px-4 py-8">
-        <div className="prose min-w-0">
+      <article className="w-full max-w-(--fd-layout-width) mx-auto px-4 flex flex-col py-8">
+        <div className="prose mx-auto min-w-0">
           <InlineTOC items={page.data.toc} />
           <Mdx components={defaultMdxComponents} />
         </div>

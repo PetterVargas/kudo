@@ -1,17 +1,17 @@
-import '@/app/global.css';
-import { RootProvider } from 'fumadocs-ui/provider';
 import { Inter } from 'next/font/google';
+import type { Metadata } from 'next';
+import { Provider } from '@/components/provider';
+import { appName } from '@/lib/shared';
 import type { ReactNode } from 'react';
-import 'katex/dist/katex.css';
 import Script from 'next/script';
+import './global.css';
+import 'katex/dist/katex.css';
 
-const inter = Inter({
-  subsets: ['latin'],
-});
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ?? 'http://localhost:3000';
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "DivisionCero - Simplificando juntos la Ciberseguridad de LatAm",
-  description: "Documentación DivisionCero",
+  description: "Kudo Framework de Ciberseguridad - DivisionCero",
   icons: {
     icon: [
       { url: '/favicon.ico' },
@@ -42,19 +42,22 @@ export const metadata = {
   },
 };
 
+const inter = Inter({
+  subsets: ['latin'],
+});
+
 export default function RootLayout({ children }: { children: ReactNode }) {
     return (
     <html lang="es" suppressHydrationWarning>
-      <body>
-        <RootProvider
-          search={{
-            options: {
-              type: 'static',
-            },
-          }}
-        >
+      <head>
+        <style dangerouslySetInnerHTML={{ __html:
+          `.fd-feedback-container ::highlight(fd-feedback-text){background-color:var(--color-fd-primary);color:var(--color-fd-primary-foreground);}`
+        }} />
+      </head>
+      <body className={inter.className}>
+        <Provider>
           {children}
-        </RootProvider>
+        </Provider>
       </body>
     </html>
   );

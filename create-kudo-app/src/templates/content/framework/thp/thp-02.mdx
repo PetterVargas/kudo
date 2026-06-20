@@ -1,0 +1,125 @@
+---
+title: THP-02 - Trabajo Remoto
+description: Control de seguridad para colaboradores en modalidad remota o híbrida
+---
+
+## 🎯 Objetivo del Control
+
+Establecer medidas de seguridad robustas que protejan la información, sistemas y activos de la organización cuando los colaboradores trabajan desde ubicaciones remotas, garantizando el mismo nivel de seguridad que en las instalaciones corporativas.
+
+## 📋 Descripción
+
+Este control define los requisitos de seguridad para trabajo remoto que incluye:
+- Configuración segura de dispositivos corporativos
+- Acceso remoto seguro mediante VPN o Zero Trust
+- Protección de datos en tránsito y en reposo
+- Políticas de uso de redes públicas y domésticas
+- Gestión de endpoints remotos
+
+## 🛡️ Controles Requeridos
+
+### Dispositivos y Configuración
+- **Equipos Corporativos:**
+  - Dispositivos proporcionados por la empresa con configuración estándar
+  - Disco cifrado completo (BitLocker, FileVault, LUKS)
+  - EDR/MDM instalado y siempre activo
+  - Firewall del sistema operativo habilitado
+  - Actualizaciones automáticas de seguridad
+  - Configuración de pantalla de bloqueo automático (5 minutos)
+- **BYOD (Bring Your Own Device):**
+  - Contenedorización de aplicaciones corporativas (Microsoft Intune, VMware Workspace ONE)
+  - Separación de datos personales y corporativos
+  - Requisitos mínimos de seguridad del dispositivo
+  - Capacidad de borrado remoto de datos corporativos
+
+### Acceso Remoto Seguro
+- **VPN Corporativa:**
+  - Conexión obligatoria para acceso a recursos internos
+  - Autenticación multifactor (MFA) obligatoria
+  - Split tunneling deshabilitado para datos sensibles
+  - Logs de conexión y desconexión
+  - Timeout de sesión inactiva (30 minutos)
+- **Zero Trust Network Access (ZTNA):**
+  - Verificación continua de identidad y postura del dispositivo
+  - Acceso basado en principio de mínimo privilegio
+  - Microsegmentación de recursos
+  - Inspección de tráfico cifrado
+
+### Protección de Datos
+- Prohibición de almacenamiento local de datos sensibles
+- Uso obligatorio de almacenamiento corporativo en la nube
+- DLP (Data Loss Prevention) para prevenir exfiltración
+- Backups automáticos de datos críticos
+- Cifrado de comunicaciones (TLS 1.3, VPN IPsec/OpenVPN)
+
+### Seguridad de Red
+- **Redes Domésticas:**
+  - Guía de hardening de router doméstico
+  - Cambio de credenciales predeterminadas
+  - Habilitación de WPA3 o mínimo WPA2
+  - Deshabilitación de WPS y UPnP
+  - Segmentación de red IoT
+- **Redes Públicas:**
+  - Prohibición de acceso a datos sensibles desde WiFi público
+  - Uso obligatorio de VPN en redes no confiables
+  - Deshabilitación de compartición de archivos y descubrimiento de red
+
+### Seguridad Física
+- Política de escritorio limpio (clear desk)
+- Uso de filtros de privacidad en pantallas
+- Bloqueo físico de dispositivos (cable Kensington)
+- Almacenamiento seguro de dispositivos cuando no están en uso
+- Prohibición de trabajo en espacios públicos con datos clasificados
+
+### Monitoreo y Gestión
+- Monitoreo de salud y estado de seguridad de endpoints
+- Verificación periódica de cumplimiento de políticas
+- Alertas de comportamiento anómalo
+- Capacidad de aislamiento remoto de dispositivos comprometidos
+- Auditorías trimestrales de configuración de seguridad
+
+## 📊 Métricas e Indicadores
+
+- Porcentaje de dispositivos remotos con EDR activo (objetivo: 100%)
+- Porcentaje de conexiones VPN con MFA (objetivo: 100%)
+- Número de incidentes de seguridad en entornos remotos
+- Tiempo promedio de aplicación de parches en dispositivos remotos
+- Tasa de cumplimiento de políticas de seguridad (objetivo: >95%)
+- Número de dispositivos con cifrado habilitado (objetivo: 100%)
+- Alertas de seguridad por dispositivo remoto (tendencia)
+
+## 🔗 Herramientas Recomendadas
+
+- **VPN Empresarial:** Cisco AnyConnect, Palo Alto GlobalProtect, OpenVPN, WireGuard
+- **ZTNA:** Zscaler Private Access, Cloudflare Access, Twingate
+- **MDM/UEM:** Microsoft Intune, VMware Workspace ONE, Jamf Pro, Google Workspace
+- **EDR:** CrowdStrike, Microsoft Defender for Endpoint, SentinelOne
+- **DLP:** Microsoft Purview, Symantec DLP, Forcepoint
+- **Monitoreo:** JumpCloud, Kandji, ManageEngine Endpoint Central
+
+## 📚 Referencias
+
+- [Política de Trabajo Remoto](/docs/kudo/politicas/politica-trabajo-remoto)
+- [Política de Gestión de Endpoints](/docs/kudo/politicas/politica-gestion-endpoints)
+- [Política de Control de Acceso](/docs/kudo/politicas/politica-control-acceso)
+- [Política de Clasificación de Información](/docs/kudo/politicas/politica-clasificacion-informacion)
+- [Política de Uso Aceptable de Recursos](/docs/kudo/politicas/politica-uso-aceptable)
+- NIST SP 800-46 Rev. 2 - Guide to Enterprise Telework, Remote Access, and BYOD Security
+- ISO/IEC 27001:2022 - Anexo A.6.7 Remote Working
+- CIS Control 12 - Network Infrastructure Management
+
+## ✅ Checklist de Implementación
+
+- [ ] Definir política de trabajo remoto y comunicarla
+- [ ] Seleccionar e implementar solución VPN o ZTNA
+- [ ] Configurar MFA obligatorio para acceso remoto
+- [ ] Desplegar EDR/MDM en todos los dispositivos remotos
+- [ ] Habilitar cifrado de disco completo
+- [ ] Configurar políticas de DLP
+- [ ] Crear guías de seguridad para trabajadores remotos
+- [ ] Implementar monitoreo centralizado de endpoints
+- [ ] Establecer proceso de aprovisionamiento de dispositivos
+- [ ] Capacitar a colaboradores sobre seguridad en trabajo remoto
+- [ ] Documentar procedimientos de soporte técnico remoto
+- [ ] Realizar pruebas de conectividad y seguridad
+- [ ] Establecer proceso de desaprovisionamiento y devolución de equipos
