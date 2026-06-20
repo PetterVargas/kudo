@@ -1,0 +1,16 @@
+{
+  "title": "Overview",
+  "description": "Visión general del framework",
+  "root": true,
+  "pages": [
+    "---Framework Kudo---",
+    "index",
+    "ambitos-de-gestion",
+    "dominios",
+    "matriz-controles-nube-mcn",
+    "responsabilidad-compartida",
+    "---Cobertura---",
+    "frameworks-revisados",
+    "oscal"
+  ]
+}

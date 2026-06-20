@@ -3,20 +3,15 @@ import { useMemo } from 'react';
 import {
   ChevronDown,
   ExternalLinkIcon,
-  MessageCircleIcon,
 } from 'lucide-react';
 import { cn } from '../lib/cn';
-import { buttonVariants } from './ui/button';
+import { buttonVariants } from 'fumadocs-ui/components/ui/button';
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from 'fumadocs-ui/components/ui/popover';
-import { cva } from 'class-variance-authority';
-
-const optionVariants = cva(
-  'text-sm p-2 rounded-lg inline-flex items-center gap-2 hover:text-fd-accent-foreground hover:bg-fd-accent [&_svg]:size-4',
-);
+const optionClass = 'text-sm p-2 rounded-lg inline-flex items-center gap-2 hover:text-fd-accent-foreground hover:bg-fd-accent [&_svg]:size-4';
 
 export function ViewOptions({
   markdownUrl,
@@ -109,7 +104,7 @@ export function ViewOptions({
             href={item.href}
             rel="noreferrer noopener"
             target="_blank"
-            className={cn(optionVariants())}
+            className={cn(optionClass)}
           >
             {item.icon}
             {item.title}

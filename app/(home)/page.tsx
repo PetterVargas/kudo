@@ -253,7 +253,7 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <Link 
-              href="https://divisioncero.com/cursos"
+              href="https://cyberacademy.divisioncero.com/"
               className="group flex flex-col gap-4 p-8 rounded-xl border border-fd-border/60 bg-fd-card/40 hover:border-fd-foreground/40 hover:bg-fd-card/70 transition-all duration-200 shadow-md"
               target="_blank"
               rel="noopener noreferrer"

@@ -1,4 +1,4 @@
-import * as p from '@clack/prompts';
+import { intro, text, select, isCancel, cancel } from '@clack/prompts';
 import pc from 'picocolors';
 import { DOMINIOS, PACKAGE_MANAGERS, type DominioId, type PackageManager } from './constants.js';
 
@@ -12,9 +12,9 @@ export interface UserChoices {
 
 export async function runInteractivePrompts(defaultProjectName?: string): Promise<UserChoices> {
   console.log();
-  p.intro(pc.bgCyan(pc.black(' create-kudo-app ')));
+  intro(pc.bgCyan(pc.black(' create-kudo-app ')));
 
-  const projectName = await p.text({
+  const projectName = await text({
     message: '¿Cuál es el nombre de tu proyecto?',
     placeholder: defaultProjectName || 'my-kudo-project',
     defaultValue: defaultProjectName,
@@ -26,12 +26,12 @@ export async function runInteractivePrompts(defaultProjectName?: string): Promis
     },
   });
 
-  if (p.isCancel(projectName)) {
-    p.cancel('Operación cancelada');
+  if (isCancel(projectName)) {
+    cancel('Operación cancelada');
     process.exit(0);
   }
 
-  const packageManager = await p.select({
+  const packageManager = await select({
     message: '¿Qué package manager quieres usar?',
     options: PACKAGE_MANAGERS.map((pm) => ({
       value: pm,
@@ -41,8 +41,8 @@ export async function runInteractivePrompts(defaultProjectName?: string): Promis
     initialValue: 'pnpm',
   });
 
-  if (p.isCancel(packageManager)) {
-    p.cancel('Operación cancelada');
+  if (isCancel(packageManager)) {
+    cancel('Operación cancelada');
     process.exit(0);
   }
 

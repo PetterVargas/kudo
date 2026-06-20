@@ -100,6 +100,7 @@ pnpm start
 - [Kudo Framework](https://kudo.divisioncero.com/framework)
 - [Fumadocs](https://fumadocs.dev)
 - [DivisionCero](https://divisioncero.com)
+- [CyberAcademy](https://cyberacademy.divisioncero.com)
 
 ## 🤝 Contribuir
 

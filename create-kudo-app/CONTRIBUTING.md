@@ -1,145 +1,175 @@
 # Contribuir a create-kudo-app
 
-¡Gracias por tu interés en contribuir a create-kudo-app!
+¡Gracias por tu interés en contribuir!
 
 ## Desarrollo Local
 
 ### Prerequisitos
 
 - Node.js >= 20.0.0
-- pnpm (recomendado)
+- pnpm
 
 ### Setup
 
-1. Clona el repositorio:
 ```bash
 git clone https://github.com/PetterVargas/kudo.git
 cd kudo/create-kudo-app
-```
-
-2. Instala las dependencias:
-```bash
 pnpm install
+pnpm run build
 ```
 
-3. Compila el código TypeScript:
+### Watch mode
+
 ```bash
-pnpm build
+pnpm run dev   # tsc --watch
 ```
 
-### Desarrollo con Watch Mode
-
-Para desarrollo continuo:
+### Probar el CLI localmente
 
 ```bash
+# Ejecutar directamente
+cd /tmp
+node /ruta/a/kudo/create-kudo-app/bin/cli.js test-project
+
+# Verificar el proyecto generado
+cd test-project
+pnpm install
 pnpm dev
+# Abrir localhost:3000 — debe mostrar home, /framework y /sgsi
 ```
 
-Esto compilará automáticamente los cambios en TypeScript.
+---
 
-### Probar el CLI Localmente
-
-Después de compilar, puedes probar el CLI localmente:
-
-```bash
-# Crear un link global
-pnpm link --global
-
-# Usar el CLI
-create-kudo-app test-project
-
-# O ejecutar directamente
-node bin/cli.js test-project
-```
-
-## Estructura del Proyecto
+## Estructura del proyecto
 
 ```
 create-kudo-app/
-├── src/
-│   ├── index.ts              # Entry point principal del CLI
-│   ├── prompts.ts            # Prompts interactivos
-│   ├── constants.ts          # Constantes y tipos
-│   ├── utils/                # Utilidades
-│   │   ├── copy-template.ts  # Lógica de copia de templates
-│   │   ├── install-deps.ts   # Instalación de dependencias
-│   │   ├── git-init.ts       # Inicialización de Git
-│   │   └── logger.ts         # Logger con colores
-│   └── templates/            # Templates del proyecto
-│       ├── base/             # Configuración base
-│       ├── app/              # Estructura de app/
-│       ├── components/       # Componentes React
-│       ├── lib/              # Librerías y utilidades
-│       └── content/          # Contenido MDX (políticas, blog)
 ├── bin/
-│   └── cli.js               # Entry point ejecutable
-├── dist/                     # Código compilado (generado)
-└── package.json
+│   └── cli.js                    # Entry point ejecutable (shebang Node)
+├── src/
+│   ├── index.ts                  # CLI principal (Commander)
+│   ├── prompts.ts                # Prompts interactivos (@clack/prompts)
+│   ├── constants.ts              # DOMINIOS, PACKAGE_MANAGERS, tipos
+│   └── utils/
+│       ├── copy-template.ts      # Lógica de copia de templates al destino
+│       ├── install-deps.ts       # Instalación de dependencias (execa + ora)
+│       ├── git-init.ts           # Inicialización de Git
+│       └── logger.ts             # Logger con picocolors
+├── src/templates/                # Archivos copiados al proyecto generado
+│   ├── base/                     # Configuración raíz
+│   │   ├── next.config.mjs
+│   │   ├── source.config.ts      # frameworkDocs + sgsiDocs + blogPosts
+│   │   ├── tsconfig.json
+│   │   ├── postcss.config.mjs
+│   │   ├── package.json.template # Procesado con {{PROJECT_NAME}} etc.
+│   │   ├── README.md.template
+│   │   └── .gitignore
+│   ├── app/
+│   │   ├── (home)/               # Landing, blog
+│   │   ├── framework/            # DocsLayout para framework
+│   │   ├── sgsi/                 # DocsLayout para SGSI
+│   │   ├── api/search/           # Búsqueda estática (framework + sgsi)
+│   │   ├── layout.tsx
+│   │   ├── layout.config.tsx     # Navbar del home
+│   │   └── global.css
+│   ├── components/
+│   │   ├── mdx.tsx               # getMDXComponents
+│   │   ├── mdx/mermaid.tsx       # Renderizador Mermaid
+│   │   ├── provider.tsx          # RootProvider con SearchDialog
+│   │   ├── search.tsx            # Búsqueda Orama
+│   │   ├── sub-section-picker.tsx
+│   │   ├── page-actions.tsx      # Botón "Abrir con IA"
+│   │   └── ui/button.tsx
+│   ├── lib/
+│   │   ├── cn.ts
+│   │   ├── shared.ts             # appName, rutas, gitConfig
+│   │   ├── layout.shared.tsx     # baseOptions(), sectionTabs, subTabs
+│   │   └── source.ts             # frameworkSource, sgsiSource, blog
+│   └── content/
+│       ├── framework/            # 127 archivos MDX del framework Kudo
+│       ├── sgsi/
+│       │   ├── index.mdx
+│       │   ├── meta.json
+│       │   ├── politicas/        # Plantillas de políticas (seleccionadas por CLI)
+│       │   └── lineamientos/
+│       └── blog/                 # Posts de ejemplo
+├── dist/                         # Compilado por tsc (no incluir en git)
+├── package.json
+├── tsconfig.json
+└── pnpm-lock.yaml
 ```
 
-## Agregar Nuevas Políticas
+---
 
-Para agregar nuevas políticas a los templates:
+## Áreas de contribución
 
-1. Agrega el archivo de política en `src/templates/content/politicas/`
-2. Actualiza `src/constants.ts` para incluir la nueva política en el dominio correspondiente
-3. Actualiza `src/templates/content/politicas/meta.json` si es necesario
+### Agregar o actualizar políticas
 
-## Modificar Templates Base
+Las plantillas de políticas están en `src/templates/content/sgsi/politicas/`.
 
-Los templates base están en `src/templates/base/`. Los archivos con extensión `.template` serán procesados y los placeholders `{{VARIABLE}}` serán reemplazados durante la creación del proyecto.
+1. Agrega el archivo `.md` o `.mdx`
+2. Actualiza `src/constants.ts` — agrega el nombre del archivo al array `politicas` del dominio correspondiente
+3. El `meta.json` de politicas se actualiza automáticamente según la selección del usuario
 
-Variables disponibles:
-- `{{PROJECT_NAME}}` - Nombre del proyecto
-- `{{PACKAGE_MANAGER}}` - Package manager seleccionado (npm/pnpm/yarn)
-- `{{AUTHOR}}` - Autor del proyecto
+### Agregar contenido al framework
 
-## Testing
+El contenido en `src/templates/content/framework/` se copia íntegramente al proyecto generado. Para agregar una nueva sección:
 
-Actualmente no hay tests automatizados. Para probar:
+1. Crea la carpeta con `index.mdx` y `meta.json`
+2. Actualiza `src/templates/content/framework/meta.json` si es una sección raíz
 
-1. Compila el proyecto: `pnpm build`
-2. Ejecuta el CLI en un directorio temporal:
-```bash
-cd /tmp
-node /path/to/kudo/create-kudo-app/bin/cli.js test-app
-```
-3. Verifica que el proyecto generado funcione:
-```bash
-cd test-app
-pnpm install
-pnpm dev
-```
+### Modificar templates de código
 
-## Convenciones de Código
+Los archivos en `src/templates/app/`, `components/`, `lib/` y `base/` son copiados directamente. Los únicos archivos procesados con variables son los `.template`:
 
-- Usa TypeScript estricto
-- Usa ESM (ES Modules)
-- Usa imports relativos con extensión `.js` (TypeScript lo requiere para ESM)
-- Mantén las utilidades pequeñas y enfocadas
-- Usa el logger para todos los outputs al usuario
-- Usa @clack/prompts para todos los prompts interactivos
+| Variable | Valor |
+|---|---|
+| `{{PROJECT_NAME}}` | Nombre del proyecto |
+| `{{PACKAGE_MANAGER}}` | pnpm |
+| `{{AUTHOR}}` | Autor (por defecto: DivisionCero) |
+
+### Modificar el flujo del CLI
+
+- `src/index.ts` — orquesta el flujo: prompts → copiar base → copiar políticas
+- `src/prompts.ts` — preguntas interactivas (nombre, PM, dominios, políticas, blog)
+- `src/utils/copy-template.ts` — lógica de copia, procesa `.template`, copia framework y sgsi
+
+---
+
+## Convenciones
+
+- TypeScript estricto (`"strict": true`)
+- ESM (`"type": "module"`)
+- Imports con extensión `.js` (requerido por TypeScript ESM)
+- Usar `logger` para todos los outputs al usuario, no `console.log` directo
+- Usar `@clack/prompts` para interacción, no `readline`
+
+---
 
 ## Pull Requests
 
-1. Haz fork del repositorio
-2. Crea una rama desde `main`: `git checkout -b feature/mi-feature`
-3. Realiza tus cambios
-4. Compila y prueba localmente
-5. Commit tus cambios con mensajes descriptivos
-6. Push a tu fork
-7. Abre un Pull Request
+1. Fork del repositorio
+2. Rama desde `main`: `git checkout -b feature/mi-cambio`
+3. Hacer cambios en `create-kudo-app/`
+4. `pnpm run build` — verificar que compila sin errores
+5. Test manual del CLI
+6. Commit con mensaje descriptivo
+7. Push y abrir PR
+
+---
 
 ## Reporte de Bugs
 
-Abre un issue en [GitHub Issues](https://github.com/PetterVargas/kudo/issues) con:
+Abrir issue en [GitHub Issues](https://github.com/PetterVargas/kudo/issues) con:
 
 - Descripción del problema
-- Pasos para reproducir
+- Comando exacto ejecutado
 - Comportamiento esperado vs actual
-- Versión de Node.js y sistema operativo
-- Logs de error si aplica
+- Versión de Node.js y OS
+- Logs de error
+
+---
 
 ## Licencia
 
-Al contribuir, aceptas que tus contribuciones serán licenciadas bajo la licencia MIT del proyecto.
+Al contribuir aceptas que tus cambios serán licenciados bajo MIT.

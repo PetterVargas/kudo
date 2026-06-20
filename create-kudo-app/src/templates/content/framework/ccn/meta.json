@@ -1,0 +1,15 @@
+{
+  "title": "CCN",
+  "description": "Continuidad del Negocio",
+  "root": true,
+  "pages": [
+    "---Dominio CCN---",
+    "index",
+    "---Controles CCN---",
+    "ccn-01",
+    "ccn-02",
+    "ccn-03",
+    "---Herramientas CCN---",
+    "herramientas"
+  ]
+}

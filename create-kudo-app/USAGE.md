@@ -2,227 +2,207 @@
 
 Esta guía te ayudará a usar `create-kudo-app` para crear nuevos proyectos de documentación de Ciberseguridad basados en el framework Kudo.
 
-## 📦 Instalación
+## Instalación
 
-No necesitas instalar `create-kudo-app` globalmente. Puedes ejecutarlo directamente usando tu package manager favorito:
+No necesitas instalar `create-kudo-app` globalmente. Ejecútalo directamente:
 
 ### npm
-
 ```bash
 npm create kudo-app
-# o con nombre de proyecto
-npm create kudo-app my-security-docs
+npm create kudo-app mi-empresa-security
 ```
 
 ### pnpm (Recomendado)
-
 ```bash
 pnpm create kudo-app
-# o con nombre de proyecto
-pnpm create kudo-app my-security-docs
+pnpm create kudo-app mi-empresa-security
 ```
 
 ### yarn
-
 ```bash
 yarn create kudo-app
-# o con nombre de proyecto
-yarn create kudo-app my-security-docs
+yarn create kudo-app mi-empresa-security
 ```
 
-## 🎯 Modo Interactivo
+## Modo Interactivo
 
-Si ejecutas el comando sin argumentos, se iniciará el modo interactivo que te guiará paso a paso:
+Al ejecutar sin argumentos, el CLI te guía paso a paso:
 
 ```bash
 pnpm create kudo-app
 ```
 
-### Preguntas del modo interactivo:
+### Preguntas del modo interactivo
 
-1. **Nombre del proyecto**: El nombre de tu aplicación (se creará un directorio con este nombre)
-   - Debe contener solo letras, números, guiones y guiones bajos
-   - Ejemplo: `mi-documentacion-cybersec`
+1. **Nombre del proyecto** — nombre del directorio que se creará
+2. **Package manager** — `pnpm` (recomendado), `npm` o `yarn`
+3. **¿Incluir blog?** — agrega `content/blog/` con posts de ejemplo
+4. **Dominios a incluir** — selección múltiple de los 8 dominios Kudo
+5. **Políticas** — selección de las políticas disponibles en los dominios elegidos
 
-2. **Package manager**: ¿Qué herramienta usarás para gestionar dependencias?
-   - `pnpm` (Recomendado - más rápido y eficiente)
-   - `npm` (Viene con Node.js)
-   - `yarn` (Alternativa popular)
+## Opciones de CLI
 
-## 🚀 Inicio Rápido
-
-Para crear un proyecto con configuración por defecto:
-
-```bash
-# Crear proyecto con todos los dominios
-pnpm create kudo-app my-docs
-
-# El CLI te preguntará por las opciones
 ```
+Arguments:
+  project-name                    Nombre del proyecto (opcional)
 
-Después de crear el proyecto:
-
-```bash
-cd my-docs
-pnpm install  # Solo si usaste --skip-install
-pnpm dev      # Inicia el servidor de desarrollo
+Options:
+  -V, --version                   Versión de create-kudo-app
+  -p, --package-manager <pm>      Package manager: npm | pnpm | yarn
+  -h, --help                      Ayuda
 ```
-
-## 🎛️ Opciones de CLI
-
-### Argumentos
-
-- `[project-name]`: Nombre del proyecto (opcional, se preguntará si no se proporciona)
-
-### Opciones
-
-- `-V, --version`: Muestra la versión de create-kudo-app
-- `-h, --help`: Muestra ayuda del comando
-- `--skip-install`: No instala las dependencias automáticamente
-- `--skip-git`: No inicializa un repositorio Git
-- `-p, --package-manager <pm>`: Especifica el package manager (npm, pnpm, yarn)
 
 ### Ejemplos
 
 ```bash
-# Crear proyecto sin instalar dependencias
-pnpm create kudo-app my-docs --skip-install
+# Interactivo completo
+pnpm create kudo-app
 
-# Crear proyecto sin Git
-pnpm create kudo-app my-docs --skip-git
+# Con nombre predefinido (sigue siendo interactivo para el resto)
+pnpm create kudo-app mi-empresa
 
-# Crear proyecto con npm como package manager
-pnpm create kudo-app my-docs -p npm
-
-# Combinar opciones
-pnpm create kudo-app my-docs --skip-install --skip-git -p yarn
+# Especificar package manager
+pnpm create kudo-app mi-empresa -p npm
 ```
 
-## 🛠️ Después de Crear el Proyecto
-
-### Estructura generada
+## Estructura del proyecto generado
 
 ```
-my-docs/
-├── app/                      # Next.js App Router
-│   ├── (home)/              # Landing y blog
-│   │   ├── page.tsx        # Página principal
-│   │   ├── layout.tsx      # Layout home
-│   │   └── blog/           # Blog posts
-│   ├── [...slug]/          # Docs dinámicas
-│   │   ├── page.tsx        # Página de documentación
-│   │   └── layout.tsx      # Layout de docs
-│   ├── api/search/         # Búsqueda
-│   ├── layout.tsx          # Layout global
-│   └── layout.config.tsx   # Config navegación
+mi-empresa/
+├── app/
+│   ├── (home)/
+│   │   ├── page.tsx              # Landing page
+│   │   ├── layout.tsx            # Layout con banner y footer
+│   │   └── blog/
+│   │       ├── page.tsx          # Listado de posts
+│   │       └── [slug]/page.tsx   # Post individual
+│   ├── framework/
+│   │   ├── layout.tsx            # DocsLayout con tabs de sección
+│   │   └── [[...slug]]/page.tsx  # Páginas del framework
+│   ├── sgsi/
+│   │   ├── layout.tsx            # DocsLayout con tabs de sección
+│   │   └── [[...slug]]/page.tsx  # Páginas del SGSI
+│   ├── api/search/route.ts       # Búsqueda estática (framework + sgsi)
+│   ├── layout.tsx                # Root layout con Provider
+│   ├── layout.config.tsx         # Navbar del home
+│   └── global.css
+├── components/
+│   ├── mdx.tsx                   # getMDXComponents (Twoslash, Mermaid, etc.)
+│   ├── mdx/mermaid.tsx           # Renderizador Mermaid
+│   ├── page-actions.tsx          # Botón "Abrir con IA"
+│   ├── provider.tsx              # RootProvider con búsqueda
+│   ├── search.tsx                # Diálogo de búsqueda Orama
+│   ├── sub-section-picker.tsx    # Selector de subsección en sidebar
+│   └── ui/button.tsx
+├── lib/
+│   ├── cn.ts                     # tailwind-merge
+│   ├── layout.shared.tsx         # baseOptions, sectionTabs, subTabs
+│   ├── shared.ts                 # Rutas, appName, gitConfig
+│   └── source.ts                 # frameworkSource, sgsiSource, blog
 ├── content/
-│   ├── docs/
-│   │   ├── politicas/      # Templates de políticas
-│   │   └── framework/      # Docs del framework
-│   └── blog/               # Posts del blog
-├── components/             # Componentes React
-├── lib/                    # Utilidades
-├── public/                 # Assets estáticos
-├── package.json
+│   ├── framework/                # 127 archivos MDX del framework Kudo
+│   │   ├── overview/
+│   │   ├── cor/ cip/ cif/ cap/ ccn/ adr/ thp/ dia/
+│   │   ├── correlacion/          # ISO 27001, PCI DSS, SOC 2, CIS, NIST, CSA...
+│   │   └── cuestionarios/
+│   ├── sgsi/
+│   │   ├── index.mdx
+│   │   ├── meta.json
+│   │   ├── politicas/            # Políticas seleccionadas por el usuario
+│   │   └── lineamientos/
+│   └── blog/                     # Posts de ejemplo (si se eligió)
 ├── next.config.mjs
-├── source.config.ts
-└── tsconfig.json
+├── source.config.ts              # frameworkDocs + sgsiDocs + blogPosts
+├── tsconfig.json
+├── postcss.config.mjs
+└── package.json
 ```
 
-### Comandos disponibles
+## Comandos del proyecto generado
 
 ```bash
 # Desarrollo
-pnpm dev          # Inicia servidor en localhost:3000
+pnpm dev              # Servidor en localhost:3000
 
-# Producción
-pnpm build        # Compila el proyecto
-pnpm start        # Inicia servidor de producción
+# Build y producción
+pnpm build            # Compila como sitio estático (output: 'export')
+pnpm start            # Sirve el directorio out/
 
-# Exportar
-pnpm export       # Genera sitio estático
-pnpm deploy       # Build + Export
-
-# Postinstall
-pnpm postinstall  # Procesa archivos MDX (automático)
+# Verificación de tipos
+pnpm types:check      # fumadocs-mdx + tsc --noEmit
 ```
 
-### Personalización
+## Personalización
 
-1. **Logo y branding**: Edita `app/layout.config.tsx`
-2. **Estilos**: Modifica `app/global.css` y Tailwind config
-3. **Contenido**: Agrega/edita archivos en `content/docs/`
-4. **Políticas**: Personaliza templates en `content/docs/politicas/`
-5. **Blog**: Agrega posts en `content/blog/`
+### Cambiar nombre y branding
+Edita `app/layout.config.tsx` — ahí está el logo SVG y el nombre "Kudo" en el navbar del home.  
+Para los layouts de docs edita `lib/layout.shared.tsx` → función `baseOptions()`.
 
-### Agregar nuevas políticas
+### Agregar políticas después
+1. Crea un `.md` o `.mdx` en `content/sgsi/politicas/`
+2. Agrega el slug al array `"pages"` en `content/sgsi/politicas/meta.json`
 
-1. Crea un archivo `.md` o `.mdx` en `content/docs/politicas/`
-2. Agrega frontmatter:
 ```markdown
 ---
-title: "Nombre de la Política"
+title: "Política de Ejemplo"
 description: "Descripción breve"
 ---
 
-# Contenido de la política
+Contenido de la política...
 ```
-3. Actualiza `content/docs/politicas/meta.json` si quieres organizar en la navegación
 
-## 🐛 Solución de Problemas
+### Agregar contenido al framework
+Los archivos en `content/framework/` son las páginas del framework Kudo. Puedes editarlos o agregar nuevas secciones creando una carpeta con `index.mdx` y `meta.json`.
+
+### Agregar posts al blog
+Crea archivos en `content/blog/` con este frontmatter:
+
+```markdown
+---
+title: "Título del post"
+description: "Descripción"
+author: "Tu nombre"
+date: "2026-01-01"
+---
+```
+
+### Cambiar el link de GitHub
+Edita `lib/shared.ts`:
+
+```ts
+export const gitConfig = {
+  user: 'tu-usuario',
+  repo: 'tu-repo',
+  branch: 'main',
+};
+```
+
+## Solución de Problemas
 
 ### Error: "El directorio ya existe"
+El CLI te pregunta si deseas sobrescribirlo. Elige "Sí" o usa otro nombre.
 
-Si el directorio ya existe, el CLI te preguntará si quieres sobrescribirlo. Di "Sí" para continuar o elige otro nombre.
-
-### Error de instalación de dependencias
-
-Si falla la instalación automática:
-
+### Falla la instalación de dependencias
 ```bash
-cd my-docs
+cd mi-empresa
 pnpm install
 ```
 
-### Error de Git
-
-Si falla la inicialización de Git (porque no está instalado):
-
+### Error en `pnpm dev` — `.source` no encontrado
+El script `postinstall` genera ese directorio. Ejecútalo manualmente:
 ```bash
-# Instala Git primero
-sudo apt install git  # Ubuntu/Debian
-brew install git      # macOS
-
-# Luego inicializa manualmente
-cd my-docs
-git init
-git add .
-git commit -m "Initial commit"
+pnpm postinstall  # alias de: fumadocs-mdx
 ```
 
 ### Puerto 3000 en uso
-
-Si el puerto 3000 ya está en uso:
-
 ```bash
-# Usa otro puerto
 PORT=3001 pnpm dev
 ```
 
-## 📖 Recursos Adicionales
+## Recursos
 
 - [Documentación Kudo](https://kudo.divisioncero.com)
-- [Next.js 15 Docs](https://nextjs.org/docs)
 - [Fumadocs](https://fumadocs.dev)
+- [Next.js](https://nextjs.org/docs)
 - [DivisionCero](https://divisioncero.com)
-
-## 🤝 Soporte
-
-¿Necesitas ayuda?
-
-- [GitHub Issues](https://github.com/PetterVargas/kudo/issues)
-- [Documentación](https://kudo.divisioncero.com)
-
-## 📄 Licencia
-
-MIT © DivisionCero
+- [Issues](https://github.com/PetterVargas/kudo/issues)

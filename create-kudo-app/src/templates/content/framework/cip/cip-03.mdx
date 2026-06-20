@@ -1,0 +1,106 @@
+---
+title: CIP-03 - Ciberseguridad en Autorización
+description: Control de permisos y control de acceso
+---
+
+## 🎯 Objetivo del Control
+
+Implementar un modelo de autorización basado en principios de menor privilegio y segregación de funciones para controlar el acceso a recursos según roles y necesidades de negocio.
+
+## 📋 Descripción
+
+Este control establece mecanismos de autorización:
+- Role-Based Access Control (RBAC)
+- Attribute-Based Access Control (ABAC)
+- Policy-Based Access Control (PBAC)
+- Just-in-Time (JIT) access
+- Revisiones periódicas de accesos
+
+## 🛡️ Controles Requeridos
+
+### Principio de Menor Privilegio
+- Acceso mínimo necesario para realizar funciones
+- Privilegios otorgados por tiempo definido
+- Revisión y justificación de privilegios elevados
+- Separación de cuentas estándar vs administrativas
+
+### Modelos de Control de Acceso
+
+**RBAC (Role-Based Access Control):**
+- Definición de roles organizacionales
+- Permisos asignados a roles, no a usuarios
+- Usuarios asignados a roles según función
+- Ejemplo roles: Developer, QA, Admin, CISO, Auditor
+
+**ABAC (Attribute-Based Access Control):**
+- Basado en atributos de usuario, recurso y ambiente
+- Políticas dinámicas
+- Ejemplo: Acceso si (departamento=Finance AND ubicación=Office AND horario=9-18)
+
+**PBAC (Policy-Based Access Control):**
+- Políticas centralizadas y auditables
+- Evaluación en tiempo real
+- Open Policy Agent (OPA)
+
+### Just-in-Time (JIT) Access
+- Privilegios temporales bajo solicitud
+- Aprobación workflow
+- Duración limitada (2-8 horas)
+- Auditoría de uso
+- Auto-revocación al expirar
+
+### Segregación de Funciones (SoD)
+- Separación de responsabilidades críticas
+- Ejemplo: Quien aprueba compra ≠ quien ejecuta pago
+- Detección de conflictos de acceso
+- Matrices de incompatibilidad
+
+### Revisión de Accesos
+- Revisión trimestral de permisos
+- Certificación de accesos por managers
+- Revocación de accesos no utilizados (>90 días)
+- Auditoría de accesos privilegiados
+
+### Gestión de Accesos Privilegiados (PAM)
+- Vault de contraseñas privilegiadas
+- Session recording para admins
+- Check-in/check-out de credenciales
+- Rotación automática de contraseñas
+
+## 📊 Métricas e Indicadores
+
+- Porcentaje de usuarios con accesos excesivos
+- Tiempo de aprobación de solicitudes de acceso
+- Violaciones de segregación de funciones
+- Cumplimiento de revisiones periódicas
+- Accesos privilegiados sin uso
+
+## 🔗 Herramientas Recomendadas
+
+- **IGA:** SailPoint, Saviynt, Microsoft Entra Identity Governance
+- **PAM:** CyberArk, BeyondTrust, Delinea, HashiCorp Vault
+- **Policy Engine:** Open Policy Agent (OPA), Casbin
+- **PIM:** Azure AD Privileged Identity Management
+- **Access Reviews:** Azure AD Access Reviews, Okta
+
+## 📚 Referencias
+
+- [Política de Control de Acceso](/docs/kudo/politicas/politica-control-acceso)
+- [Gestión de Accesos Privilegiados](/docs/kudo/politicas/gestion-accesos-privilegiados)
+- [Procedimiento de Alta y Baja de Usuarios](/docs/kudo/politicas/procedimiento-alta-baja-usuarios)
+- NIST SP 800-162 - Guide to ABAC
+- ISO 27001:2022 - A.5.15, A.8.2, A.8.3
+- OWASP Authorization Cheat Sheet
+
+## ✅ Checklist de Implementación
+
+- [ ] Modelo de roles (RBAC) definido
+- [ ] Matriz de permisos documentada
+- [ ] Políticas de menor privilegio aplicadas
+- [ ] PAM implementado para cuentas privilegiadas
+- [ ] JIT access configurado
+- [ ] Segregación de funciones validada
+- [ ] Revisiones trimestrales programadas
+- [ ] Workflow de solicitudes de acceso
+- [ ] Auditoría de cambios de permisos
+- [ ] Dashboard de accesos y permisos

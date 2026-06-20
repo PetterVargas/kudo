@@ -1,0 +1,133 @@
+---
+title: THP-03 - Inventario de la Cadena de Suministro
+description: Control de identificación, clasificación y gestión de proveedores y terceros
+---
+
+## 🎯 Objetivo del Control
+
+Mantener un inventario actualizado y detallado de todos los proveedores, terceros y servicios externos que tienen acceso a información, sistemas o activos de la organización, permitiendo una gestión efectiva del riesgo de la cadena de suministro.
+
+## 📋 Descripción
+
+Este control establece el proceso de inventario de terceros que incluye:
+- Registro centralizado de proveedores y servicios
+- Clasificación de proveedores según riesgo y criticidad
+- Identificación de dependencias tecnológicas
+- Mapeo de datos e información compartida
+- Seguimiento del ciclo de vida de relaciones con terceros
+
+## 🛡️ Controles Requeridos
+
+### Inventario de Proveedores
+- **Registro Centralizado:**
+  - Base de datos o sistema CMDB de proveedores
+  - Información mínima requerida:
+    - Nombre legal y comercial
+    - Servicios o productos suministrados
+    - Datos de contacto (comercial, técnico, seguridad, legal)
+    - Fecha de inicio y término de contrato
+    - Renovación automática o manual
+    - Costo anual del servicio
+    - SLA acordado
+- **Categorización por Tipo:**
+  - Proveedores de infraestructura (hosting, cloud, telecomunicaciones)
+  - Proveedores de software (SaaS, licencias, herramientas)
+  - Servicios gestionados (SOC, NOC, MSP, consultores)
+  - Proveedores de soporte (mantenimiento, help desk)
+  - Servicios profesionales (auditoría, legal, consultoría)
+
+### Clasificación de Riesgo
+- **Nivel de Criticidad:**
+  - **Crítico:** Servicio esencial para operación del negocio
+  - **Alto:** Impacto significativo si no está disponible
+  - **Medio:** Afecta funciones específicas, tiene alternativas
+  - **Bajo:** Impacto mínimo en operaciones
+- **Nivel de Acceso:**
+  - **Nivel 1:** Acceso a datos confidenciales o sistemas críticos
+  - **Nivel 2:** Acceso a datos internos o sistemas productivos
+  - **Nivel 3:** Acceso limitado a datos públicos o ambientes de prueba
+  - **Nivel 4:** Sin acceso a datos o sistemas
+
+### Mapeo de Datos e Información
+- Tipos de datos compartidos con cada proveedor
+- Clasificación de información según política corporativa
+- Volumen aproximado de datos
+- Frecuencia de intercambio
+- Métodos de transferencia (API, SFTP, portal web, email)
+- Ubicación geográfica de procesamiento y almacenamiento
+- Subprocesadores o cuartos niveles utilizados
+
+### Dependencias Tecnológicas
+- **Integraciones Técnicas:**
+  - APIs y conectores utilizados
+  - Accesos VPN o conexiones dedicadas
+  - Cuentas de servicio y credenciales
+  - Direcciones IP y dominios autorizados
+- **Dependencias Operativas:**
+  - Procesos de negocio dependientes
+  - Impacto de indisponibilidad
+  - Tiempo de recuperación requerido (RTO)
+  - Punto de recuperación aceptable (RPO)
+
+### Gestión del Ciclo de Vida
+- **Onboarding:**
+  - Due diligence de seguridad previo a contratación
+  - Evaluación de riesgo inicial
+  - Firma de acuerdos de confidencialidad (NDA)
+  - Clausulas de seguridad en contratos
+- **Monitoreo Continuo:**
+  - Revisión anual de evaluaciones de seguridad
+  - Seguimiento de incidentes de seguridad
+  - Cambios en el perfil de riesgo
+  - Renovación de certificaciones
+- **Offboarding:**
+  - Revocación de accesos
+  - Devolución o destrucción de datos
+  - Cierre de cuentas y credenciales
+  - Certificación de eliminación de datos
+
+## 📊 Métricas e Indicadores
+
+- Número total de proveedores activos
+- Distribución de proveedores por nivel de criticidad
+- Distribución de proveedores por nivel de acceso
+- Porcentaje de proveedores con evaluación de seguridad vigente
+- Número de proveedores con acceso a datos sensibles
+- Número de incidentes de seguridad originados en terceros
+- Tiempo promedio de revisión de evaluaciones
+- Cobertura de inventario (objetivo: 100%)
+
+## 🔗 Herramientas Recomendadas
+
+- **TPRM Platforms:** OneTrust, ServiceNow TPRM, BitSight, SecurityScorecard
+- **Vendor Management:** Coupa, Ariba, Ivalua
+- **CMDB:** ServiceNow CMDB, Freshservice, Jira Service Management
+- **Contract Management:** DocuSign CLM, Ironclad, ContractWorks
+- **Risk Assessment:** Prevalent, Whistic, Panorays
+
+## 📚 Referencias
+
+- [Política de Gestión de Terceros](/docs/kudo/politicas/politica-gestion-terceros)
+- [Evaluación de Seguridad de Proveedores](/docs/kudo/politicas/evaluacion-seguridad-proveedores)
+- [Política de Clasificación de Información](/docs/kudo/politicas/politica-clasificacion-informacion)
+- [Acuerdo de Procesamiento de Datos (DPA)](/docs/kudo/politicas/acuerdo-procesamiento-datos)
+- [Control THP-04 - Modelo de Responsabilidad Compartida](/docs/kudo/thp-ciberseguridad-en-talento-humano-y-proveedores/thp-04)
+- NIST SP 800-161 Rev. 1 - Cybersecurity Supply Chain Risk Management
+- ISO/IEC 27036 - Information Security for Supplier Relationships
+- CIS Control 15 - Service Provider Management
+
+## ✅ Checklist de Implementación
+
+- [ ] Identificar y listar todos los proveedores actuales
+- [ ] Seleccionar herramienta o sistema para inventario
+- [ ] Definir criterios de clasificación de riesgo
+- [ ] Crear taxonomía de tipos de proveedores
+- [ ] Mapear servicios y dependencias críticas
+- [ ] Identificar datos compartidos con cada proveedor
+- [ ] Asignar responsables de relación con proveedores
+- [ ] Implementar proceso de registro de nuevos proveedores
+- [ ] Establecer revisión trimestral de inventario
+- [ ] Integrar inventario con proceso de compras/contratación
+- [ ] Crear dashboard de visualización de cadena de suministro
+- [ ] Documentar procedimientos de actualización de inventario
+- [ ] Capacitar a equipos de compras, legal y seguridad
