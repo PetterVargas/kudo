@@ -1,6 +1,6 @@
 {
   "name": "@divisioncero/create-kudo-app",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "CLI para crear nuevas aplicaciones Kudo con templates de políticas de Ciberseguridad",
   "type": "module",
   "bin": {
