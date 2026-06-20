@@ -34,8 +34,7 @@ jobs:
       - name: Build
         run: pnpm build
 
-      - name: Enable OIDC for Trusted Publishing
-        run: npm config delete //registry.npmjs.org/:_authToken
-
       - name: Publish to npm with provenance
         run: npm publish --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
