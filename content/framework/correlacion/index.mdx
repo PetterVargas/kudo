@@ -3,62 +3,36 @@ title: Correlación
 description: Correlación de frameworks de Ciberseguridad
 ---
 
-import { Step, Steps } from 'fumadocs-ui/components/steps';
+import { ShieldCheck, Cloud, Bot, ClipboardCheck, Lock, Network, FileText, BookOpen, CreditCard } from 'lucide-react';
 
 Kudo busca una optimización entre diferentes frameworks de Ciberseguridad; partiendo con la base de los siguientes:
 
-<Steps>
-<Step>
-
-### ISO27001:2022
-
-</Step>
-
-<Step>
-
-### Cloud Security Alliance Cloud Control Matrix (CCM)
-
-</Step>
-
-<Step>
-
-### Cloud Security Alliance AI Control Matrix (AICM)
-
-</Step>
-
-<Step>
-
-### SOC 2
-
-</Step>
-
-<Step>
-
-### CIS Controls
-
-</Step>
-
-<Step>
-
-### NIST Cybersecurity Framework
-
-</Step>
-
-<Step>
-
-### NIST SP 800-53 Rev 5.2.0
-
-</Step>
-
-<Step>
-
-### NIST SP 800-53B
-
-</Step>
-
-<Step>
-
-### PCI DSS
-
-</Step>
-</Steps>
+<Cards>
+  <Card icon={<ShieldCheck />} href="/framework/correlacion/iso27001-v2022-y-kudo" title="ISO 27001:2022">
+    Estándar internacional para sistemas de gestión de seguridad de la información.
+  </Card>
+  <Card icon={<Cloud />} href="/framework/correlacion/csa-ccm-y-kudo" title="CSA Cloud Control Matrix (CCM)">
+    Marco de controles de seguridad para entornos de computación en la nube.
+  </Card>
+  <Card icon={<Bot />} href="/framework/correlacion/csa-aicm-y-kudo" title="CSA AI Control Matrix (AICM)">
+    Controles de seguridad para sistemas de inteligencia artificial.
+  </Card>
+  <Card icon={<ClipboardCheck />} href="/framework/correlacion/soc-2-y-kudo" title="SOC 2">
+    Estándar de auditoría para controles de seguridad en proveedores de servicios.
+  </Card>
+  <Card icon={<Lock />} href="/framework/correlacion/cis-controls-y-kudo" title="CIS Controls">
+    Conjunto de acciones priorizadas para la defensa cibernética.
+  </Card>
+  <Card icon={<Network />} href="/framework/correlacion/nist-cybersecurity-framework-y-kudo" title="NIST Cybersecurity Framework">
+    Marco para gestión y reducción del riesgo de ciberseguridad.
+  </Card>
+  <Card icon={<FileText />} href="/framework/correlacion/nist-cybersecurity-framework-y-kudo" title="NIST SP 800-53 Rev 5.2.0">
+    Catálogo de controles de seguridad y privacidad para sistemas de información.
+  </Card>
+  <Card icon={<BookOpen />} href="/framework/correlacion/nist-cybersecurity-framework-y-kudo" title="NIST SP 800-53B">
+    Líneas base de controles de seguridad y privacidad para sistemas federales.
+  </Card>
+  <Card icon={<CreditCard />} href="/framework/correlacion/pci-dss-y-kudo" title="PCI DSS">
+    Estándar de seguridad para la industria de tarjetas de pago.
+  </Card>
+</Cards>
