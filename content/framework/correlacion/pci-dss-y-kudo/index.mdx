@@ -3,4 +3,38 @@ title: PCI DSS y Kudo
 description: Overview del framework con nuestro Sistema de Gestión de Seguridad de la Información SGSI
 ---
 
-Overview cuantitativo del framework nuevo, a nivel dominios, controles y requisitos.
+import { CreditCard, ShieldCheck, List, FileText } from 'lucide-react';
+
+El Payment Card Industry Data Security Standard (PCI DSS) v4.0 es el estándar global de seguridad para organizaciones que procesan, almacenan o transmiten datos de tarjetas de pago. Define 12 requisitos organizados en 6 objetivos de control. Kudo correlaciona sus requisitos y sub-requisitos con el framework y las políticas del SGSI.
+
+## Estructura PCI DSS v4.0
+
+<Cards>
+  <Card icon={<CreditCard />} title="6 Objetivos">
+    Red segura, protección de datos, gestión de vulnerabilidades, control de acceso, monitoreo y política de seguridad.
+  </Card>
+  <Card icon={<List />} title="12 Requisitos">
+    Requisitos de seguridad que cubren el ciclo completo de protección de datos de tarjetas.
+  </Card>
+  <Card icon={<ShieldCheck />} title="63 Sub-requisitos">
+    Controles específicos distribuidos en los 12 requisitos del estándar.
+  </Card>
+</Cards>
+
+## Requisitos PCI DSS v4.0 por Objetivo
+
+| Objetivo | Requisito | Descripción | Sub-req. |
+|----------|-----------|-------------|:--------:|
+| 1 — Red Segura | Req. 1 | Install and Maintain Network Security Controls | 5 |
+| 1 — Red Segura | Req. 2 | Apply Secure Configurations to All System Components | 3 |
+| 2 — Protección de Datos | Req. 3 | Protect Stored Account Data | 7 |
+| 2 — Protección de Datos | Req. 4 | Protect Cardholder Data with Strong Cryptography During Transmission | 2 |
+| 3 — Gestión de Vulnerabilidades | Req. 5 | Protect All Systems and Networks from Malicious Software | 4 |
+| 3 — Gestión de Vulnerabilidades | Req. 6 | Develop and Maintain Secure Systems and Software | 5 |
+| 4 — Control de Acceso | Req. 7 | Restrict Access to System Components and Cardholder Data | 3 |
+| 4 — Control de Acceso | Req. 8 | Identify Users and Authenticate Access to System Components | 6 |
+| 4 — Control de Acceso | Req. 9 | Restrict Physical Access to Cardholder Data | 5 |
+| 5 — Monitoreo y Pruebas | Req. 10 | Log and Monitor All Access to System Components and Cardholder Data | 7 |
+| 5 — Monitoreo y Pruebas | Req. 11 | Test Security of Systems and Networks Regularly | 6 |
+| 6 — Política de Seguridad | Req. 12 | Support Information Security with Organizational Policies and Programs | 10 |
+| **Total** | | | **63** |

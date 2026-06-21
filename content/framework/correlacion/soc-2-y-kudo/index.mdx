@@ -3,4 +3,46 @@ title: SOC 2 y Kudo
 description: Overview del framework con nuestro Sistema de Gestión de Seguridad de la Información SGSI
 ---
 
-Overview cuantitativo del framework nuevo, a nivel dominios, controles y requisitos.
+import { ClipboardCheck, ShieldCheck, List, FileText } from 'lucide-react';
+
+SOC 2 es un estándar de auditoría desarrollado por el AICPA para proveedores de servicios que almacenan datos de clientes en la nube. Se basa en los Trust Services Criteria (TSC) organizados en 5 categorías: Seguridad (obligatoria) y cuatro opcionales. Kudo correlaciona sus criterios con el framework y las políticas del SGSI.
+
+## Estructura SOC 2 — Trust Services Criteria (TSC)
+
+<Cards>
+  <Card icon={<ShieldCheck />} title="5 Categorías TSC">
+    CC (Security), A (Availability), C (Confidentiality), PI (Processing Integrity) y P (Privacy).
+  </Card>
+  <Card icon={<List />} title="62 Criterios">
+    Distribuidos en las 5 categorías del marco TSC, siendo CC (Common Criteria) la categoría obligatoria.
+  </Card>
+  <Card icon={<ClipboardCheck />} title="9 Grupos CC">
+    Common Criteria organizados en grupos CC1–CC9 que cubren entorno de control, riesgos, acceso y operaciones.
+  </Card>
+</Cards>
+
+## Trust Services Criteria SOC 2
+
+| Categoría | Descripción | Grupos | Criterios |
+|-----------|-------------|:------:|:---------:|
+| CC | Common Criteria (Security) — obligatoria | CC1–CC9 | 33 |
+| A | Availability | A1 | 3 |
+| C | Confidentiality | C1 | 2 |
+| PI | Processing Integrity | PI1 | 5 |
+| P | Privacy | P1–P8 | 19 |
+| **Total** | | | **62** |
+
+## Desglose Common Criteria (CC)
+
+| Grupo | Descripción | Criterios |
+|-------|-------------|:---------:|
+| CC1 | Control Environment | 5 |
+| CC2 | Communication and Information | 3 |
+| CC3 | Risk Assessment | 4 |
+| CC4 | Monitoring Activities | 2 |
+| CC5 | Control Activities | 3 |
+| CC6 | Logical and Physical Access Controls | 8 |
+| CC7 | System Operations | 5 |
+| CC8 | Change Management | 1 |
+| CC9 | Risk Mitigation | 2 |
+| **Total CC** | | **33** |

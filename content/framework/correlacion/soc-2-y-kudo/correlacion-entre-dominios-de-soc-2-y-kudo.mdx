@@ -3,4 +3,62 @@ title: Correlación entre Dominios
 description: Gráficamente la correlación entre dominios de SOC 2 y Kudo
 ---
 
-Grafico de correlación entre dominios de SOC 2 y Kudo
+## 📝 Correlación SOC 2 y Kudo
+
+Los 5 Trust Services Criteria de SOC 2 se correlacionan con los 8 dominios del Framework Kudo cubriendo el ciclo completo de seguridad, disponibilidad, confidencialidad, integridad y privacidad.
+
+<Mermaid
+  chart="
+graph LR
+  KUDO[🔐 Framework Kudo<br/>8 Dominios - 36 Controles]
+  SOC2[SOC 2<br/>Trust Services Criteria<br/>5 Categorías - 62 Criterios]
+
+  subgraph TSC[🛡️ Trust Services Criteria]
+    CC[CC — Common Criteria<br/>Security<br/>CC1 · CC2 · CC3 · CC4 · CC5<br/>CC6 · CC7 · CC8 · CC9]
+    AV[A — Availability<br/>A1]
+    CO[C — Confidentiality<br/>C1]
+    PI[PI — Processing Integrity<br/>PI1]
+    PR[P — Privacy<br/>P1–P8]
+  end
+
+  subgraph KUDO_DOMAINS[🎯 Dominios Kudo]
+    COR[COR<br/>Coherencia Organizacional]
+    CIP[CIP<br/>Identidad y Puntos Finales]
+    CIF[CIF<br/>Ciberseguridad en Infraestructura]
+    CAP[CAP<br/>Ciberseguridad en Aplicaciones]
+    CCN[CCN<br/>Continuidad y Cambios]
+    THP[THP<br/>Talento Humano y Proveedores]
+    DIA[DIA<br/>Datos e Inteligencia Artificial]
+    ADR[ADR<br/>Análisis, Detección y Respuesta]
+  end
+
+  SOC2 --> CC
+  SOC2 --> AV
+  SOC2 --> CO
+  SOC2 --> PI
+  SOC2 --> PR
+
+  CC --> COR
+  CC --> CIP
+  CC --> CIF
+  CC --> CCN
+  CC --> THP
+  CC --> ADR
+
+  AV --> CCN
+
+  CO --> DIA
+
+  PI --> CAP
+
+  PR --> DIA
+
+  COR --> KUDO
+  CIP --> KUDO
+  CIF --> KUDO
+  CAP --> KUDO
+  CCN --> KUDO
+  THP --> KUDO
+  DIA --> KUDO
+  ADR --> KUDO"
+/>

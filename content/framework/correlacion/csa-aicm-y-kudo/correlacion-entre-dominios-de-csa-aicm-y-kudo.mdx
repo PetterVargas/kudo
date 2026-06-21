@@ -3,4 +3,70 @@ title: Correlación entre Dominios
 description: Gráficamente la correlación entre dominios de CSA AICM y Kudo
 ---
 
-Grafico de correlación entre dominios de CSA AICM y Kudo
+## 📝 Correlación CSA AICM y Kudo
+
+Los dominios son los componentes centrales del marco Kudo, correlacionados con los dominios de la Cloud Security Alliance AI Control Matrix.
+
+<Mermaid
+  chart="
+graph LR
+  KUDO[🔐 Framework Kudo<br/>8 Dominios - 36 Controles]
+  AICM[CSA AICM v1]
+
+  subgraph AICM_DOMAINS[🤖 Dominios CSA AICM]
+    GOV[GOV<br/>AI Governance]
+    RSK[RSK<br/>AI Risk Management]
+    DAT[DAT<br/>AI Data Security]
+    MDS[MDS<br/>AI Model Security]
+    OPS[OPS<br/>AI Operations Security]
+    SUP[SUP<br/>AI Supply Chain Security]
+    PRI[PRI<br/>AI Privacy]
+    ETH[ETH<br/>AI Ethics]
+    COM[COM<br/>AI Compliance]
+    INC[INC<br/>AI Incident Response]
+  end
+
+  subgraph KUDO_DOMAINS[🎯 Dominios Kudo]
+    COR[COR<br/>Coherencia Organizacional]
+    CIF[CIF<br/>Ciberseguridad en Infraestructura]
+    CAP[CAP<br/>Ciberseguridad en Aplicaciones]
+    THP[THP<br/>Talento Humano y Proveedores]
+    DIA[DIA<br/>Datos e Inteligencia Artificial]
+    ADR[ADR<br/>Análisis, Detección y Respuesta]
+  end
+
+  AICM --> GOV
+  AICM --> RSK
+  AICM --> DAT
+  AICM --> MDS
+  AICM --> OPS
+  AICM --> SUP
+  AICM --> PRI
+  AICM --> ETH
+  AICM --> COM
+  AICM --> INC
+
+  GOV --> COR
+  RSK --> COR
+  COM --> COR
+  ETH --> COR
+
+  MDS --> CIF
+  MDS --> CAP
+  OPS --> CIF
+
+  SUP --> THP
+
+  DAT --> DIA
+  PRI --> DIA
+
+  OPS --> ADR
+  INC --> ADR
+
+  COR --> KUDO
+  CIF --> KUDO
+  CAP --> KUDO
+  THP --> KUDO
+  DIA --> KUDO
+  ADR --> KUDO"
+/>
