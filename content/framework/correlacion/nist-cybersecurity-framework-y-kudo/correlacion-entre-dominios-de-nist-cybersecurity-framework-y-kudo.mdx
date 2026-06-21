@@ -3,4 +3,68 @@ title: Correlación entre Dominios
 description: Gráficamente la correlación entre dominios de NIST CSF y Kudo
 ---
 
-Grafico de correlación entre dominios de NIST CSF y Kudo
+## 📝 Correlación NIST CSF 2.0 y Kudo
+
+Las 6 funciones del NIST CSF 2.0 se correlacionan con los 8 dominios del Framework Kudo cubriendo el ciclo completo de gestión del riesgo de ciberseguridad.
+
+<Mermaid
+  chart="
+graph LR
+  KUDO[🔐 Framework Kudo<br/>8 Dominios - 36 Controles]
+  CSF[NIST CSF 2.0<br/>6 Funciones - 106 Subcategorías]
+
+  subgraph CSF_FUNCTIONS[🛡️ Funciones NIST CSF 2.0]
+    GV[GV — GOVERN<br/>GV.OC · GV.RM · GV.RR<br/>GV.PO · GV.OV · GV.SC]
+    ID[ID — IDENTIFY<br/>ID.AM · ID.RA · ID.IM]
+    PR[PR — PROTECT<br/>PR.AA · PR.AT · PR.DS · PR.PS]
+    DE[DE — DETECT<br/>DE.CM · DE.AE]
+    RS[RS — RESPOND<br/>RS.MA · RS.AN · RS.CO · RS.MI]
+    RC[RC — RECOVER<br/>RC.RP · RC.CO]
+  end
+
+  subgraph KUDO_DOMAINS[🎯 Dominios Kudo]
+    COR[COR<br/>Coherencia Organizacional]
+    CIP[CIP<br/>Identidad y Puntos Finales]
+    CIF[CIF<br/>Ciberseguridad en Infraestructura]
+    CAP[CAP<br/>Ciberseguridad en Aplicaciones]
+    CCN[CCN<br/>Continuidad y Cambios]
+    THP[THP<br/>Talento Humano y Proveedores]
+    DIA[DIA<br/>Datos e Inteligencia Artificial]
+    ADR[ADR<br/>Análisis, Detección y Respuesta]
+  end
+
+  CSF --> GV
+  CSF --> ID
+  CSF --> PR
+  CSF --> DE
+  CSF --> RS
+  CSF --> RC
+
+  GV --> COR
+  GV --> THP
+
+  ID --> COR
+  ID --> DIA
+
+  PR --> CIP
+  PR --> THP
+  PR --> DIA
+  PR --> CIF
+  PR --> CAP
+
+  DE --> ADR
+
+  RS --> ADR
+  RS --> CCN
+
+  RC --> CCN
+
+  COR --> KUDO
+  CIP --> KUDO
+  CIF --> KUDO
+  CAP --> KUDO
+  CCN --> KUDO
+  THP --> KUDO
+  DIA --> KUDO
+  ADR --> KUDO"
+/>

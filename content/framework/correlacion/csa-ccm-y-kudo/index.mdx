@@ -3,4 +3,40 @@ title: CSA CCM y Kudo
 description: Overview del framework con nuestro Sistema de Gestión de Seguridad de la Información SGSI
 ---
 
-Overview cuantitativo del framework nuevo, a nivel dominios, controles y requisitos.
+import { Cloud, ShieldCheck, List, FileText } from 'lucide-react';
+
+La Cloud Security Alliance Cloud Control Matrix (CSA CCM) v4 es un marco de controles de ciberseguridad diseñado específicamente para entornos de computación en la nube. Kudo correlaciona sus dominios y controles con el framework y las políticas del SGSI.
+
+## Estructura CSA CCM v4
+
+<Cards>
+  <Card icon={<Cloud />} title="17 Dominios">
+    Desde gobernanza y gestión de riesgos hasta seguridad de aplicaciones y gestión de incidentes.
+  </Card>
+  <Card icon={<List />} title="197 Controles">
+    Distribuidos en los 17 dominios de control del marco CCM.
+  </Card>
+</Cards>
+
+## Dominios CSA CCM v4
+
+| Código | Dominio | Controles |
+|--------|---------|:---------:|
+| A&A | Audit and Assurance | 8 |
+| AIS | Application and Interface Security | 6 |
+| BCR | Business Continuity and Operational Resilience | 12 |
+| CCC | Change Control and Configuration Management | 10 |
+| CEK | Cryptography, Encryption, and Key Management | 21 |
+| DCS | Datacenter Security | 12 |
+| DSP | Data Security and Privacy Lifecycle Management | 23 |
+| GRC | Governance, Risk, and Compliance | 7 |
+| HRS | Human Resources Security | 13 |
+| IAM | Identity and Access Management | 14 |
+| IPY | Interoperability and Portability | 5 |
+| IVS | Infrastructure and Virtualization Security | 10 |
+| LOG | Logging and Monitoring | 13 |
+| SEF | Security Incident Management, E-Discovery & Forensics | 9 |
+| STA | Supply Chain Management, Transparency and Accountability | 10 |
+| TVM | Threat and Vulnerability Management | 11 |
+| UEM | Universal Endpoint Management | 13 |
+| **Total** | | **197** |

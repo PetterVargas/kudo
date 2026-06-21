@@ -3,4 +3,44 @@ title: NIST CSF y Kudo
 description: Overview del framework con nuestro Sistema de Gestión de Seguridad de la Información SGSI
 ---
 
-Overview cuantitativo del framework nuevo, a nivel dominios, controles y requisitos.
+import { Network, ShieldCheck, List, FileText } from 'lucide-react';
+
+El NIST Cybersecurity Framework (CSF) 2.0 es un marco voluntario desarrollado por el National Institute of Standards and Technology para gestionar y reducir el riesgo de ciberseguridad en organizaciones de cualquier tamaño y sector. La versión 2.0 (2024) introduce la función GOVERN como eje central de gobernanza. Kudo correlaciona sus funciones y subcategorías con el framework y las políticas del SGSI.
+
+## Estructura NIST CSF 2.0
+
+<Cards>
+  <Card icon={<Network />} title="6 Funciones">
+    GOVERN, IDENTIFY, PROTECT, DETECT, RESPOND y RECOVER — el ciclo completo de gestión del riesgo.
+  </Card>
+  <Card icon={<List />} title="106 Subcategorías">
+    Distribuidas en 22 categorías dentro de las 6 funciones del marco CSF.
+  </Card>
+</Cards>
+
+## Funciones y Categorías NIST CSF 2.0
+
+| Función | Categoría | Subcategorías |
+|---------|-----------|:-------------:|
+| GV — GOVERN | GV.OC — Organizational Context | 5 |
+| GV — GOVERN | GV.RM — Risk Management Strategy | 7 |
+| GV — GOVERN | GV.RR — Roles, Responsibilities, and Authorities | 4 |
+| GV — GOVERN | GV.PO — Policy | 2 |
+| GV — GOVERN | GV.OV — Oversight | 3 |
+| GV — GOVERN | GV.SC — Cybersecurity Supply Chain Risk Management | 9 |
+| ID — IDENTIFY | ID.AM — Asset Management | 8 |
+| ID — IDENTIFY | ID.RA — Risk Assessment | 6 |
+| ID — IDENTIFY | ID.IM — Improvement | 4 |
+| PR — PROTECT | PR.AA — Identity Management, Authentication, and Access Control | 6 |
+| PR — PROTECT | PR.AT — Awareness and Training | 2 |
+| PR — PROTECT | PR.DS — Data Security | 10 |
+| PR — PROTECT | PR.PS — Platform Security | 4 |
+| DE — DETECT | DE.CM — Continuous Monitoring | 9 |
+| DE — DETECT | DE.AE — Adverse Event Analysis | 8 |
+| RS — RESPOND | RS.MA — Incident Management | 5 |
+| RS — RESPOND | RS.AN — Incident Analysis | 3 |
+| RS — RESPOND | RS.CO — Incident Response Reporting and Communication | 3 |
+| RS — RESPOND | RS.MI — Incident Mitigation | 2 |
+| RC — RECOVER | RC.RP — Incident Recovery Plan Execution | 4 |
+| RC — RECOVER | RC.CO — Incident Recovery Communication | 2 |
+| **Total** | | **106** |

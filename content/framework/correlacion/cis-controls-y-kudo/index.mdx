@@ -3,4 +3,44 @@ title: CIS Controls y Kudo
 description: Overview del framework con nuestro Sistema de Gestión de Seguridad de la Información SGSI
 ---
 
-Overview cuantitativo del framework nuevo, a nivel dominios, controles y requisitos.
+import { Lock, ShieldCheck, List, Users } from 'lucide-react';
+
+Los CIS Controls v8 son un conjunto priorizado de acciones de defensa cibernética desarrollado por el Center for Internet Security. Agrupan las mejores prácticas en 18 controles con 153 salvaguardas distribuidas en 3 grupos de implementación según la madurez de la organización. Kudo correlaciona sus controles con el framework y las políticas del SGSI.
+
+## Estructura CIS Controls v8
+
+<Cards>
+  <Card icon={<Lock />} title="18 Controles">
+    Desde inventario de activos hasta pruebas de penetración, organizados por prioridad de implementación.
+  </Card>
+  <Card icon={<List />} title="153 Salvaguardas">
+    Acciones específicas distribuidas en los 18 controles del marco CIS.
+  </Card>
+  <Card icon={<Users />} title="3 Grupos de Implementación">
+    IG1 (56), IG2 (130) e IG3 (153) — escalonados según la madurez y recursos de la organización.
+  </Card>
+</Cards>
+
+## Controles CIS v8
+
+| Control | Nombre | Salvaguardas |
+|---------|--------|:------------:|
+| CIS 1 | Inventory and Control of Enterprise Assets | 5 |
+| CIS 2 | Inventory and Control of Software Assets | 7 |
+| CIS 3 | Data Protection | 14 |
+| CIS 4 | Secure Configuration of Enterprise Assets and Software | 12 |
+| CIS 5 | Account Management | 6 |
+| CIS 6 | Access Control Management | 8 |
+| CIS 7 | Continuous Vulnerability Management | 7 |
+| CIS 8 | Audit Log Management | 12 |
+| CIS 9 | Email and Web Browser Protections | 7 |
+| CIS 10 | Malware Defenses | 7 |
+| CIS 11 | Data Recovery | 7 |
+| CIS 12 | Network Infrastructure Management | 8 |
+| CIS 13 | Network Monitoring and Defense | 11 |
+| CIS 14 | Security Awareness and Skills Training | 9 |
+| CIS 15 | Service Provider Management | 7 |
+| CIS 16 | Application Software Security | 14 |
+| CIS 17 | Incident Response Management | 9 |
+| CIS 18 | Penetration Testing | 5 |
+| **Total** | | **153** |

@@ -3,4 +3,63 @@ title: Correlación entre Dominios
 description: Gráficamente la correlación entre dominios de PCI DSS y Kudo
 ---
 
-Grafico de correlación entre dominios de PCI DSS y Kudo
+## 📝 Correlación PCI DSS v4.0 y Kudo
+
+Los 6 objetivos y 12 requisitos de PCI DSS v4.0 se correlacionan con los 8 dominios del Framework Kudo cubriendo la protección integral del entorno de datos del titular de tarjetas.
+
+<Mermaid
+  chart="
+graph LR
+  KUDO[🔐 Framework Kudo<br/>8 Dominios - 36 Controles]
+  PCI[PCI DSS v4.0<br/>12 Requisitos - 63 Sub-requisitos]
+
+  subgraph PCI_GOALS[🎯 Objetivos PCI DSS v4.0]
+    OBJ1[Objetivo 1<br/>Red Segura<br/>Req. 1 · Req. 2]
+    OBJ2[Objetivo 2<br/>Protección de Datos<br/>Req. 3 · Req. 4]
+    OBJ3[Objetivo 3<br/>Gestión de Vulnerabilidades<br/>Req. 5 · Req. 6]
+    OBJ4[Objetivo 4<br/>Control de Acceso<br/>Req. 7 · Req. 8 · Req. 9]
+    OBJ5[Objetivo 5<br/>Monitoreo y Pruebas<br/>Req. 10 · Req. 11]
+    OBJ6[Objetivo 6<br/>Política de Seguridad<br/>Req. 12]
+  end
+
+  subgraph KUDO_DOMAINS[🎯 Dominios Kudo]
+    COR[COR<br/>Coherencia Organizacional]
+    CIP[CIP<br/>Identidad y Puntos Finales]
+    CIF[CIF<br/>Ciberseguridad en Infraestructura]
+    CAP[CAP<br/>Ciberseguridad en Aplicaciones]
+    THP[THP<br/>Talento Humano y Proveedores]
+    DIA[DIA<br/>Datos e Inteligencia Artificial]
+    ADR[ADR<br/>Análisis, Detección y Respuesta]
+  end
+
+  PCI --> OBJ1
+  PCI --> OBJ2
+  PCI --> OBJ3
+  PCI --> OBJ4
+  PCI --> OBJ5
+  PCI --> OBJ6
+
+  OBJ1 --> CIF
+
+  OBJ2 --> DIA
+  OBJ2 --> CIF
+
+  OBJ3 --> CIP
+  OBJ3 --> CAP
+
+  OBJ4 --> CIP
+  OBJ4 --> CIF
+
+  OBJ5 --> ADR
+
+  OBJ6 --> COR
+  OBJ6 --> THP
+
+  COR --> KUDO
+  CIP --> KUDO
+  CIF --> KUDO
+  CAP --> KUDO
+  THP --> KUDO
+  DIA --> KUDO
+  ADR --> KUDO"
+/>
