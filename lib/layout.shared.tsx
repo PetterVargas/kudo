@@ -4,7 +4,7 @@ import { appName, gitConfig, frameworkRoute, sgsiRoute } from './shared';
 import { frameworkSource, sgsiSource } from './source';
 import {
   LayoutTemplate, ShieldCheck,
-  BookOpen, Network, GitMerge, FileText, BookMarked, ClipboardList,
+  BookOpen, Network, GitMerge, FileText, BookMarked, ClipboardList, Package,
   ShieldAlert, Code2, RefreshCw, Server, Fingerprint, Building2, Database, Users,
 } from 'lucide-react';
 import type { ReactNode } from 'react';
@@ -41,7 +41,8 @@ const frameworkIcons: Record<string, ReactNode> = {
 
 const sgsiIcons: Record<string, ReactNode> = {
   Políticas: <FileText className="size-4" />,
-  Lineamientos: <BookMarked className="size-4" />,
+  Procedimientos: <BookMarked className="size-4" />,
+  Aprovisionamiento: <Package className="size-4" />,
 };
 
 export function getFrameworkSubTabs(): LayoutTab[] {

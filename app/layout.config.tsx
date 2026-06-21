@@ -41,13 +41,13 @@ export const baseOptions: BaseLayoutProps = {
     {
       icon: <BookIcon />,
       text: 'Framework',
-      url: '/framework',
+      url: '/framework/overview',
       secondary: false,
     },
     {
       icon: <FileTextIcon />,
       text: 'SGSI',
-      url: '/sgsi',
+      url: '/sgsi/politicas',
       secondary: false,
     },
     {

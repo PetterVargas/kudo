@@ -1,13 +1,42 @@
 ---
-title: Hello World
-description: Your first document
+title: Framework Kudo
+description: Framework de Ciberseguridad por y para LatAm
 ---
 
-Welcome to the docs! You can start writing documents in `/content/docs`.
-
-## What is Next?
+import { BookOpen, Building2, Fingerprint, Server, Code2, RefreshCw, ShieldAlert, Users, Database, GitMerge, ClipboardList } from 'lucide-react';
 
 <Cards>
-  <Card title="Learn more about Next.js" href="https://nextjs.org/docs" />
-  <Card title="Learn more about Fumadocs" href="https://fumadocs.dev" />
+  <Card icon={<BookOpen />} href="/framework/overview" title="Overview">
+    Visión general del framework.
+  </Card>
+  <Card icon={<Building2 />} href="/framework/cor" title="COR - Coherencia Organizacional">
+    Gobierno, estrategia y cumplimiento organizacional.
+  </Card>
+  <Card icon={<Fingerprint />} href="/framework/cip" title="CIP - Identidad y Puntos Finales">
+    Control de acceso e identidad, protección de dispositivos.
+  </Card>
+  <Card icon={<Server />} href="/framework/cif" title="CIF - Ciberseguridad en Infraestructura">
+    Seguridad de infraestructura, redes y servidores.
+  </Card>
+  <Card icon={<Code2 />} href="/framework/cap" title="CAP - Ciberseguridad en Aplicaciones">
+    Protección y gestión segura del ciclo de vida de aplicaciones.
+  </Card>
+  <Card icon={<RefreshCw />} href="/framework/ccn" title="CCN - Continuidad y Cambios del Negocio">
+    Resiliencia, continuidad y gestión de cambios.
+  </Card>
+  <Card icon={<ShieldAlert />} href="/framework/adr" title="ADR - Análisis, Detección y Respuesta">
+    Monitoreo, detección y respuesta ante incidentes.
+  </Card>
+  <Card icon={<Users />} href="/framework/thp" title="THP - Talento Humano y Proveedores">
+    Gestión segura de personas y terceros.
+  </Card>
+  <Card icon={<Database />} href="/framework/dia" title="DIA - Datos e Inteligencia Artificial">
+    Seguridad, privacidad de datos e inteligencia artificial.
+  </Card>
+  <Card icon={<GitMerge />} href="/framework/correlacion" title="Correlación">
+    Mapping y correlación con otros frameworks de ciberseguridad.
+  </Card>
+  <Card icon={<ClipboardList />} href="/framework/cuestionarios" title="Cuestionarios">
+    Cuestionarios de evaluación del framework.
+  </Card>
 </Cards>

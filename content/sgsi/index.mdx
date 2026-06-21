@@ -1,13 +1,18 @@
 ---
-title: Hello World
-description: Your first document
+title: SGSI
+description: Sistema de Gestión de Seguridad de la Información
 ---
 
-Welcome to the docs! You can start writing documents in `/content/docs`.
-
-## What is Next?
+import { FileText, BookMarked, Package } from 'lucide-react';
 
 <Cards>
-  <Card title="Learn more about Next.js" href="https://nextjs.org/docs" />
-  <Card title="Learn more about Fumadocs" href="https://fumadocs.dev" />
+  <Card icon={<FileText />} href="/sgsi/politicas" title="Políticas">
+    Políticas del Sistema de Gestión de Seguridad de la Información.
+  </Card>
+  <Card icon={<BookMarked />} href="/sgsi/procedimientos" title="Procedimientos">
+    Procedimientos del Sistema de Gestión de Seguridad de la Información.
+  </Card>
+  <Card icon={<Package />} href="/sgsi/aprovisionamiento" title="Aprovisionamiento">
+    Aprovisionamiento del SGSI en tu infraestructura o entorno corporativo.
+  </Card>
 </Cards>
