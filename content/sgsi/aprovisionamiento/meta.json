@@ -1,5 +1,18 @@
 {
   "title": "Aprovisionamiento",
   "description": "Aprovisionamiento del SGSI",
-  "root": true
+  "root": true,
+  "pages": [
+    "index",
+    "---Pasos---",
+    "requisitos",
+    "crear-proyecto",
+    "ejecucion-local",
+    "adaptacion",
+    "probar-cambios",
+    "autenticacion-corporativa",
+    "subir-codigo",
+    "configurar-cicd",
+    "despliegue"
+  ]
 }

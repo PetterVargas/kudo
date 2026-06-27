@@ -47,7 +47,7 @@ export const baseOptions: BaseLayoutProps = {
     {
       icon: <FileTextIcon />,
       text: 'SGSI',
-      url: '/sgsi/politicas',
+      url: '/sgsi/',
       secondary: false,
     },
     {

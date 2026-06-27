@@ -1,0 +1,38 @@
+---
+title: Paso 4 - Adaptación a tu organización
+description: Personaliza el proyecto con los datos, políticas y branding de tu organización
+---
+
+Antes de desplegar, personaliza el proyecto con los datos de tu organización o temas personales. Los cambios principales están en dos archivos:
+
+<Callout type="warn">
+  Esta etapa involucra información específica de tu compañía — nombre de la organización, repositorio, políticas internas y branding. **El repositorio debe mantenerse privado** y no estar accesible públicamente para evitar exponer datos sensibles de tu organización.
+</Callout>
+
+#### 1. Identidad del sitio — `lib/shared.ts`
+
+```ts
+export const appName = 'Nombre de tu empresa'; // [!code highlight]
+
+export const gitConfig = {
+  user: 'tu-usuario-github',   // [!code highlight]
+  repo: 'tu-repositorio',      // [!code highlight]
+  branch: 'main',
+};
+```
+
+#### 2. Contenido del SGSI — `content/sgsi/`
+
+Edita los archivos `.md` dentro de `content/sgsi/politicas/` con las políticas reales de tu organización. Cada archivo corresponde a un documento del SGSI:
+
+```
+content/sgsi/politicas/
+├── politica-de-seguridad-de-la-informacion.md  ← editar
+├── politica-de-gestion-de-accesos.md           ← editar
+├── politica-de-gestion-de-riesgos.md           ← editar
+└── ...
+```
+
+#### 3. Branding — `app/layout.config.tsx`
+
+Reemplaza el SVG del logo por el de tu organización y actualiza los enlaces de navegación según sea necesario.

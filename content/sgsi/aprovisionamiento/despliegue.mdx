@@ -1,0 +1,48 @@
+---
+title: Paso 9 - Desplegar en producción
+description: Crea el recurso en tu plataforma elegida y conecta el repositorio
+---
+
+Crea el recurso en tu plataforma elegida y conecta el repositorio:
+
+<Tabs items={["Azure Static Web Apps", "Cloudflare Pages"]}>
+<Tab value="Azure Static Web Apps">
+
+1. En el [portal de Azure](https://portal.azure.com), busca **Static Web Apps** y haz clic en **Crear**.
+2. Elige tu suscripción, grupo de recursos y dale un nombre al recurso.
+3. En **Plan** selecciona **Free** o **Standard** (Standard requerido para auth con Entra ID).
+4. En **Detalles de implementación** selecciona **GitHub** y autoriza el acceso.
+5. Selecciona tu organización, repositorio y rama (`main`).
+6. En **Build Details**:
+   - **App location**: `/`
+   - **Api location**: *(vacío)*
+   - **Output location**: `out`
+7. Haz clic en **Revisar y crear → Crear**.
+
+Azure creará automáticamente el secret `AZURE_STATIC_WEB_APPS_API_TOKEN` en tu repositorio de GitHub y ejecutará el primer despliegue.
+
+Una vez desplegado, configura un dominio personalizado en **Custom domains** dentro del recurso.
+
+</Tab>
+<Tab value="Cloudflare Pages">
+
+1. En el [dashboard de Cloudflare](https://dash.cloudflare.com), ve a **Workers & Pages → Create → Pages**.
+2. Haz clic en **Connect to Git** y autoriza el acceso a GitHub.
+3. Selecciona tu repositorio y haz clic en **Begin setup**.
+4. Configura el build:
+   - **Project name**: `mi-sgsi` (debe coincidir con `projectName` en el workflow)
+   - **Production branch**: `main`
+   - **Build command**: *(vacío — el CI/CD ya construye antes de desplegar)*
+   - **Build output directory**: `out`
+5. Haz clic en **Save and Deploy**.
+
+Para dominio personalizado, ve a **Custom domains** en tu proyecto de Pages y agrega tu dominio corporativo.
+
+<Callout>
+  Si usas el workflow de GitHub Actions con `cloudflare/pages-action`, en el paso 4 deja el **Build command** vacío porque el build ya ocurre en el runner de GitHub antes de hacer el upload a Cloudflare.
+</Callout>
+
+</Tab>
+</Tabs>
+
+Tras el primer despliegue exitoso, cada `push` a `main` actualizará el sitio automáticamente en pocos minutos.
