@@ -1,0 +1,34 @@
+---
+title: Paso 5 - Probar los cambios
+description: Verifica que el build estático se genera correctamente antes de desplegar
+---
+
+Antes de desplegar, verifica que el build estático se genera correctamente:
+
+```bash tab="pnpm"
+pnpm build
+```
+
+```bash tab="npm"
+npm run build
+```
+
+```bash tab="yarn"
+yarn build
+```
+
+Si el build es exitoso, se genera el directorio `out/` con el sitio estático completo. Puedes previsualizarlo localmente:
+
+```bash tab="pnpm"
+pnpm dlx serve out
+```
+
+```bash tab="npm"
+npx serve out
+```
+
+Abre [http://localhost:3000](http://localhost:3000) y verifica que todas las páginas, políticas y navegación funcionen correctamente antes de continuar.
+
+<Callout type="warn">
+  Si el build falla, revisa que todos los archivos MDX tengan el frontmatter correcto (`title` y `description`) y que los enlaces internos en `meta.json` apunten a archivos existentes.
+</Callout>

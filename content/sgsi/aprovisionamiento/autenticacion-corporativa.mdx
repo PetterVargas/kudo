@@ -1,0 +1,77 @@
+---
+title: Paso 6 - Autenticación corporativa
+description: Configura el proveedor de identidad corporativo para restringir el acceso al sitio
+---
+
+Como el sitio es **estático**, la autenticación se configura a nivel del hosting, no en el código. Elige tu plataforma:
+
+<Callout type="warn">
+  Los secretos de la autenticación corporativa (`AAD_CLIENT_ID`, `AAD_CLIENT_SECRET`, `CLOUDFLARE_API_TOKEN`, etc.) deben tratarse como **datos confidenciales**. Almacénalos en **GitHub Secrets** (Settings → Secrets and variables → Actions) o gestiónalos a través del modelo de responsabilidad compartida utilizado en tu organización. Nunca los incluyas directamente en el código ni en archivos de configuración versionados.
+</Callout>
+
+<Tabs items={["Azure Static Web Apps", "Cloudflare Pages"]}>
+<Tab value="Azure Static Web Apps">
+
+Azure SWA incluye autenticación nativa con Microsoft Entra ID. Crea el archivo `staticwebapp.config.json` en la raíz del proyecto:
+
+```json title="staticwebapp.config.json"
+{
+  "auth": {
+    "identityProviders": {
+      "azureActiveDirectory": {
+        "registration": {
+          "openIdIssuer": "https://login.microsoftonline.com/<TENANT_ID>/v2.0",
+          "clientIdSettingName": "AAD_CLIENT_ID",
+          "clientSecretSettingName": "AAD_CLIENT_SECRET"
+        }
+      }
+    }
+  },
+  "routes": [
+    {
+      "route": "/.auth/login/aad",
+      "allowedRoles": ["anonymous"]
+    },
+    {
+      "route": "/.auth/*",
+      "allowedRoles": ["anonymous"]
+    },
+    {
+      "route": "/*",
+      "allowedRoles": ["authenticated"]
+    }
+  ],
+  "responseOverrides": {
+    "401": {
+      "redirect": "/.auth/login/aad",
+      "statusCode": 302
+    }
+  }
+}
+```
+
+Luego configura las variables de entorno en el portal de Azure:
+- `AAD_CLIENT_ID` → Client ID de tu App Registration en Entra ID
+- `AAD_CLIENT_SECRET` → Client Secret generado en Entra ID
+
+Para restringir el acceso **solo a usuarios de tu tenant**, en tu App Registration ve a **"Authentication"** y en **"Supported account types"** selecciona _"Accounts in this organizational directory only"_.
+
+</Tab>
+<Tab value="Cloudflare Pages">
+
+Cloudflare Pages protege el sitio mediante **Cloudflare Access**, que se configura desde el dashboard sin tocar el código.
+
+1. Ve a **Zero Trust → Access → Applications** en el [dashboard de Cloudflare](https://one.dash.cloudflare.com).
+2. Crea una nueva aplicación de tipo **"Self-hosted"**.
+3. En **Application domain** introduce el dominio de tu sitio (ej. `sgsi.tuempresa.com`).
+4. En **Identity providers** conecta tu IdP corporativo:
+   - **Microsoft Entra ID**: sigue la guía [Cloudflare + Azure AD](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/azuread/).
+   - **Google Workspace**: sigue la guía [Cloudflare + Google](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/google/).
+5. Crea una **Policy** que permita acceso solo a usuarios con email de tu dominio corporativo (ej. `*@tuempresa.com`).
+
+<Callout>
+  Cloudflare Access tiene plan gratuito para hasta 50 usuarios. Revisa los límites en [cloudflare.com/plans](https://www.cloudflare.com/plans/zero-trust/).
+</Callout>
+
+</Tab>
+</Tabs>

@@ -2,75 +2,48 @@
 
 import { useRef, useEffect } from 'react';
 import Link from 'next/link';
-import { ArrowRight, Book, Rocket, Shield, FileText, Users, Target, Zap, Globe, CheckCircle } from 'lucide-react';
+import { ArrowRight, Book, Rocket, Shield, FileText, Users, Target, Zap, CheckCircle } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function HomePage() {
-  const heroRef    = useRef<HTMLElement>(null);
-  const statsRef   = useRef<HTMLDivElement>(null);
-  const svgRef     = useRef<SVGSVGElement>(null);
+  const heroRef     = useRef<HTMLElement>(null);
+  const statsRef    = useRef<HTMLDivElement>(null);
+  const svgRef      = useRef<SVGSVGElement>(null);
+  const featuresRef = useRef<HTMLElement>(null);
+  const productsRef = useRef<HTMLElement>(null);
+  const ctaRef      = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    // ── Diagram: nodes + paths, then text ─────────────────────────────────
+    // ── Hero diagram ──────────────────────────────────────────────────────
     const heroCtx = gsap.context(() => {
       gsap.from('.diag-node', {
-        opacity: 0,
-        y: -10,
-        duration: 0.55,
-        stagger: 0.09,
-        ease: 'power2.out',
+        opacity: 0, y: -10, duration: 0.55, stagger: 0.09, ease: 'power2.out',
       });
       gsap.from('#node-kudo', {
-        opacity: 0,
-        y: -6,
-        duration: 0.6,
-        delay: 0.15,
-        ease: 'power2.out',
+        opacity: 0, y: -6, duration: 0.6, delay: 0.15, ease: 'power2.out',
       });
       gsap.from('.conn-path', {
-        opacity: 0,
-        duration: 0.45,
-        stagger: 0.08,
-        delay: 0.3,
-        ease: 'power2.out',
+        opacity: 0, duration: 0.45, stagger: 0.07, delay: 0.3, ease: 'power2.out',
       });
       gsap.from('.gsap-hi', {
-        y: 22,
-        opacity: 0,
-        duration: 0.7,
-        stagger: 0.13,
-        delay: 0.65,
-        ease: 'power3.out',
+        y: 22, opacity: 0, duration: 0.7, stagger: 0.13, delay: 0.65, ease: 'power3.out',
       });
-
-      // Breathing glow fill on Kudo box
       gsap.to('#kudo-glow-fill', {
-        opacity: 0.14,
-        duration: 1.4,
-        repeat: -1,
-        yoyo: true,
-        ease: 'sine.inOut',
-        delay: 1.5,
+        opacity: 0.14, duration: 1.4, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 1.5,
       });
 
-      // Traveling dots — bidirectional with yoyo
       if (svgRef.current) {
-        [1, 2, 3, 4, 5, 6].forEach((n, i) => {
+        [1, 2, 3, 4, 5, 6, 7, 8, 9].forEach((n, i) => {
           const path = svgRef.current!.querySelector<SVGPathElement>(`#conn-${n}`);
           const dot  = svgRef.current!.querySelector<SVGCircleElement>(`#dot-${n}`);
           if (!path || !dot) return;
           const len   = path.getTotalLength();
           const state = { t: 0 };
           gsap.to(state, {
-            t: 1,
-            duration: 2.4,
-            repeat: -1,
-            yoyo: false,
-            delay: i * 0.5 + 1.4,
-            ease: 'none',
+            t: 1, duration: 2.4, repeat: -1, delay: i * 0.42 + 1.4, ease: 'none',
             onUpdate() {
               const pt = path.getPointAtLength(state.t * len);
               gsap.set(dot, { attr: { cx: pt.x, cy: pt.y } });
@@ -80,33 +53,25 @@ export default function HomePage() {
       }
     }, heroRef);
 
-    // ── Stats: slide-up + count-up on scroll ──────────────────────────────
+    // ── Value proposition ─────────────────────────────────────────────────
     const statsCtx = gsap.context(() => {
-      gsap.from('.gsap-stat', {
-        y: 18,
-        opacity: 0,
-        duration: 0.5,
-        stagger: 0.1,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: '.gsap-stats-grid',
-          start: 'top 85%',
-        },
+      gsap.from('.stats-header', {
+        y: 22, opacity: 0, duration: 0.6, ease: 'power2.out',
+        scrollTrigger: { trigger: '.stats-header', start: 'top 85%', once: true },
       });
-
+      gsap.from('.gsap-stat', {
+        y: 18, opacity: 0, duration: 0.5, stagger: 0.1, ease: 'power2.out',
+        scrollTrigger: { trigger: '.gsap-stats-grid', start: 'top 85%', once: true },
+      });
       document.querySelectorAll<HTMLElement>('[data-count]').forEach(el => {
         const target = parseInt(el.dataset.count!);
         const suffix = el.dataset.suffix ?? '';
         ScrollTrigger.create({
-          trigger: el,
-          start: 'top 88%',
-          once: true,
+          trigger: el, start: 'top 88%', once: true,
           onEnter() {
             const obj = { v: 0 };
             gsap.to(obj, {
-              v: target,
-              duration: 1.2,
-              ease: 'power2.out',
+              v: target, duration: 1.2, ease: 'power2.out',
               onUpdate() { el.textContent = Math.round(obj.v) + suffix; },
             });
           },
@@ -114,31 +79,87 @@ export default function HomePage() {
       });
     }, statsRef);
 
+    // ── Features ──────────────────────────────────────────────────────────
+    const featuresCtx = gsap.context(() => {
+      gsap.from('.features-title', {
+        y: 20, opacity: 0, duration: 0.6, ease: 'power2.out',
+        scrollTrigger: { trigger: '.features-title', start: 'top 85%', once: true },
+      });
+      gsap.utils.toArray<Element>('.features-item').forEach((el, i) => {
+        gsap.from(el, {
+          x: -24, opacity: 0, duration: 0.5, delay: i * 0.08, ease: 'power2.out',
+          scrollTrigger: { trigger: el as Element, start: 'top 88%', once: true },
+        });
+      });
+      gsap.from('.features-card', {
+        x: 24, opacity: 0, duration: 0.65, ease: 'power2.out',
+        scrollTrigger: { trigger: '.features-card', start: 'top 85%', once: true },
+      });
+    }, featuresRef);
+
+    // ── Products ──────────────────────────────────────────────────────────
+    const productsCtx = gsap.context(() => {
+      gsap.from('.products-header', {
+        y: 20, opacity: 0, duration: 0.6, ease: 'power2.out',
+        scrollTrigger: { trigger: '.products-header', start: 'top 85%', once: true },
+      });
+      gsap.utils.toArray<Element>('.product-card').forEach((el, i) => {
+        gsap.from(el, {
+          y: 28, opacity: 0, duration: 0.6, delay: i * 0.15, ease: 'power2.out',
+          scrollTrigger: { trigger: el as Element, start: 'top 88%', once: true },
+        });
+      });
+    }, productsRef);
+
+    // ── CTA ───────────────────────────────────────────────────────────────
+    const ctaCtx = gsap.context(() => {
+      gsap.from('.cta-content > *', {
+        y: 20, opacity: 0, duration: 0.6, stagger: 0.12, ease: 'power3.out',
+        scrollTrigger: { trigger: '.cta-content', start: 'top 85%', once: true },
+      });
+    }, ctaRef);
+
     return () => {
       heroCtx.revert();
       statsCtx.revert();
+      featuresCtx.revert();
+      productsCtx.revert();
+      ctaCtx.revert();
     };
   }, []);
 
   return (
     <main className="flex flex-1 flex-col min-h-[calc(100vh-var(--header-height)-var(--footer-height))] font-sans">
-      {/* Hero Section */}
+
+      {/* ── Hero ── */}
       <section ref={heroRef} className="relative overflow-hidden pb-20">
+        {/* Gradiente decorativo */}
         <div className="absolute inset-0 bg-gradient-to-br from-fd-primary/5 via-transparent to-fd-secondary/5 pointer-events-none" />
 
-        {/* ── Cloudflare-style correlation diagram ── */}
-        <div className="w-full overflow-hidden">
+        {/* Cuadrícula de puntos: SVG overlay cubre TODO el hero */}
+        <svg
+          className="absolute inset-0 w-full h-full pointer-events-none text-fd-foreground"
+          aria-hidden="true"
+          preserveAspectRatio="none"
+        >
+          <defs>
+            <pattern id="hero-dots" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+              <circle cx="1" cy="1" r="0.7" fill="currentColor" opacity="0.1" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#hero-dots)" />
+        </svg>
+
+        {/* ── Diagrama de correlación ── */}
+        <div className="w-full">
           <svg
             ref={svgRef}
-            viewBox="0 0 1200 160"
+            viewBox="0 0 1200 185"
             className="w-full text-fd-foreground"
             aria-hidden="true"
             style={{ display: 'block' }}
           >
             <defs>
-              <pattern id="kudo-dots" x="0" y="0" width="7" height="7" patternUnits="userSpaceOnUse">
-                <circle cx="0.5" cy="0.5" r="0.5" fill="currentColor" opacity="0.08" />
-              </pattern>
               <filter id="kudo-glow" x="-15%" y="-20%" width="130%" height="140%">
                 <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur" />
                 <feMerge>
@@ -147,142 +168,169 @@ export default function HomePage() {
                 </feMerge>
               </filter>
             </defs>
-            <rect width="1200" height="220" fill="url(#kudo-dots)" />
 
-            {/* Connecting paths — left side → Kudo left midpoint (474, 80) */}
+            {/*
+              Distancias al borde del Kudo (izq x=474, der x=726):
+              IZQUIERDA — borde derecho de cada nodo → 474
+                ISO 27001:      135 → dist 339  (muy lejos / atrás)
+                NIST CSF:       177 → dist 297  (lejos)
+                Leyes:          222 → dist 252  (medio)
+                PCI-DSS:        383 → dist  91  (cerca / adelante)
+              DERECHA — borde izquierdo de cada nodo → 726
+                SOC 2:         1065 → dist 339  (muy lejos / atrás)
+                CSA AICM:       982 → dist 256  (lejos)
+                CSA CCM:        870 → dist 144  (medio)
+                CIS Controls:   815 → dist  89  (cerca)
+                Buenas prácticas: 778 → dist 52 (muy cerca / adelante)
+            */}
+
+            {/* ── Conexiones izquierda → Kudo (474, 79) ── */}
             <path id="conn-1" className="conn-path"
-              d="M135,20 C290,20 370,80 474,80"
-              fill="none" stroke="currentColor" strokeWidth="1"
-              strokeOpacity="0.22" strokeDasharray="5 4" />
+              d="M135,20 C295,18 375,70 474,79"
+              fill="none" stroke="currentColor" strokeWidth="1" strokeOpacity="0.22" strokeDasharray="5 4" />
             <path id="conn-2" className="conn-path"
-              d="M240,80 C340,80 420,80 474,80"
-              fill="none" stroke="currentColor" strokeWidth="1"
-              strokeOpacity="0.22" strokeDasharray="5 4" />
+              d="M177,154 C310,148 390,112 474,79"
+              fill="none" stroke="currentColor" strokeWidth="1" strokeOpacity="0.22" strokeDasharray="5 4" />
             <path id="conn-3" className="conn-path"
-              d="M240,140 C340,140 380,80 474,80"
-              fill="none" stroke="currentColor" strokeWidth="1"
-              strokeOpacity="0.22" strokeDasharray="5 4" />
-
-            {/* Connecting paths — right side → Kudo right midpoint (726, 80) */}
+              d="M222,109 C334,107 402,94 474,79"
+              fill="none" stroke="currentColor" strokeWidth="1" strokeOpacity="0.22" strokeDasharray="5 4" />
             <path id="conn-4" className="conn-path"
-              d="M1065,20 C910,20 830,80 726,80"
-              fill="none" stroke="currentColor" strokeWidth="1"
-              strokeOpacity="0.22" strokeDasharray="5 4" />
-            <path id="conn-5" className="conn-path"
-              d="M960,80 C860,80 760,80 726,80"
-              fill="none" stroke="currentColor" strokeWidth="1"
-              strokeOpacity="0.22" strokeDasharray="5 4" />
-            <path id="conn-6" className="conn-path"
-              d="M960,140 C860,140 810,80 726,80"
-              fill="none" stroke="currentColor" strokeWidth="1"
-              strokeOpacity="0.22" strokeDasharray="5 4" />
+              d="M300,58 C380,60 440,70 474,79"
+              fill="none" stroke="currentColor" strokeWidth="1" strokeOpacity="0.22" strokeDasharray="5 4" />
 
-            {/* ISO 27001 — partially off left, top */}
+            {/* ── Conexiones derecha → Kudo (726, 79) ── */}
+            <path id="conn-5" className="conn-path"
+              d="M1065,24 C905,22 822,58 726,79"
+              fill="none" stroke="currentColor" strokeWidth="1" strokeOpacity="0.22" strokeDasharray="5 4" />
+            <path id="conn-6" className="conn-path"
+              d="M982,134 C900,130 830,108 726,79"
+              fill="none" stroke="currentColor" strokeWidth="1" strokeOpacity="0.22" strokeDasharray="5 4" />
+            <path id="conn-7" className="conn-path"
+              d="M1010,102 C930,100 840,88 726,79"
+              fill="none" stroke="currentColor" strokeWidth="1" strokeOpacity="0.22" strokeDasharray="5 4" />
+            <path id="conn-8" className="conn-path"
+              d="M815,164 C783,154 758,118 726,79"
+              fill="none" stroke="currentColor" strokeWidth="1" strokeOpacity="0.22" strokeDasharray="5 4" />
+            <path id="conn-9" className="conn-path"
+              d="M890,62 C845,62 792,70 726,79"
+              fill="none" stroke="currentColor" strokeWidth="1" strokeOpacity="0.22" strokeDasharray="5 4" />
+
+            {/* ─────── Nodos IZQUIERDA (4, Y asimétrico) ─────── */}
+
+            {/* ISO 27001 — muy lejos, parcialmente fuera (y=8) */}
             <g className="diag-node">
               <rect x="-20" y="8" width="155" height="24" rx="3"
-                fill="transparent" stroke="currentColor"
-                strokeWidth="1" strokeOpacity="0.2" strokeDasharray="5 3" />
+                fill="transparent" stroke="currentColor" strokeWidth="1" strokeOpacity="0.2" strokeDasharray="5 3" />
               <text x="57" y="24" textAnchor="middle" fontSize="11"
                 fill="currentColor" opacity="0.55" fontWeight="500">ISO 27001</text>
             </g>
 
-            {/* PCI-DSS — middle left */}
+            {/* NIST CSF — lejos, abajo (y=142) */}
             <g className="diag-node">
-              <rect x="95" y="68" width="145" height="24" rx="3"
-                fill="transparent" stroke="currentColor"
-                strokeWidth="1" strokeOpacity="0.2" strokeDasharray="5 3" />
-              <text x="167" y="84" textAnchor="middle" fontSize="11"
-                fill="currentColor" opacity="0.55" fontWeight="500">PCI-DSS</text>
-            </g>
-
-            {/* NIST CSF — bottom left */}
-            <g className="diag-node">
-              <rect x="95" y="128" width="145" height="24" rx="3"
-                fill="transparent" stroke="currentColor"
-                strokeWidth="1" strokeOpacity="0.2" strokeDasharray="5 3" />
-              <text x="167" y="144" textAnchor="middle" fontSize="11"
+              <rect x="32" y="142" width="145" height="24" rx="3"
+                fill="transparent" stroke="currentColor" strokeWidth="1" strokeOpacity="0.2" strokeDasharray="5 3" />
+              <text x="105" y="158" textAnchor="middle" fontSize="11"
                 fill="currentColor" opacity="0.55" fontWeight="500">NIST CSF</text>
             </g>
 
-            {/* SOC 2 — partially off right, top */}
+            {/* Leyes — medio (y=97) */}
             <g className="diag-node">
-              <rect x="1065" y="8" width="155" height="24" rx="3"
-                fill="transparent" stroke="currentColor"
-                strokeWidth="1" strokeOpacity="0.2" strokeDasharray="5 3" />
-              <text x="1142" y="24" textAnchor="middle" fontSize="11"
+              <rect x="112" y="97" width="110" height="24" rx="3"
+                fill="transparent" stroke="currentColor" strokeWidth="1" strokeOpacity="0.2" strokeDasharray="5 3" />
+              <text x="167" y="113" textAnchor="middle" fontSize="11"
+                fill="currentColor" opacity="0.55" fontWeight="500">Leyes</text>
+            </g>
+
+            {/* PCI-DSS — medio-alejado (y=46) */}
+            <g className="diag-node">
+              <rect x="155" y="46" width="145" height="24" rx="3"
+                fill="transparent" stroke="currentColor" strokeWidth="1" strokeOpacity="0.2" strokeDasharray="5 3" />
+              <text x="228" y="62" textAnchor="middle" fontSize="11"
+                fill="currentColor" opacity="0.55" fontWeight="500">PCI-DSS</text>
+            </g>
+
+            {/* ─────── Nodos DERECHA (5, Y asimétrico) ─────── */}
+
+            {/* SOC 2 — muy lejos, parcialmente fuera (y=12) */}
+            <g className="diag-node">
+              <rect x="1065" y="12" width="155" height="24" rx="3"
+                fill="transparent" stroke="currentColor" strokeWidth="1" strokeOpacity="0.2" strokeDasharray="5 3" />
+              <text x="1142" y="28" textAnchor="middle" fontSize="11"
                 fill="currentColor" opacity="0.55" fontWeight="500">SOC 2</text>
             </g>
 
-            {/* CSA CCM — middle right */}
+            {/* CSA AICM — lejos, abajo (y=122) */}
             <g className="diag-node">
-              <rect x="960" y="68" width="145" height="24" rx="3"
-                fill="transparent" stroke="currentColor"
-                strokeWidth="1" strokeOpacity="0.2" strokeDasharray="5 3" />
-              <text x="1032" y="84" textAnchor="middle" fontSize="11"
+              <rect x="982" y="122" width="145" height="24" rx="3"
+                fill="transparent" stroke="currentColor" strokeWidth="1" strokeOpacity="0.2" strokeDasharray="5 3" />
+              <text x="1055" y="138" textAnchor="middle" fontSize="11"
+                fill="currentColor" opacity="0.55" fontWeight="500">CSA AICM</text>
+            </g>
+
+            {/* CSA CCM — muy alejado, bajo Buenas Prácticas (y=90) */}
+            <g className="diag-node">
+              <rect x="1010" y="90" width="145" height="24" rx="3"
+                fill="transparent" stroke="currentColor" strokeWidth="1" strokeOpacity="0.2" strokeDasharray="5 3" />
+              <text x="1083" y="106" textAnchor="middle" fontSize="11"
                 fill="currentColor" opacity="0.55" fontWeight="500">CSA CCM</text>
             </g>
 
-            {/* CIS Controls — bottom right */}
+            {/* CIS Controls — cerca (y=152) */}
             <g className="diag-node">
-              <rect x="960" y="128" width="145" height="24" rx="3"
-                fill="transparent" stroke="currentColor"
-                strokeWidth="1" strokeOpacity="0.2" strokeDasharray="5 3" />
-              <text x="1032" y="144" textAnchor="middle" fontSize="11"
+              <rect x="815" y="152" width="145" height="24" rx="3"
+                fill="transparent" stroke="currentColor" strokeWidth="1" strokeOpacity="0.2" strokeDasharray="5 3" />
+              <text x="888" y="168" textAnchor="middle" fontSize="11"
                 fill="currentColor" opacity="0.55" fontWeight="500">CIS Controls</text>
             </g>
 
-            {/* Kudo center — x=474 y=57 w=252 h=45, center=(600,80) */}
+            {/* Buenas Prácticas — bajado y con más línea visible (y=50) */}
+            <g className="diag-node">
+              <rect x="890" y="50" width="168" height="24" rx="3"
+                fill="transparent" stroke="currentColor" strokeWidth="1" strokeOpacity="0.2" strokeDasharray="5 3" />
+              <text x="974" y="66" textAnchor="middle" fontSize="11"
+                fill="currentColor" opacity="0.55" fontWeight="500">Buenas Prácticas</text>
+            </g>
+
+            {/* ── Kudo center (x=474 y=57 w=252 h=45) ── */}
             <g id="node-kudo">
               <rect id="kudo-glow-fill" x="468" y="51" width="264" height="57" rx="7"
                 fill="#4DAE84" opacity="0.04" />
               <rect x="474" y="57" width="252" height="45" rx="4"
                 fill="transparent" stroke="#4DAE84" strokeWidth="1.5"
                 filter="url(#kudo-glow)" />
-
-              {/* Sub-box: SGSI */}
               <rect x="482" y="63" width="76" height="33" rx="2"
-                fill="transparent" stroke="#4DAE84"
-                strokeWidth="1" strokeOpacity="0.38" strokeDasharray="4 3" />
-              <text x="520" y="83" textAnchor="middle" fontSize="9"
-                fill="#4DAE84" opacity="0.8">SGSI</text>
-
-              {/* Sub-box: Políticas */}
+                fill="transparent" stroke="#4DAE84" strokeWidth="1" strokeOpacity="0.38" strokeDasharray="4 3" />
+              <text x="520" y="83" textAnchor="middle" fontSize="9" fill="#4DAE84" opacity="0.8">Framework</text>
               <rect x="562" y="63" width="76" height="33" rx="2"
-                fill="transparent" stroke="#4DAE84"
-                strokeWidth="1" strokeOpacity="0.38" strokeDasharray="4 3" />
-              <text x="600" y="83" textAnchor="middle" fontSize="9"
-                fill="#4DAE84" opacity="0.8">Políticas</text>
-
-              {/* Sub-box: Controles */}
+                fill="transparent" stroke="#4DAE84" strokeWidth="1" strokeOpacity="0.38" strokeDasharray="4 3" />
+              <text x="600" y="83" textAnchor="middle" fontSize="9" fill="#4DAE84" opacity="0.8">Correlación</text>
               <rect x="642" y="63" width="76" height="33" rx="2"
-                fill="transparent" stroke="#4DAE84"
-                strokeWidth="1" strokeOpacity="0.38" strokeDasharray="4 3" />
-              <text x="680" y="83" textAnchor="middle" fontSize="9"
-                fill="#4DAE84" opacity="0.8">Controles</text>
-
-              {/* Corner handles */}
+                fill="transparent" stroke="#4DAE84" strokeWidth="1" strokeOpacity="0.38" strokeDasharray="4 3" />
+              <text x="680" y="83" textAnchor="middle" fontSize="9" fill="#4DAE84" opacity="0.8">SGSI</text>
               <rect x="470" y="53" width="8" height="8" rx="1" fill="#4DAE84" />
               <rect x="722" y="53" width="8" height="8" rx="1" fill="#4DAE84" />
               <rect x="470" y="98" width="8" height="8" rx="1" fill="#4DAE84" />
               <rect x="722" y="98" width="8" height="8" rx="1" fill="#4DAE84" />
-              {/* Mid-edge handles */}
               <rect x="596" y="53" width="8" height="8" rx="1" fill="#4DAE84" opacity="0.45" />
               <rect x="596" y="98" width="8" height="8" rx="1" fill="#4DAE84" opacity="0.45" />
               <rect x="470" y="76" width="8" height="8" rx="1" fill="#4DAE84" opacity="0.45" />
               <rect x="722" y="76" width="8" height="8" rx="1" fill="#4DAE84" opacity="0.45" />
             </g>
 
-            {/* Traveling dots — one per path, start at framework node side */}
+            {/* ── Puntos viajeros ── */}
             <circle id="dot-1" r="3.5" fill="#4DAE84" cx="135" cy="20" />
-            <circle id="dot-2" r="3.5" fill="#4DAE84" cx="240" cy="80" />
-            <circle id="dot-3" r="3.5" fill="#4DAE84" cx="240" cy="140" />
-            <circle id="dot-4" r="3.5" fill="#4DAE84" cx="1065" cy="20" />
-            <circle id="dot-5" r="3.5" fill="#4DAE84" cx="960" cy="80" />
-            <circle id="dot-6" r="3.5" fill="#4DAE84" cx="960" cy="140" />
+            <circle id="dot-2" r="3.5" fill="#4DAE84" cx="177" cy="154" />
+            <circle id="dot-3" r="3.5" fill="#4DAE84" cx="222" cy="109" />
+            <circle id="dot-4" r="3.5" fill="#4DAE84" cx="300" cy="58" />
+            <circle id="dot-5" r="3.5" fill="#4DAE84" cx="1065" cy="24" />
+            <circle id="dot-6" r="3.5" fill="#4DAE84" cx="982" cy="134" />
+            <circle id="dot-7" r="3.5" fill="#4DAE84" cx="1010" cy="102" />
+            <circle id="dot-8" r="3.5" fill="#4DAE84" cx="815" cy="164" />
+            <circle id="dot-9" r="3.5" fill="#4DAE84" cx="890" cy="62" />
           </svg>
         </div>
 
-        {/* ── Text + CTAs ── */}
+        {/* ── Texto + CTAs ── */}
         <div className="max-w-4xl mx-auto px-4 pt-4 pb-4 text-center relative z-10">
           <h1 className="gsap-hi text-5xl lg:text-7xl font-bold tracking-tight mb-6 bg-gradient-to-br from-fd-foreground to-fd-muted-foreground bg-clip-text text-transparent">
             Kudo
@@ -314,16 +362,15 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Value Proposition */}
+      {/* ── Value Proposition ── */}
       <section className="py-20 px-4 bg-fd-muted/50">
         <div ref={statsRef} className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
+          <div className="stats-header text-center mb-16">
             <h3 className="text-3xl font-bold mb-4">La fórmula es simple</h3>
             <div className="text-2xl font-mono bg-fd-card border rounded-lg py-6 px-4 inline-block">
               <span className="text-fd-primary">Coherencia</span> + Confianza = <span className="text-fd-foreground font-bold">Ciberseguridad</span>
             </div>
           </div>
-
           <div className="gsap-stats-grid grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="gsap-stat text-center">
               <div className="w-16 h-16 bg-fd-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -362,35 +409,35 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Features */}
-      <section className="py-20 px-4">
+      {/* ── Features ── */}
+      <section ref={featuresRef} className="py-20 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h3 className="text-3xl font-bold mb-6">¿Por qué usar Kudo?</h3>
+              <h3 className="features-title text-3xl font-bold mb-6">¿Por qué usar Kudo?</h3>
               <div className="space-y-4">
-                <div className="flex items-start gap-3">
+                <div className="features-item flex items-start gap-3">
                   <CheckCircle className="h-6 w-6 text-green-500 mt-0.5 flex-shrink-0" />
                   <div>
                     <h4 className="font-semibold">Confianza entre partes interesadas</h4>
                     <p className="text-fd-muted-foreground text-sm">Aplica a inversores, gobiernos, empresas, clientes y usuarios</p>
                   </div>
                 </div>
-                <div className="flex items-start gap-3">
+                <div className="features-item flex items-start gap-3">
                   <CheckCircle className="h-6 w-6 text-green-500 mt-0.5 flex-shrink-0" />
                   <div>
                     <h4 className="font-semibold">Marco de referencia</h4>
                     <p className="text-fd-muted-foreground text-sm">Establece políticas comunes para gestión de ciberseguridad</p>
                   </div>
                 </div>
-                <div className="flex items-start gap-3">
+                <div className="features-item flex items-start gap-3">
                   <CheckCircle className="h-6 w-6 text-green-500 mt-0.5 flex-shrink-0" />
                   <div>
                     <h4 className="font-semibold">Capacitación de equipos</h4>
                     <p className="text-fd-muted-foreground text-sm">Formación inicial y continua de colaboradores</p>
                   </div>
                 </div>
-                <div className="flex items-start gap-3">
+                <div className="features-item flex items-start gap-3">
                   <CheckCircle className="h-6 w-6 text-green-500 mt-0.5 flex-shrink-0" />
                   <div>
                     <h4 className="font-semibold">Auditorías simplificadas</h4>
@@ -399,7 +446,7 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
-            <div className="bg-fd-card border border-fd-border/70 rounded-xl p-8 shadow-md">
+            <div className="features-card bg-fd-card border border-fd-border/70 rounded-xl p-8 shadow-md">
               <div className="text-center mb-6">
                 <h4 className="text-xl font-semibold mb-2">Estructura Organizacional</h4>
                 <p className="text-fd-muted-foreground text-sm">Modelo jerárquico con roles definidos</p>
@@ -423,20 +470,19 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Secondary Products */}
-      <section className="py-20 px-4 bg-fd-muted/40">
+      {/* ── Productos Complementarios ── */}
+      <section ref={productsRef} className="py-20 px-4 bg-fd-muted/40">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
+          <div className="products-header text-center mb-12">
             <h3 className="text-3xl font-bold mb-4">Productos Complementarios</h3>
             <p className="text-xl text-fd-muted-foreground">
               Además de Kudo, explora nuestros otros recursos de Ciberseguridad
             </p>
           </div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <Link
               href="https://cyberacademy.divisioncero.com/"
-              className="group flex flex-col gap-4 p-8 rounded-xl border border-fd-border/60 bg-fd-card/40 hover:border-fd-foreground/40 hover:bg-fd-card/70 transition-all duration-200 shadow-md"
+              className="product-card group flex flex-col gap-4 p-8 rounded-xl border border-fd-border/60 bg-fd-card/40 hover:border-fd-foreground/40 hover:bg-fd-card/70 transition-all duration-200 shadow-md"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -453,10 +499,9 @@ export default function HomePage() {
                 Explorar formación <ArrowRight className="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform" />
               </div>
             </Link>
-
             <Link
               href="https://divisioncero.com/home/empresas"
-              className="group flex flex-col gap-4 p-8 rounded-xl border border-fd-border/60 bg-fd-card/40 hover:border-fd-foreground/40 hover:bg-fd-card/70 transition-all duration-200 shadow-md"
+              className="product-card group flex flex-col gap-4 p-8 rounded-xl border border-fd-border/60 bg-fd-card/40 hover:border-fd-foreground/40 hover:bg-fd-card/70 transition-all duration-200 shadow-md"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -477,16 +522,16 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 px-4">
-        <div className="max-w-4xl mx-auto text-center">
+      {/* ── CTA ── */}
+      <section ref={ctaRef} className="py-20 px-4">
+        <div className="cta-content max-w-4xl mx-auto text-center">
           <h3 className="text-3xl font-bold mb-6">Comienza tu implementación hoy</h3>
           <p className="text-xl text-fd-muted-foreground mb-8">
             Accede a más de 25 templates de políticas organizacionales y construye un marco de ciberseguridad sólido
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/sgsi/politicas"
+              href="/sgsi/"
               className="group inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-fd-primary-foreground bg-fd-primary hover:bg-fd-primary/90 rounded-lg transition-colors"
             >
               <FileText className="h-5 w-5 mr-2" />
@@ -503,6 +548,7 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
     </main>
   );
 }

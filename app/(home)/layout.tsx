@@ -128,7 +128,7 @@ function Footer() {
               <ul className="space-y-2">
                 <li><a href="https://divisioncero.com/herramientas?utm_source=kudo.divisioncero.com" className="text-sm hover:underline" target="_blank" rel="noopener noreferrer">Herramientas</a></li>
                 <li><a href="https://docs.divisioncero.com?utm_source=kudo.divisioncero.com" className="text-sm hover:underline" target="_blank" rel="noopener noreferrer">Documentación</a></li>
-                <li><a href="/sgsi/politicas" className="text-sm hover:underline">SGSI</a></li>
+                <li><a href="/sgsi/" className="text-sm hover:underline">SGSI</a></li>
               </ul>
             </div>
 

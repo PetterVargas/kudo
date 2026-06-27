@@ -6,9 +6,10 @@
     "---Framework Kudo---",
     "index",
     "ambitos-de-gestion",
-    "dominios",
-    "matriz-controles-nube-mcn",
     "responsabilidad-compartida",
+    "dominios",
+    "controles",
+    "matriz-controles-nube-mcn",
     "---Cobertura---",
     "frameworks-revisados",
     "oscal"
