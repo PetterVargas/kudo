@@ -3,126 +3,35 @@ title: CIF-03 - Ciberseguridad en la Red y Sistemas
 description: Control de seguridad de redes y sistemas cloud
 ---
 
-## 🎯 Objetivo del Control
+## Descripción del control
 
-Implementar arquitectura de red segura y configuraciones de sistemas robustas en entornos cloud siguiendo principios de segmentación, defensa en profundidad y mínimo privilegio.
+Implementa arquitectura de red segura en entornos cloud con segmentación por capas (DMZ, aplicación, datos, gestión) 
+y principio default-deny en todos los controles de tráfico. Incluye uso de subnets privadas sin acceso directo a internet, 
+WAF para aplicaciones web, protección DDoS, revisión trimestral de reglas de security groups, hardening de VMs basado en 
+CIS Benchmarks, bastion hosts o servicios equivalentes como único punto de acceso administrativo con MFA y grabación de sesiones, 
+network policies en Kubernetes, y habilitación de flow logs de VPC/VNet para monitoreo de tráfico anómalo.
 
-## 📋 Descripción
+## Requisitos
 
-Este control establece requisitos de seguridad para:
-- Arquitectura de red cloud (VPC/VNet)
-- Segmentación y microsegmentación
-- Controles de tráfico (firewalls, NSGs)
-- Hardening de sistemas cloud
-- Monitoreo de red y sistemas
+### Requisito 1 - Segmentación de Red y Arquitectura Zero Trust
 
-## 🛡️ Controles Requeridos
+La organización implementa segmentación de red en entornos cloud mediante subnets privadas diferenciadas por función (DMZ, 
+aplicación, datos, gestión), aplicando el principio default-deny en todos los controles de tráfico (security groups, NACLs, 
+network policies). Los recursos críticos no tienen acceso directo a internet. Se implementa WAF para la protección de aplicaciones 
+web expuestas. La arquitectura sigue los principios de Zero Trust, verificando explícitamente la identidad y postura del 
+dispositivo antes de otorgar acceso.
 
-### Arquitectura de Red Cloud
+### Requisito 2 - Hardening de Sistemas y Acceso Administrativo Seguro
 
-**Segmentación por Capas:**
-- **DMZ / Public Subnet:** Load balancers, bastion hosts
-- **Application Tier:** Aplicaciones y APIs
-- **Data Tier:** Bases de datos y almacenamiento
-- **Management Subnet:** Herramientas de gestión
+Todos los sistemas y máquinas virtuales en entornos cloud siguen una línea base de configuración segura basada en CIS Benchmarks 
+para el sistema operativo correspondiente. El acceso administrativo remoto se realiza exclusivamente a través de bastion hosts 
+o servicios equivalentes (AWS Session Manager, Azure Bastion) con MFA obligatorio y grabación de sesiones. Las reglas de security 
+groups son revisadas trimestralmente para eliminar accesos no necesarios. Se habilitan los flow logs de VPC/VNet para monitoreo 
+de tráfico anómalo.
 
-**Principio de Diseño:**
-- Network segmentation por función y criticidad
-- Private subnets sin acceso directo a internet
-- NAT Gateway para salida controlada
-- VPC/VNet peering para comunicación inter-redes
-- Transit Gateway para arquitecturas hub-and-spoke
+### Requisito 3 - Protección DDoS y Monitoreo de Red
 
-### Controles de Tráfico
-
-**Security Groups / Network Security Groups:**
-- Default deny (denegar todo por defecto)
-- Reglas específicas basadas en least privilege
-- Sin reglas 0.0.0.0/0 en inbound (salvo load balancers)
-- Revisión trimestral de reglas
-
-**Firewalls:**
-- Web Application Firewall (WAF)
-- Network Firewall / Azure Firewall
-- DDoS Protection
-- Protección contra OWASP Top 10
-
-**Access Control Lists (ACLs):**
-- Control de tráfico a nivel de subnet
-- Reglas stateless complementarias
-
-### Hardening de Sistemas Cloud
-
-**Compute (VMs/Instancias):**
-- Usar imágenes base hardened (CIS Benchmarks)
-- Desactivar servicios innecesarios
-- Actualizaciones automáticas de seguridad
-- Configuración de logging
-- Disk encryption habilitado
-- No exponer RDP/SSH directamente a internet
-
-**Bastion Hosts / Jump Servers:**
-- Único punto de acceso administrativo
-- MFA obligatorio
-- Session recording
-- Time-limited access (JIT)
-
-**Kubernetes:**
-- RBAC configurado
-- Network policies
-- Pod Security Standards
-- Admission controllers (OPA, Kyverno)
-- Container image scanning
-
-### Gestión de Acceso Remoto
-- VPN con MFA para acceso corporativo
-- AWS Systems Manager Session Manager
-- Azure Bastion
-- SSH keys gestionadas centralmente
-- Certificados en lugar de contraseñas
-
-### Logging y Monitoreo
-- Flow logs de VPC/VNet habilitados
-- Logs de firewall centralizados
-- Alertas de cambios en security groups
-- Monitoreo de tráfico anómalo
-- IDS/IPS en carga de trabajo crítica
-
-## 📊 Métricas e Indicadores
-
-- Número de security groups con reglas 0.0.0.0/0
-- Porcentaje de VMs con puertos críticos expuestos
-- Eventos de tráfico bloqueado por firewall
-- Ataques DDoS mitigados
-- Compliance score de hardening
-
-## 🔗 Herramientas Recomendadas
-
-- **Network Security:** AWS Network Firewall, Azure Firewall, Palo Alto VM-Series
-- **WAF:** AWS WAF, Azure WAF, Cloudflare WAF
-- **CSPM:** Prisma Cloud, Wiz, Microsoft Defender for Cloud
-- **Network Monitoring:** VPC Flow Logs, Azure Network Watcher, Datadog
-- **Hardening:** AWS Systems Manager, Azure Arc, CIS-CAT
-
-## 📚 Referencias
-
-- [Política de Seguridad en Entornos Virtuales](/docs/kudo/politicas/politica-seguridad-entornos-virtuales)
-- [Gestión de Parches y Hardening](/docs/kudo/politicas/gestion-parches-hardening)
-- [Matriz de Controles de Nube](/docs/kudo/matriz-controles-nube-mcn)
-- CIS Benchmarks for AWS, Azure, GCP
-- AWS Well-Architected Framework - Security Pillar
-- Azure Security Benchmark
-- NIST SP 800-53 - SC (System and Communications Protection)
-
-## ✅ Checklist de Implementación
-
-- [ ] Arquitectura de red con segmentación documentada
-- [ ] Security groups/NSGs con principio de menor privilegio
-- [ ] WAF implementado para aplicaciones web
-- [ ] DDoS Protection habilitado
-- [ ] Bastion hosts o Azure Bastion configurado
-- [ ] VPN con MFA para acceso remoto
-- [ ] Flow logs de red habilitados
-- [ ] Hardening baselines aplicadas a VMs
-- [ ] Kubernetes con network policies
-- [ ] Monitoreo y alertas de red configuradas
+La organización implementa controles de protección contra ataques de denegación de servicio (DDoS) para todos los recursos 
+expuestos a internet, utilizando servicios nativos del CSP (AWS Shield, Azure DDoS Protection) o soluciones dedicadas. Los flow 
+logs de VPC/VNet están habilitados y centralizados en el SIEM para la detección de tráfico anómalo. Se definen umbrales de alerta 
+para patrones de tráfico inusuales que disparan alertas automáticas al equipo de operaciones de seguridad.

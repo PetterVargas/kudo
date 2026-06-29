@@ -3,100 +3,33 @@ title: CIP-02 - Ciberseguridad en Autenticación
 description: Control de mecanismos de autenticación robusta
 ---
 
-## 🎯 Objetivo del Control
+## Descripción del Control
 
-Implementar mecanismos de autenticación robustos y multifactor para verificar la identidad de usuarios y servicios que acceden a recursos organizacionales.
+Establece los requisitos de autenticación robusta para verificar la identidad de usuarios y servicios. Exige MFA obligatorio 
+en todos los accesos administrativos, remotos y a sistemas críticos, con soporte para múltiples factores (app autenticadora, 
+token hardware, biométrico). Implementa SSO corporativo mediante protocolos SAML 2.0/OAuth 2.0/OIDC, políticas de contraseñas 
+fuertes (mínimo 14 caracteres, historial de 12), autenticación sin contraseña (FIDO2, Windows Hello) y monitoreo de credenciales 
+comprometidas. Para servicios, exige managed identities y service principals con rotación de credenciales.
 
-## 📋 Descripción
+## Requisitos
 
-Este control establece requisitos de autenticación:
-- Autenticación multifactor (MFA) obligatoria
-- Políticas de contraseñas fuertes
-- Single Sign-On (SSO) corporativo
-- Autenticación sin contraseña (passwordless)
-- Protección contra ataques de credenciales
+### Requisito 1 - Autenticación Multifactor (MFA) Obligatorio
 
-## 🛡️ Controles Requeridos
+La organización implementa MFA obligatorio para todos los accesos administrativos, accesos remotos y accesos a sistemas y datos 
+críticos o confidenciales. El MFA soporta múltiples factores de segunda verificación (aplicación autenticadora TOTP, token 
+hardware FIDO2, biometría) y se aplica en el acceso inicial y ante operaciones sensibles (cambios de permisos, acceso a datos 
+restringidos). La exención de MFA requiere aprobación formal del CISO y documentación de controles compensatorios.
 
-### Autenticación Multifactor (MFA)
-- MFA obligatorio para:
-  - Todos los accesos administrativos
-  - Accesos remotos (VPN)
-  - Sistemas críticos y datos sensibles
-  - Acceso a correo corporativo
-- Factores soportados:
-  - Algo que sabes (contraseña)
-  - Algo que tienes (app autenticador, token, SMS)
-  - Algo que eres (biométrico)
+### Requisito 2 - Single Sign-On (SSO) y Gestión de Contraseñas
 
-### Políticas de Contraseñas
-- Longitud mínima: 14 caracteres
-- Complejidad: mayúsculas, minúsculas, números, símbolos
-- Sin palabras de diccionario
-- Historial: últimas 12 contraseñas
-- Expiración: 90 días (si no hay MFA)
-- Bloqueo tras 5 intentos fallidos
+La organización implementa SSO corporativo basado en protocolos estándar (SAML 2.0, OAuth 2.0, OIDC) para centralizar la autenticación 
+a las aplicaciones corporativas y minimizar la proliferación de credenciales. Las políticas de contraseñas exigen mínimo 14 
+caracteres, historial de 12 contraseñas anteriores y prohibición de contraseñas comprometidas verificadas contra bases de datos de 
+credenciales comprometidas. Se promueve la autenticación sin contraseña (FIDO2, Windows Hello) como evolución hacia arquitecturas más seguras.
 
-### Single Sign-On (SSO)
-- Implementación corporativa (Azure AD, Okta)
-- Integración con aplicaciones SaaS
-- Protocolo SAML 2.0 / OAuth 2.0 / OIDC
-- Sesión única para múltiples aplicaciones
-- Logout centralizado
+### Requisito 3 - Autenticación de Servicios y Cuentas No Humanas
 
-### Autenticación Sin Contraseña
-- Windows Hello for Business
-- FIDO2 / WebAuthn
-- Biometría (huella, reconocimiento facial)
-- Claves de seguridad (YubiKey)
-
-### Protección de Credenciales
-- No almacenar contraseñas en texto plano
-- Hashing con algoritmo robusto (bcrypt, Argon2)
-- Salting obligatorio
-- Gestión de secretos con vault
-- Monitoreo de credenciales comprometidas (Have I Been Pwned)
-
-### Autenticación de Servicios
-- Service principals con credenciales rotadas
-- Managed identities en cloud
-- Certificados de cliente (mutual TLS)
-- API keys con expiración
-
-## 📊 Métricas e Indicadores
-
-- Porcentaje de usuarios con MFA habilitado (objetivo: 100%)
-- Tasa de adopción de SSO
-- Intentos de autenticación fallidos
-- Tiempo promedio de autenticación
-- Credenciales comprometidas detectadas
-
-## 🔗 Herramientas Recomendadas
-
-- **MFA:** Microsoft Authenticator, Google Authenticator, Duo, Authy
-- **SSO/IdP:** Azure AD, Okta, Auth0, Ping Identity
-- **Passwordless:** Windows Hello, FIDO2, YubiKey
-- **Password Managers:** 1Password, LastPass, Bitwarden
-- **Monitoring:** HaveIBeenPwned API, SpyCloud
-
-## 📚 Referencias
-
-- [Política de Control de Acceso](/docs/kudo/politicas/politica-control-acceso)
-- [Gestión de Accesos Privilegiados](/docs/kudo/politicas/gestion-accesos-privilegiados)
-- [Registros de Acceso y Autenticación](/docs/kudo/politicas/registros-acceso-autenticacion)
-- NIST SP 800-63B - Authentication and Lifecycle Management
-- ISO 27001:2022 - A.5.17, A.5.18
-- OWASP Authentication Cheat Sheet
-
-## ✅ Checklist de Implementación
-
-- [ ] MFA habilitado para todos los usuarios
-- [ ] SSO corporativo implementado
-- [ ] Políticas de contraseñas configuradas
-- [ ] Integración con aplicaciones críticas
-- [ ] Tokens de hardware para admins (YubiKey)
-- [ ] Passwordless en evaluación/piloto
-- [ ] Monitoreo de intentos fallidos
-- [ ] Alertas de credenciales comprometidas
-- [ ] Capacitación a usuarios
-- [ ] Documentación de procesos
+Los servicios y aplicaciones que requieren autenticación entre sí utilizan managed identities o service principals con permisos 
+mínimos, evitando el uso de credenciales estáticas de larga duración. Las API keys y tokens de servicio tienen fecha de expiración 
+definida y son rotados automáticamente según la periodicidad establecida (mensual para API keys de producción). Las credenciales 
+comprometidas detectadas (mediante monitoreo continuo o reportes de inteligencia de amenazas) son revocadas inmediatamente.

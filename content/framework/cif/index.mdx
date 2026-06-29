@@ -6,73 +6,27 @@ description: Protección a lo más atacado
 import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
 import { GraduationCap } from 'lucide-react';
 
+## Descripción del Dominio
 
-## Línea base Open-Source
+Dominio que abarca la **ciberseguridad integral de redes, servidores, plataformas tecnológicas y activos críticos 
+de la organización**. Incluye la gestión de *proveedores de servicios en la nube (CSP)*, el *inventario de activos*, 
+los *controles de seguridad en redes y sistemas*, el *cifrado de información y datos*, y la administración de *claves criptográficas*. 
 
-Priorice estos aspectos antes de profundizar en cualquier marco de ciberseguridad.
-
-<Accordions type="single">
-  <Accordion title="1. Restringir el accesos.">
-  
-  Temas importante en esta revisión:
-
-  - [X] Restringir accesos a entornos productivos, entre más restrictivo mejor.
-  
-  </Accordion>
-</Accordions>
-
-<Accordions type="single">
-  <Accordion title="2. Diagrama de componentes y redes.">
-  
-  Temas importante en esta revisión:
-
-  - [X] Diagramar los componentes y topología de red de la Infraestructura.
-
-  </Accordion>
-</Accordions>
-
-<Accordions type="single">
-  <Accordion title="3. Configurar el PIM en el proveedor de servicio de nube.">
-  
-  Temas importante en esta revisión:
-
-  - [X] Configurar para que cualquier cambio a nivel de nube lo realicen mediante Privileged Identity Management PIM, el cuál es un permiso privilegiado temporal, Just at Time.
-  
-  </Accordion>
-</Accordions>
-
-
-## Cursos del dominio
-
-<Cards>
-  <Card
-    icon={<GraduationCap />}
-    href="https://divisioncero.com/cursos?utm_source=kudo.divisioncero.com"
-    title="Curso - CIF - Ciberseguridad en Infraestructura"
-  >
-    Especializa en hardening de servidores, seguridad en redes, seguridad en infraestructura, virtualización segura, datacenter security, y protección de infraestructura crítica empresarial.
-  </Card>
-</Cards>
-
-
+Promueve la segmentación de redes, la restricción de accesos y el diseño de arquitecturas con superficie de ataque 
+mínima, siguiendo el principio **KISS (Keep It Simple and Secure)**. Atiende a la *infraestructura como el componente más 
+atacado del ecosistema tecnológico organizacional*.
 
 ## Controles CIF
 
 Seguridad integral de redes, servidores, plataformas tecnológicas y gestión de activos críticos.
 
-<Accordions>
-<Accordion title="5 Controles CIF">
-
-| Control | Nombre |
-|---------|--------|
-| **CIF-01** | Proveedores de Servicio de Nube |
-| **CIF-02** | Inventario de Activos |
-| **CIF-03** | Ciberseguridad en la Red y Sistemas |
-| **CIF-04** | CIFrado de Información y Datos |
-| **CIF-05** | Administración y Gestión de Claves |
-
-</Accordion>
-</Accordions>
+<Cards>
+  <Card href="/framework/cif/cif-01" title="CIF-01">Proveedores de Servicio de Nube</Card>
+  <Card href="/framework/cif/cif-02" title="CIF-02">Inventario de Activos</Card>
+  <Card href="/framework/cif/cif-03" title="CIF-03">Ciberseguridad en la Red y Sistemas</Card>
+  <Card href="/framework/cif/cif-04" title="CIF-04">CIFrado de Información y Datos</Card>
+  <Card href="/framework/cif/cif-05" title="CIF-05">Administración y Gestión de Claves</Card>
+</Cards>
 
 
 ## Problemas comunes en empresas
@@ -95,3 +49,15 @@ Seguridad integral de redes, servidores, plataformas tecnológicas y gestión de
 <Callout title="Aumente la ciberseguridad con el principio KISS." type="success"></Callout>
 <Callout title="Tener propuestas empresariales que mejoren el negocio." type="success"></Callout>
 <Callout title="Mitigación de vulnerabilidades de forma masiva." type="success"></Callout>
+
+## Cursos del dominio
+
+<Cards>
+  <Card
+    icon={<GraduationCap />}
+    href="https://cyberacademy.divisioncero.com/cif?utm_source=kudo.divisioncero.com"
+    title="Curso - CIF - Ciberseguridad en Infraestructura"
+  >
+    Especializa en hardening de servidores, seguridad en redes, seguridad en infraestructura, virtualización segura, datacenter security, y protección de infraestructura crítica empresarial.
+  </Card>
+</Cards>

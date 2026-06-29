@@ -3,95 +3,27 @@ title: ADR-04 - Atención de Eventos y/o Incidentes de Ciberseguridad
 description: Control de respuesta y gestión de incidentes de seguridad
 ---
 
-## 🎯 Objetivo del Control
+## Descripción del Control
 
-Establecer un proceso estructurado y efectivo para detectar, analizar, contener, erradicar y recuperarse de eventos e incidentes de ciberseguridad, minimizando el impacto al negocio.
+Define el proceso estructurado de respuesta ante eventos e incidentes de ciberseguridad, desde la detección hasta el cierre 
+y las lecciones aprendidas. Establece la clasificación y priorización de incidentes por severidad e impacto, los playbooks 
+de respuesta para los tipos de incidentes más frecuentes (ransomware, phishing, acceso no autorizado, fuga de datos), los roles 
+y responsabilidades del equipo de respuesta a incidentes (IRT/CSIRT), los procedimientos de contención, erradicación y recuperación, 
+los criterios de escalamiento y notificación a autoridades regulatorias cuando aplique, y el proceso obligatorio de análisis post-mortem 
+y actualización de playbooks tras cada incidente significativo.
 
-## 📋 Descripción
+## Requisitos
 
-Este control define el programa de respuesta a incidentes que incluye:
-- Detección y clasificación de eventos de seguridad
-- Escalamiento según severidad
-- Respuesta coordinada y documentada
-- Análisis forense y lecciones aprendidas
+## Requisito 1 - Clasificación y Proceso de Respuesta a Incidentes
 
-## 🛡️ Controles Requeridos
+La organización define un proceso estructurado de respuesta a incidentes de ciberseguridad con etapas formales: detección, análisis y 
+clasificación, contención, erradicación, recuperación y cierre. Los incidentes son clasificados por severidad (P1 crítico, P2 alto, 
+P3 medio, P4 bajo) con tiempos máximos de respuesta inicial y resolución definidos. Se cuenta con un equipo de respuesta a incidentes 
+(IRT/CSIRT) con roles y responsabilidades asignadas, disponible 24/7 para incidentes de severidad P1 y P2.
 
-### Preparación
-- Equipo de respuesta a incidentes (CSIRT/SOC)
-- Procedimientos documentados de respuesta
-- Herramientas de investigación y contención
-- Contactos de escalamiento y comunicación
-- Ejercicios y simulacros periódicos
+## Requisito 2 - Playbooks de Respuesta y Análisis Post-Mortem
 
-### Detección e Identificación
-- Monitoreo continuo de alertas de seguridad
-- Clasificación de eventos (verdadero/falso positivo)
-- Categorización de incidentes:
-  - P1 (Crítico): afectación masiva
-  - P2 (Alto): sistema crítico comprometido
-  - P3 (Medio): amenaza contenida
-  - P4 (Bajo): evento menor
-
-### Contención
-- Aislamiento de sistemas afectados
-- Preservación de evidencia forense
-- Implementación de controles temporales
-- Comunicación a partes interesadas
-
-### Erradicación
-- Eliminación de causa raíz
-- Limpieza de malware/persistencia
-- Cierre de vulnerabilidades explotadas
-- Validación de erradicación completa
-
-### Recuperación
-- Restauración de servicios
-- Validación de integridad de sistemas
-- Monitoreo post-incidente
-- Retorno a operaciones normales
-
-### Lecciones Aprendidas
-- Documentación detallada del incidente
-- Análisis de causa raíz
-- Identificación de mejoras
-- Actualización de procedimientos
-
-## 📊 Métricas e Indicadores
-
-- MTTD (Mean Time To Detect)
-- MTTR (Mean Time To Respond)
-- MTTC (Mean Time To Contain)
-- Número de incidentes por categoría
-- Efectividad de respuesta (% de éxito)
-- Costo promedio por incidente
-
-## 🔗 Herramientas Recomendadas
-
-- **SOAR:** Cortex XSOAR, Splunk SOAR, IBM Resilient
-- **EDR/XDR:** CrowdStrike, SentinelOne, Microsoft Defender XDR
-- **Forensics:** Volatility, Autopsy, FTK, Velociraptor
-- **Ticketing:** ServiceNow, Jira Service Management
-- **Comunicación:** PagerDuty, Slack, MS Teams
-
-## 📚 Referencias
-
-- [Plan de Respuesta a Incidentes](/docs/kudo/politicas/plan-respuesta-incidentes)
-- [Política de Gestión de Incidentes](/docs/kudo/politicas/politica-gestion-incidentes)
-- [Registro de Incidentes y Lecciones Aprendidas](/docs/kudo/politicas/registro-incidentes-lecciones-aprendidas)
-- [Proceso de Investigación Forense Digital](/docs/kudo/politicas/proceso-investigacion-forense-digital)
-- NIST SP 800-61 - Computer Security Incident Handling Guide
-- ISO 27035 - Information Security Incident Management
-
-## ✅ Checklist de Implementación
-
-- [ ] Equipo de respuesta definido y capacitado
-- [ ] Procedimientos de respuesta documentados
-- [ ] Matriz de escalamiento definida
-- [ ] Herramientas de respuesta implementadas
-- [ ] Contactos de comunicación actualizados
-- [ ] Plantillas de documentación preparadas
-- [ ] Ejercicios de simulación programados
-- [ ] Integración con legal/comunicaciones
-- [ ] Post-mortem template definido
-- [ ] KPIs y métricas en dashboard
+La organización mantiene playbooks de respuesta documentados y actualizados para los tipos de incidentes más frecuentes y de mayor 
+impacto: ransomware, phishing dirigido, acceso no autorizado, fuga de datos, compromiso de cuentas privilegiadas. Los playbooks definen 
+los pasos específicos de contención, erradicación y recuperación, los umbrales de escalamiento y los criterios de notificación a reguladores 
+en los plazos legales aplicables. Es obligatorio realizar análisis post-mortem para incidentes de severidad P1 y P2.

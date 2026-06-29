@@ -3,73 +3,28 @@ title: ADR-01 - Protección contra Aplicaciones Maliciosas
 description: Control de protección contra malware y aplicaciones maliciosas
 ---
 
-## 🎯 Objetivo del Control
+## Descripción del Control
 
-Implementar y mantener medidas de protección efectivas contra aplicaciones maliciosas (malware) en todos los sistemas, dispositivos y puntos de entrada de la organización, minimizando el riesgo de infección y propagación.
+Implementa controles para prevenir, detectar y neutralizar amenazas provenientes de software malicioso (malware, 
+ransomware, spyware, rootkits, troyanos) en todos los sistemas de la organización. Incluye soluciones antimalware 
+y EDR/XDR con actualización continua de firmas y análisis de comportamiento, listas de control de aplicaciones 
+autorizadas (whitelisting), análisis de archivos en sandbox antes de su ejecución, protección de correo electrónico 
+contra adjuntos y URLs maliciosas, controles de navegación web con filtrado de contenido malicioso, y procedimientos 
+de respuesta y cuarentena automática ante la detección de amenazas en endpoints, servidores y entornos cloud.
 
-## 📋 Descripción
+## Requisitos
 
-Este control establece los requisitos para proteger la infraestructura tecnológica contra software malicioso mediante:
-- Implementación de soluciones antimalware en endpoints y servidores
-- Protección en tiempo real contra amenazas conocidas y desconocidas
-- Análisis de comportamiento y detección de anomalías
-- Aislamiento y remediación de amenazas detectadas
+## Requisito 1 - Antimalware y EDR con Análisis de Comportamiento
 
-## 🛡️ Controles Requeridos
+La organización implementa soluciones antimalware de próxima generación con capacidades de análisis de comportamiento 
+y machine learning en todos los endpoints, servidores y entornos cloud. Las soluciones incluyen análisis de archivos en 
+sandbox previo a su ejecución (detonación controlada), detección de técnicas de evasión (fileless malware, living-off-the-land) 
+y capacidades de respuesta automática ante detecciones. Las firmas y modelos de detección se actualizan continuamente sin 
+intervención manual.
 
-### Protección en Endpoints
-- Despliegue de EDR (Endpoint Detection and Response) en todos los dispositivos
-- Actualizaciones automáticas de firmas y definiciones de malware
-- Análisis en tiempo real de archivos y procesos
-- Protección contra ransomware y exploit
+## Requisito 2 - Protección de Correo Electrónico y Navegación Web
 
-### Protección en Servidores
-- Soluciones antimalware específicas para servidores
-- Escaneo programado de sistemas de archivos
-- Protección de memoria y procesos críticos
-- Integración con soluciones SIEM
-
-### Protección de Red
-- Gateway antimalware para tráfico entrante/saliente
-- Inspección de contenido en proxy web
-- Filtrado de correo electrónico con análisis de adjuntos
-- Sandboxing para archivos sospechosos
-
-### Gestión y Monitoreo
-- Dashboard centralizado de estado de protección
-- Alertas en tiempo real de detecciones
-- Reportes periódicos de amenazas bloqueadas
-- Políticas de respuesta automatizada
-
-## 📊 Métricas e Indicadores
-
-- Porcentaje de dispositivos con protección activa (objetivo: 100%)
-- Tiempo promedio de actualización de definiciones (objetivo: menos de 4 horas)
-- Número de amenazas detectadas y bloqueadas
-- Tasa de falsos positivos (objetivo: menos de 5%)
-- Tiempo medio de remediación de incidentes
-
-## 🔗 Herramientas Recomendadas
-
-- **EDR/XDR:** Microsoft Defender for Endpoint, CrowdStrike, SentinelOne
-- **Antivirus Empresarial:** Symantec, McAfee, Trend Micro
-- **Email Security:** Proofpoint, Mimecast, Microsoft Defender for Office 365
-- **Sandbox:** Cuckoo Sandbox, FireEye, Any.run
-
-## 📚 Referencias
-
-- [Política de Gestión de Endpoints](/docs/kudo/politicas/politica-gestion-endpoints)
-- [Plan de Respuesta a Incidentes](/docs/kudo/politicas/plan-respuesta-incidentes)
-- NIST SP 800-83 - Guide to Malware Incident Prevention
-- CIS Control 10 - Malware Defenses
-
-## ✅ Checklist de Implementación
-
-- [ ] Inventario completo de dispositivos a proteger
-- [ ] Selección e implementación de solución EDR/antimalware
-- [ ] Configuración de políticas de protección
-- [ ] Integración con SIEM/SOC
-- [ ] Definición de procedimientos de respuesta
-- [ ] Capacitación a equipo de IT/Seguridad
-- [ ] Pruebas de efectividad de protección
-- [ ] Documentación de procesos operativos
+La organización implementa controles de seguridad en el correo electrónico corporativo incluyendo: análisis de adjuntos en 
+sandbox, verificación de URLs mediante sistemas de reputación en tiempo real, filtros anti-spam y anti-phishing con DMARC, 
+DKIM y SPF habilitados. Los controles de navegación web implementan filtrado de categorías de contenido malicioso, bloqueo 
+de dominios de phishing conocidos y análisis SSL inspection. Los colaboradores son alertados ante comunicaciones sospechosas.

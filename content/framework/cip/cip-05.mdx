@@ -3,112 +3,29 @@ title: CIP-05 - Inventario de puntos finales
 description: Control de gestión de activos de endpoints
 ---
 
-## 🎯 Objetivo del Control
+## Descripción del Control
 
-Mantener un inventario actualizado y completo de todos los dispositivos endpoints (computadoras, laptops, móviles, tablets) que se conectan a la red corporativa.
+Mantiene un inventario completo y actualizado de todos los dispositivos endpoint que se conectan a la red corporativa: 
+laptops, desktops, smartphones, tablets corporativos, dispositivos BYOD y dispositivos IoT. Define los atributos mínimos 
+de cada dispositivo (hostname, MAC, serial, sistema operativo, usuario asignado, estado del agente EDR, estado de 
+cifrado, compliance) mediante descubrimiento automatizado con agentes MDM y escaneo de red. Incluye reconciliación física 
+vs lógica trimestral, detección de dispositivos no autorizados y gestión del ciclo de vida desde adquisición hasta retiro 
+seguro con borrado certificado.
 
-## 📋 Descripción
+## Requisitos
 
-Este control establece el registro y gestión de:
-- Inventario automatizado de endpoints
-- Clasificación y categorización de dispositivos
-- Estado de seguridad de cada endpoint
-- Propiedad y asignación de dispositivos
-- Ciclo de vida de equipos
+### Requisito 1 - Inventario Automatizado de Dispositivos Endpoint
 
-## 🛡️ Controles Requeridos
+La organización mantiene un inventario completo y actualizado de todos los dispositivos endpoint que acceden a la red 
+corporativa o a recursos organizacionales: laptops, desktops, smartphones, tablets corporativos y BYOD. El inventario es 
+generado automáticamente mediante agentes MDM/UEM desplegados en los dispositivos y escaneos de descubrimiento de red. Para 
+cada dispositivo se registran: hostname, dirección MAC, número de serie, sistema operativo y versión, usuario asignado, estado 
+del agente EDR, estado de cifrado de disco y estado de compliance.
 
-### Tipos de Endpoints
-- **Corporativos Gestionados:**
-  - Laptops Windows/macOS
-  - Desktops
-  - Smartphones y tablets corporativos
-- **BYOD (Bring Your Own Device):**
-  - Dispositivos personales con acceso corporativo
-  - Políticas restrictivas de acceso
-- **IoT y Especializados:**
-  - Impresoras de red
-  - Dispositivos IoT
-  - Equipos industriales conectados
+### Requisito 2 - Detección de Dispositivos No Autorizados y Ciclo de Vida
 
-### Atributos de Inventario
-- **Identificación:**
-  - Hostname
-  - Dirección MAC
-  - Dirección IP
-  - Serial number / Asset tag
-- **Especificaciones:**
-  - Marca y modelo
-  - Sistema operativo y versión
-  - CPU, RAM, almacenamiento
-- **Gestión:**
-  - Usuario asignado
-  - Ubicación física
-  - Estado (activo/almacenamiento/retirado)
-  - Fecha de compra/adquisición
-  - Fin de vida útil (EOL)
-  - Costo de adquisición
-- **Seguridad:**
-  - Agente EDR instalado y versión
-  - Estado de cifrado de disco
-  - Último escaneo de vulnerabilidades
-  - Compliance status
-  - Última conexión a red
-
-### Descubrimiento Automatizado
-- Network scanning (Nmap, Lansweeper)
-- Agent-based inventory (SCCM, Intune, Jamf)
-- MDM (Mobile Device Management)
-- CMDB (Configuration Management Database)
-- Integración con herramientas de asset management
-
-### Gestión del Ciclo de Vida
-1. **Adquisición:** Registro en inventario
-2. **Asignación:** Vinculación con usuario
-3. **Uso:** Monitoreo de estado y seguridad
-4. **Mantenimiento:** Actualizaciones y reparaciones
-5. **Retiro:** Wiping seguro y baja de inventario
-
-### Reconciliación de Inventario
-- Auditoría física vs lógica (trimestral)
-- Detección de dispositivos no autorizados
-- Identificación de dispositivos faltantes
-- Actualización de estados
-
-## 📊 Métricas e Indicadores
-
-- Total de endpoints activos por tipo
-- Porcentaje de endpoints sin agente de seguridad
-- Dispositivos no reportados en >30 días
-- Tasa de precisión de inventario (objetivo: >95%)
-- Endpoints fuera de soporte (EOL)
-
-## 🔗 Herramientas Recomendadas
-
-- **Endpoint Management:** Microsoft Intune, Jamf, VMware Workspace ONE
-- **Asset Management:** ServiceNow, Lansweeper, Snipe-IT
-- **MDM:** Microsoft Intune, Jamf, MobileIron, Workspace ONE
-- **Network Discovery:** Nmap, Angry IP Scanner, SolarWinds
-- **CMDB:** ServiceNow, Jira Assets, Device42
-
-## 📚 Referencias
-
-- [Política de Gestión de Endpoints](/docs/kudo/politicas/politica-gestion-endpoints)
-- [Control de Dispositivos BYOD](/docs/kudo/politicas/control-dispositivos-byod)
-- [Gestión de Parches y Configuración de Endpoints](/docs/kudo/politicas/gestion-parches-configuracion-endpoints)
-- ISO 27001:2022 - A.5.9, A.8.1
-- NIST SP 800-53 - CM-8 Information System Component Inventory
-- CIS Control 1 - Inventory and Control of Enterprise Assets
-
-## ✅ Checklist de Implementación
-
-- [ ] Herramienta de asset management implementada
-- [ ] MDM para dispositivos móviles configurado
-- [ ] Agent de inventario desplegado
-- [ ] Proceso de onboarding de nuevos equipos
-- [ ] Clasificación de tipos de endpoints
-- [ ] Dashboard de inventario actualizado
-- [ ] Detección de dispositivos no autorizados
-- [ ] Auditoría física programada (trimestral)
-- [ ] Proceso de retiro seguro documentado
-- [ ] Integración con CMDB/ITSM
+La organización implementa controles para detectar dispositivos no registrados que intentan conectarse a la red corporativa 
+(NAC - Network Access Control). Los dispositivos no autorizados son bloqueados automáticamente o redirigidos a una red de 
+cuarentena. El inventario se reconcilia físicamente vs lógicamente al menos trimestralmente. El ciclo de vida de los 
+dispositivos desde adquisición hasta retiro incluye borrado certificado de datos (estándar NIST 800-88 o DoD 5220.22-M) 
+antes de la disposición final.

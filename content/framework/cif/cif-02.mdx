@@ -3,120 +3,36 @@ title: CIF-02 - Inventario de Activos
 description: Control de gestión de activos en la nube
 ---
 
-## 🎯 Objetivo del Control
+## Descripción del Control
 
-Mantener un inventario completo y actualizado de todos los activos desplegados en entornos cloud para gestión, seguridad y optimización de costos.
+Mantiene un inventario automatizado y completo de todos los recursos desplegados en entornos cloud (compute, 
+storage, networking, seguridad, serverless). Define un sistema de etiquetado obligatorio (tagging) con atributos 
+como entorno, propietario, centro de costos, aplicación, clasificación de datos y criticidad, aplicado mediante 
+políticas nativas del CSP (AWS Config, Azure Policy). Establece la detección y limpieza de recursos huérfanos (VMs 
+detenidas, discos no asociados, IPs sin uso), gestión de costos por etiqueta con alertas de presupuesto, y la 
+Infrastructure as Code como fuente de verdad del inventario.
 
-## 📋 Descripción
+## Requisitos
 
-Este control establece el registro de activos cloud:
-- Inventario automatizado de recursos
-- Clasificación y etiquetado
-- Monitoreo de costos
-- Detección de recursos huérfanos
-- Auditoría de cambios
+### Requisito 1 - Inventario Automatizado de Recursos Cloud
 
-## 🛡️ Controles Requeridos
+La organización mantiene un inventario automatizado y en tiempo real de todos los recursos desplegados en entornos 
+cloud (compute, storage, networking, bases de datos, funciones serverless, contenedores, servicios PaaS). El inventario 
+es generado y actualizado automáticamente mediante herramientas nativas del CSP (AWS Config, Azure Resource Graph, 
+GCP Asset Inventory) o plataformas CSPM. Cada recurso está asociado a su propietario técnico, ambiente, aplicación y 
+clasificación de criticidad.
 
-### Tipos de Activos Cloud
+### Requisito 2 - Sistema de Etiquetado (Tagging) Obligatorio
 
-**Compute:**
-- VMs / Instancias (EC2, Azure VM, GCE)
-- Contenedores (ECS, AKS, GKE)
-- Serverless functions (Lambda, Azure Functions)
-- Kubernetes clusters
+La organización define y aplica una política de etiquetado obligatorio (tagging) para todos los recursos cloud, con atributos 
+mínimos requeridos: ambiente (prod/staging/dev), propietario, centro de costos, aplicación, clasificación de datos y criticidad. 
+Las políticas de tagging son aplicadas y verificadas automáticamente mediante políticas nativas del CSP. Los recursos sin 
+etiquetado completo son identificados automáticamente y notificados al propietario para su corrección en un plazo máximo de 48 horas.
 
-**Storage:**
-- Object storage (S3, Blob Storage, Cloud Storage)
-- Block storage (EBS, Managed Disks)
-- File shares (EFS, Azure Files)
-- Databases (RDS, SQL Database, Cloud SQL)
+### Requisito 3 - Detección y Gestión de Recursos Huérfanos
 
-**Networking:**
-- VPCs / Virtual Networks
-- Subnets
-- Load balancers
-- VPN gateways
-- NAT gateways
-
-**Security:**
-- Security groups / NSGs
-- Firewalls
-- Key vaults / Secret managers
-- Identity providers
-
-**Otros:**
-- CDNs
-- DNS zones
-- API gateways
-- Message queues
-
-### Sistema de Etiquetado (Tagging)
-Etiquetas obligatorias para todos los recursos:
-- **Environment:** prod, staging, dev, qa
-- **Owner:** email del responsable
-- **CostCenter:** departamento/proyecto
-- **Application:** nombre de aplicación
-- **ManagedBy:** terraform, manual, automation
-- **DataClassification:** public, internal, confidential, restricted
-- **Criticality:** low, medium, high, critical
-- **BackupRequired:** yes, no
-
-### Inventario Automatizado
-- Herramientas de asset discovery en cloud
-- Sincronización con CMDB
-- Recolección diaria de inventario
-- API de CSP para consultas en tiempo real
-- Infrastructure as Code (IaC) como fuente de verdad
-
-### Recursos Huérfanos
-Identificación y limpieza de:
-- VMs detenidas >30 días
-- Discos no asociados
-- Snapshots antiguos (>90 días)
-- IPs elásticas sin uso
-- Load balancers sin backend
-- Seguridad groups sin uso
-
-### Gestión de Costos
-- Dashboard de costos por servicio
-- Alertas de presupuesto
-- Optimización de right-sizing
-- Identificación de recursos sobre-provisionados
-- Reserved instances / Savings plans
-
-## 📊 Métricas e Indicadores
-
-- Número total de activos por tipo
-- Recursos sin etiquetas requeridas
-- Costo por etiqueta (CostCenter, Application)
-- Recursos huérfanos detectados
-- Tasa de cumplimiento de tagging (objetivo: >95%)
-
-## 🔗 Herramientas Recomendadas
-
-- **Multi-Cloud Inventory:** CloudQuery, Steampipe, Terraform Cloud
-- **CMDB:** ServiceNow, Device42, Jira Assets
-- **Cost Management:** CloudHealth, Flexera, AWS Cost Explorer, Azure Cost Management
-- **Tagging Enforcement:** AWS Config, Azure Policy, GCP Organization Policy
-- **IaC:** Terraform, Pulumi, AWS CDK
-
-## 📚 Referencias
-
-- [Matriz de Controles de Nube](/docs/kudo/matriz-controles-nube-mcn)
-- [Inventario y Ciclo de Vida de Llaves](/docs/kudo/politicas/inventario-ciclo-vida-llaves)
-- ISO 27001:2022 - A.5.9, A.8.1
-- CIS Controls v8 - Control 1 (Inventory of Assets)
-
-## ✅ Checklist de Implementación
-
-- [ ] Sistema de etiquetado definido y comunicado
-- [ ] Herramienta de inventario automatizado implementada
-- [ ] Políticas de tagging obligatorias (AWS Config/Azure Policy)
-- [ ] Integración con CMDB configurada
-- [ ] Dashboard de inventario y costos
-- [ ] Alertas de recursos sin etiquetas
-- [ ] Proceso de limpieza de recursos huérfanos
-- [ ] Auditoría mensual de cumplimiento de tagging
-- [ ] Optimización de costos (right-sizing)
-- [ ] Documentación de estándares de tagging
+La organización implementa controles automáticos para detectar recursos cloud huérfanos (VMs detenidas sin uso, discos no 
+asociados, IPs elásticas sin asignación, snapshots obsoletos) que representan superficie de ataque innecesaria y costos evitables. 
+Los recursos huérfanos son notificados automáticamente al propietario y eliminados si no son reclamados en un plazo definido 
+(máximo 30 días). La Infrastructure as Code (IaC) es considerada la fuente de verdad del inventario, y cualquier desviación es 
+tratada como anomalía.

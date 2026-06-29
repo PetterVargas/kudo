@@ -3,113 +3,28 @@ title: COR-04 - Mejora Continua y Acciones Correctivas
 description: Control de gestión sistemática de hallazgos, incidentes y oportunidades de mejora
 ---
 
-## 🎯 Objetivo del Control
+## Descripción de Control
 
-Establecer un proceso sistemático de mejora continua que identifique, analice, priorice e implemente acciones correctivas y preventivas derivadas de hallazgos de auditoría, incidentes de seguridad, métricas y evaluaciones de riesgos.
+Implementa un ciclo PDCA (Plan-Do-Check-Act) para la gestión sistemática de hallazgos, incidentes y 
+oportunidades de mejora. Define el proceso de análisis de causa raíz (5 Whys, Ishikawa), la gestión 
+formal de acciones correctivas y preventivas (CAPA) con priorización basada en riesgo, la validación 
+de efectividad de soluciones implementadas y la gestión del conocimiento mediante lecciones aprendidas. 
+Las revisiones gerenciales periódicas aseguran la evolución sostenida del programa de ciberseguridad 
+organizacional.
 
-## 📋 Descripción
+## Requisitos
 
-Este control implementa un ciclo PDCA (Plan-Do-Check-Act) para la gestión de ciberseguridad que incluye:
-- Identificación proactiva de oportunidades de mejora
-- Análisis de causa raíz de incidentes y hallazgos
-- Gestión formal de acciones correctivas y preventivas (CAPA)
-- Seguimiento de efectividad de las mejoras implementadas
-- Cultura de mejora continua y lecciones aprendidas
+### Requisito 1 - Gestión de Acciones Correctivas y Preventivas
 
-## 🛡️ Controles Requeridos
+La organización implementa un proceso formal de gestión de acciones correctivas y preventivas para todos los 
+hallazgos provenientes de auditorías, incidentes, evaluaciones de riesgo y oportunidades de mejora. Cada acción 
+correctiva incluye análisis de causa raíz (5 Whys o diagrama de Ishikawa), plan de remediación con responsable y 
+fecha, validación de efectividad y registro en el sistema de seguimiento. Las acciones son priorizadas según el 
+nivel de riesgo asociado.
 
-### Fuentes de Mejora Continua
-- Hallazgos de auditorías internas y externas
-- Incidentes de seguridad y análisis post-mortem
-- Métricas e indicadores fuera de objetivo
-- Evaluaciones de riesgos y cambios en el panorama de amenazas
-- Feedback de stakeholders (equipos, usuarios, clientes)
-- Benchmarking con industria y mejores prácticas
-- Cambios regulatorios o contractuales
+### Requisito 2 - Revisión Gerencial y Ciclo PDCA
 
-### Análisis de Causa Raíz
-- Metodología estandarizada (5 Whys, Ishikawa, Fault Tree Analysis)
-- Diferenciación entre síntomas y causas raíz
-- Documentación de análisis de causalidad
-- Identificación de controles fallidos o inexistentes
-- Evaluación de factores contribuyentes (procesos, tecnología, personas)
-
-### Gestión de Acciones Correctivas y Preventivas (CAPA)
-- Registro centralizado de CAPAs en sistema GRC
-- Clasificación de acciones:
-  - Correctivas: remedian hallazgos/incidentes existentes
-  - Preventivas: evitan ocurrencia futura de problemas
-- Priorización basada en riesgo e impacto
-- Asignación de responsables y fechas compromiso
-- Plan de acción detallado con hitos
-- Seguimiento y escalamiento de atrasos
-
-### Validación de Efectividad
-- Verificación de implementación completa de CAPAs
-- Evaluación de efectividad de la solución implementada
-- Monitoreo de recurrencia del problema
-- Pruebas de controles nuevos/modificados
-- Cierre formal con aprobación de stakeholders
-
-### Gestión del Conocimiento y Lecciones Aprendidas
-- Documentación de lecciones aprendidas post-incidentes
-- Base de conocimiento de soluciones implementadas
-- Comunicación de lecciones a equipos relevantes
-- Actualización de políticas, procedimientos y documentación
-- Incorporación en capacitaciones y awareness
-
-### Revisiones Gerenciales
-- Revisión trimestral de programa de ciberseguridad por CISO
-- Revisión semestral/anual por Comité de Seguridad
-- Análisis de tendencias de hallazgos e incidentes
-- Evaluación de efectividad de acciones implementadas
-- Decisiones de mejora estratégica del programa
-
-## 📊 Métricas e Indicadores
-
-- Número de CAPAs abiertas vs cerradas (tendencia)
-- Porcentaje de CAPAs completadas dentro de plazo (objetivo: mayor a 90%)
-- Tiempo promedio de implementación de CAPAs por severidad
-- Tasa de reincidencia de problemas (objetivo: menos de 5%)
-- Número de mejoras implementadas proactivamente
-- Índice de madurez de ciberseguridad (evolución anual)
-- Efectividad de CAPAs validadas (objetivo: mayor a 95%)
-
-## 🔗 Herramientas Recomendadas
-
-- **CAPA Management:** ServiceNow, Jira, AuditBoard, MasterControl
-- **Root Cause Analysis:** Sologic RCA, TapRooT, Causelink
-- **Incident Management:** PagerDuty, Opsgenie, ServiceNow ITSM
-- **Knowledge Base:** Confluence, SharePoint, Notion
-- **Dashboards:** Power BI, Tableau, Grafana
-- **Continuous Improvement:** Kaizen, Lean Six Sigma tools
-
-## 📚 Referencias
-
-- [Registro de Plan de Acciones Correctivas](/docs/kudo/politicas/registro-plan-acciones-correctivas)
-- [Plan Anual de Auditoría](/docs/kudo/politicas/plan-anual-auditoria)
-- [Plan de Tratamiento de Riesgos](/docs/kudo/politicas/plan-tratamiento-riesgos)
-- [Gobernanza de Seguridad de la Información](/docs/kudo/politicas/gobernanza-seguridad-informacion)
-- ISO/IEC 27001:2022 - Clause 10: Improvement
-- NIST Cybersecurity Framework - "Improve" Function
-- ITIL v4 - Continual Improvement
-- COBIT 2019 - APO11 (Managed Quality)
-- PDCA Cycle (Plan-Do-Check-Act)
-
-## ✅ Checklist de Implementación
-
-- [ ] Definición de proceso de mejora continua documentado
-- [ ] Implementación de sistema de gestión de CAPAs
-- [ ] Capacitación en análisis de causa raíz
-- [ ] Establecimiento de SLAs para implementación de CAPAs
-- [ ] Definición de criterios de priorización de acciones
-- [ ] Proceso de validación de efectividad definido
-- [ ] Dashboard de seguimiento de CAPAs configurado
-- [ ] Integración con sistemas de gestión de incidentes
-- [ ] Integración con gestión de hallazgos de auditoría
-- [ ] Procedimiento de lecciones aprendidas establecido
-- [ ] Base de conocimiento de mejoras implementadas
-- [ ] Calendario de revisiones gerenciales establecido
-- [ ] Métricas e indicadores de mejora continua definidos
-- [ ] Proceso de escalamiento de CAPAs atrasadas
-- [ ] Cultura de mejora continua promovida en la organización
+La organización realiza revisiones gerenciales periódicas del programa de ciberseguridad (al menos semestrales), 
+evaluando el desempeño de controles, el estado de riesgos, el resultado de auditorías y el avance de mejoras. 
+Las revisiones siguen el ciclo PDCA y generan decisiones de mejora documentadas. Los resultados de las revisiones 
+gerenciales son comunicados a las partes interesadas relevantes y se incorporan al roadmap de ciberseguridad.

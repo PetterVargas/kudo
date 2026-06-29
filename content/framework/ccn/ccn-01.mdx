@@ -3,88 +3,29 @@ title: CCN-01 - Gestión y Control de Cambios
 description: Control de gestión estructurada de cambios en sistemas
 ---
 
-## 🎯 Objetivo del Control
+## Descripción del Control
 
-Establecer un proceso formal y estructurado para gestionar cambios en sistemas, aplicaciones e infraestructura, minimizando riesgos de interrupciones y vulnerabilidades de seguridad.
+Establece un proceso formal y estructurado para gestionar cambios en sistemas, aplicaciones e infraestructura, 
+minimizando riesgos de interrupciones y vulnerabilidades de seguridad. Define la clasificación de cambios 
+(estándar, normal, emergencia, menor), el proceso de solicitud mediante formulario RFC con análisis de impacto 
+y plan de rollback, el Comité de Aprobación de Cambios (CAB) con representación de CTO, CISO y Product Owners, 
+las ventanas de cambio programadas y períodos de freeze, y la documentación requerida para cada cambio incluyendo 
+criterios de éxito y contactos de escalamiento.
 
-## 📋 Descripción
+## Requisitos
 
-Este control define el proceso de gestión de cambios que incluye:
-- Solicitud y aprobación formal de cambios
-- Evaluación de impacto y riesgos
-- Planificación y testing de cambios
-- Documentación y comunicación
-- Revisión post-implementación
+### Requisito 1 - Proceso Formal de Solicitud y Aprobación de Cambios
 
-## 🛡️ Controles Requeridos
+La organización define ventanas de cambio programadas para la implementación de cambios normales, minimizando 
+el impacto en los servicios productivos. Se establecen períodos de freeze (congelamiento de cambios) asociados a 
+eventos críticos del negocio, temporadas de alta demanda o fechas relevantes del calendario fiscal. Los cambios 
+de emergencia cuentan con un proceso abreviado que garantiza la aprobación mínima necesaria (CISO + CTO) y la 
+documentación post-implementación en un plazo máximo de 24 horas.
 
-### Clasificación de Cambios
-- **Cambios Estándar:** Pre-aprobados, bajo riesgo, procedimiento documentado
-- **Cambios Normales:** Requieren evaluación y aprobación del CAB
-- **Cambios de Emergencia:** Proceso acelerado con aprobación ejecutiva
-- **Cambios Menores:** Bajo impacto, aprobación simplificada
+### Requisito 2 - Ventanas de Cambio y Períodos de Freeze
 
-### Proceso de Solicitud
-- Formulario de solicitud de cambio (RFC - Request for Change)
-- Descripción detallada del cambio
-- Justificación de negocio
-- Análisis de impacto
-- Plan de implementación
-- Plan de rollback
-
-### Comité de Aprobación de Cambios (CAB)
-- Miembros: CTO, CISO, Gerente de Operaciones, Product Owner
-- Reuniones periódicas (semanal/quincenal)
-- Evaluación de riesgos técnicos y de seguridad
-- Aprobación/rechazo de cambios
-- Priorización de cambios
-
-### Ventanas de Cambio
-- Horarios definidos para cambios productivos
-- Ventanas de mantenimiento programadas
-- Comunicación anticipada a stakeholders
-- Freeze periods (períodos sin cambios)
-
-### Documentación Requerida
-- Diagrama de arquitectura afectada
-- Procedimiento de implementación paso a paso
-- Criterios de éxito/fallo
-- Plan de rollback detallado
-- Contactos de escalamiento
-
-## 📊 Métricas e Indicadores
-
-- Número de cambios exitosos vs fallidos
-- Tiempo promedio de aprobación de cambios
-- Porcentaje de cambios con rollback
-- Incidentes causados por cambios
-- Cumplimiento de ventanas de cambio
-
-## 🔗 Herramientas Recomendadas
-
-- **ITSM:** ServiceNow, Jira Service Management, BMC Remedy
-- **Collaboration:** Confluence, SharePoint
-- **CI/CD:** GitHub, GitLab, Azure DevOps
-- **Infrastructure as Code:** Terraform, CloudFormation, Ansible
-
-## 📚 Referencias
-
-- [Política de Gestión de Cambios](/docs/kudo/politicas/politica-gestion-cambios)
-- [Registro de Cambios Críticos en Producción](/docs/kudo/politicas/registro-cambios-criticos-produccion)
-- [Plan de Recuperación de Desastres](/docs/kudo/politicas/plan-recuperacion-desastres)
-- ITIL 4 - Change Enablement
-- ISO 20000 - Service Management
-- COBIT 2019 - Manage Change
-
-## ✅ Checklist de Implementación
-
-- [ ] Proceso de gestión de cambios documentado
-- [ ] CAB (Change Advisory Board) establecido
-- [ ] Categorías de cambios definidas
-- [ ] Plantillas de RFC creadas
-- [ ] Herramienta ITSM configurada
-- [ ] Ventanas de cambio definidas y comunicadas
-- [ ] Procedimiento de rollback estándar
-- [ ] Métricas y KPIs configurados
-- [ ] Capacitación a equipos
-- [ ] Comunicación a stakeholders
+Todos los cambios deben recorrer obligatoriamente una cadena de ambientes (DEV -> QA -> Staging -> PROD) antes de 
+llegar a producción, garantizando paridad de configuración entre staging y producción. Cada ambiente tiene criterios 
+de aprobación formales: cobertura mínima de pruebas unitarias del 80%, cero vulnerabilidades críticas o altas 
+detectadas, rendimiento dentro de los SLAs definidos y plan de rollback probado y funcional. La promoción entre 
+ambientes requiere aprobación formal del equipo de calidad y seguridad.
