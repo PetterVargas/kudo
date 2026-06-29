@@ -17,6 +17,14 @@ export default function HomePage() {
   const ctaRef      = useRef<HTMLElement>(null);
 
   useEffect(() => {
+    const heroEl     = heroRef.current;
+    const statsEl    = statsRef.current;
+    const featuresEl = featuresRef.current;
+    const productsEl = productsRef.current;
+    const ctaEl      = ctaRef.current;
+
+    if (!heroEl || !statsEl || !featuresEl || !productsEl || !ctaEl) return;
+
     // ── Hero diagram ──────────────────────────────────────────────────────
     const heroCtx = gsap.context(() => {
       gsap.from('.diag-node', {
@@ -51,7 +59,7 @@ export default function HomePage() {
           });
         });
       }
-    }, heroRef);
+    }, heroEl);
 
     // ── Value proposition ─────────────────────────────────────────────────
     const statsCtx = gsap.context(() => {
@@ -77,7 +85,7 @@ export default function HomePage() {
           },
         });
       });
-    }, statsRef);
+    }, statsEl);
 
     // ── Features ──────────────────────────────────────────────────────────
     const featuresCtx = gsap.context(() => {
@@ -95,7 +103,7 @@ export default function HomePage() {
         x: 24, opacity: 0, duration: 0.65, ease: 'power2.out',
         scrollTrigger: { trigger: '.features-card', start: 'top 85%', once: true },
       });
-    }, featuresRef);
+    }, featuresEl);
 
     // ── Products ──────────────────────────────────────────────────────────
     const productsCtx = gsap.context(() => {
@@ -109,7 +117,7 @@ export default function HomePage() {
           scrollTrigger: { trigger: el as Element, start: 'top 88%', once: true },
         });
       });
-    }, productsRef);
+    }, productsEl);
 
     // ── CTA ───────────────────────────────────────────────────────────────
     const ctaCtx = gsap.context(() => {
@@ -117,7 +125,7 @@ export default function HomePage() {
         y: 20, opacity: 0, duration: 0.6, stagger: 0.12, ease: 'power3.out',
         scrollTrigger: { trigger: '.cta-content', start: 'top 85%', once: true },
       });
-    }, ctaRef);
+    }, ctaEl);
 
     return () => {
       heroCtx.revert();
