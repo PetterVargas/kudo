@@ -3,127 +3,36 @@ title: CIP-06 - Ciberseguridad en Puntos Finales
 description: Control de protección y hardening de endpoints
 ---
 
-## 🎯 Objetivo del Control
+## Descripción del Control
 
-Implementar medidas de protección integral en todos los endpoints para prevenir, detectar y responder a amenazas de ciberseguridad.
+Implementa medidas de protección integral en todos los endpoints para prevenir, detectar y responder a amenazas. 
+Requiere despliegue de EDR/XDR al 100% de endpoints corporativos con análisis de comportamiento e integración SIEM/SOC. 
+Exige hardening de sistema operativo basado en CIS Benchmarks para Windows, macOS y Linux, cifrado completo de disco 
+(BitLocker, FileVault, LUKS) con gestión centralizada de recovery keys, gestión automatizada de parches (críticos en menos 
+de 7 días), control de aplicaciones mediante whitelisting, restricción de dispositivos USB y DLP. Para acceso remoto, 
+VPN con MFA es obligatoria.
 
-## 📋 Descripción
+## Requisitos
 
-Este control establece requisitos de seguridad para endpoints:
-- EDR/XDR para detección y respuesta
-- Hardening de sistema operativo
-- Cifrado de datos
-- Control de aplicaciones
-- Gestión de parches
+### Requisito 1 - EDR/XDR y Protección Antimalware
 
-## 🛡️ Controles Requeridos
+La organización despliega soluciones EDR/XDR en el 100% de los dispositivos endpoint corporativos, con análisis de comportamiento 
+avanzado, protección en tiempo real y capacidades de respuesta automática (aislamiento, kill process, rollback). Las soluciones 
+EDR/XDR están integradas con el SIEM/SOC para la correlación de alertas y respuesta coordinada a incidentes. Las firmas y 
+motores de detección se actualizan automáticamente. Se realizan revisiones periódicas de las alertas EDR para identificar patrones 
+de amenazas emergentes.
 
-### EDR/XDR (Endpoint Detection and Response)
-- Despliegue en 100% de endpoints corporativos
-- Protección en tiempo real contra malware
-- Behavioral analysis y machine learning
-- Aislamiento automático de endpoints comprometidos
-- Integración con SIEM/SOC
-- Threat hunting capabilities
+### Requisito 2 - Hardening, Cifrado de Disco y Gestión de Parches
 
-### Hardening de Sistema Operativo
-**Windows:**
-- CIS Benchmarks aplicados
-- BitLocker habilitado
-- Windows Defender configurado
-- PowerShell logging habilitado
-- Deshabilitación de SMBv1
-- UAC (User Access Control) activo
+Los dispositivos endpoint son configurados siguiendo líneas base de seguridad (CIS Benchmarks para Windows, macOS y Linux) 
+aplicadas mediante gestión de configuración centralizada (MDM/GPO). El cifrado completo de disco está habilitado en todos los 
+dispositivos (BitLocker para Windows, FileVault para macOS, LUKS para Linux) con gestión centralizada de recovery keys. La 
+gestión de parches es automatizada con SLAs definidos: parches críticos en menos de 7 días, altos en menos de 30 días. Los dispositivos 
+no compliance son identificados y notificados automáticamente.
 
-**macOS:**
-- FileVault habilitado
-- Gatekeeper activo
-- XProtect actualizado
-- Firewall habilitado
-- Secure boot
+### Requisito 3 - Control de Aplicaciones, USB y DLP en Endpoints
 
-**Linux:**
-- SELinux/AppArmor configurado
-- Firewall (iptables/firewalld)
-- Fail2ban para protección SSH
-- Actualizaciones automáticas
-
-### Cifrado de Disco
-- Cifrado completo de disco (FDE) obligatorio
-- BitLocker (Windows)
-- FileVault (macOS)
-- LUKS (Linux)
-- Gestión centralizada de recovery keys
-
-### Control de Aplicaciones
-- Application whitelisting
-- Bloqueo de aplicaciones no autorizadas
-- Software Restriction Policies
-- AppLocker (Windows) / Gatekeeper (macOS)
-- Validación de firmas digitales
-
-### Gestión de Parches
-- Actualizaciones automáticas de SO
-- Parches críticos: menos de 7 días
-- Parches altos: menos de 30 días
-- Testing de parches en ambiente piloto
-- Rollback plan para parches problemáticos
-
-### Protección de Red
-- VPN obligatoria para acceso remoto
-- DNS filtering
-- Web content filtering
-- Protección contra phishing
-- Firewall local habilitado
-
-### Control de Dispositivos
-- USB restringido o bloqueado
-- Políticas de dispositivos extraíbles
-- DLP (Data Loss Prevention)
-- Impresión controlada
-- Bluetooth y WiFi gestionados
-
-### Backup de Endpoints
-- Backup automático de datos críticos
-- Retención según política (30 días)
-- Testing de restauración
-- Backup incremental diario
-
-## 📊 Métricas e Indicadores
-
-- Porcentaje de endpoints con EDR activo (objetivo: 100%)
-- Porcentaje de endpoints con cifrado (objetivo: 100%)
-- Tiempo promedio de parcheo
-- Número de amenazas detectadas y bloqueadas
-- Compliance score de hardening
-
-## 🔗 Herramientas Recomendadas
-
-- **EDR/XDR:** Microsoft Defender for Endpoint, CrowdStrike, SentinelOne, Carbon Black
-- **Endpoint Management:** Microsoft Intune, Jamf, VMware Workspace ONE
-- **Hardening:** CIS-CAT, Microsoft Security Compliance Toolkit
-- **Patch Management:** WSUS, SCCM, Ivanti, ManageEngine
-- **DLP:** Microsoft Purview, Symantec DLP, Forcepoint
-
-## 📚 Referencias
-
-- [Política de Gestión de Endpoints](/docs/kudo/politicas/politica-gestion-endpoints)
-- [Gestión de Parches y Configuración de Endpoints](/docs/kudo/politicas/gestion-parches-configuracion-endpoints)
-- [Gestion de Parches y Hardening](/docs/kudo/politicas/gestion-parches-hardening)
-- [Control de Dispositivos BYOD](/docs/kudo/politicas/control-dispositivos-byod)
-- CIS Benchmarks for Windows, macOS, Linux
-- NIST SP 800-171 - Protecting CUI
-- ISO 27001:2022 - A.8.8, A.8.9, A.8.10
-
-## ✅ Checklist de Implementación
-
-- [ ] EDR/XDR desplegado en todos los endpoints
-- [ ] Hardening baselines aplicadas
-- [ ] Cifrado de disco habilitado (100%)
-- [ ] Gestión de parches automatizada
-- [ ] Application control configurado
-- [ ] VPN para acceso remoto
-- [ ] Firewall local habilitado
-- [ ] USB y dispositivos extraíbles controlados
-- [ ] Backup automático configurado
-- [ ] Monitoreo y alertas activas
+La organización implementa control de aplicaciones mediante whitelisting (solo aplicaciones aprobadas pueden ejecutarse), 
+restricción de dispositivos de almacenamiento USB no autorizados y controles de prevención de pérdida de datos (DLP) en endpoints 
+que detectan y bloquean la exfiltración de datos sensibles por canales no autorizados (USB, email personal, cloud storage no 
+corporativo). Las excepciones son gestionadas mediante un proceso formal de aprobación con fecha de expiración.

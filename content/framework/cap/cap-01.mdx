@@ -3,91 +3,45 @@ title: CAP-01 - Ciberseguridad en el Ciclo de Desarrollo del Software
 description: Control de seguridad integrada en el SDLC
 ---
 
-## 🎯 Objetivo del Control
+## Descripción del Control
 
-Integrar prácticas de seguridad en todas las fases del ciclo de vida de desarrollo de software (SDLC) para identificar y remediar vulnerabilidades de forma temprana y costo-efectiva.
+Integra prácticas de seguridad en todas las fases del SDLC bajo un enfoque Shift Left. En planificación: 
+modelado de amenazas (STRIDE, PASTA) y definición de requisitos de seguridad. En diseño: revisión de 
+arquitectura segura y principios Defense in Depth. En desarrollo: estándares de codificación segura, 
+capacitación en OWASP Top 10 y pre-commit hooks. En pruebas: SAST sobre código fuente, DAST sobre aplicación 
+en ejecución y SCA sobre dependencias de terceros. En despliegue: configuración segura y gestión de secretos 
+fuera del código. En mantenimiento: monitoreo continuo de vulnerabilidades en dependencias y aplicación de 
+parches de seguridad.
 
-## 📋 Descripción
+## Requisitos
 
-Este control establece un enfoque "Shift Left" donde la seguridad se incorpora desde la fase de diseño hasta el despliegue y mantenimiento:
-- Requisitos de seguridad desde la planificación
-- Revisión de arquitectura y diseño seguro
-- Desarrollo con prácticas de código seguro
-- Pruebas de seguridad automatizadas
-- Validación pre-producción
+### Requisito 1 - Requisitos de Seguridad y Modelado de Amenazas
 
-## 🛡️ Controles Requeridos
+Todas las iniciativas de desarrollo de software incorporan desde la fase de planificación el modelado de amenazas 
+(STRIDE, PASTA u otra metodología reconocida) y la definición formal de requisitos de seguridad funcionales y no 
+funcionales. Los requisitos de seguridad son revisados por el equipo de seguridad antes de iniciar el diseño, y 
+los modelos de amenazas se actualizan ante cambios significativos en la arquitectura. Los resultados del modelado 
+de amenazas quedan documentados como artefacto del proyecto.
 
-### Fase de Planificación
-- Modelado de amenazas (STRIDE, PASTA)
-- Requisitos de seguridad documentados
-- Análisis de riesgos de la aplicación
-- Definición de casos de abuso
+### Requisito 2 - Estándares de Codificación Segura
 
-### Fase de Diseño
-- Revisión de arquitectura segura
-- Principios de diseño (Defense in Depth, Least Privilege)
-- Selección de frameworks y librerías seguras
-- Diagramas de flujo de datos
+La organización define y mantiene estándares de codificación segura basados en OWASP Top 10, SANS CWE/25 y las guías 
+del lenguaje de programación utilizado. Los desarrolladores reciben capacitación en codificación segura al menos 
+anualmente. Se implementan pre-commit hooks que verifican automáticamente el cumplimiento de los estándares de seguridad 
+antes de aceptar código en el repositorio. El incumplimiento de los estándares bloquea la integración del código.
 
-### Fase de Desarrollo
-- Estándares de codificación segura
-- Capacitación en secure coding (OWASP Top 10)
-- IDE plugins de seguridad
-- Pre-commit hooks de seguridad
+### Requisito 3 - Pruebas de Seguridad en el SDLC (SAST/DAST/SCA)
 
-### Fase de Pruebas
-- Análisis estático (SAST) en código fuente
-- Análisis dinámico (DAST) en aplicación corriendo
-- Análisis de composición (SCA) de dependencias
-- Pruebas de penetración para aplicaciones críticas
+El proceso de desarrollo integra obligatoriamente análisis de seguridad estático (SAST) sobre el código fuente, 
+análisis dinámico (DAST) sobre la aplicación en ejecución en ambiente de pruebas, y análisis de composición de software 
+(SCA) para identificar vulnerabilidades en dependencias de terceros. Los resultados de las pruebas son gestionados como 
+defectos de seguridad con SLAs de remediación definidos. Ningún artefacto con vulnerabilidades críticas o altas puede 
+desplegarse en producción.
 
-### Fase de Despliegue
-- Hardening de infraestructura
-- Configuración segura de servicios
-- Secretos gestionados (no en código)
-- Revisión de seguridad pre-producción
+### Requisito 4 - Gestión Segura de Secretos y Configuraciones
 
-### Fase de Mantenimiento
-- Monitoreo de vulnerabilidades en dependencias
-- Parches de seguridad
-- Respuesta a incidentes de aplicación
-- Revisiones de seguridad periódicas
-
-## 📊 Métricas e Indicadores
-
-- Número de vulnerabilidades por severidad en cada fase
-- Tiempo promedio de remediación de vulnerabilidades
-- Porcentaje de código cubierto por SAST/DAST
-- Densidad de defectos de seguridad (por KLOC)
-- Costo de remediación por fase de detección
-
-## 🔗 Herramientas Recomendadas
-
-- **Threat Modeling:** Microsoft Threat Modeling Tool, OWASP Threat Dragon
-- **SAST:** SonarQube, Checkmarx, Semgrep, CodeQL
-- **DAST:** OWASP ZAP, Burp Suite, Acunetix
-- **SCA:** Snyk, Dependabot, WhiteSource, OWASP Dependency-Check
-- **Secrets:** GitGuardian, TruffleHog, AWS Secrets Manager
-
-## 📚 Referencias
-
-- [Política de Desarrollo Seguro](/docs/kudo/politicas/politica-desarrollo-seguro)
-- [Estándar de Codificación Segura](/docs/kudo/politicas/estandar-codificacion-segura)
-- [Procedimientos de Revisión de Código y Pruebas](/docs/kudo/politicas/procedimientos-revision-codigo-pruebas)
-- OWASP SAMM (Software Assurance Maturity Model)
-- NIST SP 800-218 - Secure Software Development Framework (SSDF)
-- ISO 27034 - Application Security
-
-## ✅ Checklist de Implementación
-
-- [ ] Definición de requisitos de seguridad en SDLC
-- [ ] Capacitación en secure coding para desarrolladores
-- [ ] Implementación de herramientas SAST/DAST/SCA
-- [ ] Integración en pipeline CI/CD
-- [ ] Definición de gates de seguridad
-- [ ] Proceso de threat modeling establecido
-- [ ] Revisión de código con foco en seguridad
-- [ ] Políticas de gestión de secretos
-- [ ] Documentación de procedimientos
-- [ ] Métricas y KPIs configurados
+El proceso de desarrollo prohíbe explícitamente el almacenamiento de credenciales, claves de API, certificados y 
+cualquier secreto directamente en el código fuente o repositorios. Todos los secretos son gestionados mediante servicios 
+de vault (HashiCorp Vault, AWS Secrets Manager, Azure Key Vault) e inyectados en tiempo de ejecución. Las configuraciones 
+de seguridad del ambiente de despliegue son revisadas como parte del proceso de release. Se realizan escaneos automáticos 
+de detección de secretos en repositorios.

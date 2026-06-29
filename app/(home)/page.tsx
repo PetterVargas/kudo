@@ -133,10 +133,8 @@ export default function HomePage() {
 
       {/* ── Hero ── */}
       <section ref={heroRef} className="relative overflow-hidden pb-20">
-        {/* Gradiente decorativo */}
         <div className="absolute inset-0 bg-gradient-to-br from-fd-primary/5 via-transparent to-fd-secondary/5 pointer-events-none" />
 
-        {/* Cuadrícula de puntos: SVG overlay cubre TODO el hero */}
         <svg
           className="absolute inset-0 w-full h-full pointer-events-none text-fd-foreground"
           aria-hidden="true"
@@ -150,7 +148,6 @@ export default function HomePage() {
           <rect width="100%" height="100%" fill="url(#hero-dots)" />
         </svg>
 
-        {/* ── Diagrama de correlación ── */}
         <div className="w-full">
           <svg
             ref={svgRef}
@@ -169,22 +166,6 @@ export default function HomePage() {
               </filter>
             </defs>
 
-            {/*
-              Distancias al borde del Kudo (izq x=474, der x=726):
-              IZQUIERDA — borde derecho de cada nodo → 474
-                ISO 27001:      135 → dist 339  (muy lejos / atrás)
-                NIST CSF:       177 → dist 297  (lejos)
-                Leyes:          222 → dist 252  (medio)
-                PCI-DSS:        383 → dist  91  (cerca / adelante)
-              DERECHA — borde izquierdo de cada nodo → 726
-                SOC 2:         1065 → dist 339  (muy lejos / atrás)
-                CSA AICM:       982 → dist 256  (lejos)
-                CSA CCM:        870 → dist 144  (medio)
-                CIS Controls:   815 → dist  89  (cerca)
-                Buenas prácticas: 778 → dist 52 (muy cerca / adelante)
-            */}
-
-            {/* ── Conexiones izquierda → Kudo (474, 79) ── */}
             <path id="conn-1" className="conn-path"
               d="M135,20 C295,18 375,70 474,79"
               fill="none" stroke="currentColor" strokeWidth="1" strokeOpacity="0.22" strokeDasharray="5 4" />
@@ -198,7 +179,6 @@ export default function HomePage() {
               d="M300,58 C380,60 440,70 474,79"
               fill="none" stroke="currentColor" strokeWidth="1" strokeOpacity="0.22" strokeDasharray="5 4" />
 
-            {/* ── Conexiones derecha → Kudo (726, 79) ── */}
             <path id="conn-5" className="conn-path"
               d="M1065,24 C905,22 822,58 726,79"
               fill="none" stroke="currentColor" strokeWidth="1" strokeOpacity="0.22" strokeDasharray="5 4" />
@@ -215,25 +195,20 @@ export default function HomePage() {
               d="M890,62 C845,62 792,70 726,79"
               fill="none" stroke="currentColor" strokeWidth="1" strokeOpacity="0.22" strokeDasharray="5 4" />
 
-            {/* ─────── Nodos IZQUIERDA (4, Y asimétrico) ─────── */}
-
-            {/* ISO 27001 — muy lejos, parcialmente fuera (y=8) */}
             <g className="diag-node">
               <rect x="-20" y="8" width="155" height="24" rx="3"
                 fill="transparent" stroke="currentColor" strokeWidth="1" strokeOpacity="0.2" strokeDasharray="5 3" />
               <text x="57" y="24" textAnchor="middle" fontSize="11"
-                fill="currentColor" opacity="0.55" fontWeight="500">ISO 27001</text>
+                fill="currentColor" opacity="0.55" fontWeight="500">Análisis Personal</text>
             </g>
 
-            {/* NIST CSF — lejos, abajo (y=142) */}
             <g className="diag-node">
               <rect x="32" y="142" width="145" height="24" rx="3"
                 fill="transparent" stroke="currentColor" strokeWidth="1" strokeOpacity="0.2" strokeDasharray="5 3" />
               <text x="105" y="158" textAnchor="middle" fontSize="11"
-                fill="currentColor" opacity="0.55" fontWeight="500">NIST CSF</text>
+                fill="currentColor" opacity="0.55" fontWeight="500">Incidentes</text>
             </g>
 
-            {/* Leyes — medio (y=97) */}
             <g className="diag-node">
               <rect x="112" y="97" width="110" height="24" rx="3"
                 fill="transparent" stroke="currentColor" strokeWidth="1" strokeOpacity="0.2" strokeDasharray="5 3" />
@@ -241,49 +216,41 @@ export default function HomePage() {
                 fill="currentColor" opacity="0.55" fontWeight="500">Leyes</text>
             </g>
 
-            {/* PCI-DSS — medio-alejado (y=46) */}
             <g className="diag-node">
               <rect x="155" y="46" width="145" height="24" rx="3"
                 fill="transparent" stroke="currentColor" strokeWidth="1" strokeOpacity="0.2" strokeDasharray="5 3" />
               <text x="228" y="62" textAnchor="middle" fontSize="11"
-                fill="currentColor" opacity="0.55" fontWeight="500">PCI-DSS</text>
+                fill="currentColor" opacity="0.55" fontWeight="500">Experiencia</text>
             </g>
 
-            {/* ─────── Nodos DERECHA (5, Y asimétrico) ─────── */}
-
-            {/* SOC 2 — muy lejos, parcialmente fuera (y=12) */}
             <g className="diag-node">
               <rect x="1065" y="12" width="155" height="24" rx="3"
                 fill="transparent" stroke="currentColor" strokeWidth="1" strokeOpacity="0.2" strokeDasharray="5 3" />
               <text x="1142" y="28" textAnchor="middle" fontSize="11"
-                fill="currentColor" opacity="0.55" fontWeight="500">SOC 2</text>
+                fill="currentColor" opacity="0.55" fontWeight="500">Metodología</text>
             </g>
 
-            {/* CSA AICM — lejos, abajo (y=122) */}
             <g className="diag-node">
               <rect x="982" y="122" width="145" height="24" rx="3"
                 fill="transparent" stroke="currentColor" strokeWidth="1" strokeOpacity="0.2" strokeDasharray="5 3" />
               <text x="1055" y="138" textAnchor="middle" fontSize="11"
-                fill="currentColor" opacity="0.55" fontWeight="500">CSA AICM</text>
+                fill="currentColor" opacity="0.55" fontWeight="500">Constancia</text>
             </g>
 
-            {/* CSA CCM — muy alejado, bajo Buenas Prácticas (y=90) */}
             <g className="diag-node">
               <rect x="1010" y="90" width="145" height="24" rx="3"
                 fill="transparent" stroke="currentColor" strokeWidth="1" strokeOpacity="0.2" strokeDasharray="5 3" />
               <text x="1083" y="106" textAnchor="middle" fontSize="11"
-                fill="currentColor" opacity="0.55" fontWeight="500">CSA CCM</text>
+                fill="currentColor" opacity="0.55" fontWeight="500">Procesos</text>
             </g>
 
-            {/* CIS Controls — cerca (y=152) */}
             <g className="diag-node">
               <rect x="815" y="152" width="145" height="24" rx="3"
                 fill="transparent" stroke="currentColor" strokeWidth="1" strokeOpacity="0.2" strokeDasharray="5 3" />
               <text x="888" y="168" textAnchor="middle" fontSize="11"
-                fill="currentColor" opacity="0.55" fontWeight="500">CIS Controls</text>
+                fill="currentColor" opacity="0.55" fontWeight="500">Controles</text>
             </g>
 
-            {/* Buenas Prácticas — bajado y con más línea visible (y=50) */}
             <g className="diag-node">
               <rect x="890" y="50" width="168" height="24" rx="3"
                 fill="transparent" stroke="currentColor" strokeWidth="1" strokeOpacity="0.2" strokeDasharray="5 3" />
@@ -291,7 +258,6 @@ export default function HomePage() {
                 fill="currentColor" opacity="0.55" fontWeight="500">Buenas Prácticas</text>
             </g>
 
-            {/* ── Kudo center (x=474 y=57 w=252 h=45) ── */}
             <g id="node-kudo">
               <rect id="kudo-glow-fill" x="468" y="51" width="264" height="57" rx="7"
                 fill="#4DAE84" opacity="0.04" />
@@ -317,7 +283,6 @@ export default function HomePage() {
               <rect x="722" y="76" width="8" height="8" rx="1" fill="#4DAE84" opacity="0.45" />
             </g>
 
-            {/* ── Puntos viajeros ── */}
             <circle id="dot-1" r="3.5" fill="#4DAE84" cx="135" cy="20" />
             <circle id="dot-2" r="3.5" fill="#4DAE84" cx="177" cy="154" />
             <circle id="dot-3" r="3.5" fill="#4DAE84" cx="222" cy="109" />
@@ -330,7 +295,6 @@ export default function HomePage() {
           </svg>
         </div>
 
-        {/* ── Texto + CTAs ── */}
         <div className="max-w-4xl mx-auto px-4 pt-4 pb-4 text-center relative z-10">
           <h1 className="gsap-hi text-5xl lg:text-7xl font-bold tracking-tight mb-6 bg-gradient-to-br from-fd-foreground to-fd-muted-foreground bg-clip-text text-transparent">
             Kudo
@@ -362,7 +326,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── Value Proposition ── */}
       <section className="py-20 px-4 bg-fd-muted/50">
         <div ref={statsRef} className="max-w-6xl mx-auto">
           <div className="stats-header text-center mb-16">
@@ -409,7 +372,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── Features ── */}
       <section ref={featuresRef} className="py-20 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -470,7 +432,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── Productos Complementarios ── */}
       <section ref={productsRef} className="py-20 px-4 bg-fd-muted/40">
         <div className="max-w-6xl mx-auto">
           <div className="products-header text-center mb-12">
@@ -522,7 +483,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── CTA ── */}
       <section ref={ctaRef} className="py-20 px-4">
         <div className="cta-content max-w-4xl mx-auto text-center">
           <h3 className="text-3xl font-bold mb-6">Comienza tu implementación hoy</h3>

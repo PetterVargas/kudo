@@ -1,77 +1,29 @@
 ---
 title: ADR - Análisis, Detección y Respuesta de Ciberseguridad
-description: Ante apetito de riesgo alto, buen respuesta
+description: Ante apetito de riesgo alto, buena capacidad de respuesta
 ---
 
 import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
 import { GraduationCap } from 'lucide-react';
 
+## Descripción de Dominio
 
-## Línea base Open-Source
-
-Priorice estos aspectos antes de profundizar en cualquier marco de ciberseguridad.
-
-<Accordions type="single">
-  <Accordion title="1. Reporte de incidentes de eventos y/o incidentes de seguridad.">
-  
-  Temas importante en esta revisión:
-
-  - [X] Un medio para que cualquier colaborador reporte en caso de encontrar algo relacionado con seguridad.
-  
-  </Accordion>
-</Accordions>
-
-<Accordions type="single">
-  <Accordion title="2. Planes iniciales de mitigación masiva en protección de identidad.">
-  
-  Temas importante en esta revisión:
-
-  - [X] Un flujo detallado de atención de incidentes de seguridad.
-  
-  </Accordion>
-</Accordions>
-
-<Accordions type="single">
-  <Accordion title="3. Playbook para mitigación de eventos y/o incidentes de seguridad.">
-  
-  Temas importante en esta revisión:
-
-  - [X] Documentación de qué realizar en caso de presentarte un evento de seguridad.
-  - [X] Clasificar por modalidades delictivas.
-  
-  </Accordion>
-</Accordions>
-
-
-## Cursos del dominio
-
-<Cards>
-  <Card
-    icon={<GraduationCap />}
-    href="https://divisioncero.com/cursos?utm_source=kudo.divisioncero.com"
-    title="Curso - ADR - Análisis, Detección y Respuesta de Ciberseguridad"
-  >
-    Domina las técnicas avanzadas de detección de amenazas, análisis de incidentes y respuesta efectiva ante ciberataques. Incluye SIEM, threat hunting, forensia digital y gestión de incidentes.
-  </Card>
-</Cards>
-
+Dominio que establece las **capacidades de monitoreo continuo, detección proactiva de amenazas y respuesta 
+estructurada ante incidentes de seguridad**. Incluye controles para la *gestión e identificación de vulnerabilidades 
+y su remediación, retención y monitoreo de registros de actividad (logs), y la atención formal de eventos e 
+incidentes de ciberseguridad mediante playbooks y planes de respuesta*. Integra capacidades de *SIEM, threat intelligence, threat 
+hunting y forense digital*. 
 
 ## Controles ADR
 
 Monitoreo continuo, detección proactiva de amenazas y respuesta estructurada ante incidentes de seguridad.
 
-<Accordions>
-<Accordion title="4 Controles ADR">
-
-| Control | Nombre |
-|---------|--------|
-| **ADR-01** | Protección contra Aplicaciones Maliciosas |
-| **ADR-02** | Gestión, Identificación y Remediación de Vulnerabilidades |
-| **ADR-03** | Retención y Monitoreo de Registros |
-| **ADR-04** | Atención de Eventos y/o Incidentes de Ciberseguridad |
-
-</Accordion>
-</Accordions>
+<Cards>
+  <Card href="/framework/adr/adr-01" title="ADR-01">Protección contra Aplicaciones Maliciosas</Card>
+  <Card href="/framework/adr/adr-02" title="ADR-02">Gestión, Identificación y Remediación de Vulnerabilidades</Card>
+  <Card href="/framework/adr/adr-03" title="ADR-03">Retención y Monitoreo de Registros</Card>
+  <Card href="/framework/adr/adr-04" title="ADR-04">Atención de Eventos y/o Incidentes de Ciberseguridad</Card>
+</Cards>
 
 
 ## Problemas comunes en empresas
@@ -94,3 +46,15 @@ Monitoreo continuo, detección proactiva de amenazas y respuesta estructurada an
 <Callout title="Conozca que realizar en caso de incidente de seguridad informática." type="success"></Callout>
 <Callout title="Coordine, implemente y mejore la capacidad de respuesta de sus equipos." type="success"></Callout>
 <Callout title="Mitigue masivamente vulnerabilidades." type="success"></Callout>
+
+## Cursos del dominio
+
+<Cards>
+  <Card
+    icon={<GraduationCap />}
+    href="https://cyberacademy.divisioncero.com/adr?utm_source=kudo.divisioncero.com"
+    title="Curso - ADR - Análisis, Detección y Respuesta de Ciberseguridad"
+  >
+    Domina las técnicas avanzadas de detección de amenazas, análisis de incidentes y respuesta efectiva ante ciberataques. Incluye SIEM, threat hunting, forensia digital y gestión de incidentes.
+  </Card>
+</Cards>

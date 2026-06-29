@@ -6,72 +6,26 @@ description: Proteger desde la idea que se va a construir
 import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
 import { GraduationCap } from 'lucide-react';
 
+## Descripción del Dominio
 
-## Línea base Open-Source
+Dominio dedicado a la protección y gestión segura del **ciclo de vida completo del software** (SDLC) incluyendo 
+**escenario con agentes de IA**. Mediante *threat modeling basados en el negocio* integra controles de seguridad desde 
+las fases de *ideación, diseño y desarrollo* hasta el despliegue y operación de aplicaciones y APIs. Contempla prácticas de 
+DevSecOps, análisis estático (SAST) y dinámico (DAST) de vulnerabilidades, automatización en pipelines CI/CD, 
+protección de ramas y codeowners, y el aseguramiento de interfaces de programación (APIs). 
 
-Priorice estos aspectos antes de profundizar en cualquier marco de ciberseguridad.
-
-<Accordions type="single">
-  <Accordion title="1. Implementación de workflow CI/CD, protección de ramas y codeowners.">
-  
-  Temas importante en esta revisión:
-
-  - [X] Integraciones y desplieges continuos.
-  
-  </Accordion>
-</Accordions>
-
-<Accordions type="single">
-  <Accordion title="2. Análisis estático de vulnerabilidades bloqueantes automático.">
-  
-  Temas importante en esta revisión:
-
-  - [X] Una herramienta que esté asociada con CI/CD.
-  - [X] Que se active y controles automática en cada pull request.
-  
-  </Accordion>
-</Accordions>
-
-<Accordions type="single">
-  <Accordion title="3. Activación de proxy con controles de seguridad como por ejemplo Cloudflare.">
-  
-  Temas importante en esta revisión:
-
-  - [X] Esta protección bien administrada te aumenta la protección y te evita muchos dolores de cabeza.
-  
-  </Accordion>
-</Accordions>
-
-
-## Cursos del dominio
-
-<Cards>
-  <Card
-    icon={<GraduationCap />}
-    href="https://divisioncero.com/cursos?utm_source=kudo.divisioncero.com"
-    title="Curso - CAP - Ciberseguridad en Aplicaciones"
-  >
-    Aprende desarrollo seguro de software, secure coding practices, vulnerability testing, DevSecOps, análisis de código estático/dinámico.
-  </Card>
-</Cards>
-
-
+Busca que **todos los equipos de la compañía incorporen competencias de ciberseguridad** para *identificar y mitigar riesgos 
+antes de llegar a producción, reduciendo la deuda técnica de seguridad y protegiendo la cadena de suministro del software.*
 
 ## Controles CAP
 
 Protección y gestión segura del ciclo de vida completo de aplicaciones y desarrollo de software.
 
-<Accordions>
-<Accordion title="3 Controles CAP">
-
-| Control | Nombre |
-|---------|--------|
-| **CAP-01** | Ciberseguridad en el Ciclo de Desarrollo del Software |
-| **CAP-02** | Automatización en el Ciclo de Desarrollo del Software |
-| **CAP-03** | Ciberseguridad en APIs |
-
-</Accordion>
-</Accordions>
+<Cards>
+  <Card href="/framework/cap/cap-01" title="CAP-01">Ciberseguridad en el Ciclo de Desarrollo del Software</Card>
+  <Card href="/framework/cap/cap-02" title="CAP-02">Automatización en el Ciclo de Desarrollo del Software</Card>
+  <Card href="/framework/cap/cap-03" title="CAP-03">Ciberseguridad en APIs</Card>
+</Cards>
 
 ## Problemas comunes en empresas
 
@@ -93,3 +47,15 @@ Protección y gestión segura del ciclo de vida completo de aplicaciones y desar
 <Callout title="Identificación de vulnerabilidades SAST y DAST." type="success"></Callout>
 <Callout title="Automatizar controles de seguridad en el ciclo de desarrollo del software." type="success"></Callout>
 <Callout title="Proteger los controles de seguridad en la creación de software." type="success"></Callout>
+
+## Cursos del dominio
+
+<Cards>
+  <Card
+    icon={<GraduationCap />}
+    href="https://cyberacademy.divisioncero.com/cap?utm_source=kudo.divisioncero.com"
+    title="Curso - CAP - Ciberseguridad en Aplicaciones"
+  >
+    Aprende desarrollo seguro de software, secure coding practices, vulnerability testing, DevSecOps, análisis de código estático/dinámico.
+  </Card>
+</Cards>

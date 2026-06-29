@@ -3,91 +3,31 @@ title: CAP-02 - Automatización en el Ciclo de Desarrollo del Software
 description: Control de DevSecOps y automatización de seguridad
 ---
 
-## 🎯 Objetivo del Control
+## Descripción del Control
 
-Implementar automatización de controles de seguridad en el pipeline de CI/CD para garantizar validación continua sin comprometer la velocidad de entrega del desarrollo.
+Implementa la integración continua de controles de seguridad en el pipeline CI/CD (DevSecOps). 
+En CI: pre-commit hooks para detección de secretos y análisis de dependencias, SAST automatizado en 
+el build, escaneo de imágenes de contenedor y análisis estático de IaC (Checkov, tfsec). En CD: DAST 
+en ambientes de staging y validación de configuraciones desplegadas. Los security gates definen 
+umbrales máximos de vulnerabilidades por severidad que bloquean automáticamente el despliegue. 
+La gestión de secretos exige el uso de vaults e inyección en runtime, prohibiendo el almacenamiento 
+de credenciales en código fuente o repositorios.
 
-## 📋 Descripción
+## Requisitos
 
-Este control establece la integración de seguridad automatizada en DevOps (DevSecOps):
-- Escaneos automáticos de seguridad en CI/CD
-- Gates de calidad y seguridad
-- Retroalimentación rápida a desarrolladores
-- Infraestructura como código (IaC) segura
+### Requisito 1 - Pipeline CI/CD Seguro y Security Gates
 
-## 🛡️ Controles Requeridos
+El pipeline de integración y entrega continua (CI/CD) incorpora security gates automáticos que bloquean 
+el progreso hacia producción cuando se detectan vulnerabilidades que superan los umbrales definidos. 
+En la fase CI se ejecutan obligatoriamente: detección de secretos en código, SAST, análisis de dependencias 
+(SCA) y escaneo de imágenes de contenedor. Los security gates definen umbrales máximos de vulnerabilidades 
+por severidad (cero críticas/altas para producción). Los resultados quedan registrados en el sistema de 
+tickets de seguridad.
 
-### Pipeline de CI (Continuous Integration)
-- Pre-commit hooks:
-  - Detección de secretos
-  - Linting de código
-  - Análisis de dependencias
-- Build automatizado con SAST
-- Escaneo de contenedores
-- Análisis de IaC (Terraform, CloudFormation)
+### Requisito 2 - Análisis de Seguridad en Infraestructura como Código
 
-### Pipeline de CD (Continuous Deployment)
-- DAST en ambientes de staging
-- Pruebas de seguridad funcionales
-- Validación de configuraciones
-- Escaneo de infraestructura desplegada
-
-### Security Gates
-- Umbral de severidad máximo (ej: 0 críticas, max 5 altas)
-- Política de falla de build por vulnerabilidades
-- Aprobaciones manuales para excepciones
-- Validación de cumplimiento
-
-### Infraestructura como Código (IaC)
-- Plantillas validadas de seguridad
-- Análisis estático de IaC:
-  - Checkov
-  - tfsec
-  - Terrascan
-- Versionado de configuraciones
-- Revisión de cambios de infraestructura
-
-### Gestión de Secretos
-- Secrets nunca en código fuente
-- Uso de vaults (HashiCorp Vault, AWS Secrets Manager)
-- Rotación automática de credenciales
-- Inyección de secretos en runtime
-
-## 📊 Métricas e Indicadores
-
-- Tiempo de ejecución de pipeline de seguridad
-- Tasa de falsos positivos en gates
-- Porcentaje de builds fallidos por seguridad
-- Tiempo de retroalimentación (issue → fix)
-- Cobertura de automatización (% de controles)
-
-## 🔗 Herramientas Recomendadas
-
-- **CI/CD:** GitHub Actions, GitLab CI, Jenkins, Azure DevOps
-- **Secrets Detection:** GitGuardian, TruffleHog, detect-secrets
-- **Container Security:** Trivy, Clair, Anchore, Snyk Container
-- **IaC Security:** Checkov, tfsec, Terrascan, Bridgecrew
-- **Orchestration:** Kubernetes + OPA, Kyverno
-- **Secrets Management:** HashiCorp Vault, AWS Secrets Manager, Azure Key Vault
-
-## 📚 Referencias
-
-- [Política de Desarrollo Seguro](/docs/kudo/politicas/politica-desarrollo-seguro)
-- [Proceso de Control de Versiones](/docs/kudo/politicas/proceso-control-versiones)
-- [Política de Gestión de Cambios](/docs/kudo/politicas/politica-gestion-cambios)
-- [Registro de Cambios Críticos en Producción](/docs/kudo/politicas/registro-cambios-criticos-produccion)
-- NIST SP 800-204 - Security Strategies for Microservices
-- OWASP DevSecOps Guideline
-
-## ✅ Checklist de Implementación
-
-- [ ] Pipeline CI/CD existente documentado
-- [ ] Herramientas de seguridad seleccionadas
-- [ ] Integración de SAST/DAST/SCA en pipeline
-- [ ] Pre-commit hooks configurados
-- [ ] Security gates definidos y aplicados
-- [ ] Gestión de secretos implementada
-- [ ] Análisis de IaC automatizado
-- [ ] Dashboards de métricas configurados
-- [ ] Proceso de excepciones documentado
-- [ ] Capacitación a equipos de desarrollo
+Toda la infraestructura definida como código (IaC: Terraform, CloudFormation, Bicep, Pulumi) es sometida 
+a análisis estático de seguridad (Checkov, tfsec, KICS) como parte del pipeline CI/CD, verificando el 
+cumplimiento de las políticas de seguridad cloud (CIS Benchmarks, configuraciones seguras de CSP). Las 
+desviaciones de seguridad en IaC bloquean automáticamente el despliegue. Las plantillas de IaC aprobadas sirven 
+como referencia para configuraciones seguras.

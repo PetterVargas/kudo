@@ -3,79 +3,27 @@ title: ADR-02 - Gestión, Identificación y Remediación de Vulnerabilidades
 description: Control de gestión continua del ciclo de vida de vulnerabilidades
 ---
 
-## 🎯 Objetivo del Control
+## Descripción del Control
 
-Establecer un proceso sistemático y continuo para identificar, evaluar, priorizar y remediar vulnerabilidades de seguridad en todos los activos tecnológicos de la organización.
+Establece el programa continuo de identificación, clasificación, priorización y remediación de vulnerabilidades 
+en todos los activos tecnológicos de la organización. Comprende escaneos de vulnerabilidades programados (al menos 
+semanales para sistemas críticos), gestión del inventario de activos como base para la cobertura de escaneos, 
+priorización basada en criticidad del activo y severidad de la vulnerabilidad (CVSS), SLAs de remediación por nivel 
+de riesgo (crítico: menos de 7 días, alto: menos de 30 días), verificación de remediación mediante reescaneo, y gestión 
+de excepciones documentadas con controles compensatorios cuando la remediación inmediata no es posible.
 
-## 📋 Descripción
+## Requisitos
 
-Este control define el programa de gestión de vulnerabilidades que incluye:
-- Escaneo automatizado y continuo de vulnerabilidades
-- Evaluación y priorización basada en riesgo
-- Remediación oportuna según criticidad
-- Seguimiento y validación de correcciones
+## Requisito 1 - Escaneo Periódico de Vulnerabilidades
 
-## 🛡️ Controles Requeridos
+La organización ejecuta escaneos de vulnerabilidades programados con frecuencia mínima semanal para sistemas críticos y 
+mensual para el resto del parque tecnológico. Los escaneos cubren el 100% de los activos registrados en el inventario. Los 
+resultados son analizados automáticamente con priorización basada en el score CVSS y la criticidad del activo afectado. Las 
+vulnerabilidades son importadas al sistema de gestión (ticketing) y asignadas al propietario del activo para su remediación.
 
-### Identificación de Vulnerabilidades
-- Escaneo automatizado de infraestructura (semanal/mensual)
-- Análisis de aplicaciones web (DAST)
-- Análisis de código fuente (SAST)
-- Pruebas de penetración anuales
-- Monitoreo de avisos de seguridad (CVE, NVD)
+## Requisito 2 - SLAs de Remediación y Gestión de Excepciones
 
-### Evaluación y Priorización
-- Clasificación de vulnerabilidades por criticidad (CVSS)
-- Análisis de impacto al negocio
-- Identificación de activos afectados
-- Evaluación de explotabilidad
-- Matriz de riesgo vs impacto
-
-### Remediación
-- Parches de seguridad en SLA definidos:
-  - Críticas: 7 días
-  - Altas: 30 días
-  - Medias: 60 días
-  - Bajas: 90 días
-- Controles compensatorios cuando no sea posible parchear
-- Validación de remediación efectiva
-
-### Reporte y Seguimiento
-- Dashboard de estado de vulnerabilidades
-- KPIs de tiempo de remediación
-- Reporte ejecutivo mensual
-- Tracking de vulnerabilidades persistentes
-
-## 📊 Métricas e Indicadores
-
-- Tiempo promedio de remediación por criticidad
-- Número de vulnerabilidades abiertas vs cerradas
-- Porcentaje de cumplimiento de SLAs de remediación
-- Tendencia de vulnerabilidades críticas/altas
-- Cobertura de escaneo (% de activos)
-
-## 🔗 Herramientas Recomendadas
-
-- **Vulnerability Scanners:** Tenable Nessus, Qualys, Rapid7 InsightVM
-- **SAST/DAST:** SonarQube, Checkmarx, Veracode, OWASP ZAP
-- **Gestión:** ServiceNow SecOps, Kenna Security, JupiterOne
-- **Inteligencia de Amenazas:** CVE, NVD, CISA KEV Catalog
-
-## 📚 Referencias
-
-- [Política de Gestión de Vulnerabilidades](/docs/kudo/politicas/politica-gestion-vulnerabilidades)
-- [Escaneo Continuo de Vulnerabilidades](/docs/kudo/politicas/escaneo-continuo-vulnerabilidades)
-- [Gestión de Parches y Hardening](/docs/kudo/politicas/gestion-parches-hardening)
-- NIST SP 800-40 - Guide to Enterprise Patch Management
-- OWASP Top 10
-
-## ✅ Checklist de Implementación
-
-- [ ] Inventario actualizado de activos
-- [ ] Implementación de herramientas de escaneo
-- [ ] Definición de SLAs de remediación
-- [ ] Proceso de priorización documentado
-- [ ] Integración con gestión de cambios
-- [ ] Dashboards y reportes configurados
-- [ ] Responsables de remediación asignados
-- [ ] Proceso de validación de correcciones
+La organización define y aplica SLAs de remediación de vulnerabilidades basados en severidad: críticas en menos de 7 días, 
+altas en menos de 30 días, medias en menos de 90 días. El cumplimiento de SLAs es monitoreado automáticamente y escala al 
+responsable del área ante incumplimientos. Las excepciones (cuando la remediación inmediata no es posible) requieren aprobación 
+del CISO, documentación de controles compensatorios y fecha máxima de resolución. Las excepciones son revisadas mensualmente.

@@ -1,79 +1,31 @@
 ---
 title: CCN - Continuidad y Cambios del Negocio
-description: Protección continua es vital
+description: Protección continua en los cambio del negocio es vital
 ---
 
 import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
 import { GraduationCap } from 'lucide-react';
 
+## Descripción del Dominio
 
-## Línea base Open-Source
+Dominio enfocado en la **resiliencia organizacional, la continuidad operacional y la gestión controlada de cambios 
+en el entorno empresarial**. Abarca los procedimientos de *gestión y control de cambios, las pruebas de calidad y 
+seguridad previas a los despliegues, y la capacidad de revertir cambios ante fallas (rollback).* Promueve la *identificación 
+de puntos únicos de falla*, el uso del *modelo de responsabilidad compartida con proveedores de nube (CSP)* y la 
+implementación de *estrategias de despliegue como blue/green*. 
 
-Priorice estos aspectos antes de profundizar en cualquier marco de ciberseguridad.
-
-<Accordions type="single">
-  <Accordion title="1. Responsabilidad compartida mayormente para el CSP.">
-  
-  Temas importante en esta revisión:
-
-  - [X] En ocasiones nos gusta crear todo desde cero, en ocasiones esta no es la mejor decisión para el negocio.
-  - [X] Entre más administrado mucho mejor para escalamiento de negocio y cumplimiento de regulatorio.
-  
-  </Accordion>
-</Accordions>
-
-<Accordions type="single">
-  <Accordion title="2. Identificar puntos únicos de fallta.">
-  
-  Temas importante en esta revisión:
-
-  - [X] El diagrama de componentes es muy útil en este escanario.
-  - [X] Esnecesario de blue/green mitigan muchos riesgos.
-  
-  </Accordion>
-</Accordions>
-
-<Accordions type="single">
-  <Accordion title="3. Rollback definido en cada cambio a producción.">
-  
-  Temas importante en esta revisión:
-
-  - [X] Despliegues automáticos en entornos separados de producción.
-  - [X] El cambio permita restablecer el estado anterior en caso de fallo.
-  
-  </Accordion>
-</Accordions>
-
-
-## Cursos del dominio
-
-<Cards>
-  <Card
-    icon={<GraduationCap />}
-    href="https://divisioncero.com/cursos?utm_source=kudo.divisioncero.com"
-    title="Curso - CCN - Continuidad y Cambios del Negocio"
-  >
-    Desarrolla competencias en gestión de continuidad del negocio, planes de recuperación ante desastres, gestión de cambios organizacionales y resiliencia empresarial frente a disrupciones.
-  </Card>
-</Cards>
-
-
+Su propósito es *garantizar que los cambios tecnológicos no comprometan la disponibilidad de los servicios ni la 
+experiencia de los clientes*.
 
 ## Controles CCN
 
 Resiliencia organizacional, continuidad operacional y gestión controlada de cambios en el entorno empresarial.
 
-<Accordions>
-<Accordion title="3 Controles CCN">
-
-| Control | Nombre |
-|---------|--------|
-| **CCN-01** | Gestión y Control de Cambios |
-| **CCN-02** | Pruebas de Calidad y Seguridad en la Gestión de Cambios |
-| **CCN-03** | Revertir Cambios |
-
-</Accordion>
-</Accordions>
+<Cards>
+  <Card href="/framework/ccn/ccn-01" title="CCN-01">Gestión y Control de Cambios</Card>
+  <Card href="/framework/ccn/ccn-02" title="CCN-02">Pruebas de Calidad y Seguridad en la Gestión de Cambios</Card>
+  <Card href="/framework/ccn/ccn-03" title="CCN-03">Revertir Cambios</Card>
+</Cards>
 
 ## Problemas comunes en empresas
 
@@ -95,3 +47,15 @@ Resiliencia organizacional, continuidad operacional y gestión controlada de cam
 <Callout title="Implemente estrategia de despliegue blue/green." type="success"></Callout>
 <Callout title="Cree entornos temporales de despliegue." type="success"></Callout>
 <Callout title="Proponga e implemente cambios alineados a la estrategias del negocio." type="success"></Callout>
+
+## Cursos del dominio
+
+<Cards>
+  <Card
+    icon={<GraduationCap />}
+    href="https://cyberacademy.divisioncero.com/cnn?utm_source=kudo.divisioncero.com"
+    title="Curso - CCN - Continuidad y Cambios del Negocio"
+  >
+    Desarrolla competencias en gestión de continuidad del negocio, planes de recuperación ante desastres, gestión de cambios organizacionales y resiliencia empresarial frente a disrupciones.
+  </Card>
+</Cards>

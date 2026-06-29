@@ -3,118 +3,29 @@ title: CIP-04 - Aprovisionamiento, cambios y desaprovisionamiento de identidades
 description: Control del ciclo de vida completo de identidades
 ---
 
-## 🎯 Objetivo del Control
+## Descripción del Control
 
-Automatizar y controlar el proceso completo de gestión del ciclo de vida de identidades desde su creación hasta su eliminación, asegurando accesos apropiados en cada etapa.
+Automatiza y controla el ciclo de vida completo de identidades siguiendo el modelo Joiner-Mover-Leaver. 
+El aprovisionamiento se dispara automáticamente desde el HRIS al momento de contratación, asignando cuentas, 
+licencias y accesos según plantillas de rol. Los cambios de cargo desencadenan la revocación de accesos anteriores 
+y asignación de nuevos, validando segregación de funciones. El desaprovisionamiento es inmediato al terminar 
+la relación laboral: desactivación de cuenta, revocación de accesos y logout forzado de sesiones activas. 
+Objetivo: aprovisionamiento en menos de 4 horas y desaprovisionamiento en menos de 1 hora.
 
-## 📋 Descripción
+## Requisitos
 
-Este control establece procesos automatizados para:
-- Aprovisionamiento de nuevas identidades
-- Modificación de accesos por cambios de rol
-- Desaprovisionamiento al terminar relación laboral
-- Sincronización con sistemas autoritativos (HRIS)
-- Auditoría de cambios
+### Requisito 1 - Proceso de Onboarding de Identidades (Joiner)
 
-## 🛡️ Controles Requeridos
+El aprovisionamiento de accesos para nuevos colaboradores se dispara automáticamente desde el HRIS al momento de 
+la contratación, asignando cuentas, licencias de software y accesos según plantillas de rol predefinidas y aprobadas. 
+El proceso garantiza que el nuevo colaborador disponga de todos sus accesos necesarios en menos de 4 horas desde el 
+inicio de actividades. Cada acceso otorgado queda registrado en el sistema de gestión de identidades con trazabilidad 
+del proceso de aprobación.
 
-### Aprovisionamiento (Joiner)
-**Trigger:** Nueva contratación en HRIS
+### Requisito 2 - Proceso de Cambio de Rol (Mover) y Offboarding (Leaver)
 
-**Proceso Automático:**
-1. Creación de cuenta en directorio (Azure AD/Okta)
-2. Asignación de email corporativo
-3. Provisión de licencias según rol
-4. Acceso a aplicaciones estándar del departamento
-5. Grupos de seguridad según plantilla
-6. Equipo de cómputo asignado
-
-**Workflow:**
-- Solicitud desde HRIS o ITSM
-- Aprobación de manager
-- Provisión automática
-- Notificación a IT y usuario
-- Onboarding checklist
-
-### Cambios (Mover)
-**Trigger:** Cambio de departamento/rol en HRIS
-
-**Proceso Automático:**
-1. Revisión de accesos actuales
-2. Revocación de accesos del rol anterior
-3. Asignación de accesos del nuevo rol
-4. Actualización de grupos de seguridad
-5. Notificación a managers involucrados
-
-**Consideraciones:**
-- Período de transición si es necesario
-- Validación de segregación de funciones
-- Aprobación de accesos adicionales
-
-### Desaprovisionamiento (Leaver)
-**Trigger:** Término de relación laboral en HRIS
-
-**Proceso Automático Inmediato:**
-1. Desactivación de cuenta (no eliminación)
-2. Revocación de accesos
-3. Logout forzado de sesiones
-4. Deshabilitación de MFA
-5. Notificación a manager y IT
-
-**Post-Desactivación (30-90 días):**
-- Backup de datos del usuario
-- Reasignación de recursos (emails, archivos)
-- Eliminación de cuenta
-- Recuperación de equipos
-
-### Automatización con HRIS
-- Integración con Workday, BambooHR, SAP
-- Sincronización en tiempo real o diaria
-- Atributos sincronizados:
-  - Nombre, apellido, email
-  - Departamento, título, manager
-  - Fecha de inicio/término
-  - Ubicación, tipo de empleado
-
-### Excepciones y Extensiones
-- Proceso para solicitudes fuera de estándar
-- Aprobación de excepciones documentada
-- Revisión periódica de excepciones activas
-- Vencimiento automático de extensiones temporales
-
-## 📊 Métricas e Indicadores
-
-- Tiempo de aprovisionamiento (objetivo: menos de 4 horas)
-- Tiempo de desaprovisionamiento (objetivo: menos de 1 hora)
-- Porcentaje de aprovisionamiento automatizado
-- Cuentas huérfanas (sin propietario)
-- Auditoría de compliance de procesos
-
-## 🔗 Herramientas Recomendadas
-
-- **IGA:** SailPoint, Saviynt, Microsoft Entra Identity Governance
-- **HRIS:** Workday, BambooHR, SAP SuccessFactors
-- **ITSM:** ServiceNow, Jira Service Management
-- **Workflow:** Microsoft Power Automate, Zapier, Workato
-- **Directorio:** Azure AD, Okta, Google Workspace
-
-## 📚 Referencias
-
-- [Procedimiento de Alta y Baja de Usuarios](/docs/kudo/politicas/procedimiento-alta-baja-usuarios)
-- [Política de Seguridad Ciclo de Vida del Empleado](/docs/kudo/politicas/politica-seguridad-ciclo-vida-empleado)
-- [Proceso de Salida Segura](/docs/kudo/politicas/proceso-salida-segura)
-- ISO 27001:2022 - A.5.16, A.5.17
-- NIST SP 800-53 - AC-2 Account Management
-
-## ✅ Checklist de Implementación
-
-- [ ] Integración HRIS con Identity Provider
-- [ ] Plantillas de aprovisionamiento por rol/departamento
-- [ ] Workflow de aprobaciones configurado
-- [ ] Proceso de desaprovisionamiento automatizado
-- [ ] Notificaciones automáticas configuradas
-- [ ] Dashboard de joiner/mover/leaver
-- [ ] Auditoría de cambios habilitada
-- [ ] Proceso de excepciones documentado
-- [ ] Backup automático de datos de usuarios salientes
-- [ ] Capacitación a HR y managers
+Los cambios de cargo o área disparan automáticamente la revocación de los accesos del rol anterior y la asignación de 
+los nuevos accesos correspondientes, validando la ausencia de conflictos de segregación de funciones. El desaprovisionamiento 
+ante terminación de la relación laboral es inmediato: desactivación de la cuenta, revocación de todos los accesos activos 
+y cierre forzado de sesiones en todos los sistemas, con un tiempo objetivo de desaprovisionamiento inferior a 1 hora 
+desde la notificación de RRHH. El proceso es auditado mensualmente.

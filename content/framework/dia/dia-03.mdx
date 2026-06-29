@@ -3,160 +3,28 @@ title: DIA-03 - Ciclo de Vida de los Datos
 description: Control de gestión del ciclo completo de datos desde su recolección hasta su eliminación
 ---
 
-## 🎯 Objetivo del Control
+## Descripción del Control
 
-Gestionar de forma segura y conforme a regulaciones el ciclo de vida completo de los datos, desde su creación o recopilación hasta su eliminación definitiva, asegurando protección adecuada en cada etapa.
+Define y gestiona las etapas del ciclo de vida de los datos organizacionales desde su recolección hasta su eliminación: 
+creación/recolección, almacenamiento, procesamiento, uso, compartición con terceros, archivado y destrucción segura. 
+Establece los controles de seguridad y privacidad aplicables en cada etapa, las responsabilidades de custodio de datos por 
+sistema, los flujos de datos documentados mediante diagramas de flujo de datos (DFD), los mecanismos de transferencia segura 
+de datos entre sistemas y la revisión periódica del ciclo de vida para garantizar que los datos no se retengan más allá de 
+lo necesario.
 
-## 📋 Descripción
+## Requisitos
 
-Este control define los procesos y salvaguardas para las etapas del ciclo de vida de datos:
-- Recopilación y creación
-- Almacenamiento y procesamiento
-- Uso y compartición
-- Archivo y retención
-- Eliminación segura o anonimización
+## Requisito 1 - Gestión del Ciclo de Vida y Controles por Etapa
 
-## 🛡️ Controles Requeridos
+La organización define controles de seguridad y privacidad para cada etapa del ciclo de vida del dato: creación/recolección 
+(validación, clasificación), almacenamiento (cifrado, control de acceso), procesamiento (autorización, logging), compartición 
+con terceros (acuerdos de confidencialidad, controles técnicos), archivado (cifrado, acceso restringido) y destrucción 
+(eliminación segura verificada). Los flujos de datos entre sistemas están documentados y los custodios de datos por sistema 
+son identificados y capacitados.
 
-### Etapas del Ciclo de Vida
+## Requisito 2 - Transferencia Segura de Datos y Eliminación
 
-#### 1. Recopilación y Creación
-- **Minimización de Datos:**
-  - Recopilar solo datos necesarios para la finalidad
-  - Evitar "data hoarding" (acumulación excesiva)
-  - Justificación documentada para cada campo
-- **Validación en Origen:**
-  - Validación de formato y tipo de dato
-  - Verificación de calidad (completitud, exactitud)
-  - Detección de datos anómalos o sospechosos
-- **Base Legal:**
-  - Consentimiento informado cuando aplique
-  - Aviso de privacidad presentado
-  - Registro de base legal (consentimiento, contrato, obligación legal)
-
-#### 2. Almacenamiento
-- **Seguridad en Reposo:**
-  - Cifrado at-rest (AES-256 o superior)
-  - Segregación de datos por clasificación
-  - Controles de acceso basados en roles (RBAC)
-  - Auditoría de accesos
-- **Redundancia y Backup:**
-  - Backups regulares automatizados
-  - Almacenamiento en múltiples ubicaciones
-  - Testing periódico de restauración
-  - Cifrado de backups
-- **Data Residency:**
-  - Cumplimiento de requisitos geográficos
-  - Documentación de ubicación física/lógica
-
-#### 3. Procesamiento y Uso
-- **Limitación de Finalidad:**
-  - Uso exclusivo para propósitos declarados
-  - Prohibición de procesamiento secundario sin consentimiento
-  - Registro de propósitos de procesamiento
-- **Transformaciones:**
-  - Anonimización/Pseudonimización cuando sea posible
-  - Enmascaramiento de datos en ambientes no productivos
-  - Tokenización de datos sensibles
-  - Agregación y generalización
-- **Data Quality:**
-  - Validación continua de calidad
-  - Procesos de corrección y actualización
-  - Detección de duplicados
-  - Enriquecimiento controlado
-
-#### 4. Compartición y Transferencia
-- **Transferencias Internas:**
-  - Control de acceso basado en necesidad
-  - Cifrado en tránsito (TLS 1.3)
-  - Logging de transferencias
-- **Transferencias a Terceros:**
-  - Data Processing Agreements (DPA)
-  - Evaluación de seguridad del receptor
-  - Standard Contractual Clauses (SCC) para transferencias internacionales
-  - Minimización de datos compartidos
-- **Exportaciones:**
-  - Formato seguro de exportación
-  - Watermarking o marcas de propiedad
-  - Control de descargas masivas
-
-#### 5. Archivo y Retención
-- **Políticas de Retención:**
-  - Períodos definidos por tipo de dato
-  - Cumplimiento de requisitos legales
-  - Revisión periódica de necesidad de retención
-- **Almacenamiento de Largo Plazo:**
-  - Migración a storage económico (cold/archive storage)
-  - Mantenimiento de accesibilidad cuando se requiera
-  - Preservación de integridad (hashing, firmas digitales)
-
-#### 6. Eliminación Segura
-- **Métodos de Eliminación:**
-  - Eliminación lógica (soft delete) con plazo de recuperación
-  - Eliminación física (overwriting, destrucción de medios)
-  - Anonimización irreversible
-- **Verificación:**
-  - Certificados de destrucción de medios físicos
-  - Logs de eliminación de datos
-  - Auditoría de completitud de eliminación
-- **Backups:**
-  - Eliminación en backups según política de retención
-  - Procedimiento para eliminar de snapshots y réplicas
-
-### Automatización y Orquestación
-
-- **Data Lifecycle Management (DLM):**
-  - Políticas automatizadas de movimiento de datos
-  - Transición automática entre tiers de storage
-  - Alertas de expiración de retención
-- **Data Retention Policies:**
-  - Configuración por tipo de dato
-  - Ejecución automática de eliminación
-  - Excepciones controladas (legal hold, litigación)
-
-## 📊 Métricas e Indicadores
-
-- Porcentaje de datasets con política de ciclo de vida definida (objetivo: 100%)
-- Tiempo promedio de retención vs política (objetivo: cumplimiento 100%)
-- Volumen de datos eliminados mensualmente
-- Solicitudes de eliminación (derecho al olvido) atendidas en tiempo SLA
-- Porcentaje de datos anonimizados/pseudonimizados en ambientes no productivos
-- Incidentes de uso de datos fuera de finalidad (objetivo: 0)
-- Cobertura de cifrado en reposo y tránsito (objetivo: 100%)
-
-## 🔗 Herramientas Recomendadas
-
-- **Data Lifecycle Management:** AWS S3 Lifecycle, Azure Blob Lifecycle, Google Cloud Storage Lifecycle
-- **Data Masking:** Delphix, Informatica, Microsoft Azure SQL Data Masking
-- **Backup & Recovery:** Veeam, Commvault, Rubrik, Azure Backup, AWS Backup
-- **Data Quality:** Talend, Informatica Data Quality, Great Expectations
-- **Data Lineage:** Apache Atlas, Collibra, Alation, Atlan
-- **Secure Deletion:** Blancco, BitRaser, DBAN (software); Physical destruction (hardware)
-
-## 📚 Referencias
-
-- [Política de Retención y Eliminación Segura](/docs/kudo/politicas/politica-retencion-eliminacion-segura)
-- [Política de Clasificación de Información](/docs/kudo/politicas/clasificacion-informacion)
-- [Política de Cifrado de Datos](/docs/kudo/politicas/politica-cifrado-datos)
-- [DIA-01: Inventario de Datos](/docs/kudo/dia-ciberseguridad-en-datos-e-inteligencia-artificial/dia-01)
-- [DIA-05: Tiempo de Retención y Derecho al Olvido](/docs/kudo/dia-ciberseguridad-en-datos-e-inteligencia-artificial/dia-05)
-- GDPR Art. 5 - Principles relating to processing
-- GDPR Art. 17 - Right to erasure
-- ISO 27001:2022 - A.8.10, A.8.11
-- NIST SP 800-88 - Guidelines for Media Sanitization
-
-## ✅ Checklist de Implementación
-
-- [ ] Documentar ciclo de vida para cada categoría de datos
-- [ ] Definir políticas de retención por tipo de dato
-- [ ] Implementar cifrado at-rest y in-transit
-- [ ] Configurar lifecycle policies en sistemas de storage
-- [ ] Implementar data masking en ambientes no productivos
-- [ ] Establecer proceso de eliminación segura
-- [ ] Automatizar transiciones entre tiers de almacenamiento
-- [ ] Implementar data lineage tracking
-- [ ] Definir proceso de atención a solicitudes de eliminación
-- [ ] Configurar alertas de expiración de retención
-- [ ] Testing de restauración de backups
-- [ ] Auditoría de cumplimiento de políticas de ciclo de vida
-- [ ] Capacitación a Data Owners y Data Stewards
+Las transferencias de datos entre sistemas internos y hacia terceros utilizan canales cifrados y protocolos seguros (SFTP, HTTPS, 
+MFT - Managed File Transfer). Cada transferencia a terceros requiere un acuerdo de tratamiento de datos (DPA) vigente. Los 
+mecanismos de eliminación de datos garantizan la destrucción segura al finalizar la necesidad de retención, con evidencia documentada 
+de la eliminación en sistemas primarios, respaldos y sistemas de terceros.

@@ -3,91 +3,27 @@ title: CIP-01 - Inventario de Identidad
 description: Control de gestión y registro de identidades
 ---
 
-## 🎯 Objetivo del Control
+## Descripción del Control
 
-Mantener un inventario completo y actualizado de todas las identidades (humanas y no humanas) que tienen acceso a los sistemas y recursos de la organización.
+Mantiene un registro completo y actualizado de todas las identidades —humanas (empleados, contratistas, proveedores) y 
+no humanas (cuentas de servicio, service principals, API keys, managed identities, certificados de máquina)— que tienen 
+acceso a recursos organizacionales. Define los atributos mínimos del inventario (ID único, tipo, estado, propietario, 
+última actividad, fecha de revisión), los mecanismos de gestión del ciclo de vida (onboarding, cambios, offboarding) y 
+la integración con el proveedor de identidad centralizado y el sistema de RRHH (HRIS).
 
-## 📋 Descripción
+## Requisitos
 
-Este control establece el registro y gestión de:
-- Identidades de empleados y contratistas
-- Cuentas de servicio y aplicaciones
-- Identidades de terceros y proveedores
-- Cuentas administrativas y privilegiadas
-- Identidades federadas y externas
+### Requisito 1 - Inventario de Identidades Humanas
 
-## 🛡️ Controles Requeridos
+La organización mantiene un registro completo y actualizado de todas las identidades humanas (empleados, contratistas, 
+proveedores con acceso) que tienen acceso a recursos organizacionales, integrado con el sistema de RRHH (HRIS). El inventario 
+registra para cada identidad: ID único, nombre, tipo (empleado/contratista/proveedor), estado (activo/inactivo), propietario, 
+roles asignados, fecha de último acceso y fecha de revisión programada. El inventario es reconciliado automáticamente con 
+el directorio activo/IdP al menos diariamente.
 
-### Tipos de Identidades
-- **Identidades Humanas:**
-  - Empleados internos
-  - Contratistas y consultores
-  - Proveedores y terceros
-  - Clientes (B2B)
-- **Identidades No Humanas:**
-  - Cuentas de servicio
-  - Service principals
-  - Managed identities
-  - API keys
-  - Certificados de máquina
+### Requisito 2 - Inventario de Identidades No Humanas
 
-### Atributos de Inventario
-- ID único de identidad
-- Nombre y apellido (humanos)
-- Email corporativo
-- Departamento y rol
-- Tipo de identidad
-- Estado (activa/suspendida/eliminada)
-- Fecha de creación
-- Fecha de última actividad
-- Fecha de revisión de acceso
-- Propietario/responsable
-
-### Gestión del Ciclo de Vida
-- **Onboarding:** Creación de identidad con workflow aprobado
-- **Cambios:** Actualización por cambio de rol o departamento
-- **Offboarding:** Desactivación inmediata al término de relación
-- Revisión periódica (trimestral)
-- Limpieza de identidades inactivas
-
-### Integración con Sistemas
-- Directorio activo / Azure AD / Okta
-- HRIS (sistema de recursos humanos)
-- ITSM para solicitudes
-- SIEM para correlación de eventos
-
-## 📊 Métricas e Indicadores
-
-- Número total de identidades activas
-- Porcentaje de identidades con última actividad >90 días
-- Identidades sin propietario asignado
-- Tiempo promedio de aprovisionamiento
-- Tasa de cumplimiento de revisión periódica
-
-## 🔗 Herramientas Recomendadas
-
-- **Identity Providers:** Azure AD/Entra ID, Okta, Auth0, Ping Identity
-- **HRIS:** Workday, BambooHR, SAP SuccessFactors
-- **IGA:** SailPoint, Saviynt, Microsoft Entra Identity Governance
-- **CMDB:** ServiceNow, Jira Assets
-
-## 📚 Referencias
-
-- [Política de Control de Acceso](/docs/kudo/politicas/politica-control-acceso)
-- [Procedimiento de Alta y Baja de Usuarios](/docs/kudo/politicas/procedimiento-alta-baja-usuarios)
-- [Política de Seguridad Ciclo de Vida del Empleado](/docs/kudo/politicas/politica-seguridad-ciclo-vida-empleado)
-- NIST SP 800-63 - Digital Identity Guidelines
-- ISO 27001:2022 - A.5.15, A.5.16, A.5.17
-
-## ✅ Checklist de Implementación
-
-- [ ] Directorio centralizado de identidades implementado
-- [ ] Integración con HRIS configurada
-- [ ] Proceso de onboarding/offboarding automatizado
-- [ ] Clasificación de tipos de identidades
-- [ ] Workflow de aprobación de creación de cuentas
-- [ ] Revisión periódica programada
-- [ ] Dashboard de identidades activas
-- [ ] Proceso de limpieza de cuentas inactivas
-- [ ] Auditoría de identidades habilitada
-- [ ] Documentación de procesos
+La organización mantiene un registro completo de todas las identidades no humanas: cuentas de servicio, service principals, 
+API keys, managed identities, certificados de máquina y tokens de servicio. Cada identidad no humana tiene un propietario 
+humano definido, un propósito documentado y una fecha de expiración. Las identidades no humanas sin propietario activo o sin 
+uso en los últimos 90 días son identificadas automáticamente y desactivadas o eliminadas previo análisis de impacto.

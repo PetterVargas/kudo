@@ -3,97 +3,36 @@ title: CAP-03 - Ciberseguridad en APIs
 description: Control de protección y gestión segura de APIs
 ---
 
-## 🎯 Objetivo del Control
+## Descripción del Control
 
-Asegurar que todas las APIs (internas y externas) sean desarrolladas, desplegadas y mantenidas siguiendo las mejores prácticas de seguridad para proteger datos y funcionalidades críticas.
+Asegura que todas las APIs —internas y externas— cumplan requisitos de seguridad a lo largo de su ciclo de vida. 
+Requiere autenticación mediante OAuth 2.0/OpenID Connect o JWT firmados, con mTLS para APIs críticas y autorización 
+granular (RBAC/ABAC). Exige validación de schema (OpenAPI/Swagger), sanitización de todos los inputs y protección 
+contra OWASP API Security Top 10. Implementa rate limiting por usuario/IP/API key, throttling, circuit breakers y 
+protección DDoS. El enmascaramiento de datos sensibles en logs y los headers de seguridad HTTP son obligatorios. 
+Toda API debe estar inventariada, documentada y monitoreada.
 
-## 📋 Descripción
+## Requisitos
 
-Este control establece requisitos de seguridad específicos para APIs:
-- Autenticación y autorización robusta
-- Validación y sanitización de entradas
-- Protección contra ataques comunes (OWASP API Top 10)
-- Monitoreo y rate limiting
-- Gestión del ciclo de vida de APIs
+### Requisito 1 - Autenticación y Autorización en APIs
 
-## 🛡️ Controles Requeridos
+Todas las APIs de la organización (internas y externas) implementan mecanismos de autenticación robusta mediante 
+OAuth 2.0, OpenID Connect o JWT firmados con algoritmos seguros (RS256, ES256). Las APIs críticas requieren mTLS 
+para la autenticación mutua entre servicios. La autorización implementa control de acceso granular (RBAC/ABAC) 
+siguiendo el principio de menor privilegio. Las API keys tienen fecha de expiración, son rotadas periódicamente 
+y se revocan inmediatamente al finalizar su uso.
 
-### Autenticación y Autorización
-- OAuth 2.0 / OpenID Connect para APIs públicas
-- API Keys con rotación periódica
-- JWT (JSON Web Tokens) firmados
-- Mutual TLS (mTLS) para APIs críticas
-- Autorización granular (RBAC/ABAC)
+### Requisito 2 - Seguridad de Inputs y Protección OWASP API Top 10
 
-### Validación de Entrada
-- Validación de schema (OpenAPI/Swagger)
-- Sanitización de todos los inputs
-- Límites de tamaño de payload
-- Tipo y formato de datos validados
-- Protección contra injection attacks
+Todas las APIs implementan validación estricta de esquema (OpenAPI/Swagger) y sanitización de todos los inputs 
+para prevenir inyecciones (SQL, NoSQL, command injection, XXE). Los controles contemplan la protección contra 
+las vulnerabilidades del OWASP API Security Top 10 incluyendo autenticación rota, autorización excesiva, exposición 
+de datos sensibles, mass assignment y SSRF. Las pruebas de seguridad de APIs (DAST, fuzzing) son parte del pipeline CI/CD.
 
-### Protección de Datos
-- Cifrado en tránsito (TLS 1.3)
-- Cifrado en reposo para datos sensibles
-- Enmascaramiento de datos en logs
-- Prevención de exposición de datos sensibles
-- Headers de seguridad HTTP
+### Requisito 3 - Rate Limiting, Throttling e Inventario de APIs
 
-### Control de Acceso y Rate Limiting
-- Rate limiting por usuario/IP/API key
-- Throttling de peticiones
-- Cuotas de uso definidas
-- Circuit breakers para protección
-- DDoS protection
-
-### Logging y Monitoreo
-- Logs de todas las peticiones
-- Monitoreo de anomalías en uso
-- Alertas de patrones sospechosos
-- Dashboard de métricas de API
-- Retención de logs según política
-
-### Gestión de Versiones
-- Versionado semántico de APIs
-- Deprecación comunicada con antelación
-- Compatibilidad hacia atrás considerada
-- Documentación actualizada por versión
-- Testing de regresión
-
-## 📊 Métricas e Indicadores
-
-- Número de APIs inventariadas vs seguras
-- Tasa de autenticación fallida
-- Número de ataques detectados y bloqueados
-- Latencia de validación de seguridad
-- Cobertura de testing de APIs (% endpoints)
-
-## 🔗 Herramientas Recomendadas
-
-- **API Gateway:** Kong, Apigee, AWS API Gateway, Azure API Management
-- **Testing:** Postman, SoapUI, REST Assured, Katalon
-- **Security Testing:** OWASP ZAP, Burp Suite, Astra, 42Crunch
-- **Documentation:** Swagger/OpenAPI, Redoc, Stoplight
-- **Monitoring:** Datadog, New Relic, Prometheus, Grafana
-
-## 📚 Referencias
-
-- [Guías de Integración Segura de APIs](/docs/kudo/politicas/guias-integracion-segura-apis)
-- [Política de Desarrollo Seguro](/docs/kudo/politicas/politica-desarrollo-seguro)
-- [Estándar de Codificación Segura](/docs/kudo/politicas/estandar-codificacion-segura)
-- OWASP API Security Top 10
-- OWASP API Security Project
-- NIST SP 800-204 - Security Strategies for Microservices
-
-## ✅ Checklist de Implementación
-
-- [ ] Inventario completo de APIs
-- [ ] API Gateway implementado
-- [ ] Autenticación OAuth 2.0 / JWT configurada
-- [ ] Validación de schema automatizada
-- [ ] Rate limiting configurado
-- [ ] TLS 1.3 obligatorio en todas las APIs
-- [ ] Logging centralizado de APIs
-- [ ] Documentación OpenAPI actualizada
-- [ ] Testing de seguridad en CI/CD
-- [ ] Monitoreo y alertas activas
+Todas las APIs implementan rate limiting por usuario, IP y API key para prevenir abuso y ataques DDoS. Se implementan 
+throttling y circuit breakers para garantizar la disponibilidad del servicio. El enmascaramiento de datos sensibles 
+en logs de API y los headers de seguridad HTTP (HSTS, CSP, X-Frame-Options) son obligatorios. La organización 
+mantiene un inventario completo y actualizado de todas sus APIs con datos de propietario, audiencia, versión vigente 
+y estado de ciclo de vida.

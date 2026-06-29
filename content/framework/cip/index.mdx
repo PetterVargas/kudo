@@ -6,74 +6,29 @@ description: El principal pilar de protección inicial
 import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
 import { GraduationCap } from 'lucide-react';
 
+## Descripción del Dominio
 
-## Línea base Open-Source
+Dominio orientado al **control de acceso, gestión de identidades digitales y protección de dispositivos endpoints**. 
+Cubre el inventario completo de *identidades, la autenticación multifactor (MFA), la autorización basada en roles 
+(RBAC, ABAC, PBAC), el aprovisionamiento y desaprovisionamiento de usuarios, así como el inventario y aseguramiento 
+de puntos finales (endpoints)*. Promueve la estrategia **Zero Trust** como principio rector, priorizando la gestión 
+de **identidades 100% en la nube** y la integración con **Single Sign On SSO**. 
 
-Priorice estos aspectos antes de profundizar en cualquier marco de ciberseguridad.
-
-<Accordions type="single">
-  <Accordion title="1. Activar en todas las identidades multifactor de autenticación MFA.">
-  
-  Temas importante en esta revisión:
-
-  - [X] Activar en todas las identidades multifactor de autenticación, y en la que no sea posible, por negocio, producto legacy o tecnología obsoleta, realizar segmentación específica al recurso.
-  
-  </Accordion>
-</Accordions>
-
-<Accordions type="single">
-  <Accordion title="2. Configurar SSO en todas las identidades de colaboradores.">
-  
-  Temas importante en esta revisión:
-
-  - [X] Buscar todos los sistemas de acceso de la compañía y configurar Single Sign On SSO.
-  
-  </Accordion>
-</Accordions>
-
-<Accordions type="single">
-  <Accordion title="3. Gestor de identidad 100% en nube.">
-  
-  Temas importante en esta revisión:
-
-  - [X] Fuerte; pero, migrate de un gestor de identidad de onpremise a 100% en nube, ejemplo de Directorio Activo a EntraID, sin sincronización con EntraID Connect
-  
-  </Accordion>
-</Accordions>
-
-
-## Cursos del dominio
-
-<Cards>
-  <Card
-    icon={<GraduationCap />}
-    href="https://divisioncero.com/cursos?utm_source=kudo.divisioncero.com"
-    title="Curso - CIP - Ciberseguridad en Identidad y Puntos Finales"
-  >
-    Especialízate en protección de endpoints, gestión de identidades, autenticación multifactor, administración de accesos privilegiados y seguridad en dispositivos móviles y remotos.
-  </Card>
-</Cards>
-
-
+Es considerado el **pilar inicial de protección más relevante de la organización**, dado que la identidad representa 
+*el principal vector de ataque en entornos modernos.*
 
 ## Controles CIP
 
 Control de acceso, gestión de identidades, autenticación y protección avanzada de dispositivos endpoints.
 
-<Accordions>
-<Accordion title="6 Controles CIP">
-
-| Control | Nombre |
-|---------|--------|
-| **CIP-01** | Inventario de Identidad |
-| **CIP-02** | Ciberseguridad en Autenticación |
-| **CIP-03** | Ciberseguridad en Autorización |
-| **CIP-04** | Aprovisionamiento, cambios y desaprovisionamiento de identidades |
-| **CIP-05** | Inventario de puntos finales |
-| **CIP-06** | Ciberseguridad en Puntos Finales |
-
-</Accordion>
-</Accordions>
+<Cards>
+  <Card href="/framework/cip/cip-01" title="CIP-01">Inventario de Identidad</Card>
+  <Card href="/framework/cip/cip-02" title="CIP-02">Ciberseguridad en Autenticación</Card>
+  <Card href="/framework/cip/cip-03" title="CIP-03">Ciberseguridad en Autorización</Card>
+  <Card href="/framework/cip/cip-04" title="CIP-04">Aprovisionamiento, cambios y desaprovisionamiento de identidades</Card>
+  <Card href="/framework/cip/cip-05" title="CIP-05">Inventario de puntos finales</Card>
+  <Card href="/framework/cip/cip-06" title="CIP-06">Ciberseguridad en Puntos Finales</Card>
+</Cards>
 
 
 ## Problemas comunes en empresas
@@ -96,3 +51,15 @@ Control de acceso, gestión de identidades, autenticación y protección avanzad
 <Callout title="Identificar mejoras en la gestión de identidad empresarial." type="success"></Callout>
 <Callout title="Implementar efectivamente RBAC, ABAC y PBAC." type="success"></Callout>
 <Callout title="Implementación de la estrategia Zero Trust" type="success"></Callout>
+
+## Cursos del dominio
+
+<Cards>
+  <Card
+    icon={<GraduationCap />}
+    href="https://cyberacademy.divisioncero.com/cip?utm_source=kudo.divisioncero.com"
+    title="Curso - CIP - Ciberseguridad en Identidad y Puntos Finales"
+  >
+    Especialízate en protección de endpoints, gestión de identidades, autenticación multifactor, administración de accesos privilegiados y seguridad en dispositivos móviles y remotos.
+  </Card>
+</Cards>
