@@ -1,0 +1,79 @@
+---
+title: ADR-4 - Atención de Eventos y/o Incidentes de Ciberseguridad
+description: Control de respuesta y gestión de incidentes de seguridad
+---
+
+## Definición de Control
+
+Es necesario definir un proceso estructurado de respuesta a incidentes que cubra su detección, clasificación, contención, erradicación, recuperación 
+y cierre, con tiempos de respuesta acordes a su severidad, y conformar un equipo de respuesta con roles definidos y disponibilidad para atender los 
+incidentes más críticos. Es necesario mantener playbooks actualizados para los escenarios más frecuentes, incluyendo planes de mitigación masiva 
+ante el compromiso generalizado de credenciales, y establecer canales claros para que el personal reporte eventos sospechosos. Es necesario preservar 
+la evidencia de los incidentes garantizando la cadena de custodia, mantenerse conectado con comunidades especializadas del sector, y realizar 
+análisis post-mortem que generen lecciones aprendidas para fortalecer los controles y actualizar los playbooks.
+
+## Requisitos
+
+### Requisito 1
+
+Definimos un proceso estructurado de respuesta a incidentes con etapas formales: detección, análisis, clasificación, contención, erradicación, recuperación y cierre.
+
+### Requisito 2
+
+Clasificamos los incidentes por severidad (P1 crítico, P2 alto, P3 medio, P4 bajo) con tiempos máximos de respuesta inicial y resolución definidos.
+
+### Requisito 3
+
+Conformamos un equipo de respuesta a incidentes (IRT/CSIRT) con roles y responsabilidades asignadas.
+
+### Requisito 4
+
+Garantizamos disponibilidad 24/7 del equipo de respuesta para incidentes de severidad P1 y P2.
+
+### Requisito 5
+
+Mantenemos playbooks de respuesta documentados y actualizados para los tipos de incidentes más frecuentes: ransomware, phishing dirigido, acceso no autorizado, fuga de datos y compromiso de cuentas privilegiadas.
+
+### Requisito 6
+
+Definimos en cada playbook los pasos específicos de contención, erradicación y recuperación.
+
+### Requisito 7
+
+Establecemos los umbrales de escalamiento y los criterios de notificación a reguladores dentro de los plazos legales aplicables.
+
+### Requisito 8
+
+Establecemos y mantenemos conexiones activas con grupos especializados, foros y asociaciones profesionales del ámbito de la seguridad de la información.
+
+### Requisito 9
+
+Proporcionamos un canal claro y accesible para que el personal reporte de forma oportuna cualquier evento de seguridad observado o sospechoso.
+
+### Requisito 10
+
+Establecemos procedimientos para identificar, recoger, adquirir y preservar evidencias relacionadas con eventos e incidentes de seguridad de la información.
+
+### Requisito 11
+
+Aplicamos los procedimientos de gestión de evidencias en todos los eventos e incidentes de seguridad garantizando la integridad de la cadena de custodia.
+
+### Requisito 12
+
+Definimos y mantenemos planes iniciales de mitigación masiva en protección de identidad que permitan ejecutar acciones a escala ante un compromiso generalizado de credenciales, incluyendo reset forzado masivo de contraseñas, habilitación de MFA de forma masiva y bloqueo de cuentas comprometidas.
+
+### Requisito 13
+
+Realizamos análisis post-mortem obligatorio para todos los incidentes de severidad P1 y P2.
+
+### Requisito 14
+
+Actualizamos los playbooks tras cada incidente significativo incorporando las lecciones aprendidas.
+
+### Requisito 15
+
+Identificamos y registramos lecciones aprendidas para todos los incidentes de severidad P1 y P2.
+
+### Requisito 16
+
+Aprovechamos las lecciones aprendidas de los incidentes de seguridad para fortalecer y mejorar los controles de seguridad existentes más allá de la actualización de playbooks.

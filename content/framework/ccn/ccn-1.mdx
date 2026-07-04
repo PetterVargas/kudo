@@ -1,0 +1,63 @@
+---
+title: CCN-1 - Gestión y Control de Cambios
+description: Control de gestión estructurada de cambios en sistemas
+---
+
+## Definición de Control
+
+Es necesario establecer un proceso formal para gestionar todos los cambios en sistemas, aplicaciones e infraestructura, clasificándolos según su tipo 
+y exigiendo un análisis de impacto, un plan de rollback y una aprobación formal antes de su implementación. Es necesario conformar un comité de 
+aprobación de cambios, definir ventanas de cambio y períodos de congelamiento acordes a la criticidad del negocio, y gestionar los cambios de emergencia 
+mediante un proceso abreviado con aprobación mínima garantizada. Es necesario exigir que todo cambio recorra los ambientes definidos antes de llegar 
+a producción, y apoyarse en el modelo de responsabilidad compartida del proveedor de nube para reducir la carga operativa de la gestión de cambios 
+de infraestructura.
+
+## Requisitos
+
+### Requisito 1
+
+Establecemos un proceso formal y estructurado para gestionar todos los cambios en sistemas, aplicaciones e infraestructura.
+
+### Requisito 2
+
+Clasificamos los cambios en categorías: estándar, normal, emergencia y menor.
+
+### Requisito 3
+
+Conformamos un Comité de Aprobación de Cambios (CAB) con representación de los principales líderes de cada cambio.
+
+### Requisito 4
+
+Definimos ventanas de cambio programadas para la implementación de cambios normales.
+
+### Requisito 5
+
+Establecemos períodos de freeze asociados a eventos críticos del negocio, temporadas de alta demanda, fechas del calendario fiscal, entre otros...
+
+### Requisito 6
+
+Documentamos para cada cambio los criterios de éxito y los contactos de escalamiento.
+
+### Requisito 7
+
+Gestionamos los cambios de emergencia con un proceso abreviado que garantiza aprobación mínima de dos princiales aprobadores.
+
+### Requisito 8
+
+Completamos la documentación post-implementación de los cambios de emergencia en un plazo con temporabilidad definida.
+
+### Requisito 9
+
+Exigimos que todos los cambios recorran una cadena de ambientes definidas por la compañía antes de llegar a producción.
+
+### Requisito 10
+
+Buscamos y aplicamos un modelo de responsabilidad compartida que favorezca al Cloud Service Provider (CSP) para reducir la carga operativa de la organización en la gestión de cambios de infraestructura.
+
+### Requisito 11
+
+Identificamos los puntos únicos de falla a partir de la gráfica de la plataforma como parte del análisis de impacto de cada cambio.
+
+### Requisito 12
+
+Implementamos despliegues automáticos en entornos separados de producción como parte de la cadena de ambientes del proceso de cambios.

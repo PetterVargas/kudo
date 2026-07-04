@@ -1,0 +1,57 @@
+---
+title: CIF-5 - Administración y Gestión de Claves
+description: Control de gestión del ciclo de vida de claves criptográficas
+---
+
+## Definición de Control
+
+Es necesario gestionar el ciclo de vida completo de las claves criptográficas mediante servicios especializados, definiendo una jerarquía de claves 
+y generándolas con métodos criptográficamente seguros. Es necesario proteger y rotar las claves con una frecuencia acorde a su criticidad, segregar 
+su almacenamiento por ambiente, y distribuirlas únicamente a través de canales seguros separando las funciones entre administradores y usuarios. Es 
+necesario auditar todas las operaciones criptográficas y destruir de forma segura las claves al finalizar su ciclo de vida.
+
+## Requisitos
+
+### Requisito 1
+
+Gestionamos el ciclo de vida completo de las claves criptográficas mediante servicios KMS gestionados.
+
+### Requisito 2
+
+Definimos e implementamos una jerarquía de claves criptográficas con Master Keys, Data Keys y API keys.
+
+### Requisito 3
+
+Segregamos el almacenamiento de claves por ambiente (producción, staging, desarrollo) con propietario definido para cada conjunto.
+
+### Requisito 4
+
+Seguimos un procedimiento documentado de destrucción segura al finalizar el ciclo de vida de cada clave.
+
+### Requisito 5
+
+Almacenamos las Master Keys en HSM con rotación con frecuencia programada.
+
+### Requisito 6
+
+Generamos las Data Keys mediante envelope encryption con rotación con frecuencia programada.
+
+### Requisito 7
+
+Rotamos las API keys con frecuencia programada.
+
+### Requisito 8
+
+Generamos las claves criptográficas con generadores de números aleatorios criptográficamente seguros (CSPRNG).
+
+### Requisito 9
+
+Distribuimos las claves únicamente mediante canales seguros y cifrados.
+
+### Requisito 10
+
+Implementamos técnicamente la separación de funciones entre el administrador y el usuario de claves.
+
+### Requisito 11
+
+Registramos en logs de auditoría todas las operaciones criptográficas.

@@ -1,0 +1,61 @@
+---
+title: ADR-3 - Retención y Monitoreo de Registros
+description: Control de gestión de logs y monitoreo de eventos de seguridad
+---
+
+## Definición de Control
+
+Es necesario generar, recolectar y centralizar en un SIEM los registros de actividad de los sistemas, aplicaciones e infraestructura relevantes 
+para la seguridad de la información, garantizando su transmisión íntegra y su disponibilidad durante los períodos de retención definidos. Es 
+necesario proteger los registros contra alteración o eliminación, y utilizarlos para detectar y alertar de forma oportuna comportamientos anómalos 
+mediante monitoreo continuo desde el equipo de seguridad.
+
+## Requisitos
+
+### Requisito 1
+
+Recolectamos y centralizamos en un SIEM los logs de seguridad de todos los sistemas, aplicaciones e infraestructura de la organización.
+
+### Requisito 2
+
+Definimos y cubrimos las fuentes de logs obligatorias: sistemas operativos, aplicaciones críticas, firewalls, proxies, identity providers y sistemas cloud.
+
+### Requisito 3
+
+Transmitimos los logs en tiempo real al SIEM y validamos periódicamente la integridad del flujo de datos.
+
+### Requisito 4
+
+Retenemos los logs en almacenamiento activo en el SIEM durante un tiempo definido.
+
+### Requisito 5
+
+Retenemos los logs en almacenamiento de archivo por un período de tiempo definido.
+
+### Requisito 6
+
+Protegemos los logs archivados contra modificación mediante controles de inmutabilidad (WORM storage).
+
+### Requisito 7
+
+Implementamos reglas de correlación y detección en el SIEM para identificar comportamientos anómalos de alto interés.
+
+### Requisito 8
+
+Alertamos automáticamente ante: múltiples fallos de autenticación, accesos fuera de horario a sistemas críticos, exfiltración de datos, movimiento lateral y escalamiento de privilegios.
+
+### Requisito 9
+
+Habilitamos y configuramos la generación de registros de actividades, errores, fallos y otros eventos relevantes para la seguridad de la información en todos los sistemas origen.
+
+### Requisito 10
+
+Protegemos los registros en almacenamiento activo y en tránsito contra alteración o eliminación, complementando los controles de inmutabilidad aplicados al almacenamiento de archivo.
+
+### Requisito 11
+
+Inventariamos las fuentes de log y revisamos su cobertura con frecuencia programada.
+
+### Requisito 12
+
+Operamos dashboards de monitoreo continuo de seguridad desde el equipo de SOC.

@@ -1,0 +1,66 @@
+---
+title: CAP-2 - Ciberseguridad en APIs
+description: Control de protección y gestión segura de APIs
+---
+
+## Definición de Control
+
+Es necesario mantener un inventario actualizado de todas las APIs y monitorearlas continuamente, e implementar autenticación y autorización robustas 
+que verifiquen la identidad y limiten el acceso según el principio de menor privilegio. Es necesario validar y sanitizar las entradas para prevenir 
+inyecciones y otras vulnerabilidades del OWASP API Security Top 10, integrando pruebas de seguridad en el pipeline de desarrollo. Es necesario 
+garantizar la disponibilidad del servicio mediante controles de rate limiting y circuit breakers, y proteger la información sensible que transita 
+o se registra en las APIs.
+
+## Requisitos
+
+### Requisito 1
+
+Mantenemos un inventario completo y actualizado de todas las APIs con propietario, audiencia, versión y estado de ciclo de vida.
+
+### Requisito 2
+
+Definimos fecha de expiración para las API keys, las rotamos periódicamente y las revocamos al finalizar su uso.
+
+### Requisito 3
+
+Integramos pruebas de seguridad de APIs (DAST, fuzzing) en el pipeline CI/CD.
+
+### Requisito 4
+
+Implementamos autenticación robusta en todas las APIs mediante OAuth 2.0, OpenID Connect o JWT firmados con algoritmos seguros.
+
+### Requisito 5
+
+Implementamos mTLS para la autenticación mutua entre servicios en APIs críticas.
+
+### Requisito 6
+
+Implementamos autorización granular (RBAC/ABAC) siguiendo el principio de menor privilegio en todas las APIs.
+
+### Requisito 7
+
+Implementamos validación estricta de esquema (OpenAPI/Swagger) en todas las APIs.
+
+### Requisito 8
+
+Sanitizamos todos los inputs para prevenir inyecciones: SQL, NoSQL, command injection y XXE.
+
+### Requisito 9
+
+Implementamos rate limiting por usuario, IP y API key en todas las APIs.
+
+### Requisito 10
+
+Implementamos throttling y circuit breakers para garantizar la disponibilidad del servicio.
+
+### Requisito 11
+
+Enmascaramos los datos sensibles en los logs de API.
+
+### Requisito 12
+
+Implementamos headers de seguridad HTTP obligatorios: HSTS, CSP y X-Frame-Options.
+
+### Requisito 13
+
+Monitoreamos continuamente todas las APIs inventariadas.

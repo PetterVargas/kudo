@@ -1,0 +1,58 @@
+---
+title: CIP-3 - Ciberseguridad en Autorización
+description: Control de permisos y control de acceso
+---
+
+## Definición de Control
+
+Es necesario aplicar el principio de mínimo privilegio en todos los controles de acceso físico y digital, utilizando modelos de autorización 
+basados en roles, atributos y políticas que permitan decisiones de acceso dinámicas y contextuales. Es necesario otorgar los privilegios elevados 
+de forma temporal y bajo aprobación, revisar periódicamente los permisos otorgados para revocar los que ya no sean necesarios, y detectar los 
+conflictos de segregación de funciones. Es necesario registrar las sesiones privilegiadas para su auditoría, y establecer reglas de acceso físico 
+a instalaciones y salas críticas acordes a las necesidades del negocio.
+
+## Requisitos
+
+### Requisito 1
+
+Implementamos el principio de mínimo privilegio en todos los controles de acceso.
+
+### Requisito 2
+
+Establecemos y aplicamos reglas de control de acceso físico a instalaciones, salas de servidores y activos relacionados, basadas en las necesidades del negocio y de seguridad.
+
+### Requisito 3
+
+Restringimos el acceso físico y digital a la información y activos relacionados según las políticas de control de acceso definidas, aplicando el principio de mínimo privilegio.
+
+### Requisito 4
+
+Implementamos un modelo de control de acceso basado en roles (RBAC) donde los permisos se asignan según la función de cada usuario.
+
+### Requisito 5
+
+Implementamos políticas de control de acceso basadas en atributos (ABAC) para decisiones dinámicas y contextuales.
+
+### Requisito 6
+
+Implementamos políticas centralizadas de control de acceso (PBAC) evaluadas en tiempo real.
+
+### Requisito 7
+
+Implementamos acceso Just-in-Time (JIT) para privilegios elevados, con duración limitada y aprobación mediante workflow.
+
+### Requisito 8
+
+Realizamos revisiones en periodos frecuentes de permisos por propietario del sistema y responsable del área.
+
+### Requisito 9
+
+Revocamos los accesos que ya no son necesarios durante las revisiones de permisos.
+
+### Requisito 10
+
+Detectamos automáticamente los conflictos de segregación de funciones.
+
+### Requisito 11
+
+Grabamos y mantenemos disponibles para revisión forense y auditoría todas las sesiones privilegiadas.

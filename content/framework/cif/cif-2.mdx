@@ -1,0 +1,66 @@
+---
+title: CIF-2 - Inventario de Activos
+description: Control de gestión de activos en la nube
+---
+
+## Definición de Control
+
+Es necesario mantener un inventario automatizado y actualizado de todos los recursos desplegados en la nube, con un propietario asignado a cada 
+activo y una reconciliación continua entre lo registrado y lo realmente desplegado. Es necesario etiquetar los recursos con los atributos mínimos 
+que permitan identificarlos y protegerlos adecuadamente, verificando automáticamente su cumplimiento y corrigiendo las desviaciones. Es necesario 
+detectar y eliminar los recursos huérfanos, usar la infraestructura como código como fuente de verdad del inventario, y gestionar los costos 
+asociados a cada recurso.
+
+## Requisitos
+
+### Requisito 1
+
+Mantenemos actualizado el inventario de activos relacionados con la información mediante revisiones periódicas.
+
+### Requisito 2
+
+Mantenemos un inventario automatizado y completo de todos los recursos desplegados en entornos cloud.
+
+### Requisito 3
+
+Identificamos y registramos formalmente el responsable de cada activo incluido en el inventario como atributo obligatorio.
+
+### Requisito 4
+
+Definimos y aplicamos una política de etiquetado obligatorio (tagging) para todos los recursos cloud.
+
+### Requisito 5
+
+Establecemos la Infrastructure as Code (IaC) como fuente de verdad del inventario.
+
+### Requisito 6
+
+Registramos como atributos mínimos de etiquetado: entorno, propietario, centro de costos, aplicación, clasificación de datos y criticidad.
+
+### Requisito 7
+
+Aplicamos y verificamos las políticas de etiquetado automáticamente mediante políticas nativas del Cloud Service Provider (CSP).
+
+### Requisito 8
+
+Detectamos automáticamente los recursos cloud huérfanos que representan superficie de ataque innecesaria y costos evitables.
+
+### Requisito 9
+
+Eliminamos los recursos huérfanos no reclamados en el plazo definido.
+
+### Requisito 10
+
+Gestionamos los costos cloud por etiqueta con alertas de presupuesto definidas.
+
+### Requisito 11
+
+Validamos la reconciliación continua del inventario entre el estado real y el registrado.
+
+### Requisito 12
+
+Notificamos al propietario los recursos sin etiquetado completo y exigimos su corrección en un plazo máximo definido por la organización.
+
+### Requisito 13
+
+Tratamos cualquier desviación entre el estado real y el IaC como una anomalía.

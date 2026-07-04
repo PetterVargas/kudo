@@ -1,0 +1,62 @@
+---
+title: CCN-2 - Pruebas de Calidad y Seguridad en la Gestión de Cambios
+description: Control de testing y validación de cambios
+---
+
+## Definición de Control
+
+Es necesario probar exhaustivamente todos los cambios en ambientes no productivos antes de su implementación en producción, exigiendo niveles mínimos 
+de cobertura de pruebas y paridad de configuración con el ambiente productivo. Es necesario verificar la seguridad del código, las dependencias y la 
+infraestructura afectada por el cambio, bloqueando el despliegue ante vulnerabilidades críticas, y validar el rendimiento del cambio bajo condiciones 
+de carga cuando aplique. Es necesario requerir un plan de rollback funcional y la aprobación formal de calidad y seguridad antes de promover cualquier 
+cambio, manteniendo evidencia de las pruebas realizadas.
+
+## Requisitos
+
+### Requisito 1
+
+Probamos exhaustivamente todos los cambios en ambientes no productivos antes de su implementación en producción.
+
+### Requisito 2
+
+Exigimos una cobertura mínima en pruebas unitarias como criterio de aprobación para la promoción entre ambientes.
+
+### Requisito 3
+
+Garantizamos paridad de configuración entre el ambiente de staging y producción.
+
+### Requisito 4
+
+Bloqueamos el despliegue ante cualquier vulnerabilidad crítica o alta detectada.
+
+### Requisito 5
+
+Requerimos aprobación formal del equipo de calidad y seguridad para la promoción entre ambientes.
+
+### Requisito 6
+
+Ejecutamos SAST sobre el código modificado antes de promover a producción.
+
+### Requisito 7
+
+Ejecutamos DAST sobre la aplicación en ambiente de staging antes de promover a producción.
+
+### Requisito 8
+
+Ejecutamos SCA para verificar la seguridad de las dependencias antes de cada despliegue.
+
+### Requisito 9
+
+Realizamos escaneo de vulnerabilidades de infraestructura cuando aplique al cambio.
+
+### Requisito 10
+
+Validamos el rendimiento dentro de los SLAs definidos antes de aprobar cada cambio.
+
+### Requisito 11
+
+Realizamos pruebas de carga y rendimiento (load, stress, soak y spike testing) para cambios en sistemas críticos.
+
+### Requisito 12
+
+Mantenemos registro de las pruebas realizadas como evidencia de cada cambio.

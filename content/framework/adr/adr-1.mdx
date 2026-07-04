@@ -1,0 +1,66 @@
+---
+title: ADR-1 - Protección contra Software Malicioso
+description: Control de protección contra malware y aplicaciones maliciosas
+---
+
+## Definición de Control
+
+Es necesario prevenir, detectar y neutralizar amenazas de software malicioso en toda la organización, desplegando soluciones de protección con 
+capacidad de detección basada en comportamiento en endpoints, servidores y entornos cloud, y aplicando controles de contención como el whitelisting 
+de aplicaciones y la cuarentena automática de amenazas. Es necesario proteger el correo electrónico y la navegación web frente a phishing, 
+suplantación y contenido malicioso, y mantener alerta y capacitado al personal para reconocer y reportar comunicaciones sospechosas como 
+complemento a las protecciones técnicas.
+
+## Requisitos
+
+### Requisito 1
+
+Implementamos controles para prevenir, detectar y neutralizar amenazas provenientes de software malicioso en todos los sistemas de la organización.
+
+### Requisito 2
+
+Desplegamos soluciones antimalware con capacidad de detección basada en comportamiento en endpoints, servidores y entornos cloud.
+
+### Requisito 3
+
+Alertamos a los colaboradores ante comunicaciones sospechosas detectadas.
+
+### Requisito 4
+
+Formamos adecuadamente a los usuarios en el reconocimiento y prevención de software malicioso como complemento a las protecciones técnicas implementadas.
+
+### Requisito 5
+
+Controlamos el acceso a sitios web externos para reducir la exposición a contenido malicioso o no autorizado según la política de uso aceptable de la organización.
+
+### Requisito 6
+
+Actualizamos continuamente las firmas y modelos de detección sin intervención manual.
+
+### Requisito 7
+
+Analizamos los archivos en sandbox antes de su ejecución (detonación controlada).
+
+### Requisito 8
+
+Detectamos técnicas de evasión avanzadas como fileless malware y living-off-the-land.
+
+### Requisito 9
+
+Implementamos listas de control de aplicaciones autorizadas (whitelisting) en todos los sistemas.
+
+### Requisito 10
+
+Aplicamos cuarentena automática ante la detección de amenazas en endpoints, servidores y entornos cloud.
+
+### Requisito 11
+
+Protegemos el correo electrónico corporativo con análisis de adjuntos en sandbox y verificación de URLs mediante sistemas de reputación en tiempo real.
+
+### Requisito 12
+
+Habilitamos DMARC, DKIM y SPF para la protección del correo electrónico contra phishing y suplantación.
+
+### Requisito 13
+
+Implementamos filtrado de contenido web con bloqueo de dominios maliciosos conocidos y análisis SSL inspection.

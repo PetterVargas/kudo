@@ -1,0 +1,65 @@
+---
+title: CIF-4 - Cifrado de Información y Datos
+description: Control de cifrado en nube
+---
+
+## Definición de Control
+
+Es necesario definir normas para el uso correcto de técnicas criptográficas y determinar el nivel de cifrado requerido según la clasificación de 
+los datos. Es necesario cifrar la información en reposo con algoritmos estándar de la industria y gestionar las claves mediante servicios 
+especializados, prohibiendo el uso de algoritmos y protocolos considerados débiles u obsoletos. Es necesario proteger las comunicaciones en tránsito 
+exigiendo versiones seguras de TLS y HTTPS en todos los servicios expuestos, y verificar periódicamente el cumplimiento de estas prácticas.
+
+## Requisitos
+
+### Requisito 1
+
+Definimos normas para el uso correcto de técnicas criptográficas, incluyendo cómo gestionar las claves de cifrado.
+
+### Requisito 2
+
+Aplicamos normas para el uso correcto de técnicas criptográficas, incluyendo cómo gestionar las claves de cifrado.
+
+### Requisito 3
+
+Definimos el nivel de cifrado requerido en función de la clasificación de datos.
+
+### Requisito 4
+
+Habilitamos cifrado en reposo con un algoritmos criptográficos estándar de la industria o ampliamente aceptados por la industria en todos los servicios de almacenamiento cloud.
+
+### Requisito 5
+
+Usamos claves gestionadas por el cliente (CMK - Customer-Managed Keys) almacenadas en KMS (Key Management Service) para datos confidenciales y restringidos.
+
+### Requisito 6
+
+Prohibimos el uso de algoritmos criptográficos considerados débiles u obsoletos según los estándares vigentes de la industria.
+
+### Requisito 7
+
+Exigimos TLS 1.2 como versión mínima en todas las comunicaciones de datos en tránsito, con preferencia por TLS 1.3.
+
+### Requisito 8
+
+Hacemos obligatorio HTTPS en todas los servicios web expuestos.
+
+### Requisito 9
+
+Hacemos obligatorio HTTPS en todas las APIs expuestas.
+
+### Requisito 10
+
+Implementamos mTLS para comunicaciones service-to-service en arquitecturas de microservicios.
+
+### Requisito 11
+
+Implementamos HSTS con preload en todas las aplicaciones web.
+
+### Requisito 12
+
+Prohibimos el uso de protocolos inseguros: HTTP, FTP, Telnet y SNMPv1.
+
+### Requisito 13
+
+Verificamos periódicamente el cumplimiento del cifrado mediante scans de configuración y análisis SSL/TLS.

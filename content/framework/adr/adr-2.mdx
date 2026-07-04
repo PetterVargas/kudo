@@ -1,0 +1,65 @@
+---
+title: ADR-2 - Gestión, Identificación y Remediación de Vulnerabilidades
+description: Control de gestión continua del ciclo de vida de vulnerabilidades
+---
+
+## Definición de Control
+
+Es necesario recopilar y analizar inteligencia de amenazas y vulnerabilidades desde fuentes externas para anticipar riesgos, e implementar un 
+programa continuo de identificación, priorización y remediación de vulnerabilidades en todos los activos tecnológicos mediante escaneos periódicos. 
+Es necesario priorizar la remediación según la criticidad del activo y la severidad de la vulnerabilidad, dar seguimiento a su cumplimiento hasta 
+el cierre, y gestionar formalmente las excepciones que no puedan remediarse en el plazo establecido.
+
+## Requisitos
+
+### Requisito 1
+
+Implementamos un programa continuo de identificación, clasificación, priorización y remediación de vulnerabilidades en todos los activos tecnológicos.
+
+### Requisito 2
+
+Ejecutamos escaneos de vulnerabilidades con frecuencia secuencial programada para sistemas críticos y para el resto del parque tecnológico.
+
+### Requisito 3
+
+Cubrimos un porcentaje definido de los activos registrados en el inventario con los escaneos de vulnerabilidades.
+
+### Requisito 4
+
+Priorizamos las vulnerabilidades basándonos en el score CVSS y la criticidad del activo afectado.
+
+### Requisito 5
+
+Importamos los resultados al sistema de gestión de tickets y los asignamos al propietario del activo para su remediación.
+
+### Requisito 6
+
+Aplicamos SLAs de remediación definido por criticidad de vulnerabilidad.
+
+### Requisito 7
+
+Exigimos aprobación de un líder, documentación de controles compensatorios y fecha máxima de resolución para las excepciones.
+
+### Requisito 8
+
+Recopilamos información sobre amenazas a la seguridad de la información proveniente de fuentes externas (CVE, advisories de fabricantes, feeds de inteligencia) para generar inteligencia útil sobre ellas.
+
+### Requisito 9
+
+Analizamos la información recopilada sobre amenazas a la seguridad de la información para generar inteligencia útil y accionable que oriente las decisiones de remediación.
+
+### Requisito 10
+
+Obtenemos información actualizada sobre las vulnerabilidades técnicas de los sistemas de información que usa la organización a través de fuentes externas autorizadas, complementando los resultados de los escaneos internos.
+
+### Requisito 11
+
+Monitoreamos automáticamente el cumplimiento de los SLAs y escalamos al responsable del área ante incumplimientos.
+
+### Requisito 12
+
+Verificamos la remediación de vulnerabilidades mediante reescaneo.
+
+### Requisito 13
+
+Revisamos con frecuencia programada las excepciones vigentes.
