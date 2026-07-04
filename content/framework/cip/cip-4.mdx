@@ -1,0 +1,58 @@
+---
+title: CIP-4 - Aprovisionamiento, Cambios y Desaprovisionamiento de Identidades
+description: Control del ciclo de vida completo de identidades
+---
+
+## Definición de Control
+
+Es necesario automatizar el ciclo de vida completo de las identidades bajo el modelo Joiner-Mover-Leaver, disparando el aprovisionamiento de accesos 
+desde el sistema de recursos humanos según plantillas de rol aprobadas, y garantizando que cada colaborador cuente oportunamente con los accesos 
+que necesita. Es necesario revocar y reasignar automáticamente los accesos ante cambios de rol validando que no generen conflictos de segregación 
+de funciones, y desactivar de inmediato todos los accesos al finalizar la relación laboral. Es necesario auditar periódicamente estos procesos para 
+garantizar su correcto funcionamiento.
+
+## Requisitos
+
+### Requisito 1
+
+Automatizamos el ciclo de vida completo de identidades siguiendo el modelo Joiner-Mover-Leaver.
+
+### Requisito 2
+
+Garantizamos que el nuevo colaborador disponga de todos sus accesos en un plazo máximo definido por la organización desde el inicio de actividades.
+
+### Requisito 3
+
+Completamos el desaprovisionamiento en un plazo máximo definido por la organización desde la notificación de RRHH.
+
+### Requisito 4
+
+Disparamos el aprovisionamiento de accesos automáticamente desde el HRIS al momento de la contratación.
+
+### Requisito 5
+
+Asignamos cuentas, licencias de software y accesos según plantillas de rol predefinidas y aprobadas.
+
+### Requisito 6
+
+Registramos cada acceso otorgado en el sistema de gestión de identidades con trazabilidad del proceso de aprobación.
+
+### Requisito 7
+
+Revocamos los accesos del rol anterior y asignamos los nuevos automáticamente ante cambios de cargo o área.
+
+### Requisito 8
+
+Desactivamos la cuenta, revocamos todos los accesos y cerramos forzosamente las sesiones activas ante la terminación de la relación laboral.
+
+### Requisito 9
+
+Validamos la ausencia de conflictos de segregación de funciones en cada cambio de rol.
+
+### Requisito 10
+
+Auditamos con frecuencia programada el proceso de aprovisionamiento.
+
+### Requisito 11
+
+Auditamos con frecuencia programada el proceso de desaprovisionamiento.

@@ -1,0 +1,41 @@
+---
+title: CIP-5 - Inventario de Puntos Finales
+description: Control de gestión de activos de endpoints
+---
+
+## Definición de Control
+
+Es necesario mantener un inventario completo y actualizado de todos los dispositivos endpoint que acceden a la red o a los recursos organizacionales, 
+automatizando su descubrimiento y registrando los atributos que permitan identificar su estado y nivel de cumplimiento. Es necesario detectar y 
+aislar los dispositivos no autorizados que intenten conectarse, reconciliar periódicamente el inventario físico con el lógico, y gestionar el ciclo 
+de vida de cada dispositivo desde su adquisición hasta su retiro, garantizando el borrado seguro de la información antes de su disposición final.
+
+## Requisitos
+
+### Requisito 1
+
+Mantenemos un inventario completo y actualizado de todos los dispositivos endpoint que acceden a la red corporativa o a recursos organizacionales.
+
+### Requisito 2
+
+Registramos para cada dispositivo: hostname, dirección MAC, número de serie, sistema operativo, usuario asignado, estado del agente EDR, estado de cifrado y estado de compliance.
+
+### Requisito 3
+
+Gestionamos el ciclo de vida de los dispositivos desde su adquisición hasta su retiro.
+
+### Requisito 4
+
+Automatizamos el descubrimiento de dispositivos mediante agentes MDM/UEM y escaneos de red.
+
+### Requisito 5
+
+Detectamos los dispositivos no autorizados que intentan conectarse a la red y los bloqueamos o redirigimos a cuarentena.
+
+### Requisito 6
+
+Aplicamos borrado certificado de datos antes de la disposición final de cada dispositivo o en reasignación.
+
+### Requisito 7
+
+Reconciliamos el inventario físico con el lógico con una frecuencia programada.

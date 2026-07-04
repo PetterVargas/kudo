@@ -1,0 +1,66 @@
+---
+title: CIP-2 - Ciberseguridad en Autenticación
+description: Control de mecanismos de autenticación robusta
+---
+
+## Definición de Control
+
+Es necesario establecer una política de control de acceso que formalice la asignación de credenciales, exigiendo autenticación multifactor en los 
+accesos administrativos, remotos y a sistemas críticos, y centralizando la autenticación mediante un proveedor único (SSO). Es necesario aplicar 
+políticas de contraseñas seguras, promover mecanismos de autenticación más robustos, y monitorear y revocar de inmediato las credenciales 
+comprometidas. Es necesario gestionar de forma segura la autenticación entre servicios y aplicaciones mediante identidades administradas, rotar 
+automáticamente las claves y tokens utilizados, y orientar a los colaboradores en el manejo correcto de sus credenciales.
+
+## Requisitos
+
+### Requisito 1
+
+Tenemos una política de control de acceso establecida en la compañía.
+
+### Requisito 2
+
+Orientamos a los colaboradores sobre manejar correctamente la identidades y promovemos el uso de gestores de contraseñas.
+
+### Requisito 3
+
+Controlamos la asignación de credenciales de acceso mediante un proceso formal y estructurado.
+
+### Requisito 4
+
+Exigimos aprobación formal del responsable de ciberseguridad y controles compensatorios documentados para cualquier exención del MFA.
+
+### Requisito 5
+
+Implementamos MFA obligatorio en todos los accesos administrativos, remotos y a sistemas y datos críticos o confidenciales.
+
+### Requisito 6
+
+Soportamos múltiples factores de segunda verificación acorde al riesgo del acceso.
+
+### Requisito 7
+
+Implementamos Single Sign On SSO corporativo basado en protocolos estándar (SAML 2.0, OAuth 2.0, OIDC) para centralizar la autenticación.
+
+### Requisito 8
+
+Aplicamos políticas de contraseñas con criterios de seguridad.
+
+### Requisito 9
+
+Promovemos la autenticación sin contraseña (FIDO2, Windows Hello) como evolución hacia arquitecturas más seguras.
+
+### Requisito 10
+
+Usamos managed identities o service principals con permisos mínimos para la autenticación entre servicios y aplicaciones.
+
+### Requisito 11
+
+Rotamos automáticamente las API keys y tokens de servicio según la periodicidad establecida.
+
+### Requisito 12
+
+Aceptamos software de tercero que permita el aprovisionamiento y desaprovisionamiento automatico (SCIM)
+
+### Requisito 13
+
+Monitoreamos continuamente las credenciales comprometidas y las revocamos de inmediato al ser detectadas.

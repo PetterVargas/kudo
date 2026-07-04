@@ -1,0 +1,53 @@
+---
+title: CCN-3 - Revertir Cambios
+description: Control de rollback y reversión de cambios fallidos
+---
+
+## Definición de Control
+
+Es necesario exigir un plan de rollback documentado y probado para todo cambio, definiendo con claridad los criterios que activan una reversión y los 
+responsables de ejecutarla. Es necesario promover estrategias de despliegue que permitan revertir cambios en servicios críticos de forma inmediata y 
+sin impacto a los usuarios. Es necesario registrar todo cambio revertido, analizar su causa raíz mediante un post-mortem, e incorporar las lecciones 
+aprendidas al proceso de gestión de cambios.
+
+## Requisitos
+
+### Requisito 1
+
+Exigimos un plan de rollback documentado y probado como requisito obligatorio en toda solicitud de cambio.
+
+### Requisito 2
+
+Documentamos paso a paso los procedimientos de reversión para cada cambio.
+
+### Requisito 3
+
+Definimos los criterios de activación del rollback: tiempos máximos de degradación, tasas de error y alertas de monitoreo.
+
+### Requisito 4
+
+Asignamos responsables del proceso de reversión en cada cambio.
+
+### Requisito 5
+
+Promovemos el uso de estrategias de despliegue blue/green o canary para cambios en servicios críticos.
+
+### Requisito 6
+
+Garantizamos reversión inmediata sin impacto en los usuarios mediante las estrategias de despliegue seguro.
+
+### Requisito 7
+
+Registramos en el sistema de gestión de cambios todos los cambios revertidos con su incidente, tiempo de afectación y causa del rollback.
+
+### Requisito 8
+
+Realizamos análisis post-mortem obligatorio para todo cambio revertido en sistemas críticos.
+
+### Requisito 9
+
+Identificamos la causa raíz del fallo y generamos acciones correctivas en cada post-mortem.
+
+### Requisito 10
+
+Revisamos los post-mortems en el Comité Asesor de Cambios (CAB) e incorporamos las lecciones aprendidas al proceso de gestión de cambios.

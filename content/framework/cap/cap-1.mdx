@@ -1,0 +1,136 @@
+---
+title: CAP-1 - Ciberseguridad en el Ciclo de Desarrollo del Software
+description: Control de seguridad integrada y automatizada en el SDLC
+---
+
+## Definición de Control
+
+Es necesario integrar la seguridad en todas las fases del ciclo de desarrollo del software bajo un enfoque Shift Left, realizando modelado de amenazas 
+y definiendo requisitos de seguridad desde la planificación, y estableciendo principios de diseño seguro y estándares de codificación que guíen el 
+desarrollo. Es necesario controlar el acceso al código fuente y a las herramientas de desarrollo, capacitar a los equipos en codificación segura, y 
+automatizar en el pipeline de CI/CD la detección de secretos y el análisis de seguridad del código, las dependencias, los contenedores y la 
+infraestructura como código. Es necesario bloquear el paso a producción de artefactos con vulnerabilidades críticas definiendo security gates y SLAs 
+de remediación, gestionar de forma segura los secretos utilizados por las aplicaciones, y mantener separados y protegidos los entornos de desarrollo, 
+prueba y producción.
+
+## Requisitos
+
+### Requisito 1
+
+Integramos prácticas de seguridad en todas las fases del SDLC bajo un enfoque Shift Left.
+
+### Requisito 2
+
+Realizamos modelado de amenazas de negocio en la fase de planificación de cada iniciativa de desarrollo.
+
+### Requisito 3
+
+Realizamos modelado de amenazas entre componentes arquitectónicos en la fase de planificación de cada iniciativa de desarrollo.
+
+### Requisito 4
+
+Definimos requisitos de seguridad funcionales y no funcionales antes de iniciar el diseño.
+
+### Requisito 5
+
+Revisamos la arquitectura de seguridad aplicando principios de Defense in Depth en la fase de diseño.
+
+### Requisito 6
+
+Definimos y mantenemos estándares de codificación segura basados en OWASP Top 10 y SANS CWE/25.
+
+### Requisito 7
+
+Capacitamos a los desarrolladores en codificación segura con frecuencia programada.
+
+### Requisito 8
+
+Definimos SLAs de remediación para los defectos de seguridad encontrados en las pruebas.
+
+### Requisito 9
+
+Gestionamos adecuadamente quién puede leer el código fuente, las herramientas de desarrollo y las bibliotecas de software.
+
+### Requisito 10
+
+Gestionamos adecuadamente quién puede modificar el código fuente, las herramientas de desarrollo y las bibliotecas de software.
+
+### Requisito 11
+
+Especificamos con claridad los requisitos de seguridad de la información al momento de desarrollar o adquirir nuevas aplicaciones.
+
+### Requisito 12
+
+Aprobamos formalmente los requisitos de seguridad de la información antes de desarrollar o adquirir nuevas aplicaciones.
+
+### Requisito 13
+
+Documentamos los principios de diseño seguro de sistemas para que estén disponibles en todas las actividades de desarrollo.
+
+### Requisito 14
+
+Implementamos pre-commit hooks para verificar automáticamente el cumplimiento de los estándares de seguridad antes de aceptar código en el repositorio.
+
+### Requisito 15
+
+Implementamos workflows de CI/CD con protección de ramas y asignación de codeowners en todas las ramas principales del repositorio.
+
+### Requisito 16
+
+Ejecutamos, tanto en el pipeline CI como en los pull requests, detección automática de secretos en el código fuente.
+
+### Requisito 17
+
+Integramos análisis de seguridad estático (SAST) sobre el código fuente, ejecutándolo de forma automatizada en cada build del pipeline CI.
+
+### Requisito 18
+
+Integramos análisis dinámico (DAST) sobre la aplicación en ejecución en ambiente de staging como parte del pipeline CD.
+
+### Requisito 19
+
+Integramos análisis de composición de software (SCA) para identificar vulnerabilidades en dependencias de terceros, ejecutándolo de forma automatizada en el pipeline CI.
+
+### Requisito 20
+
+Escaneamos las imágenes de contenedor en busca de vulnerabilidades como parte del pipeline CI.
+
+### Requisito 21
+
+Ejecutamos análisis estático de seguridad en toda la infraestructura definida como código (IaC).
+
+### Requisito 22
+
+Validamos las configuraciones desplegadas como parte del pipeline CD.
+
+### Requisito 23
+
+Definimos security gates automatizados con umbrales máximos de vulnerabilidades por severidad que bloquean el despliegue en producción de artefactos con vulnerabilidades críticas o altas.
+
+### Requisito 24
+
+Registramos los resultados de los security gates en el sistema de tickets de seguridad.
+
+### Requisito 25
+
+Gestionamos todos los secretos mediante servicios de vault e inyectamos en tiempo de ejecución.
+
+### Requisito 26
+
+Integramos y verificamos automáticamente el firmado de commits en el SDLC, tanto en el pipeline CI como en los pull requests.
+
+### Requisito 27
+
+Mantenemos separados los entornos de desarrollo, prueba y producción para evitar interferencias entre ellos.
+
+### Requisito 28
+
+Protegemos los entornos de desarrollo, prueba y producción frente a accesos no autorizados o modificaciones indebidas.
+
+### Requisito 29
+
+Monitoreamos continuamente las vulnerabilidades en dependencias y aplicamos parches de seguridad.
+
+### Requisito 30
+
+Mantenemos actualizados los principios de diseño seguro de sistemas a lo largo del tiempo.

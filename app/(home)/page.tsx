@@ -242,7 +242,7 @@ export default function HomePage() {
               <rect x="982" y="122" width="145" height="24" rx="3"
                 fill="transparent" stroke="currentColor" strokeWidth="1" strokeOpacity="0.2" strokeDasharray="5 3" />
               <text x="1055" y="138" textAnchor="middle" fontSize="11"
-                fill="currentColor" opacity="0.55" fontWeight="500">Constancia</text>
+                fill="currentColor" opacity="0.55" fontWeight="500">Regulaciones</text>
             </g>
 
             <g className="diag-node">
@@ -359,10 +359,10 @@ export default function HomePage() {
                 <CheckCircle className="h-8 w-8 text-fd-primary" />
               </div>
               <h4 className="text-xl font-semibold mb-3">
-                <span data-count="36" data-suffix="">36</span> Controles
+                <span data-count="35" data-suffix="">35</span> Controles
               </h4>
               <p className="text-fd-muted-foreground">
-                Marco completo con 36 controles de Ciberseguridad
+                Marco completo con 35 controles de Ciberseguridad
               </p>
             </div>
             <div className="gsap-stat text-center">

@@ -1,0 +1,140 @@
+---
+title: CIF-3 - Ciberseguridad en la Red y Sistemas
+description: Control de seguridad de redes y sistemas cloud
+---
+
+## Definición de Control
+
+Es necesario segmentar las redes aplicando el principio de mínimo acceso, proteger los recursos expuestos a internet frente a ataques externos, y 
+aplicar hardening a los sistemas siguiendo referencias de la industria, manteniendo documentada y actualizada su configuración y topología. Es 
+necesario restringir y supervisar estrictamente los accesos administrativos y privilegiados a los entornos productivos, habilitándolos de forma 
+temporal y centralizando su registro para detectar actividad anómala. Es necesario proteger físicamente las instalaciones donde se procesa o 
+almacena información mediante perímetros y controles de acceso, salvaguardar los equipos frente a amenazas físicas y ambientales, cortes de 
+suministro y daños en el cableado, garantizar su mantenimiento adecuado, y aplicar prácticas de escritorio despejado y pantalla limpia dentro y 
+fuera de las instalaciones.
+
+## Requisitos
+
+### Requisito 1
+
+Implementamos segmentación de red en entornos cloud con subnets diferenciadas por función: DMZ, aplicación, datos y gestión.
+
+### Requisito 2
+
+Aplicamos el principio default-deny en todos los controles de tráfico: security groups, NACLs y network policies.
+
+### Requisito 3
+
+Ubicamos los recursos críticos en subnets privadas sin acceso directo a internet.
+
+### Requisito 4
+
+Definimos y usamos perímetros de seguridad física para proteger las áreas donde se encuentre información y activos relacionados.
+
+### Requisito 5
+
+Diseñamos y aplicamos medidas de seguridad física para oficinas, despachos y otros espacios de trabajo.
+
+### Requisito 6
+
+Diseñamos y aplicamos procedimientos para trabajar de forma segura dentro de las áreas protegidas.
+
+### Requisito 7
+
+Ubicamos los equipos en lugares seguros y protegidos para reducir riesgos físicos.
+
+### Requisito 8
+
+Protegemos los activos de la organización cuando se encuentren fuera de sus instalaciones.
+
+### Requisito 9
+
+Nos aseguramos de que los equipos reciban el mantenimiento adecuado para garantizar la disponibilidad, integridad y confidencialidad de la información.
+
+### Requisito 10
+
+Definimos y documentamos las configuraciones de seguridad del hardware, software, servicios y redes de la organización.
+
+### Requisito 11
+
+Limitamos y supervisamos de forma rigurosa el uso de programas o herramientas que puedan saltarse o anular los controles de seguridad del sistema.
+
+### Requisito 12
+
+Aplicamos procedimientos y medidas para gestionar de forma segura la instalación de software en los sistemas que están en producción.
+
+### Requisito 13
+
+Identificamos los mecanismos de seguridad, los niveles de servicio y los requisitos de todos los servicios de red disponibles.
+
+### Requisito 14
+
+Restringimos los accesos a los entornos productivos aplicando el principio de mínimo privilegio y la política de máxima restricción posible.
+
+### Requisito 15
+
+Diagramamos los componentes y la topología de red de la infraestructura y mantenemos los diagramas actualizados ante cualquier cambio.
+
+### Requisito 16
+
+Implementamos WAF para la protección de todas las aplicaciones web expuestas a internet.
+
+### Requisito 17
+
+Implementamos protección DDoS en todos los recursos expuestos a internet.
+
+### Requisito 18
+
+Aplicamos hardening de sistemas y VMs basado en las referencias de industria mediante gestión de configuración centralizada.
+
+### Requisito 19
+
+Restringimos el acceso administrativo remoto exclusivamente a través de bastion hosts o servicios equivalentes con MFA obligatorio.
+
+### Requisito 20
+
+Aplicamos network policies en entornos Kubernetes para controlar el tráfico entre pods y servicios.
+
+### Requisito 21
+
+Habilitamos y centralizamos los flow logs de VPC/VNet en el SIEM para la detección de tráfico anómalo.
+
+### Requisito 22
+
+Protegemos las áreas seguras con controles de entrada y puntos de acceso adecuados que impidan el acceso no autorizado.
+
+### Requisito 23
+
+Diseñamos e implementamos protecciones para las infraestructuras frente a amenazas físicas y ambientales como desastres naturales u otros eventos inesperados.
+
+### Requisito 24
+
+Protegemos las instalaciones de procesamiento de información contra cortes de energía y otras interrupciones causadas por fallos en los suministros básicos.
+
+### Requisito 25
+
+Protegemos el cableado eléctrico y de telecomunicaciones que transmite datos frente a interceptaciones, interferencias o daños.
+
+### Requisito 26
+
+Sincronizamos los relojes de todos los sistemas de procesamiento de información de la organización con fuentes de tiempo confiables y aprobadas.
+
+### Requisito 27
+
+Configuramos cualquier cambio a nivel de nube mediante Privileged Identity Management (PIM), habilitando permisos privilegiados de forma temporal y bajo demanda (Just in Time).
+
+### Requisito 28
+
+Revisamos trimestralmente las reglas de security groups y eliminamos los accesos no necesarios.
+
+### Requisito 29
+
+Grabamos todas las sesiones de acceso administrativo y las mantenemos disponibles para auditoría.
+
+### Requisito 30
+
+Monitorizamos de forma continua las instalaciones para detectar cualquier acceso físico no autorizado.
+
+### Requisito 31
+
+Supervisamos y ajustamos el uso de los recursos tecnológicos teniendo en cuenta las necesidades actuales y futuras de capacidad.

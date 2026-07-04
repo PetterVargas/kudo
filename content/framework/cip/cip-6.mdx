@@ -1,0 +1,67 @@
+---
+title: CIP-6 - Ciberseguridad en Puntos Finales
+description: Control de protección y hardening de endpoints
+---
+
+## Definición de Control
+
+Es necesario proteger los dispositivos endpoint desplegando soluciones de detección y respuesta con análisis de comportamiento, integradas con el 
+SIEM para la correlación de alertas y la respuesta coordinada a incidentes. Es necesario aplicar hardening a los sistemas operativos, cifrar la 
+información almacenada, y mantener los dispositivos actualizados mediante una gestión automatizada de parches, identificando y notificando aquellos 
+que se encuentren en incumplimiento. Es necesario controlar qué aplicaciones y dispositivos externos pueden ejecutarse o conectarse a cada endpoint, 
+prevenir la fuga de información sensible, y contar con la capacidad de ubicar y borrar remotamente la información de un dispositivo cuando sea 
+necesario.
+
+## Requisitos
+
+### Requisito 1
+
+Desplegamos soluciones EDR/XDR en el 100% de los dispositivos endpoint corporativos con análisis de comportamiento avanzado.
+
+### Requisito 2
+
+Gestionamos las excepciones a los controles de endpoint mediante un proceso formal de aprobación con fecha de expiración.
+
+### Requisito 3
+
+Integramos las soluciones EDR/XDR con el SIEM/SOC para la correlación de alertas y la respuesta coordinada a incidentes.
+
+### Requisito 4
+
+Actualizamos automáticamente las firmas y motores de detección de las soluciones EDR/XDR.
+
+### Requisito 5
+
+Aplicamos hardening de sistema operativo basado en CIS Benchmarks para Windows, macOS y Linux mediante gestión de configuración centralizada.
+
+### Requisito 6
+
+Habilitamos el cifrado completo de disco en todos los dispositivos con gestión centralizada de recovery keys.
+
+### Requisito 7
+
+Automatizamos la gestión de parches con SLAs definidos.
+
+### Requisito 8
+
+Implementamos control de aplicaciones mediante whitelisting para que solo se ejecuten aplicaciones aprobadas.
+
+### Requisito 9
+
+Restringimos el uso de dispositivos de almacenamiento USB no autorizados en todos los endpoints.
+
+### Requisito 10
+
+Implementamos controles de prevención de pérdida de datos (DLP) en endpoints para detectar y bloquear la exfiltración de datos sensibles.
+
+### Requisito 11
+
+Ubicamos los endpoints geográficamente en caso de ser necesario.
+
+### Requisito 12
+
+Borramos remotamente sin posibilidad de recuperación de información almacenada en el endpoint.
+
+### Requisito 13
+
+Identificamos y notificamos automáticamente los dispositivos en estado de non-compliance.
