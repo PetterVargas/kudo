@@ -12,8 +12,6 @@
     "soc-2-y-kudo",
     "cis-controls-y-kudo",
     "nist-cybersecurity-framework-y-kudo",
-    "pci-dss-y-kudo",
-    "---OSCAL---",
-    "OSCAL"
+    "pci-dss-y-kudo"
   ]
 }

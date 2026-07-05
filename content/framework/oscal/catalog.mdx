@@ -1,0 +1,30 @@
+---
+title: Catalog
+description: Catálogo de controles de seguridad del framework Kudo estructurado según modelo OSCAL
+---
+
+## Catalogo del Kudo Framework
+
+### Revisión 1
+
+| Formato | Enlace |
+|----------|--------|
+| json | [kudo-catalog.json](https://github.com/PetterVargas/kudo/blob/main/content/framework/oscal/kudo/rev1/json/kudo-catalog.json) |
+| xml | [kudo-catalog.xml](https://github.com/PetterVargas/kudo/blob/main/content/framework/oscal/kudo/rev1/xml/kudo-catalog.xml) |
+| yaml | [kudo-catalog.yaml](https://github.com/PetterVargas/kudo/blob/main/content/framework/oscal/kudo/rev1/yaml/kudo-catalog.yaml) |
+| toon | [kudo-catalog.toon](https://github.com/PetterVargas/kudo/blob/main/content/framework/oscal/kudo/rev1/toon/kudo-catalog.toon) |
+
+
+## Herramientas de Soporte
+
+### Validadores OSCAL
+
+Para validar documentos OSCAL generados desde Kudo:
+
+```bash
+# Instalación de herramientas NIST OSCAL
+npm install -g @nist/oscal-cli
+
+# Validación de catálogo
+oscal-cli validate --schema=catalog kudo-catalog.json
+```

@@ -475,6 +475,23 @@ pie title Postura de Seguridad General
 3. **L3**: CISO + CTO
 4. **Executive**: CEO + Board (for major incidents)
 
+## Herramientas de Soporte
+
+### Validadores OSCAL
+
+Para validar documentos OSCAL generados desde Kudo:
+
+```bash
+# Instalación de herramientas NIST OSCAL
+npm install -g @nist/oscal-cli
+
+# Validación de catálogo
+oscal-cli validate --schema=catalog kudo-catalog.json
+
+# Validación de SSP
+oscal-cli validate --schema=ssp system-security-plan.json
+```
+
 ---
 
 *System Security Plan v1.0 - Documento generado según estándares OSCAL*  

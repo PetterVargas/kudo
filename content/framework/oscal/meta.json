@@ -1,5 +1,10 @@
 {
+  "title": "OSCAL",
+  "description": "Kudo adaptado a OSCAL (Open Security Controls Assessment Language)",
+  "root": true,
   "pages": [
+    "---Kudo (OSCAL)---",
+    "index",
     "catalog",
     "profile",
     "component-definition",
