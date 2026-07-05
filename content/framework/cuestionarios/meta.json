@@ -1,5 +1,11 @@
 {
   "title": "Cuestionarios",
   "description": "Cuestionarios del framework",
-  "root": true
+  "root": true,
+  "pages": [
+    "---Metodología---",
+    "index",
+    "---Cuestionarios---",
+    "cuestionario-completo"
+  ]
 }
