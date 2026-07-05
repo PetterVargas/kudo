@@ -2,7 +2,7 @@
 
 import { useRef, useEffect } from 'react';
 import Link from 'next/link';
-import { ArrowRight, Book, Rocket, Shield, FileText, Users, Target, Zap, CheckCircle } from 'lucide-react';
+import { ArrowRight, Book, Rocket, Shield, FileText, Users, Target, Zap, CheckCircle, Layers, Database, Settings2, ShieldCheck, ClipboardCheck } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -13,6 +13,7 @@ export default function HomePage() {
   const statsRef    = useRef<HTMLDivElement>(null);
   const svgRef      = useRef<SVGSVGElement>(null);
   const featuresRef = useRef<HTMLElement>(null);
+  const oscalRef    = useRef<HTMLElement>(null);
   const productsRef = useRef<HTMLElement>(null);
   const ctaRef      = useRef<HTMLElement>(null);
 
@@ -20,10 +21,11 @@ export default function HomePage() {
     const heroEl     = heroRef.current;
     const statsEl    = statsRef.current;
     const featuresEl = featuresRef.current;
+    const oscalEl    = oscalRef.current;
     const productsEl = productsRef.current;
     const ctaEl      = ctaRef.current;
 
-    if (!heroEl || !statsEl || !featuresEl || !productsEl || !ctaEl) return;
+    if (!heroEl || !statsEl || !featuresEl || !oscalEl || !productsEl || !ctaEl) return;
 
     // ── Hero diagram ──────────────────────────────────────────────────────
     const heroCtx = gsap.context(() => {
@@ -51,7 +53,7 @@ export default function HomePage() {
           const len   = path.getTotalLength();
           const state = { t: 0 };
           gsap.to(state, {
-            t: 1, duration: 2.4, repeat: -1, delay: i * 0.42 + 1.4, ease: 'none',
+            t: 1, duration: 2.4, repeat: -1, delay: i * 0.42, ease: 'none',
             onUpdate() {
               const pt = path.getPointAtLength(state.t * len);
               gsap.set(dot, { attr: { cx: pt.x, cy: pt.y } });
@@ -105,6 +107,22 @@ export default function HomePage() {
       });
     }, featuresEl);
 
+    // ── OSCAL ─────────────────────────────────────────────────────────────
+    const oscalCtx = gsap.context(() => {
+      gsap.from('.oscal-header', {
+        y: 20, opacity: 0, duration: 0.6, ease: 'power2.out',
+        scrollTrigger: { trigger: '.oscal-header', start: 'top 85%', once: true },
+      });
+      gsap.from('.oscal-layer', {
+        y: 18, opacity: 0, duration: 0.5, stagger: 0.12, ease: 'power2.out',
+        scrollTrigger: { trigger: '.oscal-layers', start: 'top 85%', once: true },
+      });
+      gsap.from('.oscal-cta', {
+        y: 16, opacity: 0, duration: 0.5, delay: 0.3, ease: 'power2.out',
+        scrollTrigger: { trigger: '.oscal-header', start: 'top 85%', once: true },
+      });
+    }, oscalEl);
+
     // ── Products ──────────────────────────────────────────────────────────
     const productsCtx = gsap.context(() => {
       gsap.from('.products-header', {
@@ -131,6 +149,7 @@ export default function HomePage() {
       heroCtx.revert();
       statsCtx.revert();
       featuresCtx.revert();
+      oscalCtx.revert();
       productsCtx.revert();
       ctaCtx.revert();
     };
@@ -436,6 +455,56 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section ref={oscalRef} className="py-20 px-4">
+        <div className="max-w-6xl mx-auto">
+          <div className="oscal-header text-center mb-12">
+            <div className="w-14 h-14 bg-fd-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+              <Layers className="h-7 w-7 text-fd-primary" />
+            </div>
+            <h3 className="text-3xl font-bold mb-4">Kudo adaptado a OSCAL</h3>
+            <p className="text-xl text-fd-muted-foreground max-w-2xl mx-auto">
+              Los 35 controles de Kudo expresados según OSCAL (Open Security Controls Assessment Language),
+              el estándar de NIST para intercambiar información de controles de seguridad.
+            </p>
+          </div>
+
+          <div className="oscal-layers grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+            <div className="oscal-layer flex flex-col gap-3 p-6 rounded-xl border border-fd-border/60 bg-fd-card/40">
+              <div className="flex items-center gap-3">
+                <Database className="h-5 w-5 text-fd-primary" />
+                <h4 className="font-semibold">Capa de Control</h4>
+              </div>
+              <p className="text-fd-muted-foreground text-sm">Catalog &amp; Profile</p>
+            </div>
+            <div className="oscal-layer flex flex-col gap-3 p-6 rounded-xl border border-fd-border/60 bg-fd-card/40">
+              <div className="flex items-center gap-3">
+                <Settings2 className="h-5 w-5 text-fd-primary" />
+                <h4 className="font-semibold">Capa de Implementación</h4>
+              </div>
+              <p className="text-fd-muted-foreground text-sm">Component Definition &amp; SSP</p>
+            </div>
+            <div className="oscal-layer flex flex-col gap-3 p-6 rounded-xl border border-fd-border/60 bg-fd-card/40">
+              <div className="flex items-center gap-3">
+                <ShieldCheck className="h-5 w-5 text-fd-primary" />
+                <h4 className="font-semibold">Capa de Evaluación</h4>
+              </div>
+              <p className="text-fd-muted-foreground text-sm">AP, AR &amp; POA&amp;M</p>
+            </div>
+          </div>
+
+          <div className="oscal-cta text-center">
+            <Link
+              href="/framework/oscal"
+              className="group inline-flex items-center justify-center gap-2 px-8 py-4 text-lg font-semibold text-fd-primary-foreground bg-fd-primary hover:bg-fd-primary/90 active:scale-95 rounded-lg transition-all duration-200 hover:scale-[1.03]"
+            >
+              <ClipboardCheck className="h-5 w-5" />
+              Ver adaptación a OSCAL
+              <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+            </Link>
           </div>
         </div>
       </section>
