@@ -1,57 +1,126 @@
 ---
 title: Cuestionarios
-description: Cuestionarios de autoevaluación para medir la madurez en ciberseguridad
+description: Cuestionarios de autoevaluación para medir la madurez en Ciberseguridad basado en Kudo
 ---
+
+import { Building2, Handshake, Users, Layers } from 'lucide-react';
 
 # Cuestionarios de Autoevaluación
 
-## Descripción
-
-Los cuestionarios de autoevaluación de Kudo Framework permiten a las organizaciones medir su nivel de madurez en ciberseguridad de manera estructurada y alineada con los 8 dominios del framework.
-
 ## Objetivo
 
-Estos cuestionarios están diseñados para:
+Buscamos constantemente que nuestros cuestionarios sea más un ejercicio mayéutico, por eso dejamos claro:
 
-- **Evaluar** el estado actual de los controles de Ciberseguridad implementados
-- **Identificar** brechas y áreas de mejora en cada dominio
-- **Priorizar** iniciativas de seguridad basadas en resultados objetivos
-- **Medir** el progreso en la implementación del framework Kudo
-- **Generar** reportes de madurez por dominio y global
-
-## Dominios Evaluados
-
-Los cuestionarios cubren los 8 dominios principales:
-
-1. **COR** - Coherencia Organizacional
-2. **CIP** - Ciberseguridad en Identidad y Puntos Finales
-3. **CIF** - Ciberseguridad en Infraestructura
-4. **CAP** - Ciberseguridad en Aplicaciones
-5. **CCN** - Continuidad y Cambios del Negocio
-6. **ADR** - Análisis, Detección y Respuesta de Ciberseguridad
-7. **THP** - Ciberseguridad en Talento Humano y Proveedores
-8. **DIA** - Ciberseguridad en Datos e Inteligencia Artificial
+- No es un examen de pasar.
+- La Ciberseguridad no es binaria, ni blanco y negro; es mejora continua.
+- Para cada cuestionamiento es necesario que se valide con el apetito de riesgo, el tamaño, la estrategia y el momento de negocio de la compañía.
 
 ## Cómo Utilizar
 
 Los cuestionarios están en desarrollo y próximamente estarán disponibles para:
 
-- Autoevaluación en línea
-- Descarga en formato PDF
+- En cualquier momento.
+- Si solo lo quieres pasar sin la realidad del negocio, te estas engañando a ti.
 - Integración con herramientas de gestión
 - Generación automática de reportes
 
+## Cuestionarios
+
+<Cards>
+  <Card icon={<Layers />} href="/framework/cuestionarios/cuestionario-completo" title="Cuestionario Completo">
+    Cuestionario completo que agrupa los tres ámbitos.
+  </Card>
+</Cards>
+
 ## Metodología
 
-Cada cuestionario utiliza una escala de madurez de 5 niveles:
+### Cuestionario y ámbitos de gestión
 
-- **Nivel 0**: No implementado
-- **Nivel 1**: Inicial / Ad-hoc
-- **Nivel 2**: Repetible / Documentado
-- **Nivel 3**: Definido / Estandarizado
-- **Nivel 4**: Gestionado / Medible
-- **Nivel 5**: Optimizado / Mejora continua
+En cada cuestionamiento es importante pensar en tres escenarios, asociados a los [ámbitos de gestión del framework](../overview/ambitos-de-gestion.mdx) 
+cada uno tiene un cuestionario, y al final hay uno que abarca todo, realice el que aplique en cada escenario o ve por el camino completo.
 
----
+### Niveles de cuestionamiento
 
-*Los cuestionarios complementan la documentación del framework Kudo y las políticas de ciberseguridad proporcionando una herramienta práctica de evaluación.*
+Cada cuestionario utiliza una escala de madurez de 4 niveles:
+
+- **Nivel 0**: El requisito no existe o no se ha considerado.
+- **Nivel 1**: Existe de forma reactiva o informal.
+- **Nivel 2**: Está documentado y se aplica de forma consistente.
+- **Nivel 3**: Está estandarizado en toda la organización.
+- **Nivel 4**: Se mide mediante métricas e indicadores y se gestiona con evidencia.
+- **Nivel 5**: Se optimiza continuamente mediante análisis, automatización y retroalimentación.
+
+## Cálculo del nivel de madurez
+
+La referencia representa el **nivel de madurez en Ciberseguridad** obtenido tanto para cada requisito evaluado como para el cuestionario completo.
+
+### Escala por pregunta
+
+Cada pregunta se califica en una escala de **0 a 5**, donde cada punto representa un incremento del **20%** del nivel máximo de madurez.
+
+| Puntuación | Cumplimiento | Nivel de madurez |
+|-----------:|------------:|------------------|
+| 5 | 100% | Optimizado. El requisito se mejora continuamente mediante métricas, automatización y retroalimentación. |
+| 4 | 80% | Gestionado. El requisito se mide mediante indicadores y existe evidencia de su gestión. |
+| 3 | 60% | Estandarizado. El requisito está definido y se aplica de forma uniforme en la organización. |
+| 2 | 40% | Documentado. El requisito está documentado y se aplica de forma consistente. |
+| 1 | 20% | Inicial. El requisito existe de manera reactiva o informal. |
+| 0 | 0% | No implementado. El requisito no existe o no ha sido considerado. |
+
+### Interpretación del cuestionario
+
+El nivel de madurez del cuestionario se calcula mediante la siguiente fórmula:
+
+$$
+M=\frac{\sum_{i=1}^{n}p_i}{5n}\times100
+$$
+
+Donde:
+
+- $\sum p_i$ corresponde a la **sumatoria de los puntos obtenidos** en todas las preguntas.
+- $5n$ corresponde al **máximo de puntos posibles**, siendo $5$ la puntuación máxima por pregunta y $n$ el número total de preguntas.
+
+#### Ejemplo
+
+Para un cuestionario de **20 preguntas**:
+
+- Puntos máximos posibles: $5 \times 20 = 100$
+- Puntos obtenidos: $83$
+
+Entonces:
+
+$$
+M=\frac{83}{100}\times100=83\%
+$$
+
+El resultado indica que el cuestionario alcanza un **83% de madurez**, equivalente a un nivel **Gestionado**, ya que la mayoría de los requisitos cuentan con métricas, evidencia y mecanismos de seguimiento, aunque todavía existen oportunidades de optimización continua.
+
+#### Rangos de madurez del cuestionario
+
+Una vez calculado el porcentaje de cumplimiento mediante la fórmula de nivel de madurez, el resultado se interpreta de acuerdo con los siguientes rangos:
+
+| Cumplimiento | Nivel de madurez | Descripción |
+|-------------:|------------------|-------------|
+| **100%** | **Nivel 5 – Co-creación de Ciberseguridad** | La ciberseguridad forma parte de la estrategia y de la toma de decisiones del negocio. Existe mejora continua, automatización, métricas y una cultura de colaboración entre las áreas. El apetito de riesgo está claramente definido, es monitoreado continuamente y las decisiones de negocio consideran el impacto sobre el riesgo cibernético como un factor estratégico. |
+| **80% – 99%** | **Nivel 4 – Estratégico** | La ciberseguridad se gestiona como un habilitador del negocio. Los controles son medidos y existe evidencia de su eficacia. El apetito de riesgo se utiliza para priorizar inversiones, definir excepciones y respaldar decisiones estratégicas de manera informada. |
+| **60% – 79%** | **Nivel 3 – Táctico** | Los procesos de ciberseguridad están definidos, documentados y estandarizados. La gestión del riesgo es consistente y las decisiones tácticas consideran el apetito de riesgo, aunque su aplicación aún no es uniforme en toda la organización. |
+| **40% – 59%** | **Nivel 2 – Operacional** | Existen procesos y controles documentados que se ejecutan de forma consistente, aunque con oportunidades de fortalecimiento. El apetito de riesgo comienza a utilizarse como referencia para la operación, pero las decisiones aún son mayoritariamente reactivas. |
+| **20% – 39%** | **Nivel 1 – Básico** | La organización cuenta con prácticas iniciales de ciberseguridad implementadas de forma reactiva o informal. El apetito de riesgo no se encuentra formalizado o es poco conocido, por lo que las decisiones de negocio suelen tomarse con información limitada sobre el riesgo cibernético. |
+| **0% – 19%** | **Nivel 0 – Crítico** | La organización presenta un nivel de madurez crítico. Los procesos y controles de ciberseguridad son inexistentes o insuficientes para gestionar adecuadamente los riesgos. No existe un apetito de riesgo definido y las decisiones de negocio se toman sin considerar de forma estructurada la exposición al riesgo cibernético. |
+
+
+## Cuestionarios en roadmap
+
+En roadmap
+
+<Cards>
+  <Card icon={<Building2 />} title="Cuestionario Ámbito Interno (Corporativo)">
+    Cuestionario aplicable para el ámbito Interno (Corporativo).
+  </Card>
+  <Card icon={<Handshake />} title="Cuestionario Ámbito de Terceros">
+    Cuestionario aplicable para el ámbito de Terceros (Proveedores y Partners).
+  </Card>
+  <Card icon={<Users />} title="Cuestionario Ámbito Externo (Clientes)">
+    Cuestionario aplicable para el ámbito Externo (Clientes).
+  </Card>
+</Cards>
