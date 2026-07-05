@@ -12,7 +12,7 @@ import type { ReactNode } from 'react';
 export const sectionTabs: LayoutTab[] = [
   {
     title: 'Framework',
-    description: 'The docs framework',
+    description: 'La documentación del framework',
     icon: <LayoutTemplate className="size-4" />,
     url: frameworkRoute,
   },
@@ -35,7 +35,7 @@ const frameworkIcons: Record<string, ReactNode> = {
   COR: <Building2 className="size-4" />,
   DIA: <Database className="size-4" />,
   THP: <Users className="size-4" />,
-  Correlación: <GitMerge className="size-4" />,
+  OSCAL: <GitMerge className="size-4" />,
   Cuestionarios: <ClipboardList className="size-4" />,
 };
 
@@ -43,6 +43,7 @@ const sgsiIcons: Record<string, ReactNode> = {
   Políticas: <FileText className="size-4" />,
   Procedimientos: <BookMarked className="size-4" />,
   Aprovisionamiento: <Package className="size-4" />,
+  Correlación: <GitMerge className="size-4" />,
 };
 
 export function getFrameworkSubTabs(): LayoutTab[] {

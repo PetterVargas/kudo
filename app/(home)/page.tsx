@@ -277,7 +277,7 @@ export default function HomePage() {
               <text x="520" y="83" textAnchor="middle" fontSize="9" fill="#4DAE84" opacity="0.8">Framework</text>
               <rect x="562" y="63" width="76" height="33" rx="2"
                 fill="transparent" stroke="#4DAE84" strokeWidth="1" strokeOpacity="0.38" strokeDasharray="4 3" />
-              <text x="600" y="83" textAnchor="middle" fontSize="9" fill="#4DAE84" opacity="0.8">Correlación</text>
+              <text x="600" y="83" textAnchor="middle" fontSize="9" fill="#4DAE84" opacity="0.8">OSCAL</text>
               <rect x="642" y="63" width="76" height="33" rx="2"
                 fill="transparent" stroke="#4DAE84" strokeWidth="1" strokeOpacity="0.38" strokeDasharray="4 3" />
               <text x="680" y="83" textAnchor="middle" fontSize="9" fill="#4DAE84" opacity="0.8">SGSI</text>

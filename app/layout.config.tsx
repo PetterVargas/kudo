@@ -1,5 +1,5 @@
 import type { BaseLayoutProps } from 'fumadocs-ui/layouts/shared';
-import { BookIcon, FileTextIcon, Building2Icon, ShieldCheckIcon, CloudIcon, CodeIcon, RefreshCwIcon, SearchIcon, UsersIcon, DatabaseIcon, NewspaperIcon, ClipboardCheckIcon } from 'lucide-react';
+import { BookIcon, Workflow, FileTextIcon, Building2Icon, ShieldCheckIcon, CloudIcon, CodeIcon, RefreshCwIcon, SearchIcon, UsersIcon, DatabaseIcon, NewspaperIcon, ClipboardCheckIcon } from 'lucide-react';
 
 /**
  * Shared layout configurations
@@ -42,6 +42,12 @@ export const baseOptions: BaseLayoutProps = {
       icon: <BookIcon />,
       text: 'Framework',
       url: '/framework/overview',
+      secondary: false,
+    },
+    {
+      icon: <Workflow />,
+      text: 'OSCAL',
+      url: '/framework/oscal',
       secondary: false,
     },
     {
