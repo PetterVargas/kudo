@@ -1,12 +1,24 @@
 'use client';
 
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useLayoutEffect } from 'react';
 import Link from 'next/link';
 import { ArrowRight, Book, Rocket, Shield, FileText, Users, Target, Zap, CheckCircle, Layers, Database, Settings2, ShieldCheck, ClipboardCheck } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { HeroUniverse } from '@/components/hero-universe';
 
 gsap.registerPlugin(ScrollTrigger);
+
+// useLayoutEffect warns during SSR; fall back to useEffect there. On the
+// client we want the layout version so the size correction below happens
+// before paint instead of after, avoiding a visible resize jump.
+const useIsomorphicLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect;
+
+// Measured height of the announcement banner (fixed at 3rem by fumadocs'
+// <Banner>) + the nav bar below it. Used as the static (pre-hydration)
+// fallback so the hero doesn't start taller and visibly shrink into place
+// once JS runs.
+const BANNER_AND_NAV_HEIGHT_PX = 104;
 
 export default function HomePage() {
   const heroRef     = useRef<HTMLElement>(null);
@@ -16,6 +28,22 @@ export default function HomePage() {
   const oscalRef    = useRef<HTMLElement>(null);
   const productsRef = useRef<HTMLElement>(null);
   const ctaRef      = useRef<HTMLElement>(null);
+
+  // Sizes the hero to exactly fill the remaining space in the first screen
+  // (100vh minus whatever sits above it in normal flow: banner + nav).
+  useIsomorphicLayoutEffect(() => {
+    const heroEl = heroRef.current;
+    if (!heroEl) return;
+
+    const updateHeroHeight = () => {
+      const top = heroEl.getBoundingClientRect().top + window.scrollY;
+      heroEl.style.minHeight = `calc(100vh - ${top}px)`;
+    };
+
+    updateHeroHeight();
+    window.addEventListener('resize', updateHeroHeight);
+    return () => window.removeEventListener('resize', updateHeroHeight);
+  }, []);
 
   useEffect(() => {
     const heroEl     = heroRef.current;
@@ -159,8 +187,13 @@ export default function HomePage() {
     <main className="flex flex-1 flex-col min-h-[calc(100vh-var(--header-height)-var(--footer-height))] font-sans">
 
       {/* ── Hero ── */}
-      <section ref={heroRef} className="relative overflow-hidden pb-20">
+      <section
+        ref={heroRef}
+        className="relative overflow-hidden pb-20 flex flex-col justify-center"
+        style={{ minHeight: `calc(100vh - ${BANNER_AND_NAV_HEIGHT_PX}px)` }}
+      >
         <div className="absolute inset-0 bg-gradient-to-br from-fd-primary/5 via-transparent to-fd-secondary/5 pointer-events-none" />
+        <HeroUniverse className="absolute inset-0 w-full h-full pointer-events-none opacity-90" />
 
         <svg
           className="absolute inset-0 w-full h-full pointer-events-none text-fd-foreground"
@@ -299,7 +332,7 @@ export default function HomePage() {
               <text x="600" y="83" textAnchor="middle" fontSize="9" fill="#4DAE84" opacity="0.8">OSCAL</text>
               <rect x="642" y="63" width="76" height="33" rx="2"
                 fill="transparent" stroke="#4DAE84" strokeWidth="1" strokeOpacity="0.38" strokeDasharray="4 3" />
-              <text x="680" y="83" textAnchor="middle" fontSize="9" fill="#4DAE84" opacity="0.8">SGSI</text>
+              <text x="680" y="83" textAnchor="middle" fontSize="9" fill="#4DAE84" opacity="0.8">SGX</text>
               <rect x="470" y="53" width="8" height="8" rx="1" fill="#4DAE84" />
               <rect x="722" y="53" width="8" height="8" rx="1" fill="#4DAE84" />
               <rect x="470" y="98" width="8" height="8" rx="1" fill="#4DAE84" />
@@ -330,7 +363,7 @@ export default function HomePage() {
             Framework de Ciberseguridad por y para LatAm
           </h2>
           <p className="gsap-hi text-xl text-fd-muted-foreground max-w-3xl mx-auto mb-5 leading-relaxed">
-            Marco completo con SGSI, políticas, procedimientos y controles de Ciberseguridad.
+            Marco completo con SGX (SGC, SGSI, SGIA, etc...), políticas, procedimientos y controles de Ciberseguridad.
             Más de 25 templates organizacionales listos para implementar.
           </p>
           <div className="gsap-hi flex flex-col sm:flex-row gap-4 justify-center">
@@ -568,11 +601,11 @@ export default function HomePage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/sgsi/"
+              href="/sgx/"
               className="group inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-fd-primary-foreground bg-fd-primary hover:bg-fd-primary/90 rounded-lg transition-colors"
             >
               <FileText className="h-5 w-5 mr-2" />
-              Ver SGSI
+              Ver SGX
               <ArrowRight className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" />
             </Link>
             <Link

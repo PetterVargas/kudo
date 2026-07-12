@@ -1,0 +1,22 @@
+import { sgxSource, getSgxPageMarkdownUrl, getLLMText } from '@/lib/source';
+import { notFound } from 'next/navigation';
+
+export const revalidate = false;
+
+export async function GET(_req: Request, { params }: RouteContext<'/llms.mdx/sgx/[[...slug]]'>) {
+  const { slug } = await params;
+  const page = sgxSource.getPage(slug?.slice(0, -1));
+  if (!page) notFound();
+
+  return new Response(await getLLMText(page), {
+    headers: {
+      'Content-Type': 'text/markdown',
+    },
+  });
+}
+
+export function generateStaticParams() {
+  return sgxSource.getPages().map((page) => ({
+    slug: getSgxPageMarkdownUrl(page).segments,
+  }));
+}

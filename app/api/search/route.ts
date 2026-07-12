@@ -1,4 +1,4 @@
-import { frameworkSource, sgsiSource } from '@/lib/source';
+import { frameworkSource, sgxSource } from '@/lib/source';
 import { createSearchAPI } from 'fumadocs-core/search/server';
 
 export const revalidate = false;
@@ -12,7 +12,7 @@ export const { staticGET: GET } = createSearchAPI('advanced', {
       url: page.url,
       structuredData: page.data.structuredData,
     })),
-    ...sgsiSource.getPages().map((page) => ({
+    ...sgxSource.getPages().map((page) => ({
       id: page.url,
       title: page.data.title,
       description: page.data.description,

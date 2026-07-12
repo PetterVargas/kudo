@@ -1,7 +1,7 @@
 import type { BaseLayoutProps, LayoutTab } from 'fumadocs-ui/layouts/shared';
 import { getSidebarTabs } from 'fumadocs-ui/components/sidebar/tabs';
-import { appName, gitConfig, frameworkRoute, sgsiRoute } from './shared';
-import { frameworkSource, sgsiSource } from './source';
+import { appName, gitConfig, frameworkRoute, sgxRoute } from './shared';
+import { frameworkSource, sgxSource } from './source';
 import {
   LayoutTemplate, ShieldCheck,
   BookOpen, Network, GitMerge, FileText, BookMarked, ClipboardList, Package,
@@ -17,10 +17,10 @@ export const sectionTabs: LayoutTab[] = [
     url: frameworkRoute,
   },
   {
-    title: 'SGSI',
+    title: 'SGX',
     description: 'Sistema de Gestión',
     icon: <ShieldCheck className="size-4" />,
-    url: sgsiRoute,
+    url: sgxRoute,
   },
 ];
 
@@ -39,7 +39,7 @@ const frameworkIcons: Record<string, ReactNode> = {
   Cuestionarios: <ClipboardList className="size-4" />,
 };
 
-const sgsiIcons: Record<string, ReactNode> = {
+const sgxIcons: Record<string, ReactNode> = {
   Políticas: <FileText className="size-4" />,
   Procedimientos: <BookMarked className="size-4" />,
   Aprovisionamiento: <Package className="size-4" />,
@@ -55,11 +55,11 @@ export function getFrameworkSubTabs(): LayoutTab[] {
   });
 }
 
-export function getSgsiSubTabs(): LayoutTab[] {
-  return getSidebarTabs(sgsiSource.getPageTree(), {
+export function getSgxSubTabs(): LayoutTab[] {
+  return getSidebarTabs(sgxSource.getPageTree(), {
     transform: (option) => ({
       ...option,
-      icon: sgsiIcons[String(option.title)] ?? option.icon,
+      icon: sgxIcons[String(option.title)] ?? option.icon,
     }),
   });
 }
