@@ -1,8 +1,8 @@
-import { frameworkSource, sgsiSource } from '@/lib/source';
+import { frameworkSource, sgxSource } from '@/lib/source';
 import type { Graph } from '../components/graph-view';
 
 export function buildGraph(): Graph {
-  const sources = [frameworkSource, sgsiSource];
+  const sources = [frameworkSource, sgxSource];
   const graph: Graph = { links: [], nodes: [] };
 
   for (const source of sources) {
@@ -18,7 +18,7 @@ export function buildGraph(): Graph {
       for (const ref of extractedReferences) {
         const refPage =
           frameworkSource.getPageByHref(ref.href) ??
-          sgsiSource.getPageByHref(ref.href);
+          sgxSource.getPageByHref(ref.href);
         if (!refPage) continue;
 
         graph.links.push({

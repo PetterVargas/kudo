@@ -21,7 +21,7 @@ const docsConfig = {
 };
 
 export const frameworkDocs = defineDocs({ dir: 'content/framework', ...docsConfig });
-export const sgsiDocs = defineDocs({ dir: 'content/sgsi', ...docsConfig });
+export const sgxDocs = defineDocs({ dir: 'content/sgx', ...docsConfig });
 
 export default defineConfig({
   mdxOptions: {

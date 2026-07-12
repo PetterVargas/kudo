@@ -1,5 +1,5 @@
 import { Feed } from 'feed';
-import { frameworkSource, sgsiSource } from '@/lib/source';
+import { frameworkSource, sgxSource } from '@/lib/source';
 import { appName } from '@/lib/shared';
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ?? 'http://localhost:3000';
@@ -13,7 +13,7 @@ export function getRSS() {
     copyright: `All rights reserved ${new Date().getFullYear()}`,
   });
 
-  const pages = [...frameworkSource.getPages(), ...sgsiSource.getPages()];
+  const pages = [...frameworkSource.getPages(), ...sgxSource.getPages()];
 
   for (const page of pages) {
     feed.addItem({
