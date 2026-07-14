@@ -21,7 +21,7 @@ export default function Layout({ children }: { children: ReactNode }) {
       >
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-center gap-2">
           <a
-            href="https://divisioncero.com/herramientas"
+            href="https://herramientas.divisioncero.com"
             target="_blank"
             rel="noopener noreferrer"
             className="font-medium underline hover:text-white/80 transition-colors"
@@ -111,7 +111,7 @@ function Footer() {
             <div className="flex flex-col gap-y-2.5">
               <h3 className="font-medium mb-4">Acerca de</h3>
               <ul className="space-y-2">
-                <li><a href="https://divisioncero.com/herramientas" className="text-sm hover:underline" target="_blank" rel="noopener noreferrer">Herramientas</a></li>
+                <li><a href="https://herramientas.divisioncero.com" className="text-sm hover:underline" target="_blank" rel="noopener noreferrer">Herramientas</a></li>
                 <li><a href="https://docs.divisioncero.com" className="text-sm hover:underline" target="_blank" rel="noopener noreferrer">Documentación</a></li>
                 <li><a href="/sgsi" className="text-sm hover:underline">SGSI</a></li>
               </ul>
