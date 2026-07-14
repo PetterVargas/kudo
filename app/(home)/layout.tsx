@@ -21,7 +21,7 @@ export default function Layout({ children }: { children: ReactNode }) {
       >
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-center gap-2">
           <a
-            href="https://divisioncero.com/herramientas"
+            href="https://herramientas.divisioncero.com/"
             target="_blank"
             rel="noopener noreferrer"
             className="font-medium underline hover:text-white/80 transition-colors"
