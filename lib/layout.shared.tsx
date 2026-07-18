@@ -40,7 +40,7 @@ const frameworkIcons: Record<string, ReactNode> = {
 };
 
 const sgxIcons: Record<string, ReactNode> = {
-  Políticas: <FileText className="size-4" />,
+  'Políticas y Procedimientos': <FileText className="size-4" />,
   Procedimientos: <BookMarked className="size-4" />,
   Aprovisionamiento: <Package className="size-4" />,
   Correlación: <GitMerge className="size-4" />,
