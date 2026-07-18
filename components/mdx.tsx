@@ -2,6 +2,7 @@ import React from 'react';
 import defaultMdxComponents from 'fumadocs-ui/mdx';
 import * as Twoslash from 'fumadocs-twoslash/ui';
 import { Mermaid } from '@/components/mdx/mermaid';
+import { ThemedImage } from '@/components/mdx/themed-image';
 import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
 import { CodeBlock, Pre } from 'fumadocs-ui/components/codeblock';
 import { DynamicCodeBlock } from 'fumadocs-ui/components/dynamic-codeblock';
@@ -19,6 +20,7 @@ export function getMDXComponents(components?: MDXComponents) {
     ...defaultMdxComponents,
     ...Twoslash,
     Mermaid,
+    ThemedImage,
     Accordion,
     Accordions,
     pre: ({ ref: _ref, ...props }: React.ComponentProps<'pre'>) => (

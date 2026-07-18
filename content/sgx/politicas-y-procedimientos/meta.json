@@ -1,6 +1,6 @@
 {
-  "title": "Políticas",
-  "description": "Políticas del SGSI",
+  "title": "Políticas y Procedimientos",
+  "description": "Políticas y procedimientos del SGSI",
   "root": true,
   "pages": [
     "index",
@@ -35,6 +35,18 @@
     "politica-de-seguridad-de-recursos-humanos",
     "politica-de-gestion-de-concienciacion",
     "politica-de-gestion-de-proveedores",
+    "---Documentos de Seguridad en Recursos Humanos---",
+    "procedimiento-de-atraccion-de-talento",
+    "clausulas-para-colaboradores",
+    "terminos-y-condiciones-para-colaboradores",
+    "---Documentos de Concientización---",
+    "procedimiento-de-concientizacion",
+    "---Documentos de Procedimiento de Proveedores---",
+    "procedimiento-de-gestion-de-proveedores",
+    "solicitud-de-compras",
+    "terminos-y-condiciones-para-proveedores",
+    "clausulas-para-proveedores",
+    "plantilla-de-contrato-proveedores",
     "---DIA - Datos e Inteligencia Artificial---",
     "politica-de-privacidad",
     "politica-de-gestion-de-activos"

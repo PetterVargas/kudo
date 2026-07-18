@@ -1,0 +1,64 @@
+---
+title: "Procedimiento de Atracción de Talento"
+description: "Ciclo completo de vinculación: validación de candidatos, estudios de seguridad, contratación y aprovisionamiento de accesos"
+---
+
+# Procedimiento de Atracción de Talento
+
+<ThemedImage
+  light="/sgx/politicas-y-procedimientos/draw-ciberseguridad-en-recursos-humanos-light.png"
+  dark="/sgx/politicas-y-procedimientos/draw-ciberseguridad-en-recursos-humanos-dark.png"
+  alt="Diagrama del Procedimiento de Atracción de Talento"
+  width={1132}
+  height={645}
+/>
+
+## Propósito
+Definir el **cómo** operativo de la [Política de Seguridad de Recursos Humanos](/sgx/politicas-y-procedimientos/politica-de-seguridad-de-recursos-humanos): los pasos, roles y registros necesarios para atraer, validar, contratar y aprovisionar el acceso de nuevos colaboradores de forma segura, y para desaprovisionar dicho acceso al finalizar la relación laboral.
+
+## Alcance
+Aplica a todo proceso de vinculación de colaboradores, contratistas y personal temporal, gestionado por el equipo de Atracción de Talento con apoyo de Seguridad de la Información, Líderes de área y el equipo de Tecnología.
+
+## Roles y Responsabilidades
+- **Equipo de Atracción de Talento:** Ejecuta la vacante, valida candidatos, coordina estudios y gestiona el registro en el sistema de RRHH.
+- **Seguridad de la Información:** Define los estudios de seguridad requeridos según el rol y valida el aprovisionamiento de accesos.
+- **Líder de área:** Define la matriz de roles y responsabilidades del cargo y confirma la necesidad de la vacante.
+- **Tecnología / IdP:** Ejecuta el aprovisionamiento y desaprovisionamiento automático de accesos en el proveedor de identidad (IdP).
+
+## 1. Descripción de la Vacante
+El líder de área, con apoyo de Atracción de Talento, documenta la vacante incluyendo funciones, requisitos, nivel de acceso a información o sistemas que tendrá el cargo, y si aplica manejo de datos personales o información confidencial. Esta clasificación determina la profundidad de los estudios de la sección 3.
+
+## 2. Validación de Documentos e Información
+Atracción de Talento verifica la identidad del candidato y la autenticidad de la documentación aportada (identificación, soportes académicos, certificaciones laborales) antes de continuar el proceso.
+
+## 3. Estudios Previos a la Contratación
+Según la clasificación de la vacante (sección 1), se ejecutan los siguientes estudios:
+- **Estudio socio-familiar:** Verificación del entorno del candidato para roles de mayor exposición o confianza.
+- **Estudio de seguridad:** Validación de antecedentes judiciales, disciplinarios, fiscales y listas restrictivas, proporcional al riesgo del cargo.
+- **Exámenes médicos:** Evaluación de aptitud médica ocupacional conforme a la normativa laboral vigente.
+
+Cualquier hallazgo adverso se escala al líder de área y a Seguridad de la Información antes de continuar el proceso.
+
+## 4. Contrato Laboral
+Una vez superados los estudios, se formaliza el **Contrato Laboral**, que incorpora las [Cláusulas para Colaboradores](/sgx/politicas-y-procedimientos/clausulas-para-colaboradores) y los [Términos y Condiciones para Colaboradores](/sgx/politicas-y-procedimientos/terminos-y-condiciones-para-colaboradores) como parte integral, junto con el **Job Description** del cargo.
+
+## 5. Registro y Matriz de Roles
+- **Registro en el sistema de RRHH:** Atracción de Talento crea el registro oficial del colaborador con sus datos y fecha de ingreso.
+- **Matriz de roles y responsabilidades:** El líder de área confirma el perfil de acceso que le corresponde al colaborador según su cargo, insumo que Tecnología usa para el aprovisionamiento.
+
+## 6. Aprovisionamiento de Accesos
+- **Primer acceso automático en IdP:** A partir del registro en RRHH y la matriz de roles, Tecnología aprovisiona automáticamente las credenciales del colaborador en el proveedor de identidad.
+- **Primer acceso seguro:** El colaborador activa sus credenciales siguiendo el procedimiento de primer acceso seguro (cambio de contraseña inicial, registro de doble factor) antes de su charla de onboarding.
+
+## 7. Desaprovisionamiento en Outboarding
+Al finalizar la relación laboral, por cualquier causa, el sistema de RRHH notifica al IdP para ejecutar el **desaprovisionamiento automático** de todas las credenciales y accesos del colaborador, conforme a la [Política de Gestión de Accesos](/sgx/politicas-y-procedimientos/politica-de-gestion-de-accesos).
+
+## Documentos Relacionados
+- [Política de Seguridad de Recursos Humanos](/sgx/politicas-y-procedimientos/politica-de-seguridad-de-recursos-humanos)
+- [Cláusulas para Colaboradores](/sgx/politicas-y-procedimientos/clausulas-para-colaboradores)
+- [Términos y Condiciones para Colaboradores](/sgx/politicas-y-procedimientos/terminos-y-condiciones-para-colaboradores)
+- [Procedimiento de Concientización](/sgx/politicas-y-procedimientos/procedimiento-de-concientizacion)
+- [Política de Gestión de Accesos](/sgx/politicas-y-procedimientos/politica-de-gestion-de-accesos)
+
+## Monitoreo y Revisión
+Atracción de Talento reporta trimestralmente a Seguridad de la Información el estado de los estudios pendientes y las vinculaciones completadas. El procedimiento se revisa anualmente o ante cambios regulatorios o incidentes relevantes durante la vinculación o el egreso de personal.
