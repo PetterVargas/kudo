@@ -1,27 +1,30 @@
 import { Feed } from 'feed';
-import { frameworkSource, sgxSource } from '@/lib/source';
-import { appName } from '@/lib/shared';
-
-const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ?? 'http://localhost:3000';
+import { blog } from '@/lib/source';
+import { appName, appDescription, baseUrl } from '@/lib/shared';
 
 export function getRSS() {
+  const posts = [...blog.getPages()].sort(
+    (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
+  );
+
   const feed = new Feed({
     title: appName,
+    description: appDescription,
     id: baseUrl,
     link: baseUrl,
-    language: 'en',
-    copyright: `All rights reserved ${new Date().getFullYear()}`,
+    language: 'es',
+    copyright: `Todos los derechos reservados ${new Date().getFullYear()}`,
+    updated: posts.length ? new Date(posts[0].data.date) : new Date(),
   });
 
-  const pages = [...frameworkSource.getPages(), ...sgxSource.getPages()];
-
-  for (const page of pages) {
+  for (const page of posts) {
     feed.addItem({
-      id: page.url,
+      id: `${baseUrl}${page.url}`,
       title: page.data.title,
       description: page.data.description,
       link: `${baseUrl}${page.url}`,
-      date: new Date(),
+      author: [{ name: page.data.author }],
+      date: new Date(page.data.date),
     });
   }
 
