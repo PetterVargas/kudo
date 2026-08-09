@@ -2,8 +2,10 @@ import { frameworkDocs, sgxDocs, blogPosts } from 'collections/server';
 import { loader } from 'fumadocs-core/source';
 import { toFumadocsSource } from 'fumadocs-mdx/runtime/server';
 import {
+  baseUrl,
   frameworkRoute, frameworkImageRoute, frameworkContentRoute,
   sgxRoute, sgxImageRoute, sgxContentRoute,
+  blogImageRoute,
 } from './shared';
 
 export const frameworkSource = loader({
@@ -43,7 +45,47 @@ export function getSgxPageMarkdownUrl(page: (typeof sgxSource)['$inferPage']) {
   return { segments, url: `${sgxContentRoute}/${segments.join('/')}` };
 }
 
+export function getBlogPageImage(page: (typeof blog)['$inferPage']) {
+  const segments = [...page.slugs, 'image.png'];
+  return { segments, url: `${blogImageRoute}/${segments.join('/')}` };
+}
+
 export async function getLLMText(page: (typeof frameworkSource)['$inferPage'] | (typeof sgxSource)['$inferPage']) {
   const processed = await page.data.getText('processed');
   return `# ${page.data.title} (${page.url})\n\n${processed}`;
+}
+
+export function getBreadcrumbJsonLd(
+  source: typeof frameworkSource | typeof sgxSource,
+  page: { slugs: string[]; url: string; data: { title: string } },
+  sectionName: string,
+  sectionUrl: string,
+) {
+  const items: { name: string; url: string }[] = [
+    { name: 'Inicio', url: baseUrl },
+    { name: sectionName, url: `${baseUrl}${sectionUrl}` },
+  ];
+
+  for (let i = 1; i <= page.slugs.length; i++) {
+    const slice = page.slugs.slice(0, i);
+    const isLast = i === page.slugs.length;
+    const crumbPage = isLast ? page : source.getPage(slice);
+    if (!crumbPage) continue;
+
+    items.push({
+      name: crumbPage.data.title,
+      url: `${baseUrl}${crumbPage.url}`,
+    });
+  }
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: item.name,
+      item: item.url,
+    })),
+  };
 }

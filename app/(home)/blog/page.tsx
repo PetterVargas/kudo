@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { blog } from '@/lib/source';
 import { BookOpen } from 'lucide-react';
+import { homeImageRoute, defaultOpenGraph } from '@/lib/shared';
 
 export default function BlogIndexPage() {
   const posts = blog.getPages();
@@ -145,8 +146,32 @@ export default function BlogIndexPage() {
 }
 
 export function generateMetadata() {
+  const title = 'Blog';
+  const description = 'Artículos y actualizaciones sobre ciberseguridad y productos DivisionCero';
+
   return {
-    title: "Blog | DivisionCero",
-    description: "Artículos y actualizaciones sobre ciberseguridad y productos DivisionCero"
+    title,
+    description,
+    alternates: {
+      canonical: '/blog',
+    },
+    openGraph: {
+      ...defaultOpenGraph,
+      type: 'website',
+      title,
+      description,
+      url: '/blog',
+      images: {
+        url: homeImageRoute,
+        width: 1200,
+        height: 630,
+        alt: title,
+      },
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+    },
   };
 }
