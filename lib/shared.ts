@@ -13,8 +13,6 @@ export const sgxRoute = '/sgx';
 export const sgxImageRoute = '/og/sgx';
 export const sgxContentRoute = '/llms.mdx/sgx';
 
-export const blogRoute = '/blog';
-export const blogImageRoute = '/og/blog';
 export const homeImageRoute = '/og/home';
 
 export const gitConfig = {

@@ -37,7 +37,7 @@ export function ViewOptions({
     return [
       {
         title: 'Abrir en ChatGPT',
-        href: `https://chatgpt.com/?utm_source=kudo.divisioncero.com&${new URLSearchParams({
+        href: `https://chatgpt.com/?${new URLSearchParams({
           hints: 'search',
           q,
         })}`,
@@ -55,7 +55,7 @@ export function ViewOptions({
       },
       {
         title: 'Abrir en Claude',
-        href: `https://claude.ai/new?utm_source=kudo.divisioncero.com&${new URLSearchParams({
+        href: `https://claude.ai/new?${new URLSearchParams({
           q,
         })}`,
         icon: (

@@ -356,10 +356,10 @@ export function HomeContent() {
         </div>
 
         <div className="max-w-4xl mx-auto px-4 pt-4 pb-4 text-center relative z-10">
-          <h1 className="gsap-hi text-5xl lg:text-7xl font-bold tracking-tight mb-6 bg-gradient-to-br from-fd-foreground to-fd-muted-foreground bg-clip-text text-transparent">
+          <h1 className="gsap-hi text-5xl lg:text-7xl font-bold tracking-tight mb-6 text-fd-foreground">
             Kudo
           </h1>
-          <h2 className="gsap-hi text-2xl lg:text-3xl font-semibold mb-4 text-fd-foreground">
+          <h2 className="gsap-hi text-2xl lg:text-3xl font-semibold mb-4 bg-gradient-to-r from-[#4DAE84] to-[#39b298] bg-clip-text text-transparent">
             Framework de Ciberseguridad por y para LatAm
           </h2>
           <p className="gsap-hi text-xl text-fd-muted-foreground max-w-3xl mx-auto mb-5 leading-relaxed">
