@@ -1,11 +1,9 @@
-import { frameworkDocs, sgxDocs, blogPosts } from 'collections/server';
+import { frameworkDocs, sgxDocs } from 'collections/server';
 import { loader } from 'fumadocs-core/source';
-import { toFumadocsSource } from 'fumadocs-mdx/runtime/server';
 import {
   baseUrl,
   frameworkRoute, frameworkImageRoute, frameworkContentRoute,
   sgxRoute, sgxImageRoute, sgxContentRoute,
-  blogImageRoute,
 } from './shared';
 
 export const frameworkSource = loader({
@@ -18,11 +16,6 @@ export const sgxSource = loader({
   baseUrl: sgxRoute,
   source: sgxDocs.toFumadocsSource(),
   plugins: [],
-});
-
-export const blog = loader({
-  baseUrl: '/blog',
-  source: toFumadocsSource(blogPosts, []),
 });
 
 export function getFrameworkPageImage(page: (typeof frameworkSource)['$inferPage']) {
@@ -43,11 +36,6 @@ export function getSgxPageImage(page: (typeof sgxSource)['$inferPage']) {
 export function getSgxPageMarkdownUrl(page: (typeof sgxSource)['$inferPage']) {
   const segments = [...page.slugs, 'content.md'];
   return { segments, url: `${sgxContentRoute}/${segments.join('/')}` };
-}
-
-export function getBlogPageImage(page: (typeof blog)['$inferPage']) {
-  const segments = [...page.slugs, 'image.png'];
-  return { segments, url: `${blogImageRoute}/${segments.join('/')}` };
 }
 
 export async function getLLMText(page: (typeof frameworkSource)['$inferPage'] | (typeof sgxSource)['$inferPage']) {

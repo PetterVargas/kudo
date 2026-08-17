@@ -67,3 +67,6 @@ next-env.d.ts
 
 # kudo app test app
 create-kudo-app/test-app
+
+# claude worktrees
+.claude/worktrees/

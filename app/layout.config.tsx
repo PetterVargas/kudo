@@ -1,7 +1,7 @@
 import type { BaseLayoutProps } from 'fumadocs-ui/layouts/shared';
 import { BookIcon, Workflow, FileTextIcon, Building2Icon, ShieldCheckIcon, CloudIcon, CodeIcon, RefreshCwIcon, SearchIcon, UsersIcon, DatabaseIcon, NewspaperIcon, ClipboardCheckIcon, UserIcon } from 'lucide-react';
 
-const signUpUrl = 'https://app.divisioncero.com/auth/sign-up?utm_source=kudo.divisioncero.com&utm_medium=text_link&utm_campaign=principal_website';
+const signUpUrl = 'https://app.divisioncero.com/auth/sign-up';
 
 /**
  * Shared layout configurations
@@ -121,8 +121,9 @@ export const baseOptions: BaseLayoutProps = {
     {
       icon: <NewspaperIcon />,
       text: 'Blog',
-      url: '/blog',
+      url: 'https://divisioncero.com/blog',
       secondary: false,
+      external: true,
     },
     {
       type: 'icon',
