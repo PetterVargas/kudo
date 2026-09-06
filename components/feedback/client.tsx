@@ -135,6 +135,7 @@ export function Feedback({
                 href={previous.response?.githubUrl}
                 rel="noreferrer noopener"
                 target="_blank"
+                title="View on GitHub"
                 className={cn(
                   buttonVariants({
                     color: 'primary',
@@ -423,6 +424,7 @@ function FeedbackTextForm({
             href={previous.response?.githubUrl}
             rel="noreferrer noopener"
             target="_blank"
+            title="View on GitHub"
             className={cn(
               buttonVariants({
                 color: 'primary',
