@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
     template: `%s | ${appName}`,
-    default: 'Kudo - Framework de Ciberseguridad por y para LatAm | DivisionCero',
+    default: 'Kudo Framework de Ciberseguridad por y para LatAm - DivisionCero',
   },
   description: appDescription,
   keywords: [
@@ -26,9 +26,9 @@ export const metadata: Metadata = {
     'DivisionCero',
     'Kudo',
   ],
-  authors: [{ name: 'DivisionCero', url: 'https://divisioncero.com' }],
+  authors: [{ name: 'Peter Vargas', url: 'https://petervargas.com' }],
   creator: 'DivisionCero',
-  publisher: 'DivisionCero',
+  publisher: 'divisioncero.com',
   icons: {
     icon: [
       { url: '/favicon.ico' },

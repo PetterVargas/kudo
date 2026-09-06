@@ -370,6 +370,7 @@ export function HomeContent() {
             <Link
               href="/framework/overview"
               className="group inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-fd-primary-foreground bg-fd-primary hover:bg-fd-primary/90 rounded-lg transition-colors"
+              title="Explorar Framework Kudo"
             >
               Explorar Framework
               <ArrowRight className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" />
@@ -379,6 +380,7 @@ export function HomeContent() {
               className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-fd-foreground border border-fd-border hover:bg-fd-muted/50 rounded-lg transition-colors"
               target="_blank"
               rel="noopener noreferrer"
+              title="Descargar Kit de Inicio de Ciberseguridad"
             >
               Descargar Kit
             </Link>
@@ -533,6 +535,7 @@ export function HomeContent() {
             <Link
               href="/framework/oscal"
               className="group inline-flex items-center justify-center gap-2 px-8 py-4 text-lg font-semibold text-fd-primary-foreground bg-fd-primary hover:bg-fd-primary/90 active:scale-95 rounded-lg transition-all duration-200 hover:scale-[1.03]"
+              title="Ver adaptación de Kudo a OSCAL"
             >
               <ClipboardCheck className="h-5 w-5" />
               Ver adaptación a OSCAL
@@ -556,6 +559,7 @@ export function HomeContent() {
               className="product-card group flex flex-col gap-4 p-8 rounded-xl border border-fd-border/60 bg-fd-card/40 hover:border-fd-foreground/40 hover:bg-fd-card/70 transition-all duration-200 shadow-md"
               target="_blank"
               rel="noopener noreferrer"
+              title="CyberAcademy"
             >
               <div className="flex items-center gap-3">
                 <div className="w-12 h-12 bg-fd-primary/10 rounded-lg flex items-center justify-center">
@@ -575,6 +579,7 @@ export function HomeContent() {
               className="product-card group flex flex-col gap-4 p-8 rounded-xl border border-fd-border/60 bg-fd-card/40 hover:border-fd-foreground/40 hover:bg-fd-card/70 transition-all duration-200 shadow-md"
               target="_blank"
               rel="noopener noreferrer"
+              title="Ciberseguridad Empresarial"
             >
               <div className="flex items-center gap-3">
                 <div className="w-12 h-12 bg-fd-primary/10 rounded-lg flex items-center justify-center">
@@ -603,6 +608,7 @@ export function HomeContent() {
             <Link
               href="/sgx/"
               className="group inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-fd-primary-foreground bg-fd-primary hover:bg-fd-primary/90 rounded-lg transition-colors"
+              title="Ver SGX"
             >
               <FileText className="h-5 w-5 mr-2" />
               Ver SGX
@@ -611,6 +617,7 @@ export function HomeContent() {
             <Link
               href="/framework/overview"
               className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-fd-foreground border border-fd-border hover:bg-fd-muted/50 rounded-lg transition-colors"
+              title="Explorar Framework Kudo"
             >
               <Book className="h-5 w-5 mr-2" />
               Explorar Framework

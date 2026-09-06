@@ -105,6 +105,7 @@ export function ViewOptions({
             href={item.href}
             rel="noreferrer noopener"
             target="_blank"
+            title={item.title}
             className={cn(optionClass)}
           >
             {item.icon}

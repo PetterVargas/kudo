@@ -4,7 +4,7 @@ import { HomeContent } from './home-content';
 
 export const metadata: Metadata = {
   title: {
-    absolute: 'Kudo - Framework de Ciberseguridad por y para LatAm | DivisionCero',
+    absolute: 'Kudo Framework de Ciberseguridad por y para LatAm - DivisionCero',
   },
   description: appDescription,
   alternates: {
