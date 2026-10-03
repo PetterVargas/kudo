@@ -1,4 +1,4 @@
-import { frameworkSource, getFrameworkPageImage, getFrameworkPageMarkdownUrl, getBreadcrumbJsonLd } from '@/lib/source';
+import { frameworkSource, getFrameworkPageImage, getFrameworkPageMarkdownUrl, getBreadcrumbJsonLd, getSeoMeta } from '@/lib/source';
 import {
   DocsBody,
   DocsDescription,
@@ -57,30 +57,31 @@ export async function generateMetadata(props: PageProps<'/framework/[[...slug]]'
   const params = await props.params;
   const page = frameworkSource.getPage(params.slug);
   if (!page) notFound();
+  const { title, description } = getSeoMeta(frameworkSource, page);
 
   return {
-    title: page.data.title,
-    description: page.data.description,
+    title,
+    description,
     alternates: {
       canonical: page.url,
     },
     openGraph: {
       ...defaultOpenGraph,
       type: 'article',
-      title: page.data.title,
-      description: page.data.description,
+      title,
+      description,
       url: page.url,
       images: {
         url: getFrameworkPageImage(page).url,
         width: 1200,
         height: 630,
-        alt: page.data.title,
+        alt: title,
       },
     },
     twitter: {
       card: 'summary_large_image',
-      title: page.data.title,
-      description: page.data.description,
+      title,
+      description,
     },
   };
 }

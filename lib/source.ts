@@ -77,3 +77,43 @@ export function getBreadcrumbJsonLd(
     })),
   };
 }
+
+type SeoPage = { slugs: string[]; url: string; data: { title: string; description?: string } };
+
+const MIN_DESCRIPTION_LENGTH = 100;
+let duplicateTitles: Set<string> | undefined;
+
+function getDuplicateTitles() {
+  if (!duplicateTitles) {
+    const counts = new Map<string, number>();
+    for (const p of [...frameworkSource.getPages(), ...sgxSource.getPages()]) {
+      counts.set(p.data.title, (counts.get(p.data.title) ?? 0) + 1);
+    }
+    duplicateTitles = new Set([...counts].filter(([, n]) => n > 1).map(([t]) => t));
+  }
+  return duplicateTitles;
+}
+
+/**
+ * Título y descripción para metadata. El título visible (y el del sidebar) no
+ * cambia: solo se agrega el contexto de la página padre cuando el título se
+ * repite en el sitio (p. ej. "Correlación entre Dominios") o la descripción es
+ * demasiado corta para un snippet de buscador.
+ */
+export function getSeoMeta(source: typeof frameworkSource | typeof sgxSource, page: SeoPage) {
+  const parent = page.slugs.length > 0 ? source.getPage(page.slugs.slice(0, -1)) : undefined;
+  const parentTitle = parent && parent.url !== page.url ? parent.data.title : undefined;
+  const { title } = page.data;
+  const description = page.data.description ?? '';
+
+  const seoTitle = parentTitle && getDuplicateTitles().has(title) ? `${title} de ${parentTitle}` : title;
+
+  let seoDescription = description;
+  if (description.length < MIN_DESCRIPTION_LENGTH) {
+    const base = description.replace(/[.\s]+$/, '');
+    const context = parentTitle ? `${parentTitle} — ` : '';
+    seoDescription = `${base}. ${context}Kudo, framework de ciberseguridad open-source por y para LatAm.`;
+  }
+
+  return { title: seoTitle, description: seoDescription };
+}
