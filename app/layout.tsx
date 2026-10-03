@@ -1,6 +1,7 @@
 import { Inter } from 'next/font/google';
 import type { Metadata } from 'next';
 import { Provider } from '@/components/provider';
+import { WhatsAppButton } from '@/components/whatsapp-button';
 import { appName, appDescription, baseUrl } from '@/lib/shared';
 import type { ReactNode } from 'react';
 import Script from 'next/script';
@@ -83,16 +84,6 @@ export const metadata: Metadata = {
       'max-video-preview': -1,
     },
   },
-  alternates: {
-    types: {
-      'application/rss+xml': [
-        {
-          title: appName,
-          url: `${baseUrl}/rss.xml`,
-        },
-      ],
-    },
-  },
 };
 
 const organizationJsonLd = {
@@ -161,6 +152,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <Provider>
           {children}
         </Provider>
+        <WhatsAppButton />
       </body>
     </html>
   );
