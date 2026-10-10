@@ -176,7 +176,7 @@ Más de 25 templates de documentos listos para adaptar, incluyendo:
 - **[KaTeX](https://katex.org)** - Renderizado matemático
 - **[Mermaid](https://mermaid.js.org)** - Generación de diagramas
 - **[Orama](https://oramasearch.com)** - Motor de búsqueda
-- **[Kit de Ciberseguridad](https://divisioncero.com/home/kit-inicio-ciberseguridad)** - Recursos adicionales
+- **[Kit de Ciberseguridad](https://app.divisioncero.com/home/kit-inicio-ciberseguridad)** - Recursos adicionales
 
 ## 📄 Licencia
 
