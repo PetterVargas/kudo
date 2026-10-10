@@ -5,6 +5,7 @@ import { baseOptions } from '@/app/layout.config';
 import { Globe, MessageCircle } from 'lucide-react';
 import { AskAI } from '@/components/ask-ai';
 import { FooterReveal } from '@/components/footer-reveal';
+import { SubscribeDialog } from '@/components/subscribe-dialog';
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (
@@ -22,15 +23,7 @@ export default function Layout({ children }: { children: ReactNode }) {
         ]}
       >
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-center gap-2">
-          <a
-            href="https://herramientas.divisioncero.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            title="Herramientas de Ciberseguridad"
-            className="font-medium underline hover:text-white/80 transition-colors"
-          >
-            🚀 Herramientas de Ciberseguridad 👀 →
-          </a>
+          <SubscribeDialog>🚀 Suscríbete a DivisionCero 👀</SubscribeDialog>
         </div>
       </Banner>
       <HomeLayout 
@@ -57,7 +50,7 @@ const footerColumns: { title: string; links: FooterLink[] }[] = [
     links: [
       { text: 'CyberAcademy', url: 'https://cyberacademy.divisioncero.com/' },
       { text: 'Framework Kudo', url: '/' },
-      { text: 'Ciberseguridad Empresarial', url: 'https://divisioncero.com/home/empresas' },
+      { text: 'Ciberseguridad Empresarial', url: 'https://divisioncero.com/docs/ciberseguridad-empresarial' },
       { text: 'Herramientas', url: 'https://herramientas.divisioncero.com/', title: 'Herramientas de Ciberseguridad' },
     ],
   },

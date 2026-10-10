@@ -1,4 +1,5 @@
 import { type FileObject, printErrors, scanURLs, validateFiles } from 'next-validate-link';
+import remarkMath from 'remark-math';
 import { frameworkSource, sgxSource } from '@/lib/source';
 
 async function checkLinks() {
@@ -28,6 +29,7 @@ async function checkLinks() {
     await validateFiles(files, {
       scanned,
       markdown: {
+        remarkPlugins: [remarkMath],
         components: {
           Card: { attributes: ['href'] },
         },

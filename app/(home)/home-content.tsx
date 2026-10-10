@@ -376,7 +376,7 @@ export function HomeContent() {
               <ArrowRight className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" />
             </Link>
             <Link
-              href="https://divisioncero.com/home/kit-inicio-ciberseguridad"
+              href="https://app.divisioncero.com/home/kit-inicio-ciberseguridad"
               className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-fd-foreground border border-fd-border hover:bg-fd-muted/50 rounded-lg transition-colors"
               target="_blank"
               rel="noopener noreferrer"
@@ -575,7 +575,7 @@ export function HomeContent() {
               </div>
             </Link>
             <Link
-              href="https://divisioncero.com/home/empresas"
+              href="https://divisioncero.com/docs/ciberseguridad-empresarial"
               className="product-card group flex flex-col gap-4 p-8 rounded-xl border border-fd-border/60 bg-fd-card/40 hover:border-fd-foreground/40 hover:bg-fd-card/70 transition-all duration-200 shadow-md"
               target="_blank"
               rel="noopener noreferrer"

@@ -13,7 +13,7 @@ export const sgxRoute = '/sgx';
 export const sgxImageRoute = '/og/sgx';
 export const sgxContentRoute = '/llms.mdx/sgx';
 
-export const homeImageRoute = '/og/home';
+export const homeImageRoute = '/og/home/image.png';
 
 export const gitConfig = {
   user: 'PetterVargas',
