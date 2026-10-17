@@ -23,7 +23,7 @@ export default function Layout({ children }: { children: ReactNode }) {
         ]}
       >
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-center gap-2">
-          <SubscribeDialog>🚀 Suscríbete a DivisionCero 👀</SubscribeDialog>
+          <SubscribeDialog>🚀 Newsletter de DivisionCero 👀</SubscribeDialog>
         </div>
       </Banner>
       <HomeLayout 
